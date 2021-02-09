@@ -188,11 +188,11 @@
 		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
 	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
 		                           <div style="width: 80px; height: 80px;">
-		                         		<img src="assets/img/blog/single_blog_7.png" style="width: 80px; height: 80px;" alt="post">
+		                         		<img src="assets/img/post/post_2.png" style="width: 80px; height: 80px;" alt="post">
 		                           </div>
 			                           <div class="media-body">
 			                              <a href="blog_details.html">
-			                                 <h3>조금은 여유로웠던 한강 여행</h3>
+			                                 <h3>The Amazing Hubble</h3>
 			                              </a>
 			                              <p>02 Hours ago</p>
 			                           </div>
@@ -200,11 +200,11 @@
 		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
 	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
 		                           <div style="width: 80px; height: 80px;">
-		                         		<img src="assets/img/blog/single_blog_8.png" style="width: 80px; height: 80px;" alt="post">
+		                         		<img src="assets/img/post/post_3.png" style="width: 80px; height: 80px;" alt="post">
 		                           </div>
 			                           <div class="media-body">
 			                              <a href="blog_details.html">
-			                                 <h3>가장 한국스러웠던 장소</h3>
+			                                 <h3>Astronomy Or Astrology</h3>
 			                              </a>
 			                              <p>03 Hours ago</p>
 			                           </div>
@@ -212,11 +212,11 @@
 		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
 	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
 		                           <div style="width: 80px; height: 80px;">
-		                         		<img src="assets/img/blog/single_blog_9.png" style="width: 80px; height: 80px;" alt="post">
+		                         		<img src="assets/img/post/post_4.png" style="width: 80px; height: 80px;" alt="post">
 		                           </div>
 			                           <div class="media-body">
 			                              <a href="blog_details.html">
-			                                 <h3>나홀로 부산 2박3일 여행</h3>
+			                                 <h3>Asteroids telescope</h3>
 			                              </a>
 			                              <p>01 Hours ago</p>
 			                           </div>
