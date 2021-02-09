@@ -27,6 +27,10 @@ public class IndexController {
    public String review() {
       return "review"; 
    }
+   @RequestMapping("/write")
+   public String write() {
+	   return "write"; 
+   }
    @RequestMapping("/review_details")
    public String review_details() {
       return "review_details"; 

@@ -108,6 +108,25 @@
                     <div class="col-lg-4">
                         <div class="blog_right_sidebar">
                             <aside class="single_sidebar_widget search_widget">
+                                <div class="select-job-items1">
+                                    <select name="select1">
+                                        <option value="#">제목으로 찾기</option>
+                                        <option value="">아이디로 찾기</option>
+                                        <option value="">내용으로 찾기</option>
+                                    </select>
+                                </div>
+                                <!-- <div tabindex="0" class="nice-select mb-10">
+									<span class="current">지역 선택</span>
+									<ul class="list">
+										<li data-value="" class="option selected">지역 선택</li>
+										<li data-value="" class="option">서울/경기도</li>
+										<li data-value="" class="option">강원도</li>
+										<li data-value="" class="option">충청도</li>
+										<li data-value="" class="option">경상도</li>
+										<li data-value="" class="option">전라도</li>
+										<li data-value="" class="option">제주도</li>
+									</ul>
+								</div> -->
                                 <form action="#">
                                     <div class="form-group">
                                         <div class="input-group mb-3">
@@ -123,6 +142,95 @@
                                         type="submit">Search</button>
                                 </form>
                             </aside>
+                            <aside class="single_sidebar_widget search_widget">
+								<a href="write.html" class="genric-btn danger mb-10" style="padding: 0 120px; line-height: 50px">새 글 쓰기</a>
+							</aside>
+		                     <aside class="single_sidebar_widget post_category_widget">
+		                        <h4 class="widget_title">카테고리</h4>
+		                        <ul class="list cat-list">
+		                           <li>
+		                              <a href="#" class="d-flex">
+		                                 <p>혼자여행</p>
+		                                 &nbsp;
+		                                 <p>(37)</p>
+		                              </a>
+		                           </li>
+		                           <li>
+		                              <a href="#" class="d-flex">
+		                                 <p>가족여행</p>
+		                                 &nbsp;
+		                                 <p>(10)</p>
+		                              </a>
+		                           </li>
+		                           <li>
+		                              <a href="#" class="d-flex">
+		                                 <p>커플여행</p>
+		                                 &nbsp;
+		                                 <p>(23)</p>
+		                              </a>
+		                           </li>
+		                        </ul>
+		                     </aside>
+		                     <aside class="single_sidebar_widget popular_post_widget">
+		                        <h3 class="widget_title">최근 후기</h3>
+		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
+	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
+		                           <div style="width: 80px; height: 80px;">
+		                         		<img src="assets/img/blog/single_blog_6.png" style="width: 80px; height: 80px;" alt="post">
+		                           </div>
+			                           <div class="media-body">
+			                              <a href="blog_details.html">
+			                                 <h3>특별하고 아름다웠던 동대문</h3>
+			                              </a>
+			                              <p>January 12, 2019</p>
+			                           </div>
+		                        </div>
+		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
+	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
+		                           <div style="width: 80px; height: 80px;">
+		                         		<img src="assets/img/post/post_2.png" style="width: 80px; height: 80px;" alt="post">
+		                           </div>
+			                           <div class="media-body">
+			                              <a href="blog_details.html">
+			                                 <h3>The Amazing Hubble</h3>
+			                              </a>
+			                              <p>02 Hours ago</p>
+			                           </div>
+		                        </div>
+		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
+	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
+		                           <div style="width: 80px; height: 80px;">
+		                         		<img src="assets/img/post/post_3.png" style="width: 80px; height: 80px;" alt="post">
+		                           </div>
+			                           <div class="media-body">
+			                              <a href="blog_details.html">
+			                                 <h3>Astronomy Or Astrology</h3>
+			                              </a>
+			                              <p>03 Hours ago</p>
+			                           </div>
+		                        </div>
+		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
+	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
+		                           <div style="width: 80px; height: 80px;">
+		                         		<img src="assets/img/post/post_4.png" style="width: 80px; height: 80px;" alt="post">
+		                           </div>
+			                           <div class="media-body">
+			                              <a href="blog_details.html">
+			                                 <h3>Asteroids telescope</h3>
+			                              </a>
+			                              <p>01 Hours ago</p>
+			                           </div>
+		                        </div>
+		                        <!-- <div class="media post_item">
+		                           <img src="assets/img/post/post_2.png" alt="post">
+		                           <div class="media-body">
+		                              <a href="blog_details.html">
+		                                 <h3>The Amazing Hubble</h3>
+		                              </a>
+		                              <p>02 Hours ago</p>
+		                           </div>
+		                        </div> -->
+		                     </aside>
                         </div>
                     </div>
                     <div class="col-lg-8 mb-5 mb-lg-0">
@@ -422,102 +530,89 @@
         <!--================Blog Area =================-->
 
     </main>
- 		<!-- Footer Start-->
-		<footer>
-		<div class="footer-area">
-			<div class="container">
-				<div class="footer-top footer-padding">
-					<div class="row justify-content-between">
-						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-							<div class="single-footer-caption mb-50">
-								<div class="col-xl-2 col-lg-2 col-md-1">
-								<!-- Logo -->
-                                <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area">
+            <div class="container">
+               <div class="footer-top footer-padding">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="single-footer-caption mb-30">
+                                    <!-- logo -->
+                                    <div class="footer-logo">
+                                        <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                    </div>
                                 </div>
-                               </div>
-							 </div>
-							</div>
-						<div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-							<div class="single-footer-caption mb-50">
-								<div class="footer-tittle">
-									<h4>관리자정보</h4>
-									<ul>
-										<li><a href="#">이지훈</a></li>
-										<li><a href="#">허유민</a></li>
-										<li><a href="#">박종범</a></li>
-										<li><a href="#">이민용</a></li>
-										<li><a href="#">권성환</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-							<div class="single-footer-caption mb-50">
-								<div class="footer-tittle">
-									<h4>고객센터</h4>
-									<ul>
-										<li><a href="#">문의하기</a></li>
-										<li><a href="#">이용약관</a></li>
-										<li><a href="#">개인정보 처리방침</a></li>
-										<li><a href="#">회사주소</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-							<div class="single-footer-caption mb-50">
-								<div class="footer-tittle">
-									<h4>Download App</h4>
-									<ul>
-										<li class="app-log"><a href="#"><img
-												src="assets/img/gallery/app-logo.png" alt=""></a></li>
-										<li><a href="#"><img
-												src="assets/img/gallery/app-logo2.png" alt=""></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<div class="row d-flex justify-content-between align-items-center">
-						<div class="col-xl-9 col-lg-8">
-							<div class="footer-copy-right">
-								<p>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-									Copyright &copy;
-									<script>
-										document
-												.write(new Date().getFullYear());
-									</script>
-									Copyright©Odga.com Organization, All rights reserved.
-									<i class="fa fa-heart" aria-hidden="true"></i><a
-										href="https://odga.com" target="_blank">Odga.com</a>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								</p>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-4">
-							<!-- Footer Social -->
-							<div class="footer-social f-right">
-								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-									class="fab fa-twitter"></i></a> <a href="#"><i
-									class="fas fa-globe"></i></a> <a href="#"><i
-									class="fab fa-instagram"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</footer>
-		<!-- Footer End-->
-	<!-- Scroll Up -->
-	<div id="back-top">
-		<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-	</div>
-
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>All packages</h4>
+                                    <ul>
+                                        <li><a href="#">Package-1</a></li>
+                                        <li><a href="#">Package-2</a></li>
+                                        <li><a href="#">Package-3</a></li>
+                                        <li><a href="#">Custome</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Quick Link</h4>
+                                    <ul>
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">News & Articles</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>     
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>+1 514 648 256</h4>
+                                    <ul>
+                                        <li><a href="#">youremail@gmail.com</a></li>
+                                    </ul>
+                                    <p>123 East 26th Street, Fifth Floor, New York, NY 10011</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+                <div class="footer-bottom">
+                    <div class="row d-flex justify-content-between align-items-center">
+                        <div class="col-xl-9 col-lg-9 ">
+                            <div class="footer-copy-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3">
+                            <!-- Footer Social -->
+                            <div class="footer-social f-right">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+    <!-- Scroll Up -->
+    <div id="back-top" >
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
 
 <!-- JS here -->
 	
