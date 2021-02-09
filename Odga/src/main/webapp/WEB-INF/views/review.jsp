@@ -142,6 +142,9 @@
                                         type="submit">Search</button>
                                 </form>
                             </aside>
+                            <aside class="single_sidebar_widget search_widget">
+								<a href="write.html" class="genric-btn danger mb-10" style="padding: 0 120px; line-height: 50px">새 글 쓰기</a>
+							</aside>
 		                     <aside class="single_sidebar_widget post_category_widget">
 		                        <h4 class="widget_title">카테고리</h4>
 		                        <ul class="list cat-list">
