@@ -10,6 +10,7 @@
 	<a href="testapi2">다음으로</a>	
 	<a href="testhtml">html</a>	
 	<a href="planner">플래너</a>
+	<a href="planner1">플래너1</a>
 	<a href="combo">콤보</a>
 	<br/><br/>
 		<div id="container"></div>

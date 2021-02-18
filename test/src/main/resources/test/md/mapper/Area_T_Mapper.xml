@@ -4,10 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.md.mapper.Area_T_Mapper">
 	<select id="list" resultType="Area_T">
-	    select * from AREA_T order by rownum
+	    select * from AREA_T  order by rownum
 	</select>
 	<select id="list_s" resultType="Sigungu_T">
 	    select * from SIGUNGU_T order by rownum
+	</select>
+	<select id="selectResult" resultType="Touritems" parameterType="Searchcode">
+	 SELECT * FROM Touritems
+	  WHERE  (addr1 like '%'||#{name}||'%' OR title like '%'||#{name}||'%')
+	  <if test="areacode != null and !areacode.equals('')">
+	 	 and  areacode = #{areacode} 
+	  </if>
+	  <if test="sigungucode != null and !sigungucode.equals('')">
+	 	 and  sigungucode = #{sigungucode} 
+	  </if>
+	  <if test="contenttypeid != null and !contenttypeid.equals('')">
+	 	 and  contenttypeid = #{contenttypeid} 
+	  </if>
 	</select>
 
 </mapper>

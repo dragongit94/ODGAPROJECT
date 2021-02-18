@@ -136,3 +136,25 @@
 
 .no-csspointerevents .nice-select.open .list {
   display: block; }
+
+.col-75 {
+  float: left;
+  width: 25%;
+  margin-left: 3px;
+}
+.text{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  height: 42px;
+}
+.col-25 {
+	width: 5%;
+	margin-left: 2rem;
+}
+.col-50 {
+	width: 10%;
+	margin: 0 0 0 6rem;
+}

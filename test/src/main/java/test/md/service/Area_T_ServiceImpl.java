@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import lombok.extern.log4j.Log4j;
 import test.md.domain.Area_T;
 import test.md.domain.Sigungu_T;
+import test.md.domain.Touritems;
 import test.md.mapper.Area_T_Mapper;
+import test.md.vo.Searchcode;
 import test.md.vo.TotalList;
 
 @Service
@@ -31,4 +33,9 @@ public class Area_T_ServiceImpl implements Area_T_Service {
 			return totalList;
 		}
 	};
+	public List<Touritems> selectResultS(Searchcode searchcode) { 
+		List<Touritems> list = area_t_mapper.selectResult(searchcode);
+		
+		return list;
+	}
 }
