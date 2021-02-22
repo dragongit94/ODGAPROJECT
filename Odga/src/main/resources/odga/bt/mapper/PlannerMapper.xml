@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="odga.bt.mapper.PlannerMapper">
+	<!-- day리스트 뽑기 -->
+	<resultMap type="S_Planner" id="S_Planner">
+		<result column="contentid" property="contentid"/>
+		<result column="sp_day" property="sp_day"/>
+		<result column="sp_id" property="sp_id"/>
+	</resultMap>
+	
+	<resultMap type="Touritems" id="Touritems">
+		<result column="firstimage" property="firstimage"/>
+		<result column="title" property="title"/>
+		<result column="addr1" property="addr1"/>
+		<result column="addr2" property="addr2"/>
+		<result column="sp_id" property="sp_id"/>
+		<result column="contentid" property="contentid"/>
+		<collection property="s_planer" resultMap="S_Planner"/>
+	</resultMap>
+	
+	<select id="selectDayById" parameterType="map" resultMap="Touritems">
+		SELECT sp_day, contentid, firstimage, title, addr1, addr2, sp_id
+	      FROM s_planer
+		 NATURAL JOIN TOURITEMS
+		WHERE p_id = #{p_id} AND sp_day= #{sp_day} ORDER BY sp_id desc
+	</select>
+	
+	<!-- 지역선택 -->
+	<select resultType="Area_T" id="list">select * from AREA_T order by rownum </select>
+	<select resultType="Sigungu_T" id="list_s">select * from SIGUNGU_T order by rownum </select>
+		
+	<select resultType="Touritems" id="selectResult" parameterType="Searchcode">
+		SELECT * FROM TouritemsWHERE (addr1 like '%'||#{name}||'%' OR title like '%'||#{name}||'%') 
+		<if test="areacode != null and !areacode.equals('')">and areacode = #{areacode} </if>		
+		<if test="sigungucode != null and !sigungucode.equals('')">and sigungucode = #{sigungucode} </if>		
+		<if test="contenttypeid != null and !contenttypeid.equals('')">and contenttypeid = #{contenttypeid} </if>	
+	</select>
+	
+	<!-- 관광지 검색 리스트 뽑기-->
+	<select id="searchedList" resultType="Touritems" parameterType="map">
+		select * from TOURITEMS 
+		<include refid="search"></include>
+		order by rownum 
+	</select>
+	
+	<select id="countContent" resultType="int" parameterType="map">
+		select count(*) from TOURITEMS 
+		<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		<choose>
+			<when test='searchOption.equalsIgnoreCase("touraBtn")'>
+					where cat1 in('A01','A02','A03') and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+			</when><when test='searchOption.equalsIgnoreCase("touraBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1 in('A01','A02','A03')</when>
+			<when test='searchOption.equalsIgnoreCase("shoppingBtn")'>
+					where cat1='A04' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')							  
+			</when><when test='searchOption.equalsIgnoreCase("shoppingBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='A04'</when>
+			<when test='searchOption.equalsIgnoreCase("foodBtn")'>
+					where cat1='A05' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')				
+			</when><when test='searchOption.equalsIgnoreCase("foodBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='A05'</when>
+			<when test='searchOption.equalsIgnoreCase("hotelBtn")'>
+					where cat1='B02' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+			</when><when test='searchOption.equalsIgnoreCase("hotelBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='B02'</when>
+			<when test='searchOption.equalsIgnoreCase("likeBtn")'>
+					where cat1='C01' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+			</when><when test='searchOption.equalsIgnoreCase("likeBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='C01'</when>
+			<otherwise>
+				where title like '%'||#{keyword}||'%' OR addr1 like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 장소 선택시 세부플래너에 추가/삭제 -->
+	<insert id="insert_sp" parameterType="S_Planner">
+	    insert into S_PLANER values(S_PLANER_ID.nextval,#{sp_day},#{sp_sday},#{sp_eday},#{contentid},5)
+	</insert>
+	<delete id="delete_sp" parameterType="long">
+		delete from S_PLANER where sp_id=#{sp_id}
+	</delete>
+</mapper>
