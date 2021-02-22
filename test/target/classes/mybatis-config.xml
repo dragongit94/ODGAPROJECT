@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings> 
+		<setting name="cacheEnabled" value="false" /> 
+		<setting name="jdbcTypeForNull" value="NULL" /> 
+	</settings>
+   <typeAliases>
+   		<typeAlias alias="Area_T" type="test.md.domain.Area_T"/>
+   		<typeAlias alias="Sigungu_T" type="test.md.domain.Sigungu_T"/>
+   		<typeAlias alias="Touritems" type="test.md.domain.Touritems"/>
+   		<typeAlias alias="Searchcode" type="test.md.vo.Searchcode"/>
+   </typeAliases>
+   <mappers>
+   		<mapper resource="test/md/mapper/Area_T_Mapper.xml"/>
+   </mappers>
+</configuration>
+
