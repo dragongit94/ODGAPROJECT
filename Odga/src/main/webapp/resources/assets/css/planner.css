@@ -2,7 +2,11 @@ a.link_a:link, a.link_a:visited{
 	text-decoration: none;
 	color:black;	
 }
+<<<<<<< HEAD
 a:hover{
+=======
+a.link_a:hover{
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	color: #da3535;
 }
 .pic {
@@ -397,6 +401,7 @@ a:hover{
 	padding-top: 80px;
 	padding-bottom: 10px;
 }
+<<<<<<< HEAD
 .td-list{
     vertical-align: middle;
 }
@@ -420,3 +425,5 @@ a:hover{
 .input-date{
 	font-size: x-small;
 }
+=======
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae

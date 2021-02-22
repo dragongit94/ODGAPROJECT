@@ -6,14 +6,26 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+<<<<<<< HEAD
+=======
+import lombok.extern.log4j.Log4j;
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 import odga.bt.domain.Area_T;
 import odga.bt.domain.S_Planer;
 import odga.bt.domain.Sigungu_T;
 import odga.bt.domain.Touritems;
 import odga.bt.mapper.PlannerMapper;
+<<<<<<< HEAD
 import odga.bt.vo.Searchcode;
 import odga.bt.vo.TotalList;
 
+=======
+import odga.bt.vo.SearchResult;
+import odga.bt.vo.Searchcode;
+import odga.bt.vo.TotalList;
+
+@Log4j
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 @Service
 @AllArgsConstructor
 public class PlannerServiceImpl implements PlannerService {
@@ -25,12 +37,27 @@ public class PlannerServiceImpl implements PlannerService {
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public List<Touritems> searchedList(String searchOption, String keyword) {
 		return plannerMapper.searchedList(searchOption,keyword);
 	}
 	@Override
 	public int countContent(String searchOption, String keyword) {
 		return plannerMapper.countContent(searchOption,keyword);
+=======
+	public SearchResult searchedList(Searchcode searchcode) {
+		//return plannerMapper.searchedList(searchcode);
+
+		List<Touritems> lists = plannerMapper.selectResult(searchcode);
+		int count = plannerMapper.countContent(searchcode);
+		System.out.println(count);
+		SearchResult searchResult = new SearchResult(lists, count);
+		return searchResult;
+	}
+	@Override
+	public int countContent(String searchOption, String keyword) {
+		return -1;
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	}
 	@Override
 	public void insert_sp(S_Planer s_planer) {
@@ -41,7 +68,12 @@ public class PlannerServiceImpl implements PlannerService {
 		plannerMapper.delete_sp(sp_id);
 	}
 	@Override
+<<<<<<< HEAD
 	public TotalList listS() {
+=======
+	public TotalList listS(long m_id) {
+		//newPlanerS(m_id); //신규 플래너 id 생성
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 		ArrayList<Area_T> list = plannerMapper.list();
 		//for(Area_T li:list) System.out.println(li.getArea());
 		ArrayList<Sigungu_T> list_s = plannerMapper.list_s();
@@ -60,5 +92,12 @@ public class PlannerServiceImpl implements PlannerService {
 		
 		return list;
 	}
+<<<<<<< HEAD
 	
+=======
+	@Override
+	public void newPlanerS(long m_id) {
+		plannerMapper.newPlaner(m_id);
+	}
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 }

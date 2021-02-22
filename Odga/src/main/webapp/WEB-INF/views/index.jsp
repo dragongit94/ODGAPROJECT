@@ -69,7 +69,7 @@
 											</li>
 											<li><a href="use.html">이용방법</a></li>
 											<li><a href="https://www.agoda.com/">호텔예약</a></li>
-											<li class="add-list"><a href="listing_details.html"><i class="ti-plus"></i>나의 여행 만들기</a></li>
+											<li class="add-list"><a href="planner?m_id=5"><i class="ti-plus"></i>나의 여행 만들기</a></li> <!-- 추후 멤버 세션 시퀀스 넘길 예정-->
 											<li class="login"><a href="login.html">
 												<i class="ti-user"></i>로그인 / 회원가입</a>
 											</li>

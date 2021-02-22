@@ -122,6 +122,7 @@
 											<option value="3">가족</option>
 											<option value="4">우정여행</option>
 										</select>
+<<<<<<< HEAD
 									</div>
 
 									<div class="col-50">
@@ -140,6 +141,26 @@
 
 
 									<div class="col-5" style="float:right;margin-left:0px;margin-right:0px;">
+=======
+									</div>
+
+									<div class="col-50">
+									  <form name="form">								  	
+										  <select name="area"  id="areacode" class="nice-select" onchange="changes(value)">
+										    <option value="">지역 선택</option>
+										    <c:forEach items="${list.list}" var="area">
+											    <option value="${area.areacode}">${area.area}</option>
+										    </c:forEach>
+										  </select>		<br/>	  
+										  <select name="sigungu" class="nice-select" id="sigunguCode">
+										    <option value="">세부 지역</option>
+										  </select>
+									  </form>
+									</div>
+
+
+									<div class="col-2" style="float:right;margin-left:0px;margin-right:0px;">
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 										<a href="#" class="btn list-btn"
 											style="width:200px;float:right; padding: 23px 20px;margin-right:15px;">저
 											장</a>
@@ -163,6 +184,7 @@
 							<div class="category-listing mb-50" style="padding: 10px 10px 20px;">
 								<!-- single one -->
 								<div class="single-listing">
+<<<<<<< HEAD
 
 										<p class="p-date">시작일 : </p>
 										<input class="input-date" style="width: 100%;" type="date" id="sdate" value=""/>										
@@ -214,6 +236,70 @@
 								<div class="single-listing">
 									<a href="#" class="btn list-btn mt-20">전체  삭제</a>
 							</div>	
+=======
+									<!-- Select job items start -->
+									<div class="select-job-items1">
+										<select id="day" onchange="selectDay()">
+											<option value="0">기간</option>
+											<option value="1">무박</option>
+											<option value="2">1박2일</option>
+											<option value="3">2박3일</option>
+											<option value="4">3박4일</option>
+											<option value="5">4박5일</option>
+											<option value="6">5박6일</option>
+											<option value="7">6박7일</option>
+										</select>
+									</div>
+									<div class="select-job-items1">
+										<table id="myTable" class="table">
+										  <thead>
+										    <!-- <th>테이블</th>
+										    <th>헤더</th> -->
+										  </thead>
+										  <tbody id="tbody"></tbody>
+										</table>
+									</div>
+									<div class="single-listing">
+										<!-- Range Slider End -->
+										<button onclick="rowAdd()" class="btn list-btn mt-20">DAY 추가</button>
+										<button  onclick="rowDelete()" class="btn list-btn mt-20">DAY 삭제</button>
+										<button  onclick="dayDelete()" class="btn list-btn mt-20">전체 삭제</button>
+									</div>
+									
+
+								</div>
+								
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
+							</div>
+						</div>
+						
+						<div class="col-2">
+							<div class="row" style="margin-top: 15px;">
+								<div class="col-12">
+									<div class="small-section-tittle2 mb-45" style="margin-bottom: 15px;">
+<<<<<<< HEAD
+										<h5 style="margin-left: 15px;">장소를 선택하세요</h5>
+									</div>
+								</div>
+							</div>
+=======
+										<h5 style="margin-left: 15px;">일 정</h5>
+									</div>
+								</div>
+							</div>
+							
+							<!-- 선택된 day 리스트 -->
+							<div class="single-listing">									
+								<div class="select-job-items2">
+									<div class="card" id="card2">
+									</div>
+								</div>
+							</div>
+								
+							<div class="category-listing mb-50">								
+								<div class="single-listing">
+									<a href="#" class="btn list-btn mt-20">전체  삭제</a>
+							</div>	
 							</div>
 						</div>
 						
@@ -225,6 +311,7 @@
 									</div>
 								</div>
 							</div>
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 							<!-- 관광지 검색 리스트 -->
 							<div class="category-listing mb-50">
 								<div class="single-listing">
@@ -235,11 +322,21 @@
 									</div>
 					
 									<div class="select-job-items1">
+<<<<<<< HEAD
 										<button id="touraBtn" value="touraBtn" onclick="search(value)" class="cat1-btn"><img src="assets/icon/camera.png" alt=""></button>
 										<button id="shoppingBtn" value="shoppingBtn" onclick="search(value)" class="cat1-btn"><img src="assets/icon/shopping.png" alt=""></button>
 										<button id="foodBtn" value="foodBtn" onclick="search(value)" class="cat1-btn"><img src="assets/icon/food.png" alt=""></button>
 										<button id="hotelBtn" value="hotelBtn" onclick="search(value)" class="cat1-btn"><img src="assets/icon/hotel.png" alt=""></button>
 										<button id="likeBtn" value="likeBtn" onclick="search(value)" class="cat1-btn"><img src="assets/icon/like.png" alt=""></button>
+=======
+										<button id="touraBtn" value="A01" onclick="search(value)" class="cat1-btn"><img src="assets/icon/camera.png" alt=""></button>
+										<button id="shoppingBtn" value="A04" onclick="search(value)" class="cat1-btn"><img src="assets/icon/shopping.png" alt=""></button>
+										<button id="foodBtn" value="A05" onclick="search(value)" class="cat1-btn"><img src="assets/icon/food.png" alt=""></button>
+										<button id="hotelBtn" value="B02" onclick="search(value)" class="cat1-btn"><img src="assets/icon/hotel.png" alt=""></button>
+										<button id="likeBtn" value="C01" onclick="search(value)" class="cat1-btn"><img src="assets/icon/like.png" alt=""></button>
+									</div>
+									<div id="result">
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 									</div>
 									
 									<div class="select-job-items2">
@@ -247,11 +344,15 @@
 										</div>
 									</div>
 								</div>
-
+<!-- 
 								<div class="single-listing">
 									<a href="#" class="btn list-btn mt-20">검색!</a>
 									<a href="#" class="btn list-btn mt-20">추가</a>
+<<<<<<< HEAD
 								</div>
+=======
+								</div> -->
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 							</div>
 						</div>
 						
@@ -453,6 +554,7 @@ function daydo(value){
 				  alert("장소를 추가해주세요.");
 				  return false;
 			  }
+<<<<<<< HEAD
            var html = "";  /* <div style='margin-bottom:5px'> <a class='link_a' href='testGet.do?contentid="+responseData[i].sp_id+"'>*/
            if(responseData.length != 0){
         	   for(var i=0; i<responseData.length; i++){
@@ -461,13 +563,27 @@ function daydo(value){
 				         html += "<td class='td-list' style='font-size: smaller;'>"+responseData[i].title+"</td></tr>";		        
 				         html += "<tr><td class='td-list' style='font-size: x-small;'>"+responseData[i].addr1+"</td></tr>";				  		 
 				  		html += "<tr style='align-self:end;'><td class='td-del'><a class='link_a' style='font-size: smaller;margin-right: 10px;' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></td></tr>";
+=======
+           var html = "";
+           if(responseData.length != 0){
+				  for(var i=0; i<responseData.length; i++){
+				         html += "<h5><a class='link_a' href='testGet.do?contentid="+responseData[i].sp_id+"'>"+responseData[i].title+"</a></h5>";
+				  		 html += "<h5>"+responseData[i].addr1+"</h5>";
+				  		 if((responseData[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+responseData[i].firstimage+"'/></div>";	
+				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}
+				  		html += "<h5><a class='link_a' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></h5>";
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 				  }			 
 			  }else{
 				  html += "<tr>";
 				  html += "<td colspan='4' align='center'>장소를 추가해주세요</td>";
 				  html += "</tr>";
 			  }
+<<<<<<< HEAD
 			 /*  html += "</table>"; */
+=======
+			  html += "</table>";
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 			 $("#seq").val(""); 
 			  
 			  $("#card2").html(html);
@@ -504,6 +620,7 @@ function daydo(value){
 	    }
 	  }
   
+<<<<<<< HEAD
   <!-- 일수 계산해서 day 생성 -->
   
   var sdate;
@@ -539,10 +656,55 @@ function daydo(value){
       	  rowAdd();
         }
 	});
+=======
+  function selectDay(){
+	  dayDelete();
+	  var dayOption = document.getElementById("day");
+	  var value = dayOption.options[document.getElementById("day").selectedIndex].value;	 
+	    switch (value){
+	      case "1" :	    	  
+	    	  rowAdd();
+	          break;
+	      case "2" :
+	          for(var i=1; i<=2; i++){
+	        	  rowAdd();
+	          }
+	          break;
+	      case "3" :
+	    	  for(var i=1; i<=3; i++){
+	        	  rowAdd();
+	          }
+	          break;
+	      case "4" :
+	    	  for(var i=1; i<=4; i++){
+	        	  rowAdd();
+	          }
+	            break;
+	      case "5" :
+	    	  for(var i=1; i<=5; i++){
+	        	  rowAdd();
+	          }
+	          break;
+	      case "6" :
+	    	  for(var i=1; i<=6; i++){
+	        	  rowAdd();
+	          }
+	          break;
+	      case "7" :
+	    	  for(var i=1; i<=7; i++){
+	        	  rowAdd();
+	          }
+	          break;
+	      default :
+	    	  break;
+	    }
+  }
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
   
   function search(value){
 	  var keyword = document.getElementById("keyword").value;
 	  var searchOption= value;
+<<<<<<< HEAD
 	  $.ajax({
 		   url: "search.json", 
 		   type: "GET",
@@ -567,6 +729,41 @@ function daydo(value){
 				  html += "</tr>";
 			  }
 			  
+=======
+	  var areaindex = $("#areacode option:selected").attr('value');
+	  var typeindex = $("#contenttypeid option:selected").attr('value');
+	  var sigunguIndex = $("#sigunguCode option:selected").attr('value');
+	  $.ajax({
+		   url: "search.json", 
+		   type: "GET",
+		   data: { searchOption: searchOption, keyword : keyword, areacode : areaindex, 
+			   	sigungucode: sigunguIndex },
+		   success: function(responseData){
+          /*  if(!responseData){
+				  alert("검색 결과가 없습니다.");
+				  return false;
+			  } */
+           var html = "";
+		   var html1 = "";
+		   var list = responseData.lists;
+		   var count = responseData.count;
+		   if(count>0) html1 += '<p>'+count+' 개의 검색결과가 있습니다.</p>';
+		   else{
+				  html1 += "<tr>";
+				  html1 += "<td colspan='4' align='center'>검색 결과가 없습니다.</td>";
+				  html1 += "</tr>";
+		   }
+           if(list.length != 0){
+				  for(var i=0; i<list.length; i++){
+				         html += "<h5><a class='link_a' onclick='marker("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
+                         "&quot;, &quot;"+list[i].zipcode+"&quot;); panTo("+list[i].mapy+", "+list[i].mapx+")'>"+list[i].title+"</a></h5>";
+				  		 html += "<h5>"+list[i].addr1+"</h5> <h6 onclick='addS_plan(&quot;"+list[i].contentid+"&quot;)'>추가</h6>";
+				  		 if((list[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+list[i].firstimage+"'/></div>";	
+				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}						 	
+				  }			 
+			  }
+           	  $("#result").html(html1);
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 			  $("#card").html(html);
 		   }
 	   });
@@ -630,6 +827,7 @@ function daydo(value){
       map.panTo(moveLatLon);            
   }   
   
+<<<<<<< HEAD
   function getFormatDate(date){  //날짜 포멧 함수
       var year = date.getFullYear();
       var month = (1 + date.getMonth());
@@ -645,6 +843,13 @@ function daydo(value){
 	        url: "insert_sp",
 	        type: "GET",
 	        data: {sp_day:sp_day,sp_sday:sp_sday,sp_eday:sp_eday,contentid:contentid},
+=======
+  function addS_plan(contentid) {
+	    $.ajax({
+	        url: "insert_sp",
+	        type: "GET",
+	        data: {sp_day:sp_day,contentid:contentid},
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	        success: function(responseData){
 	            if(!responseData){
 	 				  alert("장소를 추가해주세요.");
@@ -652,6 +857,7 @@ function daydo(value){
 	 			  }
 	            var html = "";
 	            if(responseData.length != 0){
+<<<<<<< HEAD
 	            	for(var i=0; i<responseData.length; i++){
 						  if((responseData[i].firstimage)!= null){ html += "<tr><td class='td-list' style='width: 30%;'><img class='pic' src='"+responseData[i].firstimage+"'/></td>";	
 					  		 }else{ html += "<tr><td class='td-list' style='width: 40%;'><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></td>";}
@@ -659,6 +865,15 @@ function daydo(value){
 					         html += "<tr><td class='td-list' style='font-size: x-small;'>"+responseData[i].addr1+"</td></tr>";				  		 
 					  		html += "<tr style='align-self:end;'><td class='td-del'><a class='link_a' style='font-size: smaller;margin-right: 10px;' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></td></tr>";
 					  }			 
+=======
+	 				  for(var i=0; i<responseData.length; i++){
+	 				         html += "<h5><a class='link_a'>"+responseData[i].title+"</a></h5>";
+	 				  		 html += "<h5>"+responseData[i].addr1+"</h5>";
+	 				  		 if((responseData[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+responseData[i].firstimage+"'/></div>";	
+	 				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}
+	 				  		 html += "<h5><a class='link_a' onclick='delS_plan("+responseData[i].sp_id+")'>삭 제</a></h5>";	
+	 				  }			 
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	 			  }else{
 	 				  html += "<tr>";
 	 				  html += "<td colspan='4' align='center'>장소를 추가해주세요</td>";
@@ -682,6 +897,7 @@ function daydo(value){
 	 			  }
 	            var html = "";
 	            if(responseData.length != 0){
+<<<<<<< HEAD
 	            	for(var i=0; i<responseData.length; i++){
 						  if((responseData[i].firstimage)!= null){ html += "<tr><td class='td-list' style='width: 30%;'><img class='pic' src='"+responseData[i].firstimage+"'/></td>";	
 					  		 }else{ html += "<tr><td class='td-list' style='width: 40%;'><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></td>";}
@@ -689,6 +905,15 @@ function daydo(value){
 					         html += "<tr><td class='td-list' style='font-size: x-small;'>"+responseData[i].addr1+"</td></tr>";				  		 
 					  		html += "<tr style='align-self:end;'><td class='td-del'><a class='link_a' style='font-size: smaller;margin-right: 10px;' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></td></tr>";
 					  }		 
+=======
+	 				  for(var i=0; i<responseData.length; i++){
+	 				         html += "<h5><a class='link_a' href='testGet.do?contentid="+responseData[i].sp_id+"'>"+responseData[i].title+"</a></h5>";
+	 				  		 html += "<h5>"+responseData[i].addr1+"</h5>";
+	 				  		 if((responseData[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+responseData[i].firstimage+"'/></div>";	
+	 				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}
+	 				  		 html += "<h5><a class='link_a' onclick='delS_plan("+responseData[i].sp_id+")'>삭 제</a></h5>";	
+	 				  }			 
+>>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	 			  }else{
 	 				  html += "<tr>";
 	 				  html += "<td colspan='4' align='center'>장소를 추가해주세요</td>";
