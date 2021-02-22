@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="odga.bt.mapper.PlannerMapper">
+	<!-- day리스트 뽑기 -->
+	<resultMap type="S_Planner" id="S_Planner">
+		<result column="contentid" property="contentid"/>
+		<result column="sp_day" property="sp_day"/>
+		<result column="sp_id" property="sp_id"/>
+	</resultMap>
+	
+	<resultMap type="Touritems" id="Touritems">
+		<result column="firstimage" property="firstimage"/>
+		<result column="title" property="title"/>
+		<result column="addr1" property="addr1"/>
+		<result column="addr2" property="addr2"/>
+		<result column="sp_id" property="sp_id"/>
+		<result column="contentid" property="contentid"/>
+		<collection property="s_planer" resultMap="S_Planner"/>
+	</resultMap>
+	
+	<select id="selectDayById" parameterType="map" resultMap="Touritems">
+		SELECT sp_day, contentid, firstimage, title, addr1, addr2, sp_id
+	      FROM s_planer
+		 NATURAL JOIN TOURITEMS
+		WHERE p_id = #{p_id} AND sp_day= #{sp_day} ORDER BY sp_id desc
+	</select>
+	
+	<!-- 지역선택 -->
+	<select resultType="Area_T" id="list">select * from AREA_T order by rownum </select>
+	<select resultType="Sigungu_T" id="list_s">select * from SIGUNGU_T order by rownum </select>
+		
+	<!--  검색결과  -->
+	<select resultType="Touritems" id="selectResult" parameterType="Searchcode">
+		SELECT * FROM Touritems 		
+		<include refid="search1"></include>
+	</select>
+	
+	<!-- 관광지 검색 리스트 뽑기-->
+	<select id="searchedList" resultType="Touritems" parameterType="map">
+		select * from TOURITEMS 
+		<include refid="search"></include>
+		order by rownum 
+	</select>
+	
+	<select id="countContent" resultType="int" parameterType="Searchcode">
+		select count(*) from TOURITEMS 
+		<include refid="search1"></include>
+	</select>
+	
+	<sql id="search1">
+		WHERE (addr1 like '%'||#{keyword}||'%' OR title like '%'||#{keyword}||'%') 
+		<if test="areacode != null and !areacode.equals('')">and areacode = #{areacode} </if>		
+		<if test="sigungucode != null and !sigungucode.equals('')">and sigungucode = #{sigungucode} </if>		
+		<if test="searchOption == 'A01'">and cat1 in('A01','A02','A03') </if>
+		<if test="searchOption == 'A04'">and cat1='A04' </if>	
+		<if test="searchOption == 'A05'">and cat1='A05' </if>	
+		<if test="searchOption == 'B02'">and cat1='B02' </if>	
+		<if test="searchOption == 'C01'">and cat1='C01' </if>
+	</sql>
+	<sql id="search">
+		<choose>
+			<when test='searchOption.equalsIgnoreCase("touraBtn")'>
+					where cat1 in('A01','A02','A03') and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+				<if test='keyword == null or keyword.length() == 0'>						
+		    		where cat1='A01' or cat1='A02' or cat1='A03'
+		 		</if>
+			</when>
+			<when test='searchOption.equalsIgnoreCase("shoppingBtn")'>
+					where cat1='A04' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+				<if test='keyword == null or keyword.length() == 0'>						
+		    		where cat1='A04'
+		 		</if>				  
+			</when>
+			<when test='searchOption.equalsIgnoreCase("foodBtn")'>
+					where cat1='A05' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+					<if test='keyword == null or keyword.length() == 0'>					
+				    where cat1='A05'
+				  </if>
+			</when>
+			<when test='searchOption.equalsIgnoreCase("hotelBtn")'>
+					where cat1='B02' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+					<if test='keyword == null or keyword.length() == 0'>					
+				    where cat1='B02'
+				  </if>
+			</when>
+			<when test='searchOption.equalsIgnoreCase("likeBtn")'>
+					where cat1='C01' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
+					<if test='keyword == null or keyword.length() == 0'>					
+				    where cat1='C01'
+				  </if>
+			</when>
+			<otherwise>
+				where title like '%'||#{keyword}||'%' OR addr1 like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 장소 선택시 세부플래너에 추가/삭제 -->
+	<insert id="insert_sp" parameterType="S_Planner">
+	    insert into S_PLANER values(S_PLANER_ID.nextval,#{sp_day},SYSDATE,SYSDATE,#{contentid},5)
+	</insert>
+	<delete id="delete_sp" parameterType="long">
+		delete from S_PLANER where sp_id=#{sp_id}
+	</delete>
+	
+	<!-- 새로운 플래너 생성 -->
+	<insert id="newPlaner" parameterType="long">
+	    insert into PLANER values(PLANER_ID.nextval,SYSDATE,#{m_id}, null, null, null)
+	</insert>
+	
+	
+</mapper>

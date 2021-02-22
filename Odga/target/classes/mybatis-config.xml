@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+   	    <typeAlias alias="Planner" type="odga.bt.domain.Planer"/>
+   	    <typeAlias alias="S_Planner" type="odga.bt.domain.S_Planer"/>
+   	    <typeAlias alias="Touritems" type="odga.bt.domain.Touritems"/>
+   		<typeAlias alias="Area_T" type="odga.bt.domain.Area_T"/>
+   		<typeAlias alias="Sigungu_T" type="odga.bt.domain.Sigungu_T"/>
+   		<typeAlias type="odga.bt.vo.Searchcode" alias="Searchcode"/>
+   </typeAliases>
+   
+   <!-- <mappers>
+   	   <mapper resource="yum/md/mapper/AddressMapper1.xml"/>
+   	   <mapper resource="yum/md/mapper/AddressMapper2.xml"/>
+   	   <mapper resource="yum/md/mapper/BoardMapper.xml"/>
+   </mappers> -->
+</configuration>
