@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import odga.bt.domain.Area_T;
+import odga.bt.domain.Planer;
 import odga.bt.domain.S_Planer;
 import odga.bt.domain.Sigungu_T;
 import odga.bt.domain.Touritems;
@@ -23,5 +24,9 @@ public interface PlannerMapper {
 	ArrayList<Sigungu_T> list_s();
 	ArrayList<Touritems> selectResult(Searchcode searchcode);
 	void newPlaner(long m_id);
+	long thisP_id(long m_id);
+	
+	void delete_sPlan(long p_id);
+	void delete_Plan(long p_id);
 }
 

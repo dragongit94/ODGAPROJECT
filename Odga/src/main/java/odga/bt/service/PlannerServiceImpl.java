@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,10 +39,6 @@ public class PlannerServiceImpl implements PlannerService {
 		return searchResult;
 	}
 	@Override
-	public int countContent(String searchOption, String keyword) {
-		return -1;
-	}
-	@Override
 	public void insert_sp(S_Planer s_planer) {
 		plannerMapper.insert_sp(s_planer);
 	}
@@ -51,11 +48,12 @@ public class PlannerServiceImpl implements PlannerService {
 	}
 	@Override
 	public TotalList listS(long m_id) {
-		//newPlanerS(m_id); //신규 플래너 id 생성
+		newPlanerS(m_id); //신규 플래너 id 생성
 		ArrayList<Area_T> list = plannerMapper.list();
 		//for(Area_T li:list) System.out.println(li.getArea());
 		ArrayList<Sigungu_T> list_s = plannerMapper.list_s();
-		TotalList totalList = new TotalList(list, list_s);
+		long thisP_id = plannerMapper.thisP_id(m_id);
+		TotalList totalList = new TotalList(list, list_s, thisP_id);
 		if(list.size()==0) {
 			//System.out.println("## 아무것도 안나옴");
 			return null;
@@ -73,5 +71,12 @@ public class PlannerServiceImpl implements PlannerService {
 	@Override
 	public void newPlanerS(long m_id) {
 		plannerMapper.newPlaner(m_id);
+	}
+	@Override
+	public void delPlan(long p_id) {
+		plannerMapper.delete_sPlan(p_id);
+		System.out.println("1. 위의 삭제 문장 실행 완료");
+		plannerMapper.delete_Plan(p_id);
+		System.out.println("2. 위의 삭제 문장 실행 완료");
 	}
 }

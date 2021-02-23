@@ -27,6 +27,10 @@
 			<link rel="stylesheet" href="assets/css/nice-select.css">
 			<link rel="stylesheet" href="assets/css/style.css">
 			<link rel="stylesheet" href="assets/css/planner.css">
+			
+			<script type="text/javascript">
+			window.onbeforeunload = function() {};
+			</script>
 		</head>
 
 		<body>
@@ -138,11 +142,10 @@
 									  </form>
 									</div>
 
-
+									<c:set value="${list.thisP_id}" var = "thisP_id"/>
 									<div class="col-2" style="float:right;margin-left:0px;margin-right:0px;">
-										<a href="#" class="btn list-btn"
-											style="width:200px;float:right; padding: 23px 20px;margin-right:15px;">저
-											장</a>
+										<a href="leave?p_id=${thisP_id}" class="btn list-btn"
+											style="width:200px;float:right; padding: 23px 20px;margin-right:15px;">취소</a>
 									</div>
 								</div>
 								<!-- Job Category Listing End -->
@@ -392,6 +395,16 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+<script>
+var checkUnload = true;
+$(window).on("beforeunload", function(){
+    if(checkUnload) 
+    	return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
+});
+</script>
+
+
 <!-- 동적 셀렉트 박스 -->
 <script type="text/javascript">
 function changes(fr) {
@@ -405,7 +418,7 @@ function changes(fr) {
 
 	<c:set var="list" value="${list}"/>
 	<c:forEach items="${list.list}" var="area">
-    if(fr==${area.areacode}) {
+    if(fr==${area.areacode}) { 
     	li.push("세부 지역");
     	li2.push("");
     	<c:forEach items="${list.list_s}" var="sigungu">
@@ -449,7 +462,7 @@ function changes(fr) {
 <script>
 var sp_day = 0;
 function daydo(value){	
-	var p_id = 5; //나중에 받아주기
+	var p_id =${thisP_id}; //나중에 받아주기
 	sp_day= value;
 	  $.ajax({
 		   url: "dayselect.json", 
@@ -654,10 +667,11 @@ function daydo(value){
   }   
   
   function addS_plan(contentid) {
+	  var p_id = ${thisP_id};
 	    $.ajax({
 	        url: "insert_sp",
 	        type: "GET",
-	        data: {sp_day:sp_day,contentid:contentid},
+	        data: {sp_day:sp_day,contentid:contentid, p_id: p_id},
 	        success: function(responseData){
 	            if(!responseData){
 	 				  alert("장소를 추가해주세요.");
@@ -710,9 +724,10 @@ function daydo(value){
 	 			  $("#card2").html(html);
 	 		   }
 	  	});
-	} 
+	}
   
 </script>
+
 
 			<!-- JS here -->
 			
