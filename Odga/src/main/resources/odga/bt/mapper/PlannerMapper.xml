@@ -31,18 +31,10 @@
 	<select resultType="Area_T" id="list">select * from AREA_T order by rownum </select>
 	<select resultType="Sigungu_T" id="list_s">select * from SIGUNGU_T order by rownum </select>
 		
-<<<<<<< HEAD
-	<select resultType="Touritems" id="selectResult" parameterType="Searchcode">
-		SELECT * FROM TouritemsWHERE (addr1 like '%'||#{name}||'%' OR title like '%'||#{name}||'%') 
-		<if test="areacode != null and !areacode.equals('')">and areacode = #{areacode} </if>		
-		<if test="sigungucode != null and !sigungucode.equals('')">and sigungucode = #{sigungucode} </if>		
-		<if test="contenttypeid != null and !contenttypeid.equals('')">and contenttypeid = #{contenttypeid} </if>	
-=======
 	<!--  검색결과  -->
 	<select resultType="Touritems" id="selectResult" parameterType="Searchcode">
 		SELECT * FROM Touritems 		
 		<include refid="search1"></include>
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	</select>
 	
 	<!-- 관광지 검색 리스트 뽑기-->
@@ -52,13 +44,6 @@
 		order by rownum 
 	</select>
 	
-<<<<<<< HEAD
-	<select id="countContent" resultType="int" parameterType="map">
-		select count(*) from TOURITEMS 
-		<include refid="search"></include>
-	</select>
-	
-=======
 	<select id="countContent" resultType="int" parameterType="Searchcode">
 		select count(*) from TOURITEMS 
 		<include refid="search1"></include>
@@ -74,12 +59,10 @@
 		<if test="searchOption == 'B02'">and cat1='B02' </if>	
 		<if test="searchOption == 'C01'">and cat1='C01' </if>
 	</sql>
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	<sql id="search">
 		<choose>
 			<when test='searchOption.equalsIgnoreCase("touraBtn")'>
 					where cat1 in('A01','A02','A03') and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-<<<<<<< HEAD
 			</when><when test='searchOption.equalsIgnoreCase("touraBtn") and (keyword == null or keyword.length() == 0)'>
 					where cat1 in('A01','A02','A03')</when>
 			<when test='searchOption.equalsIgnoreCase("shoppingBtn")'>
@@ -98,36 +81,6 @@
 					where cat1='C01' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
 			</when><when test='searchOption.equalsIgnoreCase("likeBtn") and (keyword == null or keyword.length() == 0)'>
 					where cat1='C01'</when>
-=======
-				<if test='keyword == null or keyword.length() == 0'>						
-		    		where cat1='A01' or cat1='A02' or cat1='A03'
-		 		</if>
-			</when>
-			<when test='searchOption.equalsIgnoreCase("shoppingBtn")'>
-					where cat1='A04' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-				<if test='keyword == null or keyword.length() == 0'>						
-		    		where cat1='A04'
-		 		</if>				  
-			</when>
-			<when test='searchOption.equalsIgnoreCase("foodBtn")'>
-					where cat1='A05' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-					<if test='keyword == null or keyword.length() == 0'>					
-				    where cat1='A05'
-				  </if>
-			</when>
-			<when test='searchOption.equalsIgnoreCase("hotelBtn")'>
-					where cat1='B02' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-					<if test='keyword == null or keyword.length() == 0'>					
-				    where cat1='B02'
-				  </if>
-			</when>
-			<when test='searchOption.equalsIgnoreCase("likeBtn")'>
-					where cat1='C01' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-					<if test='keyword == null or keyword.length() == 0'>					
-				    where cat1='C01'
-				  </if>
-			</when>
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 			<otherwise>
 				where title like '%'||#{keyword}||'%' OR addr1 like '%'||#{keyword}||'%'
 			</otherwise>
@@ -136,23 +89,20 @@
 	
 	<!-- 장소 선택시 세부플래너에 추가/삭제 -->
 	<insert id="insert_sp" parameterType="S_Planner">
-<<<<<<< HEAD
 	    insert into S_PLANER values(S_PLANER_ID.nextval,#{sp_day},#{sp_sday},#{sp_eday},#{contentid},5)
-=======
-	    insert into S_PLANER values(S_PLANER_ID.nextval,#{sp_day},SYSDATE,SYSDATE,#{contentid},5)
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	</insert>
 	<delete id="delete_sp" parameterType="long">
 		delete from S_PLANER where sp_id=#{sp_id}
 	</delete>
-<<<<<<< HEAD
-=======
 	
 	<!-- 새로운 플래너 생성 -->
 	<insert id="newPlaner" parameterType="long">
 	    insert into PLANER values(PLANER_ID.nextval,SYSDATE,#{m_id}, null, null, null)
 	</insert>
 	
+	<!-- 플래너저장 -->
+	<update id="save" parameterType="Planner">
+	    update Planer set P_TITLE=#{p_title}, P_MSIZE=#{p_msize}, P_CONCEPT=#{p_concept} where P_ID=#{p_id}
+	</update>
 	
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 </mapper>

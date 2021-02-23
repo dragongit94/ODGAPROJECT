@@ -4,28 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
-<<<<<<< HEAD
-=======
 import lombok.extern.log4j.Log4j;
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 import odga.bt.domain.Area_T;
+import odga.bt.domain.Planer;
 import odga.bt.domain.S_Planer;
 import odga.bt.domain.Sigungu_T;
 import odga.bt.domain.Touritems;
 import odga.bt.mapper.PlannerMapper;
-<<<<<<< HEAD
-import odga.bt.vo.Searchcode;
-import odga.bt.vo.TotalList;
-
-=======
 import odga.bt.vo.SearchResult;
 import odga.bt.vo.Searchcode;
 import odga.bt.vo.TotalList;
-
+@Transactional
 @Log4j
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 @Service
 @AllArgsConstructor
 public class PlannerServiceImpl implements PlannerService {
@@ -36,15 +29,15 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.selectDayById(p_id,sp_day);
 	}
 	
-	@Override
-<<<<<<< HEAD
+	/*@Override
 	public List<Touritems> searchedList(String searchOption, String keyword) {
 		return plannerMapper.searchedList(searchOption,keyword);
 	}
 	@Override
 	public int countContent(String searchOption, String keyword) {
 		return plannerMapper.countContent(searchOption,keyword);
-=======
+	}*/
+	@Override
 	public SearchResult searchedList(Searchcode searchcode) {
 		//return plannerMapper.searchedList(searchcode);
 
@@ -57,7 +50,6 @@ public class PlannerServiceImpl implements PlannerService {
 	@Override
 	public int countContent(String searchOption, String keyword) {
 		return -1;
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	}
 	@Override
 	public void insert_sp(S_Planer s_planer) {
@@ -68,21 +60,17 @@ public class PlannerServiceImpl implements PlannerService {
 		plannerMapper.delete_sp(sp_id);
 	}
 	@Override
-<<<<<<< HEAD
-	public TotalList listS() {
-=======
 	public TotalList listS(long m_id) {
-		//newPlanerS(m_id); //신규 플래너 id 생성
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
+		//newPlanerS(m_id); //�떊洹� �뵆�옒�꼫 id �깮�꽦
 		ArrayList<Area_T> list = plannerMapper.list();
 		//for(Area_T li:list) System.out.println(li.getArea());
 		ArrayList<Sigungu_T> list_s = plannerMapper.list_s();
 		TotalList totalList = new TotalList(list, list_s);
 		if(list.size()==0) {
-			//System.out.println("## 아무것도 안나옴");
+			//System.out.println("## �븘臾닿쾬�룄 �븞�굹�샂");
 			return null;
 		}else {
-			//System.out.println("## 들어있음");
+			//System.out.println("## �뱾�뼱�엳�쓬");
 			return totalList;
 		}
 	}
@@ -92,12 +80,14 @@ public class PlannerServiceImpl implements PlannerService {
 		
 		return list;
 	}
-<<<<<<< HEAD
-	
-=======
 	@Override
 	public void newPlanerS(long m_id) {
 		plannerMapper.newPlaner(m_id);
 	}
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
+
+	@Override
+	public void save(Planer planer) {
+		plannerMapper.save(planer);
+		
+	}
 }

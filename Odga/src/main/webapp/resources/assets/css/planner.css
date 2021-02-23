@@ -2,11 +2,7 @@ a.link_a:link, a.link_a:visited{
 	text-decoration: none;
 	color:black;	
 }
-<<<<<<< HEAD
-a:hover{
-=======
 a.link_a:hover{
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
 	color: #da3535;
 }
 .pic {
@@ -389,7 +385,7 @@ a.link_a:hover{
 }
 .cat1-btn {
 	border : 0;
-	ontline : 0;
+	outline : 0;
 	padding : 0;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -401,7 +397,6 @@ a.link_a:hover{
 	padding-top: 80px;
 	padding-bottom: 10px;
 }
-<<<<<<< HEAD
 .td-list{
     vertical-align: middle;
 }
@@ -425,5 +420,9 @@ a.link_a:hover{
 .input-date{
 	font-size: x-small;
 }
-=======
->>>>>>> e0575f89807002bde1fe6699ad7a8aaeaac686ae
+.top-btn{ 
+	width: 20%;
+	float: right;
+	padding: 23px 20px;
+	margin-right: 10px;
+}
