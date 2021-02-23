@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import odga.bt.domain.Area_T;
+import odga.bt.domain.Planer;
 import odga.bt.domain.S_Planer;
 import odga.bt.domain.Sigungu_T;
 import odga.bt.domain.Touritems;
@@ -16,7 +17,7 @@ import odga.bt.mapper.PlannerMapper;
 import odga.bt.vo.SearchResult;
 import odga.bt.vo.Searchcode;
 import odga.bt.vo.TotalList;
-
+@Transactional
 @Log4j
 @Service
 @AllArgsConstructor
@@ -28,6 +29,14 @@ public class PlannerServiceImpl implements PlannerService {
 		return plannerMapper.selectDayById(p_id,sp_day);
 	}
 	
+	/*@Override
+	public List<Touritems> searchedList(String searchOption, String keyword) {
+		return plannerMapper.searchedList(searchOption,keyword);
+	}
+	@Override
+	public int countContent(String searchOption, String keyword) {
+		return plannerMapper.countContent(searchOption,keyword);
+	}*/
 	@Override
 	public SearchResult searchedList(Searchcode searchcode) {
 		//return plannerMapper.searchedList(searchcode);
@@ -55,10 +64,8 @@ public class PlannerServiceImpl implements PlannerService {
 		long thisP_id = plannerMapper.thisP_id(m_id);
 		TotalList totalList = new TotalList(list, list_s, thisP_id);
 		if(list.size()==0) {
-			//System.out.println("## 아무것도 안나옴");
 			return null;
 		}else {
-			//System.out.println("## 들어있음");
 			return totalList;
 		}
 	}
@@ -72,6 +79,11 @@ public class PlannerServiceImpl implements PlannerService {
 	public void newPlanerS(long m_id) {
 		plannerMapper.newPlaner(m_id);
 	}
+
+	@Override
+	public void save(Planer planer) {
+		plannerMapper.save(planer);
+	}	
 	@Override
 	public void delPlan(long p_id) {
 		plannerMapper.delete_sPlan(p_id);

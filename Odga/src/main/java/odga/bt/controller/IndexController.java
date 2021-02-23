@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import odga.bt.domain.Planer;
 import odga.bt.domain.S_Planer;
 import odga.bt.domain.Touritems;
 import odga.bt.service.PlannerService;
@@ -34,6 +35,11 @@ public class IndexController {
 		
 		return "index";
 	}
+	@RequestMapping("index")
+	public String index2() {
+		
+		return "index";
+	}
 	@RequestMapping("api.do")
 	public String api() {
 		
@@ -48,12 +54,12 @@ public class IndexController {
 
 	@GetMapping("dayselect")
 	public @ResponseBody List<Touritems> day(@RequestParam long p_id, @RequestParam long sp_day) {
-		//���߿� p_id �޾������
+		//占쏙옙占쌩울옙 p_id 占쌨억옙占쏙옙占쏙옙占�
 		System.out.println("#"+sp_day);
 		List<Touritems> list = service.selectDayById(p_id, sp_day);
 		return list;
 	}
-	//�ٶ�����
+	//占쌕띰옙占쏙옙占쏙옙
 	@GetMapping("planner")
 	public ModelAndView planner(@RequestParam long m_id) {
 		//System.out.println(m_id);
@@ -66,7 +72,7 @@ public class IndexController {
 	@GetMapping("search")
 	public @ResponseBody SearchResult search(@RequestParam String searchOption, @RequestParam String keyword, @RequestParam String areacode, @RequestParam String sigungucode,
 			HttpServletResponse response, HttpSession session) {
-		System.out.println("#�ɼ� "+searchOption+"#Ű���� "+keyword+"#�ɼ� "+areacode+"#Ű���� "+sigungucode);
+		System.out.println("#占심쇽옙 "+searchOption+"#키占쏙옙占쏙옙 "+keyword+"#占심쇽옙 "+areacode+"#키占쏙옙占쏙옙 "+sigungucode);
 		
 	  Searchcode sc = new Searchcode(searchOption, keyword, areacode, sigungucode);
 	  SearchResult result = service.searchedList(sc); //int count =
@@ -80,10 +86,13 @@ public class IndexController {
 	@GetMapping("insert_sp")
 	public @ResponseBody List<Touritems> insert_sp(Touritems touritems,long p_id, HttpServletRequest request) {
 		String sp_dayStr = request.getParameter("sp_day");
+		String sp_sday = request.getParameter("sp_sday");
+		String sp_eday = request.getParameter("sp_eday");		
 		String contentid = request.getParameter("contentid");
 		System.out.println("###P_ID: "+p_id);
 		System.out.println("sp_day "+sp_dayStr);
 		long sp_day = -1;
+		//System.out.println("# "+sp_sday+"# "+sp_eday);
 		if(sp_dayStr != null) {
 			sp_dayStr = sp_dayStr.trim();
 			try {
@@ -96,10 +105,12 @@ public class IndexController {
 		S_Planer s_planer  = new S_Planer();
 		s_planer.setSp_day(sp_day);
 		s_planer.setContentid(contentid);
+		s_planer.setSp_sday(sp_sday);
+		s_planer.setSp_eday(sp_eday);
 		s_planer.setP_id(p_id);
 		service.insert_sp(s_planer);
 		
-		long thisP_id = p_id; // �÷��� ���̵� ���߿� �޾������
+		long thisP_id = p_id; 
 		List<Touritems> list = service.selectDayById(thisP_id, sp_day);
 		System.out.println("정상실행??");
 		return list;
@@ -126,7 +137,7 @@ public class IndexController {
 		}		
 		service.delete_sp(sp_id);
 		
-		int p_id = 5; // �÷��� ���̵� ���߿� �޾������
+		int p_id = 5; // 나중에 플래너 아이디 받기
 		List<Touritems> list = service.selectDayById(p_id, sp_day);
 		return list;
 	}
@@ -141,11 +152,26 @@ public class IndexController {
 		System.out.println(t.getAddr1()+"####"+ t.getTitle());	
 		return list;
 	}
+	
+	@PostMapping("save.do")
+	public String save(long p_id, String title, String hSize, String concept) {
+	  System.out.println("#1"+title+"#2"+hSize+"#3"+concept+"#4"+p_id);
+		
+	  Planer planer = new Planer(); 
+	  planer.setP_title(title);
+	  planer.setP_msize(hSize); 
+	  planer.setP_concept(concept);
+	  planer.setP_id(p_id); 
+	  service.save(planer);
+		 
+		
+		return "redirect:index";
+	}
 	@GetMapping("leave")
 	public String leave(long p_id) {
 		System.out.println("#######"+p_id);
 		service.delPlan(p_id);
 		
-		return "index";
+		return "redirect:index";
 	}
 }

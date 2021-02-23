@@ -107,12 +107,12 @@
 							<div class="col-12">
 								<!-- Job Category Listing start -->
 								<div class="row" style="margin-left: 5px">
-						
+
 									<div class="col-75">	
-										<input type="text" class="text" placeholder="Your Travel name.."/>	
+										<input id="p_title" type="text" class="text" placeholder="Your Travel name.."/>	
 									</div>
 									<div class="col-25">
-										<select name="test1" class="nice-select">
+										<select id="test1" name="test1" class="nice-select">
 											<option value="" selected="selected">인원</option>
 											<option value="1">1명</option>
 											<option value="2">2명</option>
@@ -120,7 +120,7 @@
 										</select>
 									</div>
 									<div class="col-25">
-										<select name="test1" class="nice-select">
+										<select id="test2" name="test1" class="nice-select">
 											<option value="1" selected="selected">혼자만의 여행</option>
 											<option value="2">커플</option>
 											<option value="3">가족</option>
@@ -136,18 +136,24 @@
 											    <option value="${area.areacode}">${area.area}</option>
 										    </c:forEach>
 										  </select>		<br/>	  
-										  <select name="sigungu" class="nice-select" id="sigunguCode">
+										  <select name="sigungu" class="nice-select" id="sigunguCode" style="width: 113%;">
 										    <option value="">세부 지역</option>
 										  </select>
 									  </form>
 									</div>
-
+									<!-- style="float:right;margin-left:0px;margin-right:0px;" --> <!-- style="width:200px;float:right; padding: 23px 20px;margin-right:15px;" -->
 									<c:set value="${list.thisP_id}" var = "thisP_id"/>
-									<div class="col-2" style="float:right;margin-left:0px;margin-right:0px;">
-										<a href="leave?p_id=${thisP_id}" class="btn list-btn"
-											style="width:200px;float:right; padding: 23px 20px;margin-right:15px;">취소</a>
+									<div class="col-3" style="float:right;margin-left:0px;margin-right:0px;padding-right: 0;">
+									  <form method="post" name="fin" action="save.do">
+									    <input type="hidden" name="p_id" value="${thisP_id}" />
+									  	<input type="hidden" name="title" value="" />
+									  	<input type="hidden" name="hSize" value="" />
+									  	<input type="hidden" name="concept" value="" />
+		                              	<input type="button" onclick="savePlanner();fin.submit()" class="btn list-btn top-btn" value="저장">
+		                              </form>
+		                              <a onclick="reset()" class="btn list-btn top-btn">초기화</a>		                              
+									  <a href="leave?p_id=${thisP_id}" class="btn list-btn top-btn">취소</a>
 									</div>
-								</div>
 								<!-- Job Category Listing End -->
 							</div>
 						</div>
@@ -166,19 +172,12 @@
 							<div class="category-listing mb-50" style="padding: 10px 10px 20px;">
 								<!-- single one -->
 								<div class="single-listing">
-									<!-- Select job items start -->
-									<div class="select-job-items1">
-										<select id="day" onchange="selectDay()">
-											<option value="0">기간</option>
-											<option value="1">무박</option>
-											<option value="2">1박2일</option>
-											<option value="3">2박3일</option>
-											<option value="4">3박4일</option>
-											<option value="5">4박5일</option>
-											<option value="6">5박6일</option>
-											<option value="7">6박7일</option>
-										</select>
-									</div>
+
+										<p class="p-date">시작일 : </p>
+										<input class="input-date" style="width: 100%;" type="date" id="sdate" value=""/>										
+										<p class="p-date">종료일 : </p>
+										<input class="input-date" style="width: 100%;" type="date" id="edate" value=""/>
+										
 									<div class="select-job-items1">
 										<table id="myTable" class="table">
 										  <thead>
@@ -215,6 +214,7 @@
 							<div class="single-listing">									
 								<div class="select-job-items2">
 									<div class="card" id="card2">
+										
 									</div>
 								</div>
 							</div>
@@ -252,6 +252,7 @@
 									</div>
 									<div id="result">
 									</div>
+									
 									<div class="select-job-items2">
 										<div class="card" id="card">
 										</div>
@@ -407,6 +408,27 @@ $(window).on("beforeunload", function(){
 
 <!-- 동적 셀렉트 박스 -->
 <script type="text/javascript">
+function savePlanner(){
+	checkUnload = false;
+	var p_title = $("#p_title").val(); 
+	var p_msize = $("#test1 option:selected").val();
+	var p_concept = $("#test2 option:selected").val();
+	
+	var title = $("#title").val(); 
+	var hsize = $("#hSize").val();
+	var concept = $("#concept").val();
+	
+	document.fin.title.value = p_title;
+	document.fin.hSize.value = p_msize;
+	document.fin.concept.value = p_concept;
+	//alert("#1"+p_title+"#2"+p_msize+"#3"+p_concept);
+	//location.href='save.do?p_title='+p_title+'&p_msize='+p_msize+'&p_concept='+p_concept+'&p_id='p_id;
+
+}
+</script>
+
+<script type="text/javascript">
+
 function changes(fr) {
 	var li = new Array();
 	var li2 = new Array();
@@ -473,22 +495,22 @@ function daydo(value){
 				  alert("장소를 추가해주세요.");
 				  return false;
 			  }
-           var html = "";
+           var html = "";  /* <div style='margin-bottom:5px'> <a class='link_a' href='testGet.do?contentid="+responseData[i].sp_id+"'>*/
            if(responseData.length != 0){
-				  for(var i=0; i<responseData.length; i++){
-				         html += "<h5><a class='link_a' href='testGet.do?contentid="+responseData[i].sp_id+"'>"+responseData[i].title+"</a></h5>";
-				  		 html += "<h5>"+responseData[i].addr1+"</h5>";
-				  		 if((responseData[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+responseData[i].firstimage+"'/></div>";	
-				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}
-				  		html += "<h5><a class='link_a' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></h5>";
+        	   for(var i=0; i<responseData.length; i++){
+					  if((responseData[i].firstimage)!= null){ html += "<tr><td class='td-list' style='width: 30%;'><img class='pic' src='"+responseData[i].firstimage+"'/></td>";	
+				  		 }else{ html += "<tr><td class='td-list' style='width: 40%;'><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></td>";}
+				         html += "<td class='td-list' style='font-size: smaller;'>"+responseData[i].title+"</td></tr>";		        
+				         html += "<tr><td class='td-list' style='font-size: x-small;'>"+responseData[i].addr1+"</td></tr>";				  		 
+				  		html += "<tr style='align-self:end;'><td class='td-del'><a class='link_a' style='font-size: smaller;margin-right: 10px;' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></td></tr>";
 				  }			 
 			  }else{
 				  html += "<tr>";
 				  html += "<td colspan='4' align='center'>장소를 추가해주세요</td>";
 				  html += "</tr>";
 			  }
-			  html += "</table>";
-			 $("#seq").val(""); 
+			 /*  html += "</table>"; */
+			 
 			  
 			  $("#card2").html(html);
 		   }
@@ -524,48 +546,41 @@ function daydo(value){
 	    }
 	  }
   
-  function selectDay(){
-	  dayDelete();
-	  var dayOption = document.getElementById("day");
-	  var value = dayOption.options[document.getElementById("day").selectedIndex].value;	 
-	    switch (value){
-	      case "1" :	    	  
-	    	  rowAdd();
-	          break;
-	      case "2" :
-	          for(var i=1; i<=2; i++){
-	        	  rowAdd();
-	          }
-	          break;
-	      case "3" :
-	    	  for(var i=1; i<=3; i++){
-	        	  rowAdd();
-	          }
-	          break;
-	      case "4" :
-	    	  for(var i=1; i<=4; i++){
-	        	  rowAdd();
-	          }
-	            break;
-	      case "5" :
-	    	  for(var i=1; i<=5; i++){
-	        	  rowAdd();
-	          }
-	          break;
-	      case "6" :
-	    	  for(var i=1; i<=6; i++){
-	        	  rowAdd();
-	          }
-	          break;
-	      case "7" :
-	    	  for(var i=1; i<=7; i++){
-	        	  rowAdd();
-	          }
-	          break;
-	      default :
-	    	  break;
-	    }
-  }
+  //일수 계산해서 day 생성 
+  
+  var sdate;
+  var edate;
+  var currTime = 24*60*60*1000;
+  var diff;
+  var day;
+  $("#sdate").on("propertychange change keyup paste input", function() {
+	  	dayDelete();
+	    var currentSdate = $(this).val();
+	    if(currentSdate == sdate) {
+	        return;
+	    }	 
+	    sdate = new Date(currentSdate);
+	    
+	    diff  = edate - sdate;
+		day = (parseInt(diff/currTime))+1;
+		for(var i=1; i<=day; i++){
+      	  rowAdd();
+        }
+	});
+  $("#edate").on("propertychange change keyup paste input", function() {
+	  	dayDelete();
+	    var currentEdate = $(this).val();
+	    if(currentEdate == edate) {
+	        return;
+	    }	 
+	    edate = new Date(currentEdate);
+	    
+		diff  = edate - sdate;
+		day = (parseInt(diff/currTime))+1;
+		for(var i=1; i<=day; i++){
+      	  rowAdd();
+        }
+	});
   
   function search(value){
 	  var keyword = document.getElementById("keyword").value;
@@ -666,12 +681,22 @@ function daydo(value){
       map.panTo(moveLatLon);            
   }   
   
+  function getFormatDate(date){  //날짜 포멧 함수
+      var year = date.getFullYear();
+      var month = (1 + date.getMonth());
+      month = month >= 10 ? month : '0' + month;
+      var day = date.getDate();
+      day = day >= 10 ? day : '0' + day;
+      return year + '-' + month + '-' + day;
+  }
   function addS_plan(contentid) {
+	  sp_sday = getFormatDate(sdate);
+	  sp_eday = getFormatDate(edate);	   
 	  var p_id = ${thisP_id};
 	    $.ajax({
 	        url: "insert_sp",
 	        type: "GET",
-	        data: {sp_day:sp_day,contentid:contentid, p_id: p_id},
+	        data: {sp_day:sp_day,sp_sday:sp_sday,sp_eday:sp_eday,contentid:contentid, p_id: p_id},
 	        success: function(responseData){
 	            if(!responseData){
 	 				  alert("장소를 추가해주세요.");
@@ -679,13 +704,13 @@ function daydo(value){
 	 			  }
 	            var html = "";
 	            if(responseData.length != 0){
-	 				  for(var i=0; i<responseData.length; i++){
-	 				         html += "<h5><a class='link_a'>"+responseData[i].title+"</a></h5>";
-	 				  		 html += "<h5>"+responseData[i].addr1+"</h5>";
-	 				  		 if((responseData[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+responseData[i].firstimage+"'/></div>";	
-	 				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}
-	 				  		 html += "<h5><a class='link_a' onclick='delS_plan("+responseData[i].sp_id+")'>삭 제</a></h5>";	
-	 				  }			 
+	            	for(var i=0; i<responseData.length; i++){
+						  if((responseData[i].firstimage)!= null){ html += "<tr><td class='td-list' style='width: 30%;'><img class='pic' src='"+responseData[i].firstimage+"'/></td>";	
+					  		 }else{ html += "<tr><td class='td-list' style='width: 40%;'><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></td>";}
+					         html += "<td class='td-list' style='font-size: smaller;'>"+responseData[i].title+"</td></tr>";		        
+					         html += "<tr><td class='td-list' style='font-size: x-small;'>"+responseData[i].addr1+"</td></tr>";				  		 
+					  		html += "<tr style='align-self:end;'><td class='td-del'><a class='link_a' style='font-size: smaller;margin-right: 10px;' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></td></tr>";
+					  }			 
 	 			  }else{
 	 				  html += "<tr>";
 	 				  html += "<td colspan='4' align='center'>장소를 추가해주세요</td>";
@@ -701,21 +726,20 @@ function daydo(value){
 	        url: "delete_sp",
 	        type: "GET",
 	        data: {sp_id:sp_id, sp_day:sp_day},
-	        success: function(responseData){
-	        	alert(sp_id);
+	        success: function(responseData){	        	
 	            if(!responseData){
 	 				  alert("장소를 추가해주세요.");
 	 				  return false;
 	 			  }
 	            var html = "";
 	            if(responseData.length != 0){
-	 				  for(var i=0; i<responseData.length; i++){
-	 				         html += "<h5><a class='link_a' href='testGet.do?contentid="+responseData[i].sp_id+"'>"+responseData[i].title+"</a></h5>";
-	 				  		 html += "<h5>"+responseData[i].addr1+"</h5>";
-	 				  		 if((responseData[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+responseData[i].firstimage+"'/></div>";	
-	 				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}
-	 				  		 html += "<h5><a class='link_a' onclick='delS_plan("+responseData[i].sp_id+")'>삭 제</a></h5>";	
-	 				  }			 
+	            	for(var i=0; i<responseData.length; i++){
+						  if((responseData[i].firstimage)!= null){ html += "<tr><td class='td-list' style='width: 30%;'><img class='pic' src='"+responseData[i].firstimage+"'/></td>";	
+					  		 }else{ html += "<tr><td class='td-list' style='width: 40%;'><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></td>";}
+					         html += "<td class='td-list' style='font-size: smaller;'>"+responseData[i].title+"</td></tr>";		        
+					         html += "<tr><td class='td-list' style='font-size: x-small;'>"+responseData[i].addr1+"</td></tr>";				  		 
+					  		html += "<tr style='align-self:end;'><td class='td-del'><a class='link_a' style='font-size: smaller;margin-right: 10px;' onclick='delS_plan("+responseData[i].s_planer.sp_id+")'>삭 제</a></td></tr>";
+					  }		 
 	 			  }else{
 	 				  html += "<tr>";
 	 				  html += "<td colspan='4' align='center'>장소를 추가해주세요</td>";
@@ -726,6 +750,22 @@ function daydo(value){
 	  	});
 	}
   
+</script>
+<script type="text/javascript">
+//초기화버튼
+function reset(){
+	document.getElementById("p_title").value = null;
+	document.getElementById("sdate").value = null;
+	document.getElementById("edate").value = null;
+	document.getElementById("keyword").value = null;
+	$("#test1 option:eq(0)").prop("selected", true);
+	$("#test2 option:eq(0)").prop("selected", true);
+	$("#areacode option:eq(0)").prop("selected", true);
+	$("#sigunguCode option:eq(0)").prop("selected", true);
+	$('#card2').empty(); 
+	$('#card').empty();
+	dayDelete();
+}
 </script>
 
 

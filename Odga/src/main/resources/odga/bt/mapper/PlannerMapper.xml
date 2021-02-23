@@ -63,34 +63,24 @@
 		<choose>
 			<when test='searchOption.equalsIgnoreCase("touraBtn")'>
 					where cat1 in('A01','A02','A03') and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-				<if test='keyword == null or keyword.length() == 0'>						
-		    		where cat1='A01' or cat1='A02' or cat1='A03'
-		 		</if>
-			</when>
+			</when><when test='searchOption.equalsIgnoreCase("touraBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1 in('A01','A02','A03')</when>
 			<when test='searchOption.equalsIgnoreCase("shoppingBtn")'>
-					where cat1='A04' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-				<if test='keyword == null or keyword.length() == 0'>						
-		    		where cat1='A04'
-		 		</if>				  
-			</when>
+					where cat1='A04' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')							  
+			</when><when test='searchOption.equalsIgnoreCase("shoppingBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='A04'</when>
 			<when test='searchOption.equalsIgnoreCase("foodBtn")'>
-					where cat1='A05' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-					<if test='keyword == null or keyword.length() == 0'>					
-				    where cat1='A05'
-				  </if>
-			</when>
+					where cat1='A05' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')				
+			</when><when test='searchOption.equalsIgnoreCase("foodBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='A05'</when>
 			<when test='searchOption.equalsIgnoreCase("hotelBtn")'>
 					where cat1='B02' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-					<if test='keyword == null or keyword.length() == 0'>					
-				    where cat1='B02'
-				  </if>
-			</when>
+			</when><when test='searchOption.equalsIgnoreCase("hotelBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='B02'</when>
 			<when test='searchOption.equalsIgnoreCase("likeBtn")'>
 					where cat1='C01' and (title like '%'||#{keyword}||'%' or addr1 like '%'||#{keyword}||'%')
-					<if test='keyword == null or keyword.length() == 0'>					
-				    where cat1='C01'
-				  </if>
-			</when>
+			</when><when test='searchOption.equalsIgnoreCase("likeBtn") and (keyword == null or keyword.length() == 0)'>
+					where cat1='C01'</when>
 			<otherwise>
 				where title like '%'||#{keyword}||'%' OR addr1 like '%'||#{keyword}||'%'
 			</otherwise>
@@ -99,7 +89,7 @@
 	
 	<!-- 장소 선택시 세부플래너에 추가/삭제 -->
 	<insert id="insert_sp" parameterType="S_Planner">
-	    insert into S_PLANER values(S_PLANER_ID.nextval,#{sp_day},SYSDATE,SYSDATE,#{contentid}, #{p_id})
+	    insert into S_PLANER values(S_PLANER_ID.nextval,#{sp_day},#{sp_sday},#{sp_eday},#{contentid}, #{p_id})
 	</insert>
 	<delete id="delete_sp" parameterType="long">
 		delete from S_PLANER where sp_id=#{sp_id}
@@ -109,6 +99,12 @@
 	<insert id="newPlaner" parameterType="long">
 	    insert into PLANER values(PLANER_ID.nextval,SYSDATE,#{m_id}, null, null, null)
 	</insert>
+	
+	<!-- 플래너저장 -->
+	<update id="save" parameterType="Planner">
+	    update Planer set P_TITLE=#{p_title}, P_MSIZE=#{p_msize}, P_CONCEPT=#{p_concept} where P_ID=#{p_id}
+	</update>
+	
 	<!-- 해당 페이지 플래너 id 가져오기  -->
 	<select id="thisP_id" resultType="long" parameterType="long">
 		SELECT p_id FROM planer

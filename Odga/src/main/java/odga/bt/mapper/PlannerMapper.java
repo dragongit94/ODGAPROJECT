@@ -16,6 +16,8 @@ import odga.bt.vo.Searchcode;
 @Mapper
 public interface PlannerMapper {
 	List<Touritems> selectDayById(@Param("p_id")long p_id,@Param("sp_day")long sp_day);
+	//List<Touritems> searchedList(@Param("searchOption")String searchOption,@Param("keyword") String keyword);
+	//int countContent(@Param("searchOption")String searchOption,@Param("keyword") String keyword);
 	List<Touritems> searchedList(Searchcode searchcode);
 	int countContent(Searchcode searchcode);
 	void insert_sp(S_Planer s_planer);
@@ -24,6 +26,7 @@ public interface PlannerMapper {
 	ArrayList<Sigungu_T> list_s();
 	ArrayList<Touritems> selectResult(Searchcode searchcode);
 	void newPlaner(long m_id);
+	void save(Planer planer);
 	long thisP_id(long m_id);
 	
 	void delete_sPlan(long p_id);

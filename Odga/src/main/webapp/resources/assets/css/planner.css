@@ -34,7 +34,7 @@ a.link_a:hover{
 .map_wrap * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	font-family: 'Malgun Gothic', dotum, '�룍��', sans-serif;
 	font-size: 12px
 }
 
@@ -267,7 +267,7 @@ a.link_a:hover{
 	text-align: left;
 	overflow: hidden;
 	font-size: 12px;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	font-family: 'Malgun Gothic', dotum, '�룍��', sans-serif;
 	line-height: 1.5;
 }
 
@@ -385,7 +385,7 @@ a.link_a:hover{
 }
 .cat1-btn {
 	border : 0;
-	ontline : 0;
+	outline : 0;
 	padding : 0;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -396,4 +396,33 @@ a.link_a:hover{
 .footer-padding {
 	padding-top: 80px;
 	padding-bottom: 10px;
+}
+.td-list{
+    vertical-align: middle;
+}
+.td-del {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+.datetime-input-box-wrapper {
+    display: inline-flex;
+    flex: 1;
+    background-color: inherit;
+    min-width: 0;
+    justify-content: space-between;
+    align-items: center;
+    font-size: xx-small;
+}
+.p-date{
+	margin-bottom: 1px;
+	font-size: smaller;
+}
+.input-date{
+	font-size: x-small;
+}
+.top-btn{ 
+	width: 20%;
+	float: right;
+	padding: 23px 20px;
+	margin-right: 10px;
 }
