@@ -13,7 +13,6 @@ public interface PlannerService {
 	List<Touritems> selectDayById(long p_id, long sp_day);
 	//List<Touritems> searchedList(String searchOption, String keyword);
 	SearchResult searchedList(Searchcode searchcode);
-	int countContent(String searchOption, String keyword);
 	void insert_sp(S_Planer s_planer);
 	void delete_sp(long sp_id);
 	
@@ -21,4 +20,6 @@ public interface PlannerService {
 	List<Touritems> selectResultS(Searchcode searchcode);
 	void newPlanerS(long m_id);
 	void save(Planer planer);
+	
+	void delPlan(long p_id);
 }

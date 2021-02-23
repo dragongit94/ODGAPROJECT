@@ -26,7 +26,6 @@ import odga.bt.vo.TotalList;
 
 @RequestMapping("/")
 @Controller
-@Log4j
 @AllArgsConstructor
 public class IndexController {
 	private PlannerService service;
@@ -60,6 +59,7 @@ public class IndexController {
 	public ModelAndView planner(@RequestParam long m_id) {
 		//System.out.println(m_id);
 		TotalList lists = service.listS(m_id);
+		System.out.println(lists.getThisP_id());
 		ModelAndView mv = new ModelAndView("planner", "list", lists);
 		return mv;
 	}
@@ -79,11 +79,13 @@ public class IndexController {
 	}
 	
 	@GetMapping("insert_sp")
-	public @ResponseBody List<Touritems> insert_sp(Touritems touritems, HttpServletRequest request) {
+	public @ResponseBody List<Touritems> insert_sp(Touritems touritems,long p_id, HttpServletRequest request) {
 		String sp_dayStr = request.getParameter("sp_day");
 		String sp_sday = request.getParameter("sp_sday");
-		String sp_eday = request.getParameter("sp_eday");
-		String contentid = request.getParameter("contentid");		
+		String sp_eday = request.getParameter("sp_eday");		
+		String contentid = request.getParameter("contentid");
+		System.out.println("###P_ID: "+p_id);
+		System.out.println("sp_day "+sp_dayStr);
 		long sp_day = -1;
 		//System.out.println("# "+sp_sday+"# "+sp_eday);
 		if(sp_dayStr != null) {
@@ -100,10 +102,12 @@ public class IndexController {
 		s_planer.setContentid(contentid);
 		s_planer.setSp_sday(sp_sday);
 		s_planer.setSp_eday(sp_eday);
+		s_planer.setP_id(p_id);
 		service.insert_sp(s_planer);
 		
-		int p_id = 5; // 나중에 플래너 아이디 받기
-		List<Touritems> list = service.selectDayById(p_id, sp_day);
+		long thisP_id = p_id; 
+		List<Touritems> list = service.selectDayById(thisP_id, sp_day);
+		System.out.println("정상실행??");
 		return list;
 	}
 	
@@ -153,6 +157,13 @@ public class IndexController {
 		planer.setP_concept(p_concept);
 		planer.setP_id(p_id);
 		service.save(planer);
+		return "index";
+	}
+	@GetMapping("leave")
+	public String leave(long p_id) {
+		System.out.println("#######"+p_id);
+		service.delPlan(p_id);
+		
 		return "index";
 	}
 }

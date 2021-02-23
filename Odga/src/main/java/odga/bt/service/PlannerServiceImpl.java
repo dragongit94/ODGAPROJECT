@@ -48,10 +48,6 @@ public class PlannerServiceImpl implements PlannerService {
 		return searchResult;
 	}
 	@Override
-	public int countContent(String searchOption, String keyword) {
-		return -1;
-	}
-	@Override
 	public void insert_sp(S_Planer s_planer) {
 		plannerMapper.insert_sp(s_planer);
 	}
@@ -61,11 +57,12 @@ public class PlannerServiceImpl implements PlannerService {
 	}
 	@Override
 	public TotalList listS(long m_id) {
-		//newPlanerS(m_id); //�떊洹� �뵆�옒�꼫 id �깮�꽦
+		newPlanerS(m_id); //신규 플래너 id 생성
 		ArrayList<Area_T> list = plannerMapper.list();
 		//for(Area_T li:list) System.out.println(li.getArea());
 		ArrayList<Sigungu_T> list_s = plannerMapper.list_s();
-		TotalList totalList = new TotalList(list, list_s);
+		long thisP_id = plannerMapper.thisP_id(m_id);
+		TotalList totalList = new TotalList(list, list_s, thisP_id);
 		if(list.size()==0) {
 			//System.out.println("## �븘臾닿쾬�룄 �븞�굹�샂");
 			return null;
@@ -88,6 +85,12 @@ public class PlannerServiceImpl implements PlannerService {
 	@Override
 	public void save(Planer planer) {
 		plannerMapper.save(planer);
-		
+	}	
+	@Override
+	public void delPlan(long p_id) {
+		plannerMapper.delete_sPlan(p_id);
+		System.out.println("1. 위의 삭제 문장 실행 완료");
+		plannerMapper.delete_Plan(p_id);
+		System.out.println("2. 위의 삭제 문장 실행 완료");
 	}
 }

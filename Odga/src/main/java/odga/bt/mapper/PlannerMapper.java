@@ -27,5 +27,9 @@ public interface PlannerMapper {
 	ArrayList<Touritems> selectResult(Searchcode searchcode);
 	void newPlaner(long m_id);
 	void save(Planer planer);
+	long thisP_id(long m_id);
+	
+	void delete_sPlan(long p_id);
+	void delete_Plan(long p_id);
 }
 

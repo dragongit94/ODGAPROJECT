@@ -589,7 +589,7 @@ function daydo(value){
 		   }
            if(list.length != 0){
 				  for(var i=0; i<list.length; i++){
-				         html += "<h5><a class='link_a' onclick='markerm("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
+				         html += "<h5><a class='link_a' onclick='marker("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
                          "&quot;, &quot;"+list[i].zipcode+"&quot;); panTo("+list[i].mapy+", "+list[i].mapx+")'>"+list[i].title+"</a></h5>";
 				  		 html += "<h5>"+list[i].addr1+"</h5> <h6 onclick='addS_plan(&quot;"+list[i].contentid+"&quot;)'>추가</h6>";
 				  		 if((list[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+list[i].firstimage+"'/></div>";	
@@ -603,16 +603,13 @@ function daydo(value){
   }
 </script>
 <script>
-	var marker;
-  function markerm(latitude, longitude, title, firstimage, addr1, zipcode) {
+  function marker(latitude, longitude, title, firstimage, addr1, zipcode) {
         // 마커가 표시될 위치입니다 
      // 지도에 마커를 표시합니다 
-     marker = new kakao.maps.Marker({
+     var marker = new kakao.maps.Marker({
          map: map, 
          position: new kakao.maps.LatLng(latitude, longitude)
      });
-     markers.push(marker);
-     //alert(markers[0]);
      // 커스텀 오버레이에 표시할 컨텐츠 입니다
      // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
      // 별도의 이벤트 메소드를 제공하지 않습니다 
@@ -649,10 +646,10 @@ function daydo(value){
   }   
   // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
   function closeOverlay() {
-	  
+      //overlay.setMap(null);    
       var over = document.getElementById('over');
       over.remove();
-      marker.setMap(null);
+      Marker.setMap(null);
   }
   function panTo(latitude, longitude) {
       // 이동할 위도 경도 위치를 생성합니다 
