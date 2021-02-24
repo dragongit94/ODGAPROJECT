@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="odga.bt.mapper.ReviewMapper">
+	<select id="review" resultType="Review">
+		select * from BOARD order by B_ID desc
+	</select>
+	
+	<select id="getReview" resultType="Review" parameterType="long">
+		select * from BOARD where B_ID=#{b_id}
+	</select>
+	
+	<select id="selectByWriter" resultType="Review" parameterType="String">		<!-- 이름으로 검색 -->
+		select * from BOARD where B_WRITER like '%'||#{b_writer}||'%' order by B_ID desc
+	</select>
+	<select id="selectBySubject" resultType="Review" parameterType="String">	<!-- 제목으로 검색 -->
+		select * from BOARD where B_SUBJECT like '%'||#{b_subject}||'%' order by B_ID desc
+	</select>
+	<select id="selectByContent" resultType="Review" parameterType="String">	<!-- 내용으로 검색 -->
+		select * from BOARD where B_CONTENT like '%'||#{b_content}||'%' order by B_ID desc
+	</select>
+	
+	<select id="countByCatgo" resultType="int" parameterType="Review"> 	<!-- 카테고리마다 갯수 -->
+		select count(*) from Board where B_CATGO='#{b_catgo}'
+	</select>
+
+	<select id="countByFamily" resultType="int"> 	<!-- 가족여행 갯수 -->
+		select count(*) from Board where B_CATGO='가족여행'
+	</select>
+	<select id="countByAlone" resultType="int">		<!-- 혼자여행 갯수 -->
+		select count(*) from Board where B_CATGO='혼자여행'
+	</select>
+	<select id="countByCouple" resultType="int">	<!-- 커플여행 갯수 -->
+		select count(*) from Board where B_CATGO='커플여행'
+	</select>
+	<select id="countByFriend" resultType="int">	<!-- 우정여행 갯수 -->
+		select count(*) from Board where B_CATGO='우정여행'
+	</select>
+	<select id="countByPackage" resultType="int">	<!-- 패키지여행 갯수 -->
+		select count(*) from Board where B_CATGO='패키지여행'
+	</select>
+	
+	<insert id="insert" parameterType="Review"> 
+		insert into BOARD values(BOARD_ID.nextval, #{b_writer}, #{b_subject}, #{b_content}, SYSDATE, #{b_catgo}, <!--#{b_like}-->2, <!--#{m_id}-->2, <!--#{a_id}-->2)
+ 	</insert>
+	
+</mapper>

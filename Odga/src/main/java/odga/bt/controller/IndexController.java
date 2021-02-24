@@ -2,19 +2,24 @@ package odga.bt.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Controller
 public class IndexController {
    
    @RequestMapping("/")
    public String index() {
-      return "index"; 
+      return "index";
    }
 
-   @RequestMapping("/index.html")
+   @RequestMapping("/index")
    public String index2() {
 	  return "index"; 
 	}
@@ -23,18 +28,11 @@ public class IndexController {
    public String support() {
       return "support"; 
    }
-   @RequestMapping("/review")
-   public String review() {
-      return "review"; 
-   }
-   @RequestMapping("/write")
-   public String write() {
-	   return "write"; 
-   }
-   @RequestMapping("/review_details")
-   public String review_details() {
-      return "review_details"; 
-   }
+//   @RequestMapping("/review")
+//   public String review() {
+//      return "review"; 
+//   }
+   
    @RequestMapping("/use")
    public String use() {
       return "use"; 
@@ -48,7 +46,6 @@ public class IndexController {
    public String elements() {
       return "elements"; 
    }
-   
    
    @RequestMapping("/listing_details")
    public String listing_details() {

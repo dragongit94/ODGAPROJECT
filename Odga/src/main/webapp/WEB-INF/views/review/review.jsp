@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page contentType="text/html; charset=utf-8" import="odga.bt.domain.Review" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!doctype html>
@@ -114,59 +114,61 @@
                                         <option value="">아이디로 찾기</option>
                                         <option value="">내용으로 찾기</option>
                                     </select>
+	                                <form action="#	">
+	                                    <div class="form-group">
+	                                        <div class="input-group mb-3">
+	                                            <input type="text" class="form-control" placeholder='Search Keyword'
+	                                                onfocus="this.placeholder = ''"
+	                                                onblur="this.placeholder = 'Search Keyword'">
+	                                            <div class="input-group-append">
+	                                                <button class="btns" type="button"><i class="ti-search"></i></button>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+	                                        type="submit">Search</button>
+	                                </form>
                                 </div>
-                                <!-- <div tabindex="0" class="nice-select mb-10">
-									<span class="current">지역 선택</span>
-									<ul class="list">
-										<li data-value="" class="option selected">지역 선택</li>
-										<li data-value="" class="option">서울/경기도</li>
-										<li data-value="" class="option">강원도</li>
-										<li data-value="" class="option">충청도</li>
-										<li data-value="" class="option">경상도</li>
-										<li data-value="" class="option">전라도</li>
-										<li data-value="" class="option">제주도</li>
-									</ul>
-								</div> -->
-                                <form action="#">
-                                    <div class="form-group">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder='Search Keyword'
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Search Keyword'">
-                                            <div class="input-group-append">
-                                                <button class="btns" type="button"><i class="ti-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                        type="submit">Search</button>
-                                </form>
                             </aside>
                             <aside class="single_sidebar_widget search_widget">
-								<a href="write.html" class="genric-btn danger mb-10" style="padding: 0 120px; line-height: 50px">새 글 쓰기</a>
+						<a href="write" class="genric-btn danger w-100 mb-10" style="line-height: 50px">새 글 쓰기</a>
 							</aside>
 		                     <aside class="single_sidebar_widget post_category_widget">
 		                        <h4 class="widget_title">카테고리</h4>
 		                        <ul class="list cat-list">
 		                           <li>
 		                              <a href="#" class="d-flex">
-		                                 <p>혼자여행</p>
+		                                 <p>가족여행</p>
 		                                 &nbsp;
-		                                 <p>(37)</p>
+		                                 <p>(<!--${ countByCatgo.b_catgo }  -->)</p>
 		                              </a>
 		                           </li>
 		                           <li>
 		                              <a href="#" class="d-flex">
-		                                 <p>가족여행</p>
+		                                 <p>혼자여행</p>
 		                                 &nbsp;
-		                                 <p>(10)</p>
+		                                 <p>()</p>
 		                              </a>
 		                           </li>
 		                           <li>
 		                              <a href="#" class="d-flex">
 		                                 <p>커플여행</p>
 		                                 &nbsp;
-		                                 <p>(23)</p>
+		                                 <p>()</p>
+		                              </a>
+		                           </li>
+		                           <li>
+		                              <a href="#" class="d-flex">
+		                                 <p>우정여행</p>
+		                                 &nbsp;
+		                                 <p>()</p>
+		                              </a>
+		                           </li>
+		                           <li>
+		                              <a href="#" class="d-flex">
+		                                 <p>패키지여행</p>
+		                                 &nbsp;
+		                                 <p>()</p>
 		                              </a>
 		                           </li>
 		                        </ul>
@@ -235,6 +237,35 @@
                     </div>
                     <div class="col-lg-8 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
+							<c:if test="${empty review}">
+							    <tr>
+								   <td align='center' colspan="5">데이터가 하나도 없음</td>
+								</tr>
+							</c:if>
+							<c:forEach items="${review}" var="review">
+	                            <article class="blog_item">
+	                            <a href="review_details.do?b_id=${review.b_id}">
+	                                <div class="blog_item_img">
+	                                    <img class="card-img rounded-0" src="assets/img/blog/single_blog_6.png" alt="">
+	                                    <a class="blog_item_date">
+	                                        <h3>${review.b_rdate}</h3>
+	                                    </a>
+	                                </div>
+	
+	                                <div class="blog_details">
+	                                    <a class="d-inline-block" href="review_details.do?b_id=${review.b_id}">
+	                                        <h2>${review.b_subject}</h2>
+	                                    </a>
+	                                    <p>${review.b_catgo}</p>
+	                                    <ul class="blog-info-link">
+	                                        <li><i class="fa fa-user"></i> ${review.b_writer}</li>
+                                        	<li><i class="fa fa-comments"></i> 03 Comments</li>
+	                                        <li><i class="fa fa-comments"></i> ${review.b_like} Likes</li>
+	                                    </ul>
+	                                </div>
+	                                </a>
+	                            </article>
+							</c:forEach>
                             <article class="blog_item">
                                 <div class="blog_item_img">
                                     <img class="card-img rounded-0" src="assets/img/blog/single_blog_6.png" alt="">
@@ -648,7 +679,21 @@
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
         
-        
+        <script language="javascript">
+	       function f(select){
+	           //var el = document.getElementById("psId");
+	           var ps = select.value;
+	           //alert("ps : " + ps);
+	           location.href="review.do?ps="+ps;
+	       }
+    	</script>
+    	
+    	<script type="text/javascript" language="javascript" src="https://ajax.googlepis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    	<script type="text/javascript">
+    		$(funtion(){
+    			
+    		})
+    	</script>
         
 </body>
 </html>

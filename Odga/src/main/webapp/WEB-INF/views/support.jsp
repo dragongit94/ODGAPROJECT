@@ -128,16 +128,11 @@
                     <div class="col-lg-8">
                         <h3 class="mb-40">문의사항 보내기</h3>
                         <!-- Form -->
-                        <form class="form-contact contact_form mb-80" action="#" method="post">
+                        <form class="form-contact contact_form mb-80" action="send.do" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control error" name="name" id="name" type="text"  placeholder="이름 입력">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control error" name="email" id="email" type="email" placeholder = '이메일주소 입력'">
+                                        <input class="form-control error" name="subject" placeholder = '제목 입력'">
                                     </div>
                                 </div>
                                 <div class="col-12">

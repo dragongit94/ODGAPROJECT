@@ -32,7 +32,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.jpg" alt="">
+                    <img src="assets/img/logo/loder1_d.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                  <a href="index.do"><img src="assets/img/logo/logo.png" alt=""></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-8">
@@ -104,18 +104,47 @@
 					<div class="row justify-content-center">
 						<div class="col-lg-10 col-md-8">
 							<h3 class="mb-30">후기작성</h3>
-							<form action="#">
+							<form action="write" method="post">
 								<div class="mt-10 mb-20">
-									<input type="text" name="first_name" placeholder="글제목을 입력해주세요"
+									<input type="text" name="b_subject" placeholder="글제목을 입력해주세요"
 									onfocus="this.placeholder = ''" onblur="this.placeholder = '글제목을 입력해주세요'" required
 									class="single-input">
 								</div>
+								<div class="mt-10 mb-20">
+									<input type="text" name="b_writer" placeholder="로그인회원 닉네임 자동입력 해결필요"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = '로그인회원 닉네임 자동입력 해결필요'" required
+									class="single-input">
+								</div>
+								<div class="input-group-icon mt-10 mb-20">
+									<div class="form-select" id="default-select" >
+										<select style="display: none;" name="b_catgo">
+											<option value=" 1">여행분류</option>
+											<option value="가족여행">가족여행</option>
+											<option value="혼자여행">혼자여행</option>
+											<option value="커플여행">커플여행</option>
+											<option value="우정여행">우정여행</option>
+											<option value="패키지여행">패키지여행</option>
+										</select>
+										<div class="nice-select" tabindex="0">
+											<span class="current" name="b_catgo">여행분류</span>
+											<ul class="list">
+												<li data-value="가족여행" class="option">가족여행</li>
+												<li data-value="혼자여행" class="option">혼자여행</li>
+												<li data-value="커플여행" class="option">커플여행</li>
+												<li data-value="우정여행" class="option">우정여행</li>
+												<li data-value="패키지여행" class="option">패키지여행</li>
+											</ul>
+										</div>
+									</div>
+								</div>
 								<div class="justify-content-center">
-									<textarea name="ir1" id="ir1" rows="10" cols="150">사진과 글을 원하는 위치에 이쁘게 꾸며주세요!</textarea>
+									<textarea  name="b_content" id="ir1" rows="20" style="width: 780px;">사진과 글을 원하는 위치에 이쁘게 꾸며주세요!<br/>사진은 드레그해서 넣어주세요! <br/><br/>
+									주의 : 사진의 크기를 입력창에 맞게 넣어주세요<br/>       사진이 너무크면 사진이 깨져요</textarea>
 								</div>
 								<div class="form-group mt-3">
 								<div>
-                                <input type="submit" class="btn btn-sm btn-primary" value="저장" >
+                                	<input type="submit" class="btn btn-sm btn-primary" value="저장" >
+                                	<button type="button" class="btn">넘기기</button>
                                 </div>
                             </div>
 								
@@ -244,17 +273,37 @@
         <script src="./assets/js/plugins.js"></script>
 		<script src="./assets/js/main.js"></script>
 		
-		<script type="text/javascript" src="./assets/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./smartediter/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 		
 		<script type="text/javascript">
 			var oEditors = [];
 			nhn.husky.EZCreator.createInIFrame({
 				 oAppRef: oEditors,
 				 elPlaceHolder: "ir1",
-				 sSkinURI: "./assets/se2/SmartEditor2Skin.html",
+				 sSkinURI: "./smartediter/SmartEditor2Skin.html",
 				 fCreator: "createSEditor2"
 			});
+			
+			$(".btn").on("click", function() {
+				oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+				var value = document.getElementById("ir1").value;
+				console.log(value);
+			});
 		</script>
+		
+		<script type="text/javascript">		
+		
+		function get_query(){
+		    var url = document.location.href;
+		    var qs = url.substring(url.indexOf('?') + 1).split('&');
+		    for(var i = 0, result = {}; i < qs.length; i++){
+		        qs[i] = qs[i].split('=');
+		        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+		    }
+		    return result;
+		}
+		</script>
+		
 		
 </body>
 </html>

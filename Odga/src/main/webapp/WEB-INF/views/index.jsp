@@ -63,7 +63,7 @@
 											<!-- <li><a href="listing.html">국내여행지</a></li> -->
 											<li><a href="#">커뮤니티</a>
 												<ul class="submenu">
-													<li><a href="review.html">여행후기</a></li>
+													<li><a href="review">여행후기</a></li>
 													<li><a href="support.html">문의하기</a></li>
 												</ul>
 											</li>
