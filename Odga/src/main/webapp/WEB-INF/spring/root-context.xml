@@ -12,6 +12,7 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -27,8 +28,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"></property>
-
+				value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"></property>
 		<property name="username" value="odga"></property>
 		<property name="password" value="java"></property>
 	</bean>
@@ -43,6 +43,9 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation"
 			 value="classpath:/mybatis-config.xml"/>
+			 
+		<!-- 추가 -xml 찾는거 -->
+		<property name="mapperLocations" value="classpath:odga/**/*Mapper.xml"></property>
 	</bean>
 	
 	<!-- 트랜젝션 매니저 -->

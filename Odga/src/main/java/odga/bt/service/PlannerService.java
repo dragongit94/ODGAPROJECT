@@ -17,6 +17,7 @@ public interface PlannerService {
 	void delete_sp(long sp_id);
 	
 	TotalList listS(long m_id);
+	TotalList listS(long m_id, long p_id);
 	List<Touritems> selectResultS(Searchcode searchcode);
 	void newPlanerS(long m_id);
 	void save(Planer planer);

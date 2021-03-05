@@ -6,15 +6,13 @@ a.link_a:hover{
 	color: #da3535;
 }
 .pic {
-	border-radius: 25px;
+	border-radius: 10px;
 	background:whitesmoke;
-	margin:.5rem 0 0 -0.3rem;
-	width:100%;
-	float: inline-start;
-	margin-bottom: 10px;
+	width: 70%;
+	margin: 10% 0 0 0;
 }
 .card {
-	padding:0.5rem;
+	/* padding:0.5rem; */
 	box-shadow:0 1px 2px #aaa;
 	background:white;
 	/* margin:0 1rem 1rem; */
@@ -371,6 +369,8 @@ a.link_a:hover{
 
 .category-listing {
 	padding: 20px 15px 30px 15px;
+	background: snow;
+	border-radius: 5px;
 } 
 
 .single-listing 
@@ -392,6 +392,7 @@ a.link_a:hover{
 	border-color: transparent;		
 	color: #FFFFFF;
 	margin: 1% 2.5px 5% 1.5px;
+	cursor: pointer;
 }
 .footer-padding {
 	padding-top: 80px;
@@ -425,4 +426,9 @@ a.link_a:hover{
 	float: right;
 	padding: 23px 20px;
 	margin-right: 10px;
+}
+.serchTable{
+	border: 1px solid #2f2d2633;
+	border-radius: 8px;
+	background: linear-gradient(to top, #e1e1e161, #fff);
 }

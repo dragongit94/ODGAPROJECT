@@ -16,4 +16,11 @@ public class TotalList {
 	private ArrayList<Area_T> list;
 	private ArrayList<Sigungu_T> list_s;
 	private long thisP_id;
+	private Planer planer;
+	public TotalList(ArrayList<Area_T> list, ArrayList<Sigungu_T> list_s, long thisP_id) {
+		super();
+		this.list = list;
+		this.list_s = list_s;
+		this.thisP_id = thisP_id;
+	}
 }

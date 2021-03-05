@@ -3,6 +3,7 @@ package odga.bt.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import odga.bt.domain.Planer;
 import odga.bt.domain.S_Planer;
 import odga.bt.domain.Sigungu_T;
 import odga.bt.domain.Touritems;
+import odga.bt.mapper.MemberMapper;
 import odga.bt.mapper.PlannerMapper;
 import odga.bt.vo.SearchResult;
 import odga.bt.vo.Searchcode;
@@ -20,9 +22,11 @@ import odga.bt.vo.TotalList;
 @Transactional
 @Log4j
 @Service
-@AllArgsConstructor
 public class PlannerServiceImpl implements PlannerService {
-    private PlannerMapper plannerMapper; //Spring 4.3 ~: AutoInjection (with @AllArgsConstructor ) 
+	@Autowired
+	private PlannerMapper plannerMapper; //Spring 4.3 ~: AutoInjection (with @AllArgsConstructor ) 
+	@Autowired
+	private MemberMapper membermapper;
     
 	@Override
 	public List<Touritems> selectDayById(long p_id, long sp_day) {
@@ -63,6 +67,20 @@ public class PlannerServiceImpl implements PlannerService {
 		ArrayList<Sigungu_T> list_s = plannerMapper.list_s();
 		long thisP_id = plannerMapper.thisP_id(m_id);
 		TotalList totalList = new TotalList(list, list_s, thisP_id);
+		if(list.size()==0) {
+			return null;
+		}else {
+			return totalList;
+		}
+	}
+	@Override
+	public TotalList listS(long m_id, long p_id) {
+		//newPlanerS(m_id); //신규 플래너 id 생성
+		ArrayList<Area_T> list = plannerMapper.list();
+		//for(Area_T li:list) System.out.println(li.getArea());
+		ArrayList<Sigungu_T> list_s = plannerMapper.list_s();
+		Planer planer = membermapper.thisPlaner(p_id);
+		TotalList totalList = new TotalList(list, list_s, p_id, planer);
 		if(list.size()==0) {
 			return null;
 		}else {

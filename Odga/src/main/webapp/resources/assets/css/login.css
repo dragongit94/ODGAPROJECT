@@ -2,11 +2,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: cfcfcf;
+  text-decoration: none;
 }
 
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background: #ededed;
+  background-image: url(../img/hero/1.png);
+  background-size: cover;
 }
 
 input, button {
@@ -26,9 +29,9 @@ input, button {
   overflow: hidden;
   position: relative;
   width: 900px;
-  height: 550px;
+  height: 960px;
   margin: 0 auto 100px;
-  background: #fff;
+  background-color: #0d162282
 }
 
 .form {
@@ -47,11 +50,12 @@ input, button {
   width: 900px;
   height: 100%;
   padding-left: 260px;
-  background: #fff;
+  background-color: rgb(0 0 0 / 10%);
   transition: transform 1.2s ease-in-out;
 }
 .cont.s--signup .sub-cont {
   transform: translate3d(-640px, 0, 0);
+  background-color: rgb(0 0 0 / 10%);
 }
 
 button {
@@ -82,8 +86,7 @@ button {
   top: 0;
   width: 900px;
   height: 100%;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/sections-3.jpg");
-  background-size: cover;
+  background: rgb(99 98 98 / 0%);
   transition: transform 1.2s ease-in-out;
 }
 .img:after {
@@ -93,7 +96,7 @@ button {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgb(29 32 41 / 42%);
 }
 .cont.s--signup .img:before {
   transform: translate3d(640px, 0, 0);
@@ -175,13 +178,15 @@ h2 {
   width: 100%;
   font-size: 26px;
   text-align: center;
+  color: #fff;
 }
 
 label {
   display: block;
   width: 260px;
-  margin: 25px auto 0;
+  margin: 15px auto 0;
   text-align: center;
+  color: azure;
 }
 label span {
   font-size: 12px;
@@ -195,7 +200,8 @@ input {
   margin-top: 5px;
   padding-bottom: 5px;
   font-size: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgb(255 255 255 / 18%);
+  color: azure;
   text-align: center;
 }
 
@@ -209,7 +215,7 @@ input {
 .submit {
   margin-top: 40px;
   margin-bottom: 20px;
-  background: #d4af7a;
+  background: #8fa1c7;
   text-transform: uppercase;
 }
 
@@ -219,7 +225,7 @@ input {
 }
 .fb-btn span {
   font-weight: bold;
-  color: #455a81;
+  color: fff;
 }
 
 .sign-in {
@@ -228,7 +234,7 @@ input {
 .cont.s--signup .sign-in {
   transition-timing-function: ease-in-out;
   transition-duration: 1.2s;
-  transform: translate3d(640px, 0, 0);
+  transform: translate3d(1000px, 0, 0);
 }
 
 .sign-up {
@@ -238,11 +244,29 @@ input {
   transform: translate3d(0, 0, 0);
 }
 
+/*================================== 
+		         íŒ¨ìŠ¤ì›Œë“œ ì°¾ê¸° ì‹œìž‘
+  ==================================*/
+.find_pwd {
+  transition-timing-function: ease-out;
+}
+.cont.find_pwd .sign-in {
+  transition-timing-function: ease-in-out;
+  transition-duration: 1.2s;
+  transform: translate3d(640px, 0, 0);
+}
+
+
+/*================================== 
+		         패스워드 찾기
+  ==================================*/
+
 .icon-link {
   position: absolute;
   left: 5px;
   bottom: 5px;
   width: 32px;
+  bottom: -200px
 }
 .icon-link img {
   width: 100%;
@@ -251,6 +275,7 @@ input {
 .icon-link--twitter {
   left: auto;
   right: 5px;
+  bottom: -200px
 }
 body { padding: 2em; }
 
@@ -317,4 +342,21 @@ body { padding: 2em; }
 .loginBtn--google:hover,
 .loginBtn--google:focus {
   background: #E74B37;
+}
+
+.cont.find_pwd .sub-cont {
+  transform: translate3d(-640px, 0, 0);
+}
+.h2 {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: cfcfcf;
+  text-decoration: none;
+}
+
+/* 성별 */
+
+.squaredFour { 
+	float:left; margin-right:20px; margin-top:20px; clear:both; 
 }

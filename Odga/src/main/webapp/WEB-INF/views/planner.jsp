@@ -28,9 +28,6 @@
 			<link rel="stylesheet" href="assets/css/style.css">
 			<link rel="stylesheet" href="assets/css/planner.css">
 			
-			<script type="text/javascript">
-			window.onbeforeunload = function() {};
-			</script>
 		</head>
 
 		<body>
@@ -56,7 +53,7 @@
 									<!-- Logo -->
 									<div class="col-xl-2 col-lg-2 col-md-1">
 										<div class="logo">
-											<a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+											<a href="index.do"><img src="assets/img/logo/logo_b.png" alt=""></a>
 										</div>
 									</div>
 									<div class="col-xl-10 col-lg-10 col-md-8">
@@ -75,9 +72,15 @@
 													<li><a href="https://www.agoda.com/">호텔예약</a></li>
 													<li class="add-list"><a href="listing_details.html"><i
 																class="ti-plus"></i>나의 여행 만들기</a></li>
-													<li class="login"><a href="login.html">
-															<i class="ti-user"></i>로그인 / 회원가입</a>
-													</li>
+													<c:choose>
+                                 <c:when test="${empty LOGINUSER}">
+                                    <a href="login.do"><i class="ti-user"></i>로그인 / 회원가입</a>
+                                 </c:when>
+                              <c:otherwise>
+                                 <a href="logout"><i class="ti-user"></i>${LOGINUSER.m_name} 님 로그아웃</a>
+                                 <li><a href="member.do"><i class="ti-user"></i>회원정보</a></li>
+                              </c:otherwise>
+                              </c:choose>
 												</ul>
 											</nav>
 										</div>
@@ -101,70 +104,84 @@
 				</div>
 				<!--Hero End -->
 				<!-- listing Area Start -->
-				<div class="listing-area pt-120 pb-120">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<!-- Job Category Listing start -->
-								<div class="row" style="margin-left: 5px">
+				<div class="listing-area pt-120 pb-120" style="background: #040c26;">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-12">
+                        <!-- Job Category Listing start -->
+                        <div class="row" style="margin-left: 5px">
+						   <c:set value="${list.planer}" var="planer"/>
+						   <c:if test="${!empty planer}">
+	                           <div class="col-2">   
+	                              <input id="p_title" type="text" class="text" placeholder="Your Travel name.." value="${planer.p_title}"/>   
+	                           </div>
+                           </c:if>
+                           <c:if test="${empty planer}">
+	                           <div class="col-2">   
+	                              <input id="p_title" type="text" class="text" placeholder="Your Travel name.."/>   
+	                           </div>
+                           </c:if>
+                           <div class="col-1">
+                              <select id="test1" name="test1" class="nice-select" style="width: 100%;">
+                                 <option value="" selected="selected">인원</option>
+                                 <option value="1인">1인</option>
+                                 <option value="2인">2인</option>
+                                 <option value="3인">3인</option>
+                                 <option value="4인">4인</option>
+                                 <option value="5인 이상">5인 이상</option>                                
+                              </select>
+                           </div>
+                           <div class="col-2">
+                              <select id="test2" name="test1" class="nice-select" style="width:100%;">
+                                 <option value="혼자만의 여행" selected="selected">혼자만의 여행</option>
+                                 <option value="커플여행">커플여행</option>
+                                 <option value="가족여행">가족여행</option>
+                                 <option value="우정여행">우정여행</option>
+                                 <option value="패키지여행">패키지여행</option>
+                              </select>
+                           </div>
 
-									<div class="col-75">	
-										<input id="p_title" type="text" class="text" placeholder="Your Travel name.."/>	
-									</div>
-									<div class="col-25">
-										<select id="test1" name="test1" class="nice-select">
-											<option value="" selected="selected">인원</option>
-											<option value="1">1명</option>
-											<option value="2">2명</option>
-											<option value="3">3명</option>
-										</select>
-									</div>
-									<div class="col-25">
-										<select id="test2" name="test1" class="nice-select">
-											<option value="1" selected="selected">혼자만의 여행</option>
-											<option value="2">커플</option>
-											<option value="3">가족</option>
-											<option value="4">우정여행</option>
-										</select>
-									</div>
-
-									<div class="col-50">
-									  <form name="form">								  	
-										  <select name="area"  id="areacode" class="nice-select" onchange="changes(value)">
-										    <option value="">지역 선택</option>
-										    <c:forEach items="${list.list}" var="area">
-											    <option value="${area.areacode}">${area.area}</option>
-										    </c:forEach>
-										  </select>		<br/>	  
-										  <select name="sigungu" class="nice-select" id="sigunguCode" style="width: 113%;">
-										    <option value="">세부 지역</option>
-										  </select>
-									  </form>
-									</div>
-									<!-- style="float:right;margin-left:0px;margin-right:0px;" --> <!-- style="width:200px;float:right; padding: 23px 20px;margin-right:15px;" -->
-									<c:set value="${list.thisP_id}" var = "thisP_id"/>
-									<div class="col-3" style="float:right;margin-left:0px;margin-right:0px;padding-right: 0;">
-									  <form method="post" name="fin" action="save.do">
-									    <input type="hidden" name="p_id" value="${thisP_id}" />
-									  	<input type="hidden" name="title" value="" />
-									  	<input type="hidden" name="hSize" value="" />
-									  	<input type="hidden" name="concept" value="" />
-		                              	<input type="button" onclick="savePlanner();fin.submit()" class="btn list-btn top-btn" value="저장">
-		                              </form>
-		                              <a onclick="reset()" class="btn list-btn top-btn">초기화</a>		                              
-									  <a href="leave?p_id=${thisP_id}" class="btn list-btn top-btn">취소</a>
-									</div>
-								<!-- Job Category Listing End -->
-							</div>
-						</div>
-					</div>
+                           <div class="col-3">
+                             <form name="form" style="display:flex;">   
+                             <!-- <div class="col-2"> -->                          
+                                <select name="area"  id="areacode" class="nice-select" onchange="changes(value)" style="display:flex;">
+                                  <option value="">지역 선택</option>
+                                  <c:forEach items="${list.list}" var="area">
+                                     <option value="${area.areacode}">${area.area}</option>
+                                  </c:forEach>
+                                </select>
+                               <!--  </div> -->   
+                                <!-- <div class="col-2">   -->
+                                <select name="sigungu" class="nice-select" id="sigunguCode" style="display:flex;margin-left:8px;">
+                                  <option value="">세부 지역</option>
+                                </select>
+                                <!-- </div> -->
+                             </form>
+                           </div>
+                           <!-- style="float:right;margin-left:0px;margin-right:0px;" --> <!-- style="width:200px;float:right; padding: 23px 20px;margin-right:15px;" -->
+                           <c:set value="${list.thisP_id}" var = "thisP_id"/>
+                           <div class="col-3" style="float:right;margin-left:6%;margin-right:0px;padding-right: 0;">
+                             <form method="post" name="fin" action="save.do">
+                               <input type="hidden" name="p_id" value="${thisP_id}" />
+                                <input type="hidden" name="title" value="" />
+                                <input type="hidden" name="hSize" value="" />
+                                <input type="hidden" name="concept" value="" />
+                                       <input type="button" onclick="savePlanner();fin.submit()" class="btn list-btn top-btn" value="저장">
+                                    </form>
+                                    <a onclick="reset()" class="btn list-btn top-btn" style="color: white;">초기화</a>                                    
+                             <a href="leave?p_id=${thisP_id}" class="btn list-btn top-btn">취소</a>
+                           </div>
+                        <!-- Job Category Listing End -->
+                     </div>
+                  </div>
+               </div>
 					<div class="row" style="margin-right:5px;margin-left:5px;margin-top:10px">
 						<!-- Left content -->
 						<div class="col-1">
 							<div class="row" style="margin-top: 15px;">
 								<div class="col-12">
 									<div class="small-section-tittle2 mb-45" style="margin-bottom: 15px;">
-										<h5 style="margin-left: 15px;">DAY</h5>
+										<h5 style="margin-left: 15px;color:snow;">DAY</h5>
 									</div>
 								</div>
 							</div>
@@ -205,7 +222,7 @@
 							<div class="row" style="margin-top: 15px;">
 								<div class="col-12">
 									<div class="small-section-tittle2 mb-45" style="margin-bottom: 15px;">
-										<h5 style="margin-left: 15px;">일 정</h5>
+										<h5 style="margin-left: 15px;color:snow;">일 정</h5>
 									</div>
 								</div>
 							</div>
@@ -230,7 +247,7 @@
 							<div class="row" style="margin-top: 15px;">
 								<div class="col-12">
 									<div class="small-section-tittle2 mb-45" style="margin-bottom: 15px;">
-										<h5 style="margin-left: 15px;">장소를 선택하세요</h5>
+										<h5 style="margin-left: 15px;color:snow;">장소를 선택하세요</h5>
 									</div>
 								</div>
 							</div>
@@ -243,12 +260,12 @@
 											<button value="none" onclick="search(value)" class="btn" style="width: 25%;margin-top: 0;border-radius: 7px;">검색</button>									
 									</div>
 					
-									<div class="select-job-items1">
-										<button id="touraBtn" value="A01" onclick="search(value)" class="cat1-btn"><img src="assets/icon/camera.png" alt=""></button>
-										<button id="shoppingBtn" value="A04" onclick="search(value)" class="cat1-btn"><img src="assets/icon/shopping.png" alt=""></button>
-										<button id="foodBtn" value="A05" onclick="search(value)" class="cat1-btn"><img src="assets/icon/food.png" alt=""></button>
-										<button id="hotelBtn" value="B02" onclick="search(value)" class="cat1-btn"><img src="assets/icon/hotel.png" alt=""></button>
-										<button id="likeBtn" value="C01" onclick="search(value)" class="cat1-btn"><img src="assets/icon/like.png" alt=""></button>
+									<div class="select-job-items1" style="text-align: center;">
+										<button id="touraBtn" value="A01" onclick="search(value)" class="cat1-btn"><img src="assets/icon/camera.png" title="사진"></button>
+										<button id="shoppingBtn" value="A04" onclick="search(value)" class="cat1-btn"><img src="assets/icon/shopping.png" title="쇼핑"></button>
+										<button id="foodBtn" value="A05" onclick="search(value)" class="cat1-btn"><img src="assets/icon/food.png" title="맛집"></button>
+										<button id="hotelBtn" value="B02" onclick="search(value)" class="cat1-btn"><img src="assets/icon/hotel.png" title="숙소"></button>
+										<button id="likeBtn" value="C01" onclick="search(value)" class="cat1-btn"><img src="assets/icon/like.png" title="추천!"></button>
 									</div>
 									<div id="result">
 									</div>
@@ -396,17 +413,24 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
-<script>
-var checkUnload = true;
-$(window).on("beforeunload", function(){
-    if(checkUnload) 
-    	return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
-});
-</script>
-
-
 <!-- 동적 셀렉트 박스 -->
+<script type="text/javascript">
+function savePlanner(){
+	var p_title = $("#p_title").val(); 
+	var p_msize = $("#test1 option:selected").val();
+	var p_concept = $("#test2 option:selected").val();
+	var p_id = 5;
+	alert("#1"+p_title+"#2"+p_msize+"#3"+p_concept);
+	//location.href='save.do?p_title='+p_title+'&p_msize='+p_msize+'&p_concept='+p_concept+'&p_id='p_id;
+
+}
+</script>
+<script>
+    var checkUnload = true;
+    $(window).on("beforeunload", function(){
+        if(checkUnload) return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
+    });
+</script>
 <script type="text/javascript">
 function savePlanner(){
 	checkUnload = false;
@@ -440,7 +464,7 @@ function changes(fr) {
 
 	<c:set var="list" value="${list}"/>
 	<c:forEach items="${list.list}" var="area">
-    if(fr==${area.areacode}) { 
+    if(fr==${area.areacode}) {
     	li.push("세부 지역");
     	li2.push("");
     	<c:forEach items="${list.list_s}" var="sigungu">
@@ -484,7 +508,12 @@ function changes(fr) {
 <script>
 var sp_day = 0;
 function daydo(value){	
-	var p_id =${thisP_id}; //나중에 받아주기
+	<c:if test="${!empty planer}">
+  		var p_id = ${planer.p_id};
+  	</c:if>
+  	<c:if test="${empty planer}">
+  		var p_id = ${thisP_id};
+  	</c:if>
 	sp_day= value;
 	  $.ajax({
 		   url: "dayselect.json", 
@@ -520,7 +549,7 @@ function daydo(value){
   function rowAdd() {
 	  trCnt = $('#myTable tr').length+1;
     if(trCnt < 11){
-    	var innerHtml= '<tr><td><button style="color:black;" id="daybtn'+trCnt+'" value="'+trCnt+'" onclick="daydo(value)">DAY '+trCnt+'</button></td></tr>';
+    	var innerHtml= '<tr><td style="text-align: center;"><button class="bttn list-bttn" id="daybtn'+trCnt+'" value="'+trCnt+'" onclick="daydo(value)">DAY '+trCnt+'</button></td></tr>';
     	$('#myTable > tbody:last').append(innerHtml);
     }else{
     	alert("최대 10일까지만 가능합니다.");
@@ -610,11 +639,17 @@ function daydo(value){
 		   }
            if(list.length != 0){
 				  for(var i=0; i<list.length; i++){
-				         html += "<h5><a class='link_a' onclick='marker("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
-                         "&quot;, &quot;"+list[i].zipcode+"&quot;); panTo("+list[i].mapy+", "+list[i].mapx+")'>"+list[i].title+"</a></h5>";
-				  		 html += "<h5>"+list[i].addr1+"</h5> <h6 onclick='addS_plan(&quot;"+list[i].contentid+"&quot;)'>추가</h6>";
-				  		 if((list[i].firstimage)!= null){ html += "<div style='margin-bottom:5px'><img class='pic' src='"+list[i].firstimage+"'/></div>";	
-				  		 }else{ html += "<div><img class='pic' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div>";}						 	
+					 	 html += "<div class='serchTable'>";
+					 	 if(list[i].title.length>10) html += "<div><a class='link_a' style='position: absolute;font-size: 15px; margin-left: 10px; width: 80%;margin-top: 3%;' onclick='markerm("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
+                         "&quot;, &quot;"+list[i].zipcode+"&quot;); panTo("+list[i].mapy+", "+list[i].mapx+")'>"+list[i].title+"</a>";
+                         else html += "<div><a class='link_a' style='position: absolute;font-size: 18px; margin-left: 10px; width: 80%;margin-top: 3%;' onclick='markerm("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
+                         "&quot;, &quot;"+list[i].zipcode+"&quot;); panTo("+list[i].mapy+", "+list[i].mapx+")'>"+list[i].title+"</a>";
+                         html += "<img src='assets/icon/add.png' style='margin: 7px 0 0 90%;width: 8%;cursor: pointer;opacity: 0.6;;' onclick='addS_plan(&quot;"+list[i].contentid+"&quot;)'></div>";
+				  		 
+				  		 if((list[i].firstimage)!= null){ html += "<div style='margin-bottom: 20px;'><div style='text-align: center;'><img class='pic' src='"+list[i].firstimage+"'/></div><p style='font-size: small;margin-left: 10px;'>"+list[i].addr1+"</p></div>";	
+				  		 }else{ html += "<div style='margin-bottom: 20px;'><div style='text-align: center;'><img class='pic' style='width: 30%;' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div><p style='font-size: small;margin-left: 10px;'>"+list[i].addr1+"</p></div>";}						 	
+				  		/*  html += "<div style='font-size: xx-small;'>"+list[i].addr1+"</div>"; */
+				  		 html += "</div>";
 				  }			 
 			  }
            	  $("#result").html(html1);
@@ -624,13 +659,16 @@ function daydo(value){
   }
 </script>
 <script>
-  function marker(latitude, longitude, title, firstimage, addr1, zipcode) {
+	var marker;
+  function markerm(latitude, longitude, title, firstimage, addr1, zipcode) {
         // 마커가 표시될 위치입니다 
      // 지도에 마커를 표시합니다 
-     var marker = new kakao.maps.Marker({
+     marker = new kakao.maps.Marker({
          map: map, 
          position: new kakao.maps.LatLng(latitude, longitude)
      });
+     markers.push(marker);
+     //alert(markers[0]);
      // 커스텀 오버레이에 표시할 컨텐츠 입니다
      // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
      // 별도의 이벤트 메소드를 제공하지 않습니다 
@@ -667,10 +705,10 @@ function daydo(value){
   }   
   // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
   function closeOverlay() {
-      //overlay.setMap(null);    
+	  
       var over = document.getElementById('over');
       over.remove();
-      Marker.setMap(null);
+      marker.setMap(null);
   }
   function panTo(latitude, longitude) {
       // 이동할 위도 경도 위치를 생성합니다 
@@ -691,8 +729,13 @@ function daydo(value){
   }
   function addS_plan(contentid) {
 	  sp_sday = getFormatDate(sdate);
-	  sp_eday = getFormatDate(edate);	   
-	  var p_id = ${thisP_id};
+	  sp_eday = getFormatDate(edate);	
+	  <c:if test="${!empty planer}">
+	  	var p_id = ${planer.p_id};
+	  </c:if>
+	  <c:if test="${empty planer}">
+	  	var p_id = ${thisP_id};
+	  </c:if>
 	    $.ajax({
 	        url: "insert_sp",
 	        type: "GET",
@@ -748,7 +791,7 @@ function daydo(value){
 	 			  $("#card2").html(html);
 	 		   }
 	  	});
-	}
+	} 
   
 </script>
 <script type="text/javascript">
@@ -767,7 +810,6 @@ function reset(){
 	dayDelete();
 }
 </script>
-
 
 			<!-- JS here -->
 			

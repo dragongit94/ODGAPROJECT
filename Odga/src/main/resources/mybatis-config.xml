@@ -10,6 +10,10 @@
    		<typeAlias alias="Area_T" type="odga.bt.domain.Area_T"/>
    		<typeAlias alias="Sigungu_T" type="odga.bt.domain.Sigungu_T"/>
    		<typeAlias type="odga.bt.vo.Searchcode" alias="Searchcode"/>
+   		
+   		<typeAlias alias="Member" type="odga.bt.domain.Member"/>
+   	    <typeAlias alias="Touritems" type="odga.bt.domain.Touritems"/>
+        <typeAlias alias="TouritemsVo" type="odga.bt.vo.TouritemsVo"/>
    </typeAliases>
    
    <!-- <mappers>
