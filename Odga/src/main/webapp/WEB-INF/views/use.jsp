@@ -48,7 +48,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-8">
@@ -244,7 +244,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>

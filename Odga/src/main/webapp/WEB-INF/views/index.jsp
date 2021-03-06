@@ -48,31 +48,46 @@
 					<div class="container-fluid">
 						<div class="row align-items-center">
 							<!-- Logo -->
-							<div class="col-xl-2 col-lg-2 col-md-1">
+							<div class="col-xl-1 col-lg-2 col-md-1">
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
 							</div>
-							<div class="col-xl-10 col-lg-10 col-md-8">
+							<div class="col-xl-11 col-lg-10 col-md-8">
 							<div class="col-xl-10 col-lg-10 col-md-8">
 								<!-- Main-menu -->
 								<div class="main-menu f-right d-none d-lg-block">
 									<nav>
 										<ul id="navigation">
-										    <li><a href="test.html">국내여행지</a></li>
-											<!-- <li><a href="listing.html">국내여행지</a></li> -->
+											<li><a href="listing.do">국내여행지</a></li>
 											<li><a href="#">커뮤니티</a>
 												<ul class="submenu">
-													<li><a href="review.html">여행후기</a></li>
-													<li><a href="support.html">문의하기</a></li>
+													<li><a href="review">여행후기</a></li>
+													<li><a href="support.do">문의하기</a></li>
 												</ul>
 											</li>
-											<li><a href="use.html">이용방법</a></li>
+											<li><a href="use.do">이용방법</a></li>
 											<li><a href="https://www.agoda.com/">호텔예약</a></li>
-											<li class="add-list"><a href="listing_details.html"><i class="ti-plus"></i>나의 여행 만들기</a></li>
-											<li class="login"><a href="login.html">
-												<i class="ti-user"></i>로그인 / 회원가입</a>
-											</li>
+											<li class="add-list"><a href="dashboard.do"><i class="ti-plus"></i>나의 여행 만들기</a></li>
+											<li class="login">									
+									<c:choose>
+											<c:when test="${empty LOGINUSER}">
+												<a href="login.do"><i class="ti-user"></i>로그인 / 회원가입</a>
+											</c:when>
+									<c:otherwise>
+											<c:choose>
+												<c:when test="${LOGINUSER.m_verify eq 0}">
+													<a href="logout.do"><i class="ti-user"></i>${LOGINUSER.m_name} 회원님 로그아웃</a>
+													<li><a href="member.do"><i class="ti-user"></i> 마이페이지</a></li>
+												</c:when>
+											<c:otherwise>
+													<a href="logout.do"><i class="ti-user"></i>${LOGINUSER.m_name} 관리자님 로그아웃</a>
+													<li><a href="dashboard.do"><i class="ti-user"></i> 관리자페이지</a></li>
+											</c:otherwise>
+										    </c:choose>
+									</c:otherwise>
+									</c:choose>
+										</li>
 										</ul>
 									</nav>
 								</div>
@@ -86,16 +101,17 @@
 				</div>
 			</div>
 		</div>
+	</div>
 		<!-- Header End -->
 	</header>
 	<main>
-<!-- <span style="font: italic bold 2em/1em Georgia, serif;">Odga.com</span> -->
-		<!-- Hero Area Start-->
-		<div class="slider-area hero-overly">
-			<div class="single-slider hero-overly  slider-height d-flex align-items-center">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-xl-8 col-lg-9">
+
+   <!-- Hero Area Start-->
+   <div class="slider-area">
+      <div class="single-slider slider-height d-flex align-items-center" style="background-color: rgba(0, 0, 150, 0.15);">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-xl-8 col-lg-9">
 						
 	<!-- 날씨 API -->
     <html>
@@ -131,50 +147,55 @@
 		$('.cprobability').append($probability + "%");	
 	});
 	</script>
-		<div class="weather">
-			<div class="cprobability">강수확률: </div>
-			<div class="ctype">강수형태: </div>
-			<div class="csky">하늘상태: </div>
-			<div class="chumidity">습도: </div>
-			<div class="chightemp">낮 최고기온: </div>
-			<div class="clowtemp">아침 최저기온: </div>
+<div class="weather" style="width: auto; position: absolute; top: -220px; right: -400px; color: #fff;">
+<img src="http://openweathermap.org/img/w/02d.png" style="float:left;">
+<div class="csky" style="float: left; width: 20%; font-weight: bold; font-family: sans-serif; margin-top: 12px; margin-left: 5px;"></div>
+<div class="ctype" style="float: left; width: 15%; font-weight: bold; font-family: sans-serif; margin-top: 12px; font-size: 1.0em; margin-left: 6px;"></div>
+<div class="clowtemp" style="float: left; width: 15%; font-weight: bold; margin-top: 12px; color: #2E9AFE; margin-right: 5px;"></div>
+<div class="chightemp" style="float: left; width: 15%; font-weight: bold; margin-top: 12px; color: #FA5858; margin-right:5px;">
+<span style="color: black; margin-right:3px; margin-left:3px">/</span></div>
+<span style="float: left; width: 30%; color: white; margin-right:5px; font-weight: bold; font-size: 1em; font-family: monospace; text-align:right; position: absolute; top: 12px; right: -58px; ">신수동</span>
+
+<!--      	    <div class="cprobability"> - 강수확률: </div>
+			<div class="ctype"> - 강수형태: </div>
+			<div class="csky" style="font:bold;"> - 하늘상태: </div>
+			<div class="chumidity"> - 습도: </div> 
+			<div class="chightemp"> - 낮 최고기온: </div>
+			<div class="clowtemp"> - 아침 최저기온: </div> -->
 		</div>
 		</body>
 	</html>
-							<!-- Hero Caption -->
-							<div class="hero__caption">
-								<span style="font: italic bold 2em/1em Georgia, serif;">Plan your trip </span>
-								<h1>Where are u going ?</h1>
-							</div>
-							<!--Hero form -->
-							<form action="#" class="search-box">
+	
+	
+		<!-- Hero Caption -->
+		<div class="hero__caption">
+			<span style="font: italic bold 2em/1em Georgia, serif;">Plan your trip </span>
+			<h1>Where are u going ?</h1>
+		</div>
+						<!--Hero Area 검색  -->
+							<form action="listing.do" class="search-box">
 								<div class="input-form">
-									<input type="text" placeholder="장소를 찾아보세요">
+									<input type="text" placeholder="여행지를 찾아보세요." name="keyword" required="required" />
 								</div>
 								<div class="select-form">
 								<div class="select-job-items1">
-                                    <select name="select1">
-                                        <option value="">지역 선택</option>
-                                        <option value="">서울/경기도</option>
-                                        <option value="">강원도</option>
-                                        <option value="">충청도</option>
-										<option value="">경상도</option>
-										<option value="">전라도</option>
-										<option value="">제주도</option>
+                                    <select name="catgo">
+                                        <option value="title">관광지</option>
+                                        <option value="addr1">주소</option>					
                                     </select>
-                                </div>
+                               	 </div>
 								</div>
 								<div class="search-form">
-									<a href="#">Search</a>
+									<button type="submit">Search</button>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<!--Hero Area End-->
+		
 		<!-- Popular Locations Start -->
 		<div class="popular-location section-padding30">
 			<div class="container">
@@ -195,7 +216,7 @@
 							</div>
 							<div class="location-details">
 								<p>서울</p>
-								<a href="#" class="location-btn">65 <i class="ti-plus"></i>
+								<a href="listing.do?keyword=서울&catgo=addr1" class="location-btn">2982 <i class="ti-plus"></i>
 									Location
 								</a>
 							</div>
@@ -208,7 +229,7 @@
 							</div>
 							<div class="location-details">
 								<p>부산</p>
-								<a href="#" class="location-btn">60 <i class="ti-plus"></i>
+								<a href="listing.do?keyword=부산&catgo=addr1" class="location-btn">775 <i class="ti-plus"></i>
 									Location
 								</a>
 							</div>
@@ -221,7 +242,7 @@
 							</div>
 							<div class="location-details">
 								<p>제주도</p>
-								<a href="#" class="location-btn">50 <i class="ti-plus"></i>
+								<a href="listing.do?keyword=제주&catgo=addr1" class="location-btn">1026 <i class="ti-plus"></i>
 									Location
 								</a>
 							</div>
@@ -234,7 +255,7 @@
 							</div>
 							<div class="location-details">
 								<p>강릉</p>
-								<a href="#" class="location-btn">28 <i class="ti-plus"></i>
+								<a href="listing.do?keyword=강릉&catgo=addr1" class="location-btn">377 <i class="ti-plus"></i>
 									Location
 								</a>
 							</div>
@@ -247,7 +268,7 @@
 							</div>
 							<div class="location-details">
 								<p>속초</p>
-								<a href="#" class="location-btn">99 <i class="ti-plus"></i>
+								<a href="listing.do?keyword=속초&catgo=addr1" class="location-btn">165 <i class="ti-plus"></i>
 									Location
 								</a>
 							</div>
@@ -259,8 +280,8 @@
 								<img src="assets/img/gallery/location6.png" alt="">
 							</div>
 							<div class="location-details">
-								<p>경주</p>
-								<a href="#" class="location-btn">78 <i class="ti-plus"></i>
+								<p>대구</p>
+								<a href="listing.do?keyword=대구&catgo=addr1" class="location-btn">648  <i class="ti-plus"></i>
 									Location
 								</a>
 							</div>
@@ -270,7 +291,7 @@
 				<!-- More Btn -->
 				<div class="row justify-content-center">
 					<div class="room-btn pt-20">
-						<a href="listing.html" class="btn view-btn1">View All Places</a>
+						<a href="listing.do" class="btn view-btn1">View All Places</a>
 					</div>
 				</div>
 			</div>
@@ -348,48 +369,31 @@
 		<!-- peoples-visit Start -->
 		<div class="peoples-visit dining-padding-top">
 			<!-- Single Left img -->
-			<div class="single-visit left-img">
+			<c:forEach items="${review}" var="review">
+			<div class="single-visit left-img" >
 				<div class="container">
 					<div class="row justify-content-end">
 						<div class="col-lg-8">
-							<div class="visit-caption">
+							<div class="visit-caption" style="OVERFLOW-Y:auto; width:100%; height:1000px; background: rgba(255, 255, 255);">
 								<span>Best Reviews</span>
-								<h3>겨울에 만나는 제주의 붉은 물결, <동백꽃> </h3>
-								<p>제주의 겨울은 푸르면서도 붉은 물결이 가득한 풍경이 된다. 
-								동백나무에 핀 동백꽃들이 자태를 뽐내며 방문객을 맞이하게 되는데 동백나무는 겨울에도 푸른 잎이 그대로 있는데 그 속에 붉은 동백꽃이 피게 되기 때문이다. </p>
-								<!--Single Visit categories -->
-								<div class="visit-categories mb-40">
-									<div class="visit-location">
-										<span class="flaticon-travel"></span>
-									</div>
-									<div class="visit-cap">
-										<h4>겨울에 만나는 제주의 붉은 물결 <수망리 동백꽃길></h4>
-										<p>동백꽃 사이 올레길을 걷다 </p>
-									</div>
-								</div>
-								<!--Single Visit categories -->
-								<div class="visit-categories">
-									<div class="visit-location">
-										<span class="flaticon-work"></span>
-									</div>
-									<div class="visit-cap">
-										<h4>겨울에 만나는 제주의 붉은 물결 <동박낭 카페></h4>
-										<p>아담한 정원이지만 화려한 꽃의 향연 </p>
-									</div>
-								</div>
+								<h3>${review.b_subject}</h3>
+								<p>${review.b_content}</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			</c:forEach>
+			
+			
 		</div>
 		<!-- peoples-visit End -->
 		<!-- Testimonial Start -->
-		<div class="testimonial-area testimonial-padding">
+<!-- 		<div class="testimonial-area testimonial-padding">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<!-- Section Tittle -->
+						Section Tittle
 						<div class="section-tittle text-center mb-80">
 							<span>Our Community</span>
 							<h2>[제주도]부모님과 함께 갈만한 여행지 추천좀해주세요.</h2>
@@ -399,14 +403,14 @@
 				<div class="row align-items-center">
 					<div class="col-lg-11 col-md-11">
 						<div class="h1-testimonial-active">
-							<!-- Single Testimonial -->
+							Single Testimonial
 							<div class="single-testimonial text-center">
-								<!-- Testimonial Content -->
+								Testimonial Content
 								<div class="testimonial-caption ">
 									<div class="testimonial-top-cap">
 										<p>2박 3일간 부모님과 치유/힐링을 목적으로 여행 할 계획입나다. 댓글로 추천해주시면 감사하겠습니다.</p>
 									</div>
-									<!-- founder -->
+									founder
 									<div
 										class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
 										<div class="founder-img">
@@ -419,9 +423,9 @@
 									</div>
 								</div>
 							</div>
-							<!-- Single Testimonial -->
+							Single Testimonial
 							<div class="single-testimonial text-center">
-								<!-- Testimonial Content -->
+								Testimonial Content
 								<div class="testimonial-caption ">
 									<div class="testimonial-top-cap">
 										<p>Consectetur adipiscing elit, sed do eiusmod tempor
@@ -430,7 +434,7 @@
 											accumsan lacus vel facilisis por incididunt ut labore et
 											dolore mas.</p>
 									</div>
-									<!-- founder -->
+									founder
 									<div
 										class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
 										<div class="founder-img">
@@ -448,7 +452,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Testimonial End -->
+		Testimonial End -->
 	</main>
 	
 		<!-- Footer Start-->
@@ -462,7 +466,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>
@@ -470,13 +474,13 @@
 						<div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>관리자정보</h4>
+									<h4>Administrator</h4>
 									<ul>
-										<li><a href="#">이지훈</a></li>
-										<li><a href="#">허유민</a></li>
-										<li><a href="#">박종범</a></li>
-										<li><a href="#">이민용</a></li>
-										<li><a href="#">권성환</a></li>
+										<li><a href="https://github.com/lzhxxn">이지훈</a></li>
+										<li><a href="https://github.com/yumgit23">허유민</a></li>
+										<li><a href="https://github.com/DobbyisFree1">박종범</a></li>
+										<li><a href="https://github.com/dragongit94">이민용</a></li>
+										<li><a href="https://github.com/suadeomgit">권성환</a></li>
 									</ul>
 								</div>
 							</div>
@@ -484,12 +488,13 @@
 						<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>고객센터</h4>
+									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="#">문의하기</a></li>
-										<li><a href="#">이용약관</a></li>
-										<li><a href="#">개인정보 처리방침</a></li>
-										<li><a href="#">회사주소</a></li>
+										<li><a href="join.do">회원가입</a></li>
+										<li><a href="login.do">로그인</a></li>
+										<li><a href="use.do">나의 여행 만들기</a></li>
+										<li><a href="review.do">여행후기</a></li>
+										<li><a href="inquiry.do">문의하기</a></li>
 									</ul>
 								</div>
 							</div>
@@ -497,12 +502,11 @@
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>Download App</h4>
+									<h4>Contact with Us</h4>
 									<ul>
-										<li class="app-log"><a href="#"><img
-												src="assets/img/gallery/app-logo.png" alt=""></a></li>
-										<li><a href="#"><img
-												src="assets/img/gallery/app-logo2.png" alt=""></a></li>
+										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
+										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
+										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
 									</ul>
 								</div>
 							</div>
@@ -515,14 +519,18 @@
 							<div class="footer-copy-right">
 								<p>
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-									Copyright &copy;
+									&copy; Copyright 
 									<script>
 										document
 												.write(new Date().getFullYear());
 									</script>
-									Copyright©Odga.com Organization, All rights reserved.
-									<i class="fa fa-heart" aria-hidden="true"></i><a
-										href="https://odga.com" target="_blank">Odga.com</a>
+									<b>Odga.com</b> Made with
+									<i class="fa fa-heart" aria-hidden="true"></i>
+									<a href="https://github.com/lzhxxn" target="_blank">JH</a>
+									<a href="https://github.com/dragongit94" target="_blank">MY</a>
+									<a href="https://github.com/yumgit23" target="_blank">YM</a>
+									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
@@ -530,10 +538,10 @@
 						<div class="col-xl-3 col-lg-4">
 							<!-- Footer Social -->
 							<div class="footer-social f-right">
-								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-									class="fab fa-twitter"></i></a> <a href="#"><i
-									class="fas fa-globe"></i></a> <a href="#"><i
-									class="fab fa-instagram"></i></a>
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
+								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
 							</div>
 						</div>
 					</div>
@@ -542,7 +550,6 @@
 		</div>
 		</footer>
 		<!-- Footer End-->
-	
 	
 	<!-- Scroll Up -->
 	<div id="back-top">

@@ -50,7 +50,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-8">
@@ -128,21 +128,21 @@
                     <div class="col-lg-8">
                         <h3 class="mb-40">문의사항 보내기</h3>
                         <!-- Form -->
-                        <form class="form-contact contact_form mb-80" action="#" method="post">
+                        <form class="form-contact contact_form mb-80" action="support.do" method="post">
                             <div class="row">
-                                <div class="col-sm-6">
+                            	 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class="form-control error" name="name" id="name" type="text"  placeholder="이름 입력">
+                                        <input type="hidden" class="form-control error" name="m_id" value='${LOGINUSER.m_id}' readonly />
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class="form-control error" name="email" id="email" type="email" placeholder = '이메일주소 입력'">
+                                        <input class="form-control error" name="s_subject" placeholder = '제목 입력'>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea class="form-control w-100 error" name="message" id="message" cols="30" rows="9" placeholder = '문의내용 입력'" placeholder="문의내용 입력"></textarea>
+                                        <textarea class="form-control w-100 error" name="s_content" id="message" cols="30" rows="9" placeholder = '문의내용 입력'" placeholder="문의내용 입력"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt=""></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>

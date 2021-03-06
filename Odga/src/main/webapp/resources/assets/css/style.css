@@ -2885,7 +2885,7 @@ hr {
 	}
 }
 
-.slider-area form.search-box .search-form a {
+.slider-area form.search-box .search-form button {
 	width: 100%;
 	height: 60px;
 	background: #ff3d1c;
@@ -2899,7 +2899,9 @@ hr {
 	text-transform: capitalize;
 	font-family: "Sulphur Point", sans-serif;
 	line-height: 31px;
-	font-size: 15px
+	font-size: 15px;
+	border: 0;
+    cursor: pointer;
 }
 
 .slider-height {
@@ -4123,7 +4125,12 @@ hr {
 }
 
 .listing-details-area .single-listing .list-img img {
+	display: inline-block;
 	width: 100%;
+	height: 250px;
+	overflow: hidden;
+	object-fit: cover;
+	border-radius: 5px;
 	transform: scale(1);
 	transition: all 0.6s ease-out 0s
 }
@@ -4177,7 +4184,7 @@ hr {
 .listing-details-area .single-listing .list-caption h3 a {
 	color: #1c1930;
 	font-weight: 700;
-	font-size: 25px
+	font-size: 24px
 }
 
 .listing-details-area .single-listing .list-caption p {
@@ -4390,7 +4397,7 @@ form.search-box2 .search-form {
 	}
 }
 
-form.search-box2 .search-form a {
+form.search-box2 .search-form button {
 	width: 100%;
 	height: 60px;
 	background: #ff3d1c;
@@ -4404,7 +4411,9 @@ form.search-box2 .search-form a {
 	text-transform: capitalize;
 	font-family: "Sulphur Point", sans-serif;
 	line-height: 31px;
-	font-size: 15px
+	font-size: 15px;
+	border: 0;
+	cursor: pointer;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -7447,7 +7456,16 @@ del {
 
 .weather {
     position: absolute;
-    top: -200px;
-    right: -500px;
+    top: -220px;
+    right: -400px;
     color: #fff;
+}
+.select-job-items1 a {
+	display: block;
+	color: #000;
+	text-align: center;
+	font-size: 20px;
+}
+.select-job-items1 a + a {
+	margin-top: 10px;
 }
