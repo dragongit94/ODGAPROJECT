@@ -140,17 +140,6 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Support> notificationsS() {
-		return reviewMapper.notifications(); 
-		
-	}
-
-	@Override
-	public Support selectByTitle(String s_subject) {
-		return reviewMapper.selectByTitle(s_subject);
-	}
-
-	@Override
 	public List<Review> selectBestReviewS() {
 		return reviewMapper.selectBestReview();
 	}

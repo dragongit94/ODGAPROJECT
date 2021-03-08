@@ -31,5 +31,5 @@ public class Touritems {
 	private String zipcode;
 	
 	private long sp_id;
-	private S_Planner s_planer;
+	private S_Planner s_planner;
 }

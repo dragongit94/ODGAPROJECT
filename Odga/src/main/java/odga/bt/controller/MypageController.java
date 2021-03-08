@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import odga.bt.domain.ListResult;
@@ -155,4 +157,32 @@ public class MypageController {
 				return mv;
 
 	   }
+	   @GetMapping("/delete.do")
+		public ModelAndView review_delete(Review review, long b_id, long m_id, HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			
+			if(session.getAttribute("LOGINUSER") != null) {
+				service.deleteByB_idS(b_id);
+			}
+			
+			return new ModelAndView("redirect:/member_review.do?m_id="+ review.getM_id(), "review", service.selectByReviewS(m_id));
+		}   
+		
+		@GetMapping("/update.do")
+		public ModelAndView review_update(long b_id) {
+			return new ModelAndView("review/update", "review", rservice.getReviewS(b_id));
+		}  
+		
+		@PostMapping("/update.do")
+		public ModelAndView review_update(Review review, long m_id, MultipartFile file) {
+			
+			try {
+				review.setB_img(rservice.saveStore(file));
+				service.updateByB_idS(review);
+			}catch(Exception e) {
+				service.updateWithoutImgS(review);
+			}
+			
+			return new ModelAndView("redirect:/member_review.do?m_id="+ review.getM_id(), "review", service.selectByReviewS(m_id));
+		}
 }

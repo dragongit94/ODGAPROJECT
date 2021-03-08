@@ -29,28 +29,6 @@ import odga.bt.vo.TotalList;
 @AllArgsConstructor
 public class PlannerController {
 	private PlannerService service;
-	
-	/*
-	 * @RequestMapping("") public String index() {
-	 * 
-	 * return "index"; }
-	 * 
-	 * @RequestMapping("review") public String review() {
-	 * 
-	 * return "review"; }
-	 * 
-	 * @RequestMapping("index") public String index2() {
-	 * 
-	 * return "index"; }
-	 * 
-	 * @RequestMapping("api.do") public String api() {
-	 * 
-	 * return "api"; }
-	 * 
-	 * @RequestMapping("/planner1") public String planner1() {
-	 * 
-	 * return "planner"; }
-	 */
 
 	@GetMapping("dayselect")
 	public @ResponseBody List<Touritems> day(@RequestParam long p_id, @RequestParam long sp_day) {
@@ -163,13 +141,13 @@ public class PlannerController {
 	  planner.setP_id(p_id); 
 	  service.save(planner);
 		 		
-	  return "redirect:index";
+	  return "redirect:index.do";
 	}
 	@GetMapping("leave")
 	public String leave(long p_id) {
 		System.out.println("#######"+p_id);
 		service.delPlan(p_id);
 		
-		return "redirect:index";
+		return "redirect:index.do";
 	}
 }
