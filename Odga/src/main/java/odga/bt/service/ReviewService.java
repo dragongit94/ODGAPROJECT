@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import odga.bt.domain.Like_t;
 import odga.bt.domain.Reply;
 import odga.bt.domain.Review;
+import odga.bt.domain.ReviewListResult;
 import odga.bt.domain.Support;
 import odga.bt.vo.ReviewDetail;
 
@@ -29,6 +30,7 @@ public interface ReviewService {
 	Map<String, Object> reviewSidebar();	
 	void insert_re(Reply reply);
 	void deleteReply(long re_id);
+	void upReplyCnt(long b_id);
 	
 	void likeUp(Review review);
 	void likeDown(Review review);
@@ -41,5 +43,7 @@ public interface ReviewService {
 	Review getReviewS(long b_id);
 	
 	Map<String, Object> getOtherReview(long b_id);	
+	
+	ReviewListResult getReviewListResult(int cp, int ps, int rangeSize);
 
 }

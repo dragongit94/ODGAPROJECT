@@ -251,11 +251,11 @@
       -->
       <label>
       <span>자기소개</span>
-        <input type="text" name="m_about" id="m_about"  required/>
+        <input type="text" name="m_about" id="m_about"/>
       </label>
       <label>
         <span>프로필사진등록</span>
-        <input type="file" name="file" id="m_fname" required/>
+        <input type="file" name="file" id="m_fname"/>
       </label>
     <div class="row">
       <button type="submit" class="submit" >가입하기</button>

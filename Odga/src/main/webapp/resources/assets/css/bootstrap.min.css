@@ -379,12 +379,14 @@ template {
 
 .h1,
 .h2,
+.hh2,
 .h3,
 .h4,
 .h5,
 .h6,
 h1,
 h2,
+hh2,
 h3,
 h4,
 h5,
@@ -404,6 +406,10 @@ h1 {
 .h2,
 h2 {
 	font-size: 2rem
+}
+.hh2,
+hh2 {
+	font-size: 1.3rem
 }
 
 .h3,
@@ -9311,5 +9317,11 @@ a.text-dark:hover {
 		color: inherit;
 		border-color: #dee2e6
 	}
+	/* css추가 (use.jsp)*/
+	@media (min-width:1200px) {
+	.container2 {
+		max-width: 2200px
+	}
+}
 }
 

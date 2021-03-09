@@ -15,6 +15,7 @@
    		<typeAlias alias="Member" type="odga.bt.domain.Member"/>	
    		<typeAlias alias="Admin" type="odga.bt.domain.Admin"/>
 		<typeAlias alias="Support" type="odga.bt.domain.Support"/>
+		<typeAlias alias="ReviewListResult" type="odga.bt.domain.ReviewListResult"/>
 		
 		<typeAlias alias="TouritemsVo" type="odga.bt.vo.TouritemsVo"/>
 		<typeAlias alias="Searchcode" type="odga.bt.vo.Searchcode"/>
@@ -23,6 +24,7 @@
    		<typeAlias alias="Statistics" type="odga.bt.vo.Statistics"/>
    		<typeAlias alias="ReviewDetail" type="odga.bt.vo.ReviewDetail"/>
    		<typeAlias alias="DetailVo" type="odga.bt.vo.DetailVo"/>
+   		<typeAlias alias="ReviewVo" type="odga.bt.vo.ReviewVo"/>
    </typeAliases>
    
    <mappers>

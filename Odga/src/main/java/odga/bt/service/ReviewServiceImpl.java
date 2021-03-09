@@ -16,10 +16,12 @@ import odga.bt.domain.Like_t;
 import odga.bt.domain.Member;
 import odga.bt.domain.Reply;
 import odga.bt.domain.Review;
+import odga.bt.domain.ReviewListResult;
 import odga.bt.domain.Support;
 import odga.bt.filesetting.Path;
 import odga.bt.mapper.ReviewMapper;
 import odga.bt.vo.ReviewDetail;
+import odga.bt.vo.ReviewVo;
 
 @Log4j
 @Service
@@ -74,7 +76,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public void insert_re(Reply reply) {
 		reviewMapper.insert_re(reply);
 	}
-
+	@Override
+	public void upReplyCnt(long b_id) {
+		reviewMapper.upReplyCnt(b_id);
+		
+	}
 	@Override
 	public void likeUp(Review review) {
 		reviewMapper.likeUp(review);		
@@ -192,5 +198,13 @@ public class ReviewServiceImpl implements ReviewService {
 			}catch(IOException ie) {}
 		}
 	}
-	 
+
+	@Override
+	public ReviewListResult getReviewListResult(int cp, int ps, int rangeSize) {
+		long totalCount = reviewMapper.selectCount();
+		ReviewVo reviewVo = new ReviewVo(null, null, cp, ps);
+		List<Review> list = reviewMapper.selectPerPage(reviewVo);
+		
+		return new ReviewListResult(cp, totalCount, ps, list, rangeSize);
+	}
 }

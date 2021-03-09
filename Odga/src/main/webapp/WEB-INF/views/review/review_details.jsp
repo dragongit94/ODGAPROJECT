@@ -52,7 +52,7 @@
                           <!-- Logo -->
                           <div class="col-xl-2 col-lg-2 col-md-1">
                               <div class="logo">
-                                 <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+                                <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                               </div>
                           </div>
                           <div class="col-xl-10 col-lg-10 col-md-8">
@@ -131,7 +131,7 @@
                <div class="col-lg-8 posts-list">
                   <div class="single-post">
                      <div class="feature-img">
-                        <img class="img-fluid" src="resources/upload/${review.b_img}" style="height:500px;width:770px;" alt="">
+                       <img class="img-fluid" src="resources/upload/${review.b_img}" style="width:100%;" alt="">
                      </div>
                      <div class="blog_details">
                         <h2>${ review.b_subject }</h2>
@@ -173,7 +173,7 @@
                               class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                               <div class="thumb">
                                  <a href="review_details?b_id=${getOtherReview.reviewPre.b_id}&m_id=${LOGINUSER.m_id}">
-                                    <img class="img-fluid" src="assets/img/post/preview.png" alt="">
+                                    <img class="img-fluid" src="resources/upload/${getOtherReview.reviewPre.b_img}" alt="" style="width:60px;height:60px;">
                                  </a>
                               </div>
                               <div class="arrow">
@@ -204,8 +204,15 @@
                                  </a>
                               </div>
                               <div class="thumb">
-                                 <a href="review_details?b_id=${getOtherReview.reviewNext.b_id}&m_id=${LOGINUSER.m_id}">
-                                    <img class="img-fluid" src="assets/img/post/next.png" alt="">
+                                 <a href="review_details?b_id=${getOtherReview.reviewNext.b_id}&m_id=${LOGINUSER.m_id}">                                
+                                 <c:choose>
+	                                 <c:when test="${getOtherReview.reviewNext.b_img == null}">
+	                                 	<img class="img-fluid" src="assets/img/image.png" alt="" style="width:60px;height:60px;">
+	                                 </c:when>
+	                                 <c:otherwise>
+	                                    <img class="img-fluid" src="resources/upload/${getOtherReview.reviewNext.b_img}" alt="" style="width:60px;height:60px;">
+	                                 </c:otherwise>
+                                 </c:choose>
                                  </a>
                               </div>
                            </div>
@@ -214,7 +221,14 @@
                   </div>
                   <div class="blog-author">
                      <div class="media align-items-center">
-                        <img src="assets/img/blog/author.png" alt="">
+                      <c:choose>
+                          <c:when test="${writerInfo.m_fname == 'null'}">
+                          	<img src="https://svgshare.com/i/65U.svg" alt="">
+                          </c:when>
+                          <c:otherwise>
+                             <img class="img-fluid" src="assets/img/profile/${writerInfo.m_fname}" alt="">
+                          </c:otherwise>
+                         </c:choose>               
                         <div class="media-body">
                            <a href="#">
                               <h4>${writerInfo.m_name}</h4>
@@ -223,7 +237,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="comments-area" style="overflow: auto;height: 15%;">
+                  <div class="comments-area" style="overflow: auto; max-height: 30rem;">
                      <h4>${countReply} Comments</h4>
                      <c:if test="${empty reply}">
                      	<div class="comment-list">
@@ -243,7 +257,14 @@
 	                        <div class="single-comment justify-content-between d-flex">
 	                           <div class="user justify-content-between d-flex">
 	                              <div class="thumb">
-	                                 <img src="assets/img/comment/minyong.png" alt="">
+	                                 <c:choose>
+				                          <c:when test="${reply.re_fname == null}">
+				                          	<img src="https://svgshare.com/i/65U.svg" alt="">
+				                          </c:when>
+				                          <c:otherwise>
+				                             <img class="img-fluid" src="assets/img/profile/${reply.re_fname}" alt="" style="height: 100%;">
+				                          </c:otherwise>
+			                         </c:choose>         
 	                              </div>
 	                              <div class="desc">
 	                                 <p class="comment">
@@ -271,7 +292,9 @@
                   <div class="comment-form">
                      <h4>Leave a Reply</h4>
                      <form class="form-contact comment_form" method="post" action="write_re" id="commentForm">
-                     <input type="hidden" name="b_id" value="${review.b_id}"/>
+                     <input type="hidden" name="m_id" value="${LOGINUSER.m_id}"/>
+                     <input type="hidden" name="b_id" value="${review.b_id}"/>          
+                     <input type="hidden" name="re_fname" value="${LOGINUSER.m_fname}"/>
                         <div class="row">
                            <div class="col-12">
                               <div class="form-group">
@@ -281,7 +304,14 @@
                            </div>
                            <div class="col-sm-6">
                               <div class="form-group">
-                                 <input class="form-control" name="re_writer" id="re_writer" type="text" placeholder="Name : " value="회원 닉네임">
+                                 <c:choose>
+                                     <c:when test="${ LOGINUSER.m_name != null }">
+                                       <input type="text" name="re_writer" value='${LOGINUSER.m_name}' class="form-control" id="re_writer" readonly/>
+                                   </c:when>
+                                     <c:otherwise>
+                                       <input class="form-control" name="re_writer" id="re_writer" type="text" placeholder="로그인을 해주세요" readonly/>
+                                   </c:otherwise>
+                                 </c:choose>
                               </div>
                            </div>
                         </div>

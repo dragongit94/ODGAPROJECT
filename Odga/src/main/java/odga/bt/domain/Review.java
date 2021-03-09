@@ -19,5 +19,6 @@ public class Review {
 	private String b_catgo;		//카테고리
 	private int b_like; 		//좋아요수
 	private int m_id; 			//회원id
+	private int b_reply;
 	private Like_t likgt;
 }

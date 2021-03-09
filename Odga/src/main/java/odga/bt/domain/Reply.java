@@ -14,5 +14,6 @@ public class Reply {
 	private String re_writer;
 	private String re_content;
 	private String re_rdate;
-	private long b_id;   
+	private long b_id;
+	private String re_fname;
 }

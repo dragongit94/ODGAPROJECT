@@ -9,6 +9,7 @@ import odga.bt.domain.Member;
 import odga.bt.domain.Reply;
 import odga.bt.domain.Review;
 import odga.bt.domain.Support;
+import odga.bt.vo.ReviewVo;
 
 public interface ReviewMapper {
 	List<Review> review();
@@ -34,6 +35,7 @@ public interface ReviewMapper {
 	int countReply(long b_id);	
 	void insert_re(Reply reply);
 	void deleteReply(long re_id);
+	void upReplyCnt(long b_id);
 	
 	void likeUp(Review review);
 	void likeDown(Review review);
@@ -46,5 +48,8 @@ public interface ReviewMapper {
 	Review getNextReview(long b_id);
 	
 	Member getWriterInfo(long b_id);
+	 //∆‰¿Ã¬°
+	List<Review> selectPerPage(ReviewVo reviewVo);
+	long selectCount();
 	
 }

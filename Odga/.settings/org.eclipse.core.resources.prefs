@@ -7,4 +7,5 @@ encoding//src/main/java/odga/bt/mapper/MemberMapper.java=UTF-8
 encoding//src/main/java/odga/bt/service/MemberServiceImpl.java=UTF-8
 encoding//src/main/java/odga/bt/service/PlannerServiceImpl.java=UTF-8
 encoding//src/main/java/odga/bt/service/ReviewServiceImpl.java=UTF-8
+encoding//src/main/java/odga/bt/vo/TouritemsVo.java=UTF-8
 encoding//src/test/java/yum/md/persistence/tranTest.java=UTF-8

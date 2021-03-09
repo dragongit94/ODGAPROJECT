@@ -225,7 +225,7 @@
 							<c:if test="${fn:length(review)==0 && (reviewSearch.count == 0 || reviewCatgo.count==0)}">
 							     <div class="blog_details"><h2>게시글이 없습니다.</h2></div>
 							</c:if>						
-							<c:forEach items="${review}" var="review">
+							<c:forEach items="${reviewlistResult.list}" var="review">
 	                            <article class="blog_item">
 	                            <a href="review_details.do?b_id=${review.b_id}&m_id=${LOGINUSER.m_id}">
 	                                <div class="blog_item_img">
@@ -241,7 +241,7 @@
 	                                    <p>${review.b_catgo}</p>
 	                                    <ul class="blog-info-link">
 	                                        <li><i class="fa fa-user"></i> ${review.b_writer}</li>
-                                        	<li><i class="fa fa-comments"></i> 03 Comments</li>
+                                        	<li><i class="fa fa-comments"></i> ${review.b_reply} Comments</li>
 	                                        <li><i class="fa fa-comments"></i> ${review.b_like} Likes</li>
 	                                    </ul>
 	                                </div>
@@ -271,7 +271,7 @@
 			                                    <p>${search.b_catgo}</p>
 			                                    <ul class="blog-info-link">
 			                                        <li><i class="fa fa-user"></i> ${search.b_writer}</li>
-		                                        	<li><i class="fa fa-comments"></i> 03 Comments</li>
+		                                        	<li><i class="fa fa-comments"></i> ${review.b_reply} Comments</li>
 			                                        <li><i class="fa fa-comments"></i> ${search.b_like} Likes</li>
 			                                    </ul>
 			                                </div>
@@ -303,7 +303,7 @@
 			                                    <p>${cat.b_catgo}</p>
 			                                    <ul class="blog-info-link">
 			                                        <li><i class="fa fa-user"></i> ${cat.b_writer}</li>
-		                                        	<li><i class="fa fa-comments"></i> 03 Comments</li>
+		                                        	<li><i class="fa fa-comments"></i> ${review.b_reply} Comments</li>
 			                                        <li><i class="fa fa-comments"></i> ${cat.b_like} Likes</li>
 			                                    </ul>
 			                                </div>
@@ -313,26 +313,103 @@
 								</c:when>
 							</c:choose>
 
-                            <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Previous">
-                                            <i class="ti-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a href="#" class="page-link">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Next">
-                                            <i class="ti-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                           <!--Pagination Start  -->
+<div class="pagination-area pt-70 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="single-wrap d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">
+                        
+                <!-- 이전 페이지 START-->   
+                <c:choose>
+ 					<c:when test="${keyword!=null}">
+						<c:choose>
+	                      <c:when test="${reviewlistResult.cp eq 1}">
+	                        <li class="page-item disabled">
+	                         <a class="page-link" href="review.do?cp=${reviewlistResult.prevPage}&keyword=${keyword}&catgo=${catgo}"><span class="ti-angle-left"></span></a>
+	                         </li>
+	                      </c:when>
+	                     <c:otherwise>
+	 						<li class="page-item">
+	 						<a class="page-link" href="review.do?cp=${reviewlistResult.prevPage}&keyword=${keyword}&catgo=${catgo}"><span class="ti-angle-left"></span></a>
+	 						</li>
+	 					</c:otherwise>
+	 					</c:choose>
+	 				</c:when>
+	 			<c:otherwise>
+	 					<c:choose>
+	                      <c:when test="${reviewlistResult.cp eq 1}">
+	                        <li class="page-item disabled">
+	                         <a class="page-link" href="review.do?cp=${reviewlistResult.prevPage}"><span class="ti-angle-left"></span></a>
+	                         </li>
+	                      </c:when>
+	                     <c:otherwise>
+	 						<li class="page-item">
+	 						<a class="page-link" href="review.do?cp=${reviewlistResult.prevPage}"><span class="ti-angle-left"></span></a>
+	 						</li>
+	 					</c:otherwise>
+	 					</c:choose>
+	 			</c:otherwise>
+	 			</c:choose>
+	 			<!-- 이전 페이지 END --> 	
+	 			
+	 				
+ 			<c:choose>
+ 				<c:when test="${keyword!=null}">
+                      <c:forEach begin="${reviewlistResult.cp}" end="${reviewlistResult.ps}" var="i">
+                         <li class="page-item active"><a class="page-link" href="review.do?cp=${i}&keyword=${keyword}&searchOption=${searchOption}">
+                          <c:choose>
+		   			    <c:when test="${i==reviewlistResult.cp}">
+		                	<span style="color:red;font-weight:bold">${i}</span>
+		                </c:when>
+		                <c:otherwise>
+		                    ${i}
+		                </c:otherwise>
+						</c:choose>            
+                        </a>
+                        </li>
+                      </c:forEach>
+                </c:when>
+            <c:otherwise>
+            		    <c:forEach begin="${reviewlistResult.startPage}" end="${reviewlistResult.endPage}" var="i">
+                         <li class="page-item active"><a class="page-link" href="review.do?cp=${i}">
+                          <c:choose>
+		   			    <c:when test="${i==reviewlistResult.cp}">
+		                	<span style="color:red;font-weight:bold">${i}</span>
+		                </c:when>
+		                <c:otherwise>
+		                    ${i}
+		                </c:otherwise>
+						</c:choose>            
+                        </a>
+                        </li>
+                      </c:forEach>
+            </c:otherwise>
+            </c:choose>
+                        
+                        <!-- 다음 페이지 START -->
+                        <c:choose>
+ 						<c:when test="${keyword!=null}">
+	                        <li class="page-item"><a class="page-link" href="review.do?cp=${reviewlistResult.nextPage}&keyword=${keyword}&catgo=${catgo}">
+	                        <span class="ti-angle-right"></span></a></li>
+                        </c:when>
+                        <c:otherwise>
+	                         <li class="page-item"><a class="page-link" href="review.do?cp=${reviewlistResult.nextPage}">
+	                         <span class="ti-angle-right"></span></a></li>
+                        </c:otherwise>
+                        </c:choose>
+                         <!-- 다음 페이지 END -->
+                        
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>        
+<!--Pagination End  -->
                         </div>
                     </div>
                 </div>

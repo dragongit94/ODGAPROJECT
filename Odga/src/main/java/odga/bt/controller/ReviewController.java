@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import lombok.extern.log4j.Log4j;
 import odga.bt.domain.Like_t;
 import odga.bt.domain.Reply;
 import odga.bt.domain.Review;
+import odga.bt.domain.ReviewListResult;
 import odga.bt.domain.Support;
 import odga.bt.service.ReviewService;
 import odga.bt.vo.ReviewDetail;
@@ -51,15 +55,72 @@ public class ReviewController {
 		return "redirect:index.do";
 	}
 		
-	@GetMapping("review")
-	public ModelAndView review() {	//리퓨 리스팅 페이지
-		List<Review> review = service.reviewS();		
+	@GetMapping("/review")
+	public ModelAndView review(HttpServletRequest request) {	//리뷰 리스팅 페이지
+		HttpSession session = request.getSession();
+		String cpStr = request.getParameter("cp");
+		String psStr = request.getParameter("ps");
+		
+		//(1) cp 
+		int cp = 1;
+		if(cpStr == null) {
+			Object cpObj = session.getAttribute("cp");
+			if(cpObj != null) {
+				cp = (Integer)cpObj;
+			}
+		}else {
+			cpStr = cpStr.trim();
+			cp = Integer.parseInt(cpStr);
+		}
+		session.setAttribute("cp", cp);
+		
+		//(2) ps 
+		int ps = 5;
+		if(psStr == null) {
+			Object psObj = session.getAttribute("ps");
+			if(psObj != null) {
+				ps = (Integer)psObj;
+			}
+		}else {
+			psStr = psStr.trim();
+			int psParam = Integer.parseInt(psStr);
+			
+			Object psObj = session.getAttribute("ps");
+			if(psObj != null) {
+				int psSession = (Integer)psObj;
+				if(psSession != psParam) {
+					cp = 1;
+					session.setAttribute("cp", cp);
+				}
+			}else {
+				if(ps != psParam) {
+					cp = 1;
+					session.setAttribute("cp", cp);
+				}
+			}
+			
+			ps = psParam;
+		}
+		session.setAttribute("ps", ps);
+		
+		//(3) ModelAndView
+		ReviewListResult reviewlistResult = null;
+		int rangeSize = 5;
+		
+		reviewlistResult = service.getReviewListResult(cp, ps, rangeSize);
+		//List<Review> review = service.reviewS();		
 		Map<String, Object> reviewSidebar = service.reviewSidebar();
-		ModelAndView mv = new ModelAndView("review/review","review", review);
+		ModelAndView mv = new ModelAndView("review/review","reviewlistResult", reviewlistResult);
 		mv.addObject("reviewSidebar", reviewSidebar);
+		//mv.addObject("review", review);
+		if(reviewlistResult.getList().size() == 0) {
+			if(cp>1)
+				return new ModelAndView("redirect:review.do?cp="+(cp-1));
+			else
+				return new ModelAndView("review/review", "reviewlistResult", null);
+		}
 		return mv;
 	}
-  
 	@GetMapping("/review_details")
 	public ModelAndView review_details(long b_id,long m_id) {
 		Map<String, Object> reviewSidebar = service.reviewSidebar();
@@ -110,10 +171,11 @@ public class ReviewController {
 	}
 	
 	@PostMapping("write_re")
-	public String write_re(Reply reply) {//댓글작성
+	public String write_re(Reply reply,long m_id) {//댓글작성
 		service.insert_re(reply);
 		long b_id = reply.getB_id();
-		return "redirect:review_details?b_id="+b_id; 
+		service.upReplyCnt(b_id);
+		return "redirect:review_details?b_id="+b_id+"&m_id="+m_id; 
 	}
 	
 	@GetMapping("del_re")

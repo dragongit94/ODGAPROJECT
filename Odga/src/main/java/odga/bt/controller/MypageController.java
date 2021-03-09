@@ -45,8 +45,7 @@ public class MypageController {
 		return mv; 
 	}
 	@RequestMapping("/member.do")
-	   public String member() {
-		   
+	   public String member() {		   
 	      return "member"; 
 	   }
 	   @RequestMapping("/leaveM")

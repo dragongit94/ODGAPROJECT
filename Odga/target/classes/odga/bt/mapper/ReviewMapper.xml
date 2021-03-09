@@ -12,7 +12,7 @@
 	</select>	
 	
 	<insert id="insert" parameterType="Review"> 
-		insert into BOARD values(BOARD_ID.nextval, #{b_writer}, #{b_subject}, #{b_content}, #{b_img}, SYSDATE, #{b_catgo}, 0, #{m_id})
+		insert into BOARD values(BOARD_ID.nextval, #{b_writer}, #{b_subject}, #{b_content}, #{b_img}, SYSDATE, #{b_catgo}, 0, #{m_id},0)
  	</insert><!--#{b_like}#{m_id}#{a_id}-->
  		
 	<!-- 문의하기 작성 -->
@@ -83,11 +83,14 @@
 		select count(*) from REPLY where b_id=#{b_id}
 	</select>
 	<insert id="insert_re" parameterType="Reply"> 
-		INSERT INTO reply VALUES (REPLY_ID.nextval, #{re_writer}, #{re_content}, SYSDATE,#{b_id})
+		INSERT INTO reply VALUES (REPLY_ID.nextval, #{re_writer}, #{re_content}, SYSDATE,#{b_id},#{re_fname})
  	</insert>	
  	<delete id="deleteReply" parameterType="long">
 		delete from reply where re_id=#{re_id}
 	</delete>
+	<update id="upReplyCnt" parameterType="long">
+	    update board set b_reply=b_reply+1 where b_id=#{b_id}
+	</update>
 	
  	<!-- 좋아요 -->
  	<update id="likeUp" parameterType="Review">
@@ -132,4 +135,13 @@
 		select * from (select * from BOARD order by B_LIKE desc) where rownum<2
 		]]>
 	</select>
+	
+	<!-- 리뷰 리스팅 - 페이징 검색기능 -->
+	<select resultType="Review" id="selectPerPage" parameterType="ReviewVo">
+		<![CDATA[ 
+			select * from (select ROWNUM rnum, aa.* from (select * from BOARD order by B_ID desc) aa) 
+			  where rnum>#{startRow} and rnum<=#{endRow}
+			]]>
+	</select>
+	<select resultType="long" id="selectCount">select count(*) from BOARD </select>
 </mapper>
