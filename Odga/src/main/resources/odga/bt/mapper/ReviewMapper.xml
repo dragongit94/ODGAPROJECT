@@ -17,8 +17,8 @@
  		
 	<!-- 문의하기 작성 -->
  	<insert id="insertS" parameterType="Support">
- 	 	insert into SUPPORT values(SUPPORT_ID.nextval, #{s_subject}, #{s_content}, SYSDATE, #{m_id})
- 	</insert>	 	
+ 	 	insert into SUPPORT values(SUPPORT_ID.nextval, #{s_subject}, #{s_content}, SYSDATE, #{m_id}, SUPPORT_ORIGIN_NO.nextval, 0)
+ 	</insert>		 	
 	
 	<!-- 검색 -->
 	<select id="searchList" resultType="Review" parameterType="map">

@@ -35,5 +35,7 @@ public interface AdminMapper {
 	//문의하기 게시판(관리자)
 	List<Support> notifications();
 	//문의게시판 상세페이지(관리자)
-	Support selectByTitle(String s_subject);
+	Support selectByTitle(long s_id);
+	void insert_reS(Support support);
+	void delete(long s_id);
 }

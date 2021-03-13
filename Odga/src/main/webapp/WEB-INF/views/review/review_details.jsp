@@ -43,70 +43,79 @@
    </div>
    <!--Preloader Start -->
    <header>
-      <!-- Header Start -->
-     <div class="header-area header-transparent">
-          <div class="main-header">
-             <div class="header-bottom  header-sticky">
-                  <div class="container-fluid">
-                      <div class="row align-items-center">
-                          <!-- Logo -->
-                          <div class="col-xl-2 col-lg-2 col-md-1">
-                              <div class="logo">
-                                <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+        <!-- Header Start -->
+       <div class="header-area header-transparent">
+            <div class="main-header">
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div style="width: 10%;min-width: 9rem;">
+                                <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 100%;"></a>
+                            </div>
+                            <!-- Main-menu -->
+                              <div style="width: 84%;" class="main-menu f-right d-none d-lg-block" align="right">
+                               <nav>
+                           <ul id="navigation" style="width: 100%;float: left;">
+                              <div style="float: left;width: 83%;">
+                                    <li><a href="listing.do">국내여행지</a></li>
+                                    <li><a href="review.do">커뮤니티</a>
+                                       <ul class="submenu" style="text-align: left;">
+                                          <li><a href="review.do">여행후기</a></li>
+                                          <li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
+                                       </ul>
+                                    </li>
+                                    <li><a href="use.do">이용방법</a></li>
+                                    <li><a href="https://www.agoda.com/">호텔예약</a></li>
+                                    <li class="add-list" style="display: inline flow-root list-item;">
+                                       <a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a>
+                                    </li>
                               </div>
-                          </div>
-                          <div class="col-xl-10 col-lg-10 col-md-8">
-                              <!-- Main-menu -->
-                              <div class="main-menu f-right d-none d-lg-block">
-                                 <nav>
-										<ul id="navigation">
-											<li><a href="listing.html">국내여행지</a></li>
-											<li><a href="#">커뮤니티</a>
-												<ul class="submenu">
-													<li><a href="review">여행후기</a></li>
-													<li><a href="support.html">문의하기</a></li>
-												</ul>
-											</li>
-											<li><a href="use.html">이용방법</a></li>
-											<li><a href="https://www.agoda.com/">호텔예약</a></li>
-											<li class="add-list"><a onclick="goPlanner()"><i class="ti-plus"></i>나의 여행 만들기</a></li>
-											<li class="login">                           
-			                                    <c:choose>
-			                                          <c:when test="${empty LOGINUSER}">
-			                                             <a href="login.do"><i class="ti-user"></i>로그인 / 회원가입</a>
-			                                          </c:when>
-			                                          <c:otherwise>
-			                                             <c:choose>
-			                                                <c:when test="${LOGINUSER.m_verify eq 0}">
-			                                                   <a href="logout.do"><i class="ti-user"></i>${LOGINUSER.m_name} 회원님 로그아웃</a>
-			                                                   <li><a href="member.do"><i class="ti-user"></i> 마이페이지</a></li>
-			                                                </c:when>
-			                                                <c:otherwise>
-			                                                      <a href="logout.do"><i class="ti-user"></i>${LOGINUSER.m_name} 관리자님 로그아웃</a>
-			                                                      <li><a href="dashboard.do"><i class="ti-user"></i> 관리자페이지</a></li>
-			                                                </c:otherwise>
-			                                              </c:choose>
-			                                          </c:otherwise>
-			                                    </c:choose>
-			                                 </li>
-										</ul>
-									</nav>
-								</div>
-							</div>
-                          <!-- Mobile Menu -->
-                          <div class="col-12">
-                              <div class="mobile_menu d-block d-lg-none"></div>
-                          </div>
-                      </div>
-                  </div>
-             </div>
-          </div>
-     </div>
-      <!-- Header End -->
-  </header>
+                              <div style="float: left;width: 17%;padding-top: 23px;" align="left">   
+                                 <li class="login" style="width: 103%;padding: 1%;text-align: center;">                          
+                                             <c:choose>
+                                                   <c:when test="${empty LOGINUSER}">
+                                                      <a href="login.do" style="padding: inherit;font-size: 80%;">
+                                                         <div style="float: left;font-size: 200%;margin-top: 7px;margin-left: 45px;">
+                                                            <i class="ti-user"></i>
+                                                         </div>
+                                                         <div style="width: 39%;float: left;margin-top: -22px;">
+                                                            </br>로그인</br>&</br>회원가입
+                                                         </div>
+                                                      </a>
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                      <c:choose>
+                                                         <c:when test="${LOGINUSER.m_verify eq 0}">
+                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>
+                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li>
+                                                         </c:when>
+                                                         <c:otherwise>
+                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>관리자님 로그아웃</a>
+                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li>
+                                                         </c:otherwise>
+                                                       </c:choose>
+                                                   </c:otherwise>
+                                             </c:choose>
+                                          </li>
+                                      </div>
+		                           </ul>
+		                        </nav>
+		                     </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
    <main>
       <!-- Hero Start-->
-      <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center">
+       <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center" style="background-image: url(assets/img/myPlanImg/12.jpg);">
          <div class="container">
                <div class="row">
                   <div class="col-xl-12">
@@ -138,7 +147,7 @@
                         <ul class="blog-info-link mt-3 mb-4">
                            <li><i class="fa fa-user"></i><a href="글쓴이 아이디로 검색되는 후기리스트 링크">${ review.b_writer }</a></li>
                            <li><i class="fa fa-comments"></i> ${countReply} Comments</li>
-                           <li><i class="fa fa-comments" id="like2"> ${ review.b_like }</i>Likes</li>
+                           <li><i class="fa fa-heart" id="like2"> ${ review.b_like }</i>Likes</li>
                         </ul>
                         <p>${ review.b_content }</p>
                         
@@ -173,7 +182,14 @@
                               class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                               <div class="thumb">
                                  <a href="review_details?b_id=${getOtherReview.reviewPre.b_id}&m_id=${LOGINUSER.m_id}">
-                                    <img class="img-fluid" src="resources/upload/${getOtherReview.reviewPre.b_img}" alt="" style="width:60px;height:60px;">
+                                 <c:choose>
+	                                 <c:when test="${getOtherReview.reviewPre.b_img == null}">
+	                                 	<img class="img-fluid" src="assets/img/insteadimg.png" alt="" style="width:60px;height:60px;background: white;">
+	                                 </c:when>
+	                                 <c:otherwise>
+	                                    <img class="img-fluid" src="resources/upload/${getOtherReview.reviewPre.b_img}" alt="" style="width:60px;height:60px;background: white;">
+	                                 </c:otherwise>
+                                 </c:choose> 
                                  </a>
                               </div>
                               <div class="arrow">
@@ -207,7 +223,7 @@
                                  <a href="review_details?b_id=${getOtherReview.reviewNext.b_id}&m_id=${LOGINUSER.m_id}">                                
                                  <c:choose>
 	                                 <c:when test="${getOtherReview.reviewNext.b_img == null}">
-	                                 	<img class="img-fluid" src="assets/img/image.png" alt="" style="width:60px;height:60px;">
+	                                 	<img class="img-fluid" src="assets/img/insteadimg.png" alt="" style="width:60px;height:60px;background: white;">
 	                                 </c:when>
 	                                 <c:otherwise>
 	                                    <img class="img-fluid" src="resources/upload/${getOtherReview.reviewNext.b_img}" alt="" style="width:60px;height:60px;">
@@ -221,19 +237,19 @@
                   </div>
                   <div class="blog-author">
                      <div class="media align-items-center">
-                      <c:choose>
-                          <c:when test="${writerInfo.m_fname == 'null'}">
-                          	<img src="https://svgshare.com/i/65U.svg" alt="">
-                          </c:when>
-                          <c:otherwise>
-                             <img class="img-fluid" src="assets/img/profile/${writerInfo.m_fname}" alt="">
-                          </c:otherwise>
-                         </c:choose>               
+                           <img class="img-fluid" src="assets/img/profile/${writerInfo.m_fname}" alt="">            
                         <div class="media-body">
                            <a href="#">
                               <h4>${writerInfo.m_name}</h4>
                            </a>
-                           <p>${writerInfo.m_about}</p>
+                           <c:choose>                           
+	                           <c:when test="${writerInfo.m_about==null}">
+	                           		<p>안녕하세요 !</p>
+	                           </c:when>
+	                           <c:otherwise>
+	                           		<p>${writerInfo.m_about}</p>
+	                           </c:otherwise>
+                           </c:choose>                      
                         </div>
                      </div>
                   </div>
@@ -396,7 +412,14 @@
 		                        <div class="media post_item" style="width: auto; height: auto; overflow: hidden">
 	 		                       <!-- <img src="assets/img/blog/single_blog_6.png" alt="post"> -->
 		                           <div style="width: 80px; height: 80px;">
-		                         		<img src="assets/img/blog/single_blog_6.png" style="width: 80px; height: 80px;" alt="post">
+		                           <c:choose>
+	                                 <c:when test="${recently.b_img == null}">
+	                                 	<img class="img-fluid" src="assets/img/insteadimg.png" alt="" style="width: 80px; height: 80px;background: white;">
+	                                 </c:when>
+	                                 <c:otherwise>
+	                                    <img src="resources/upload/${recently.b_img}" style="width: 80px; height: 80px;" alt="post">
+	                                 </c:otherwise>
+                                 </c:choose>		
 		                           </div>
 			                           <div class="media-body">
 			                              <a href="blog_details.html">
@@ -433,13 +456,13 @@
 						<div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>관리자정보</h4>
+									<h4>Administrator</h4>
 									<ul>
-										<li><a href="#">이지훈</a></li>
-										<li><a href="#">허유민</a></li>
-										<li><a href="#">박종범</a></li>
-										<li><a href="#">이민용</a></li>
-										<li><a href="#">권성환</a></li>
+										<li><a href="https://github.com/yumgit23">허유민</a></li>
+										<li><a href="https://github.com/dragongit94">이민용</a></li>
+										<li><a href="https://github.com/suadeomgit">권성환</a></li>
+										<li><a href="https://github.com/lzhxxn">이지훈</a></li>
+										<li><a href="https://github.com/DobbyisFree1">박종범</a></li>
 									</ul>
 								</div>
 							</div>
@@ -447,12 +470,13 @@
 						<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>고객센터</h4>
+									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="#">문의하기</a></li>
-										<li><a href="#">이용약관</a></li>
-										<li><a href="#">개인정보 처리방침</a></li>
-										<li><a href="#">회사주소</a></li>
+										<li><a href="join.do">회원가입</a></li>
+										<li><a href="login.do">로그인</a></li>
+										<li><a href="listing.do">국내여행지</a></li>
+										<li><a onclick="goPlanner()">나의 여행 만들기</a></li>
+										<li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
 									</ul>
 								</div>
 							</div>
@@ -460,12 +484,11 @@
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>Download App</h4>
+									<h4>Contact with Us</h4>
 									<ul>
-										<li class="app-log"><a href="#"><img
-												src="assets/img/gallery/app-logo.png" alt=""></a></li>
-										<li><a href="#"><img
-												src="assets/img/gallery/app-logo2.png" alt=""></a></li>
+										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
+										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
+										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
 									</ul>
 								</div>
 							</div>
@@ -478,14 +501,18 @@
 							<div class="footer-copy-right">
 								<p>
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-									Copyright &copy;
+									&copy; Copyright 
 									<script>
 										document
 												.write(new Date().getFullYear());
 									</script>
-									Copyright©Odga.com Organization, All rights reserved.
-									<i class="fa fa-heart" aria-hidden="true"></i><a
-										href="https://odga.com" target="_blank">Odga.com</a>
+									<b>Odga.com</b> Made with
+									<i class="fa fa-heart" aria-hidden="true"></i>
+									<a href="https://github.com/lzhxxn" target="_blank">JH</a>
+									<a href="https://github.com/dragongit94" target="_blank">MY</a>
+									<a href="https://github.com/yumgit23" target="_blank">YM</a>
+									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
@@ -493,10 +520,10 @@
 						<div class="col-xl-3 col-lg-4">
 							<!-- Footer Social -->
 							<div class="footer-social f-right">
-								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-									class="fab fa-twitter"></i></a> <a href="#"><i
-									class="fas fa-globe"></i></a> <a href="#"><i
-									class="fab fa-instagram"></i></a>
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
+								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
 							</div>
 						</div>
 					</div>
@@ -516,6 +543,14 @@ function goPlanner(){
 		 location.href = "login.do";
 	}else{
 		location.href = "planner?m_id=${LOGINUSER.m_id}";
+	}
+}
+function goSupport(){
+	if(${empty LOGINUSER}){
+		alert("로그인 후 이용 가능합니다.");
+		 location.href = "login.do";
+	}else{
+		location.href = "support.dp?m_id=${LOGINUSER.m_id}";
 	}
 }
 </script>

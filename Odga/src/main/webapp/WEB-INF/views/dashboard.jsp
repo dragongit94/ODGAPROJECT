@@ -7,11 +7,10 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    	대시보드
+    Odga.com
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -44,9 +43,9 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
+            <a class="nav-link" href="./admin_info.do">
               <i class="material-icons">person</i>
-              <p>User Profile</p>
+              <p>관리자 정보</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -68,29 +67,11 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./icons.html">
-              <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
+            <a class="nav-link" href="./map.do">
               <i class="material-icons">location_ons</i>
-              <p>Maps</p>
+              <p>회사 위치</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <!-- <li class="nav-item active-pro ">
-                <a class="nav-link" href="./upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li> -->
         </ul>
       </div>
     </div>
@@ -149,7 +130,7 @@
                 </div>
                 <div class="card-body">
                   <h4 class="card-title">일자 별 회원가입 수</h4>
-                  <p class="card-category"><span class="text-success"><i class="fa fa-long-arrow-up"> </i> ${memberC[2].m_rdate}.</span> 일자 별 가입된 회원의 수</p>
+                  <p class="card-category"><span class="text-success"><i class="fa fa-long-arrow-up"> </i> ${memberC[0].m_rdate}. </span> 일자 별 가입된 회원의 수</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -175,7 +156,19 @@
                 </div>
                 <div class="card-body">
                   <h4 class="card-title">회원 성비 백분율</h4>
-                  <p class="card-category"><span class="text-success"><i class="fa fa-long-arrow-up"></i> 남성.</span> </i>가입된 회원의 성별 비율</p>
+                  <p class="card-category"><span class="text-success"><i class="fa fa-long-arrow-up"></i>
+                  <c:choose>
+                		<c:when test="${genderC[0].femaleCnt > genderC[1].maleCnt}">
+                		 	여성.
+                		 </c:when>
+                	 	<c:when test="${genderC[0].femaleCnt < genderC[1].maleCnt}">
+                	 		남성.
+                	 	</c:when>
+                	 	<c:otherwise>
+                	 		성비 동일.
+                	 	</c:otherwise>
+                  	 </c:choose>
+                  </span> </i>가입된 회원의 성별 비율</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -298,7 +291,7 @@
                       <th>이메일</th>
                       <th>전화번호</th>
                       <th>성별</th>
-                      <th>입사일</th>
+                     <!--  <th>입사일</th> -->
                     </thead>
                     <tbody>
                     <c:forEach items="${admin}" var="admin">
@@ -308,7 +301,7 @@
                         <td>${admin.m_email}</td>
                         <td>${admin.m_phone}</td>
                         <td>${admin.m_gender}</td>
-                        <td>${admin.m_rdate}</td>
+                       <%--  <td>${admin.m_rdate}</td> --%>
                       </tr>
                      </c:forEach>
                     </tbody>
@@ -355,35 +348,17 @@
           </div>
         </div>
       </div>
+           
       <footer class="footer">
         <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
           <div class="copyright float-right" id="date">
             , made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            <a href="index.do" target="_blank">Odge.com</a> Made with
+            <a href="https://github.com/lzhxxn" target="_blank">JH</a>
+			<a href="https://github.com/dragongit94" target="_blank">MY</a>
+			<a href="https://github.com/yumgit23" target="_blank">YM</a>
+			<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+			<a href="https://github.com/suadeomgit" target="_blank">SH</a>
           </div>
         </div>
       </footer>
@@ -508,9 +483,9 @@
 	  
     var data2 = google.visualization.arrayToDataTable([
     	['Date', 'count',{ role: 'style' }],
-    	['${memberC[0].m_rdate}', ${memberC[0].count},'#E53F28'],
+    	['${memberC[2].m_rdate}', ${memberC[2].count},'#E53F28'],
     	['${memberC[1].m_rdate}', ${memberC[1].count},'#1377E3'],
-    	['${memberC[2].m_rdate}', ${memberC[2].count},'#FBA21C']
+    	['${memberC[0].m_rdate}', ${memberC[0].count},'#FBA21C']
     ]);
 
     var chart2 = new google.visualization.ColumnChart(document.getElementById('memberchart'));

@@ -16,6 +16,8 @@ import odga.bt.vo.Searchcode;
 @Mapper
 public interface PlannerMapper {
 	List<Touritems> selectDayById(@Param("p_id")long p_id,@Param("sp_day")long sp_day);
+	void dayDelAll(@Param("p_id")long p_id,@Param("sp_day") long sp_day);
+	
 	List<Touritems> searchedList(Searchcode searchcode);
 	int countContent(Searchcode searchcode);
 	void insert_sp(S_Planner s_planner);
@@ -29,5 +31,7 @@ public interface PlannerMapper {
 	
 	void delete_sPlan(long p_id);
 	void delete_Plan(long p_id);
+	
+	Touritems getItem(String contentid);
 }
 

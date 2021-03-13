@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard Dark Edition by Creative Tim
+    Odga.com
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -24,7 +24,6 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   <link href="../assets/css/pointColor.css" rel="stylesheet" />
-	
 </head>
 
 <body class="dark-edition">
@@ -65,9 +64,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./myLike.do">
+            <a class="nav-link" href="./myLike.do?m_id=${LOGINUSER.m_id}">
               <i class="fa fa-heart"></i>
               <p>나의 좋아요</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./support_mlist.do?m_id=${LOGINUSER.m_id}">
+              <i class="material-icons">tables</i>
+              <p>나의 문의내역</p>
             </a>
           </li>
           <!-- <li class="nav-item ">
@@ -175,13 +180,13 @@
                 </div>
                 <div class="card-body">
                   <form action="member.do" name="memberF" method="post" enctype="multipart/form-data" style="margin: 50px 150px 0 150px;">
-              	 <div class="avatar-wrapper">
-					<img class="profile-pic" src="assets/img/profile/${LOGINUSER.m_fname}" />
-					<div class="upload-button">
-						<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-					</div>
-					<input class="file-upload" type="file" name="file" accept="jpg , png, gif"/>
-				 </div>
+                  <div class="avatar-wrapper">
+               <img class="profile-pic" src="assets/img/profile/${LOGINUSER.m_fname}" />
+               <div class="upload-button">
+                  <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+               </div>
+               <input class="file-upload" type="file" name="file" accept="jpg , png, gif"/>
+             </div>
                     <div class="row">
                       <div class="col-md-3">
                         <div class="form-group">
@@ -533,7 +538,7 @@
       });
     });
     $(document).ready(function() {
-    	
+       
         var readURL = function(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -567,7 +572,7 @@
  </script>
  <script>
  function checkPwd() {
-	 var f = document.memberF; 
+    var f = document.memberF; 
      if (f.m_pwd.value == "") {
          f.m_pwd.focus();
          return false;

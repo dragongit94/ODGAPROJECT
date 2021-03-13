@@ -28,7 +28,11 @@ public class PlannerServiceImpl implements PlannerService {
 	public List<Touritems> selectDayById(long p_id, long sp_day) {
 		return plannerMapper.selectDayById(p_id,sp_day);
 	}
-
+	@Override
+	public void dayDelAll(long p_id, long sp_day) {
+		plannerMapper.dayDelAll(p_id, sp_day);
+	}
+	
 	@Override
 	public SearchResult searchedList(Searchcode searchcode) {
 		List<Touritems> lists = plannerMapper.selectResult(searchcode);
@@ -82,4 +86,10 @@ public class PlannerServiceImpl implements PlannerService {
 		plannerMapper.delete_Plan(p_id);
 		System.out.println("2. 위의 삭제 문장 실행 완료");
 	}
+	@Override
+   public Touritems getItemS(String contentid) {
+      Touritems item = plannerMapper.getItem(contentid);
+      return item;
+   }
+
 }

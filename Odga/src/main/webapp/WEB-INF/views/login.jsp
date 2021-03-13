@@ -6,11 +6,20 @@
 <!-- Bootstrap Core CSS -->
 <link href="../assets/css/login.css" rel="stylesheet">
 <link href="assets/css/profile2.css" rel="stylesheet">
-
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Odga.com
+  </title>
 
 
 <!DOCTYPE html>
 <!-- 로그인  -->
+<div class="col-xl-1 col-lg-2 col-md-1">
+    <div class="logo">
+      <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+     </div>
+   </div>
 <p class="tip"></p>
 <div class="cont">
   <div class="form sign-in">

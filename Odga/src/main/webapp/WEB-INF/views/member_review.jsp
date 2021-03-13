@@ -4,12 +4,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="zxx">
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Odga.com
@@ -19,10 +18,10 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/styleReview.css">
   <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css">
   <link href="../assets/css/pointColor.css" rel="stylesheet" />
 </head>
 
@@ -34,39 +33,62 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo">
-        <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
+      <div class="logo"><a href="index.do" class="simple-text logo-normal">
+     <img src="assets/img/logo/logo_b.png" style="position:relative; max-width: 170px;"></a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="./dashboard.do">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+          <li class="nav-item">
+            <a class="nav-link" href="member.do">
+              <i class="material-icons">person</i>
+              <p>내 정보</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.do">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
+            <a class="nav-link" href="member_plan.do?m_id=${LOGINUSER.m_id}">
+              <i class="material-icons">content_paste</i>
+              <p>나의 플래너</p>
             </a>
           </li>
           <li class="nav-item active ">
-            <a class="nav-link" href="./tables.do">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+            <a class="nav-link" href="member_review.do?m_id=${LOGINUSER.m_id}">
+              <i class="material-icons">library_books</i>
+              <p>나의 여행후기</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./myLike.do?m_id=${LOGINUSER.m_id}">
+              <i class="fa fa-heart"></i>
+              <p>나의 좋아요</p>
+            </a>
+          </li>
+          <!-- <li class="nav-item ">
+            <a class="nav-link" href="./icons.html">
+              <i class="material-icons">bubble_chart</i>
+              <p>Icons</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./map.do">
+            <a class="nav-link" href="./map.html">
               <i class="material-icons">location_ons</i>
               <p>Maps</p>
             </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="./support_mlist.do?m_id=${LOGINUSER.m_id}">
+              <i class="material-icons">tables</i>
+              <p>나의 문의내역</p>
+            </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./notifications.do">
+            <a class="nav-link" href="leaveM">
               <i class="material-icons">notifications</i>
-              <p>Notifications</p>
+              <p>회원탈퇴</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="logout">             
+              <p style="margin-left: 22%; color: lightpink;font-weight: bold;">로그아웃</p>
             </a>
           </li>
         </ul>
@@ -77,62 +99,16 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">여행 후기</a>
+            <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">library_books</i>  나의 여행후기</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="javascript:void(0)">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="javascript:void(0)">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="javascript:void(0)">Another Notification</a>
-                  <a class="dropdown-item" href="javascript:void(0)">Another One</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                  <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </div>
+          </button>          
         </div>
       </nav>
-      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
@@ -145,30 +121,30 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
-                       	<c:if test="${empty review}">
-						    <tr>
-							   <td align='center' colspan="5"> 리뷰가 존재하지 않습니다. </td>
-							</tr>
-						</c:if>
+                          <c:if test="${empty review}">
+                      <tr>
+                        <td align='center' colspan="5"> 리뷰가 존재하지 않습니다. </td>
+                     </tr>
+                  </c:if>
                         <c:forEach items="${review}" var="review">
                             <article class="blog_item" style="position:absoulte; width:500px; float: left;">
                                 <div class="blog_item_img">
                                      <img src="resources/upload/${ review.b_img }" style="height:350px;width:466px;">
-		                             <a class="blog_item_date">
+                                   <a class="blog_item_date">
                                         <h3>${review.b_rdate}</h3>
                                     </a>
                                 </div>
 
                                 <div class="blog_details" style="height:250px; width:466px; background-color: #FFFFF0;">
                                     <a class="d-inline-block" href="review_details?b_id=${review.b_id}&m_id=${LOGINUSER.m_id}">
-                                        <h2>${review.b_subject}</h2>
+                                        <h2 style="line-height: 1.2; color: #10285d; height: 2.3em; text-align: left; word-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${review.b_subject}</h2>
                                     </a>
                                     <p>${review.b_catgo}</p>
                                     <ul class="blog-info-link">
-                                       	<li><i class="fa fa-comments"></i> 03 Comments</li>
-                                        <li><i class="fa fa-comments"></i> ${review.b_like} Likes</li>
-										<li><a href="update.do?b_id=${review.b_id}">수정</a></li>
-										<li><a href="delete.do?b_id=${review.b_id}&m_id=${review.m_id}">삭제</a></li>
+                                         <li><i class="fa fa-comments"></i> ${review.b_reply} Comments</li>
+                                        <li><i class="fa fa-heart"></i> ${review.b_like} Likes</li>
+                              <li><a href="update.do?b_id=${review.b_id}">수정</a></li>
+                              <li><a href="delete.do?b_id=${review.b_id}&m_id=${review.m_id}">삭제</a></li>
                                     </ul>
                                 </div>
                             </article>
@@ -188,10 +164,10 @@
             , made with <i class="material-icons">favorite</i> by
             <a href="index.do" target="_blank">Odge.com</a> Made with
             <a href="https://github.com/lzhxxn" target="_blank">JH</a>
-			<a href="https://github.com/dragongit94" target="_blank">MY</a>
-			<a href="https://github.com/yumgit23" target="_blank">YM</a>
-			<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
-			<a href="https://github.com/suadeomgit" target="_blank">SH</a>
+         <a href="https://github.com/dragongit94" target="_blank">MY</a>
+         <a href="https://github.com/yumgit23" target="_blank">YM</a>
+         <a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+         <a href="https://github.com/suadeomgit" target="_blank">SH</a>
           </div>
         </div>
       </footer>

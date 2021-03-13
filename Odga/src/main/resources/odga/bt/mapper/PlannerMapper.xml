@@ -27,6 +27,11 @@
 		WHERE p_id = #{p_id} AND sp_day= #{sp_day} ORDER BY sp_id desc
 	</select>
 	
+	<!-- 특정 데이 일정 전체삭제 -->
+	<delete id="dayDelAll" parameterType="long">
+		delete from s_planner where p_id=#{p_id} and sp_day=#{sp_day}
+	</delete>
+	
 	<!-- 지역선택 -->
 	<select resultType="Area_T" id="list">select * from AREA_T order by rownum </select>
 	<select resultType="Sigungu_T" id="list_s">select * from SIGUNGU_T order by rownum </select>
@@ -107,10 +112,8 @@
 	
 	<!-- 해당 페이지 플래너 id 가져오기  -->
 	<select id="thisP_id" resultType="long" parameterType="long">
-		SELECT p_id FROM planner
-		where m_id = #{m_id} and rownum=1
-		order by p_id desc
-	</select>
+      SELECT p_id FROM (select p_id from planner where m_id=#{m_id} order by p_id desc) where rownum=1
+   </select>
 	<!-- 세부플래너 삭제 -->
 	<update id="delete_sPlan" parameterType="long">
 		delete from s_planner where p_id = #{p_id}
@@ -118,4 +121,8 @@
 	<update id="delete_Plan" parameterType="long">
 		delete from planner where p_id = #{p_id}
 	</update>
+	
+	<select id="getItem"  resultType="Touritems" parameterType="String">
+      select * from Touritems where contentid = #{contentid}
+   </select>
 </mapper>

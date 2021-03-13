@@ -22,7 +22,24 @@
   <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="../assets/css/pointColor.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styleReview.css">
 </head>
+
+<style>
+.listing_th{
+   font-weight: bold;
+   border-bottom: 2px solid;
+   width: 112.2%;
+   display: inline-block;
+   padding-bottom: 1%;
+}
+.listing_td{
+   padding-top: 2%;
+}
+
+</style>
+
 
 <body class="dark-edition">
   <div class="wrapper ">
@@ -32,47 +49,42 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-     <div class="logo">
-        <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
-      </div>
+     <div class="logo"><a href="index.do" class="simple-text logo-normal">
+          <img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;">
+        </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item  ">
+          <li class="nav-item ">
             <a class="nav-link" href="./dashboard.do">
               <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+              <p>대시보드</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./user.do">
+            <a class="nav-link" href="./admin_info.do">
               <i class="material-icons">person</i>
-              <p>User Profile</p>
+              <p>관리자 정보</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./tables.do">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+            <a class="nav-link" href="./memberList.do">
+              <i class="material-icons">tables</i>
+              <p>회원 리스트</p>
+            </a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="./support_list.do">
+              <i class="material-icons">library_books</i>
+              <p>문의글 리스트</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="./map.do">
               <i class="material-icons">location_ons</i>
-              <p>Maps</p>
+              <p>회사 위치</p>
             </a>
           </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="./notifications.do">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <!-- <li class="nav-item active-pro ">
-                <a class="nav-link" href="./upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li> -->
         </ul>
       </div>
     </div>
@@ -81,7 +93,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Notifications</a>
+           <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">library_books</i>	문의글 상세페이지</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
@@ -89,90 +101,53 @@
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
-          <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="javascript:void(0)">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="javascript:void(0)">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="javascript:void(0)">Another Notification</a>
-                  <a class="dropdown-item" href="javascript:void(0)">Another One</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                  <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
-                </a>
-              </li>
-            </ul>
           </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+          </nav>
+
       <div class="content">
         <div class="container-fluid">
           <div class="card">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title">상세페이지</h4>
+           <div class="card-header card-header-primary" style="width:96.3%;">
+              <h4 class="card-title">문의사항</h4>
               <p class="card-category">	Odga Member Inquiry
               </p>
             </div>
                 <div class="col-md-6">
-                  <h4 class="card-title">Detail page</h4>
-                  <div class="alert alert-info" style="width:200%;">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <b> 작성일 - </b> ${support.s_rdate}</span>
+                  <h4 class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                  <div class="alert alert-info" style="width:200%; background: linear-gradient(60deg, #2B3245, #4c505fde); box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 60 62);">
+                   <span><a class="listing_th" style="font-weight: bold; font-size:1.2em; font-family: Arial;"> 작성일</a> <br><br> 	${support.s_rdate}</span>
                   </div>
-                  <div class="alert alert-success" style="width:200%;">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <b> 글 제목 - </b> ${support.s_subject}</span>
+                  <div class="alert alert-success" style="width:200%; background: linear-gradient(60deg, #2B3245, #4c505fde); box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 60 62);">
+                   <span><a class="listing_th" style="font-weight: bold; font-size:1.2em; font-family: Arial;"> 글 제목</a><br><br>  ${support.s_subject}</span>
                   </div>
-                  <div class="alert alert-warning" style="width:200%; height:300px;">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <b> 글 내용 - </b> ${support.s_content}</span>
+                  <div class="alert alert-warning" style="width:200%; height:300px; background: linear-gradient(60deg, #2B3245, #4c505fde); box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 60 62);">
+                   <span><a class="listing_th" style="font-weight: bold; font-size:1.2em; font-family: Arial;"> 글 내용</a><br><br> ${support.s_content}</span>
                   </div>
                 </div>
               </div>
             </div>
+            
+            <c:if test="${LOGINUSER.m_verify eq 9}">
+            <c:choose>
+            <c:when test="${support.group_ord eq 0 }">
+            <a href="reply.do?origin_no=${support.origin_no}">
+            <input type="button" class="btn list-btn top-btn" value="답글 작성하기" style="text-align:center; width:98%; background-color: #343e56; margin-left:1%; font-weight: bold; font-size:1.2em;"></a>
+            </c:when>
+            <c:otherwise>
+            <a href="reply.do?origin_no=${support.origin_no}">
+            <input type="button" class="btn list-btn top-btn" value="답글 작성하기" style="text-align:center; width:48.3%; background-color: #343e56; margin-left:1%; font-weight: bold; font-size:1.2em;"></a>
+            </c:otherwise>
+            </c:choose>
+            
+            <c:if test="${support.group_ord eq 1}">  
+             <a href="support_delete.do?s_id=${support.s_id}">
+              <input type="button" class="btn list-btn top-btn" value="답글 삭제하기" style="text-align:center; width:48.3%; background-color: #343e56; margin-left:1%; font-weight: bold; font-size:1.2em;"></a>
+            </c:if>
+             </c:if>
+            
             <div class="col-md-12">
               <div class="places-buttons">
+              
        <footer class="footer">
         <div class="container-fluid">
           <div class="copyright float-right" id="date">

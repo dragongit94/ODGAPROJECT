@@ -41,7 +41,7 @@
 	
 	<!-- 마이페이지 나의 일정 가져오기 -->	
 	<select id="myPlanner" parameterType="long" resultType="Planner">
-	select * from planner where m_id= #{m_id}
+		select * from planner where m_id= #{m_id}
 	</select>
 	
 	<!-- 마이페이지 나의 일정 디테일 정보 -->	
@@ -50,8 +50,8 @@
 	</select>
 	
 	<select id="planDetail" parameterType="long" resultType="S_Planner">
-	select * from S_planner where p_id= #{p_id}
-	</select>
+   		select * from S_planner where p_id= #{p_id} order by sp_day
+   </select>
 	
 	<select id="detailItem" parameterType="String" resultType="Touritems">
 	select * from TOURITEMS where CONTENTID= #{contentid}
@@ -73,4 +73,9 @@
 	<delete id="deleteByB_id" parameterType="long">
 	delete from BOARD where B_ID=#{b_id} 
 	</delete>
+	
+	<!-- 문의하기 리스트 마이페이지-->
+ 	<select id="m_notifications" resultType="Support" parameterType="long">
+ 		select * from SUPPORT natural join MEMBER where ORIGIN_NO IN(select ORIGIN_NO from support where m_id=#{m_id}) order by ORIGIN_NO desc, GROUP_ORD asc
+ 	</select>
 </mapper>

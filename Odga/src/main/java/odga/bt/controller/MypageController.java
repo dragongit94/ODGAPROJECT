@@ -18,11 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 import odga.bt.domain.ListResult;
 import odga.bt.domain.Planner;
 import odga.bt.domain.Review;
+import odga.bt.domain.Support;
 import odga.bt.service.MypageService;
 import odga.bt.service.PlannerService;
 import odga.bt.service.ReviewService;
 import odga.bt.service.TouritemsService;
 import odga.bt.vo.DetailVo;
+import odga.bt.vo.TotalList;
 
 @Controller
 @RequestMapping("/")
@@ -95,6 +97,15 @@ public class MypageController {
 		   
 		   String view = "forward:/member_plan.do";
 		   return view;
+	   }
+	 //마이페이지 일정 수정
+	   @GetMapping("updateplan")
+	   public ModelAndView updateplan(long p_id, long m_id) {
+	      //System.out.println(m_id);
+	      TotalList lists = service.listS(m_id, p_id);
+	      System.out.println(lists.getThisP_id());
+	      ModelAndView mv = new ModelAndView("planner", "list", lists);
+	      return mv;
 	   }
 	   @RequestMapping("/member_review.do")
 	   public ModelAndView member_review(@RequestParam long m_id, HttpServletRequest request) {
@@ -183,5 +194,12 @@ public class MypageController {
 			}
 			
 			return new ModelAndView("redirect:/member_review.do?m_id="+ review.getM_id(), "review", service.selectByReviewS(m_id));
+		}
+		@GetMapping("/support_mlist.do") 
+	 	public ModelAndView m_notifications(@RequestParam long m_id) {
+		    System.out.println("#m_id: " + m_id);
+			List<Support> notifications = service.m_notificationsS(m_id);
+			ModelAndView mv = new ModelAndView("support_mlist", "notifications", notifications);
+			return mv;
 		}
 }

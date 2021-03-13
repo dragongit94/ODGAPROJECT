@@ -5,8 +5,11 @@
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Odga.com</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+		  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		  <title>
+		    Odga.com
+		  </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -67,7 +70,7 @@
 											</li>
 											<li><a href="use.html">이용방법</a></li>
 											<li><a href="https://www.agoda.com/">호텔예약</a></li>
-											<li class="add-list"><a onclick="goPlanner()"><i class="ti-plus"></i>나의 여행 만들기</a></li>
+											<li class="add-list"><a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a></li>
 											<li class="login"><a href="login.html">
 												<i class="ti-user"></i>로그인 / 회원가입</a>
 											</li>

@@ -27,5 +27,7 @@ public interface AdminService {
 	//문의게시판(관리자)
 	List<Support> notificationsS();
 	//문의게시판상세페이지(관리자)
-	Support selectByTitle(String s_subject);
+	Support selectByTitle(long s_id);
+	void insertreS(Support support);
+	void deleteS(long s_id);
 }

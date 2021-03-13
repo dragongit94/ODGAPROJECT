@@ -2464,17 +2464,17 @@ fieldset:disabled a.btn {
 	pointer-events: none
 }
 
-.btn-primary {
+/* .btn-primary {
 	color: #fff;
 	background-color: #007bff;
 	border-color: #007bff
 }
-
-.btn-primary:hover {
+ */
+/* .btn-primary:hover {
 	color: #fff;
 	background-color: #0069d9;
 	border-color: #0062cc
-}
+} */
 
 .btn-primary.focus,
 .btn-primary:focus {
@@ -2508,11 +2508,11 @@ fieldset:disabled a.btn {
 	border-color: #6c757d
 }
 
-.btn-secondary:hover {
+/* .btn-secondary:hover {
 	color: #fff;
 	background-color: #5a6268;
 	border-color: #545b62
-}
+} */
 
 .btn-secondary.focus,
 .btn-secondary:focus {
@@ -2578,7 +2578,7 @@ fieldset:disabled a.btn {
 	box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5)
 }
 
-.btn-info {
+/* .btn-info {
 	color: #fff;
 	background-color: #17a2b8;
 	border-color: #17a2b8
@@ -2588,7 +2588,7 @@ fieldset:disabled a.btn {
 	color: #fff;
 	background-color: #138496;
 	border-color: #117a8b
-}
+} */
 
 .btn-info.focus,
 .btn-info:focus {
@@ -9312,4 +9312,32 @@ a.text-dark:hover {
 		border-color: #dee2e6
 	}
 }
+/*  수정했으  */
+.btn-info {
+   color: #fff;
+   background-color: #ff3d1c;
+   border-color: #f2391a;
+}
 
+.btn-info:hover {
+   color: #fff;
+   background-color: #f32a48;
+   border-color: #f32a48;
+}
+
+.btn-secondary:hover {
+   color: #fff;
+   background-color: #f32a48;
+   border-color: #f32a48
+}
+
+.btn-primary {
+   color: #fff;
+   background-color: #040c26;
+   border-color: #050b1e;
+}
+.btn-primary:hover {
+   color: #fff;
+   background-color: #09194f;
+   border-color: #0c1844;
+}

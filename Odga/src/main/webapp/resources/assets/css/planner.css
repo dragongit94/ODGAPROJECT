@@ -35,7 +35,7 @@ a.link_a:hover{
 .map_wrap * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '�룍��', sans-serif;
+	font-family: 'Malgun Gothic', dotum, '占쎈즻占쏙옙', sans-serif;
 	font-size: 12px
 }
 
@@ -231,7 +231,7 @@ a.link_a:hover{
 .col-2,
 .col-3,
 .col-4,
-.col-5.col-6,.col-7 {
+.col-5,.col-6,.col-7 {
 	margin-right: 0px;
 	margin-left: 0px;
 	position: relative;
@@ -268,7 +268,7 @@ a.link_a:hover{
 	text-align: left;
 	overflow: hidden;
 	font-size: 12px;
-	font-family: 'Malgun Gothic', dotum, '�룍��', sans-serif;
+	font-family: 'Malgun Gothic', dotum, '占쎈즻占쏙옙', sans-serif;
 	line-height: 1.5;
 }
 
@@ -438,10 +438,10 @@ a.link_a:hover{
 	margin-left: 2%;
 }
 select {
-    -webkit-appearance: none;  /* ����Ƽ�� ���� ���߱� */
+    -webkit-appearance: none;  /* 占쏙옙占쏙옙티占쏙옙 占쏙옙占쏙옙 占쏙옙占쌩깍옙 */
     -moz-appearance: none;
     appearance: none;
-    background: url("http://localhost:8080/assets/img/icon/down-arrow(1).png") no-repeat 95% 50%; /*ȭ��ǥ ����� �̹��� */
+    background: url("http://localhost:8080/assets/img/icon/down-arrow(1).png") no-repeat 95% 50%; /*화占쏙옙표 占쏙옙占쏙옙占� 占싱뱄옙占쏙옙 */
 }
 select::-ms-expand {
     display: none;

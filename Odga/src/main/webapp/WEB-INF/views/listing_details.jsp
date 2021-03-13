@@ -38,7 +38,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
-    <header>
+<header>
         <!-- Header Start -->
        <div class="header-area header-transparent">
             <div class="main-header">
@@ -46,41 +46,58 @@
                     <div class="container-fluid">
                         <div class="row align-items-center">
                             <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2 col-md-1">
-                                <div class="logo">
-                                 <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
-                                </div>
+                            <div style="width: 10%;min-width: 9rem;">
+                                <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 100%;"></a>
                             </div>
-                            <div class="col-xl-10 col-lg-10 col-md-8">
-                                <!-- Main-menu -->
-                                <div class="main-menu f-right d-none d-lg-block">
-                                   <nav>
-										<ul id="navigation">
-											<li><a href="listing.do">국내여행지</a></li>
-											<li><a href="#">커뮤니티</a>
-												<ul class="submenu">
-													<li><a href="review.do">여행후기</a></li>
-													<li><a href="support.do">문의하기</a></li>
-												</ul>
-											</li>
-											<li><a href="use.do">이용방법</a></li>
-											<li><a href="https://www.agoda.com/">호텔예약</a></li>
-											<li class="add-list"><a onclick="goPlanner()"><i class="ti-plus"></i>나의 여행 만들기</a></li>
-											<li class="login">
-										<c:choose>
-											<c:when test="${empty LOGINUSER}">
-												<a href="login.do"><i class="ti-user"></i>로그인 / 회원가입</a>
-											</c:when>
-										<c:otherwise>
-											<a href="login.do"><i class="ti-user"></i> 님 로그아웃</a>
-											<li><a href="member.do"><i class="ti-user"></i>회원정보</a></li>
-										</c:otherwise>
-										</c:choose>
-										</li>
-										</ul>
-									</nav>
-								</div>
-							</div>
+                            <!-- Main-menu -->
+                              <div style="width: 84%;" class="main-menu f-right d-none d-lg-block" align="right">
+                               <nav>
+                           <ul id="navigation" style="width: 100%;float: left;">
+                              <div style="float: left;width: 83%;">
+                                    <li><a href="listing.do">국내여행지</a></li>
+                                    <li><a href="review.do">커뮤니티</a>
+                                       <ul class="submenu" style="text-align: left;">
+                                          <li><a href="review.do">여행후기</a></li>
+                                          <li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
+                                       </ul>
+                                    </li>
+                                    <li><a href="use.do">이용방법</a></li>
+                                    <li><a href="https://www.agoda.com/">호텔예약</a></li>
+                                    <li class="add-list" style="display: inline flow-root list-item;">
+                                       <a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a>
+                                    </li>
+                              </div>
+                              <div style="float: left;width: 17%;padding-top: 23px;" align="left">   
+                                 <li class="login" style="width: 103%;padding: 1%;text-align: center;">                          
+                                             <c:choose>
+                                                   <c:when test="${empty LOGINUSER}">
+                                                      <a href="login.do" style="padding: inherit;font-size: 80%;">
+                                                         <div style="float: left;font-size: 200%;margin-top: 7px;margin-left: 45px;">
+                                                            <i class="ti-user"></i>
+                                                         </div>
+                                                         <div style="width: 39%;float: left;margin-top: -22px;">
+                                                            </br>로그인</br>&</br>회원가입
+                                                         </div>
+                                                      </a>
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                      <c:choose>
+                                                         <c:when test="${LOGINUSER.m_verify eq 0}">
+                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>
+                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li>
+                                                         </c:when>
+                                                         <c:otherwise>
+                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>관리자님 로그아웃</a>
+                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li>
+                                                         </c:otherwise>
+                                                       </c:choose>
+                                                   </c:otherwise>
+                                             </c:choose>
+                                          </li>
+                                      </div>
+		                           </ul>
+		                        </nav>
+		                     </div>
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
@@ -89,13 +106,13 @@
                     </div>
                </div>
             </div>
-       </div>
+        </div>
         <!-- Header End -->
     </header>
     <main>
 
         <!-- Hero Start-->
-        <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
+        <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center" style="background-image: url(assets/img/myPlanImg/12.jpg);">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -118,7 +135,7 @@
                             <div id="map" style="height: 480px; position: relative; overflow: hidden;"></div>
                             <script>
                                 function initMap() {
-                                    var latlng = {  
+                                    var latlng = {
                                         lat: ${ListVo.touritems.mapy},
                                         lng: ${ListVo.touritems.mapx}
                                     };
@@ -172,27 +189,34 @@
                 <!-- listing Details Sta-->
                 <div class="listing-details-area section-padding" style="padding-top:5px;">
                     <div class="container">
-                       <h3 class="mb-30">추천 장소</h3>
+                       <h3 class="mb-30">근처 추천 장소</h3>
                         <div class="row">
-                        <c:forEach begin="1" end="3" items="${ListVo.listResult.list}" var="touritems">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-listing mb-30">
-                                    <div class="list-img">
-                                    <img src="${touritems.firstimage}" alt="" ></div>
-                                    <div class="list-caption">
-                                        <span>Hotspot</span>
-                                        <h3><a href="listing_details.do?title=${touritems.title}">${touritems.title}</a></h3>
-                                        <p>${touritems.addr1}</p>
-                                        <div class="list-footer">
+                        
+                      <c:set var="k" value="1"/>
+                      <c:forEach items="${ListVo.listResult.list}" var="touritems">
+                       <c:if test="${ListVo.touritems.areacode eq touritems.areacode}">
+                        <c:if test="${k ne 4}">
+                         <c:set var="k" value="${k+1}"/>
+                          <div class="col-lg-4 col-md-6">
+                            <div class="single-listing mb-30">
+                              <div class="list-img">
+                                <a href="listing_details.do?contentid=${touritems.contentid}"><img src="${touritems.firstimage}" alt="" ></a></div>
+                                  <div class="list-caption">
+                                    <span><a href="listing_details.do?contentid=${touritems.contentid}">Hotspot</a></span>
+                                     <h3><a href="listing_details.do?contentid=${touritems.contentid}">${touritems.title}</a></h3>
+                                     <p>${touritems.addr1}</p>
+                                     <div class="list-footer">
                                             <ul>
                                                 <li></li>
-                                                <li>${touritems.tel}</li>
+                                                <li>${ListVo.touritems.tel}</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           </c:forEach>
+                            </c:if>
+                            </c:if>
+                       </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -213,7 +237,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                 <a href="index.do"><img src="assets/img/logo/logo_b.png" style="position:relative; left:45px; max-width: 170px;"></a>
+                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>
@@ -221,13 +245,13 @@
 						<div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>관리자정보</h4>
+									<h4>Administrator</h4>
 									<ul>
-										<li><a href="#">이지훈</a></li>
-										<li><a href="#">허유민</a></li>
-										<li><a href="#">박종범</a></li>
-										<li><a href="#">이민용</a></li>
-										<li><a href="#">권성환</a></li>
+										<li><a href="https://github.com/lzhxxn">이지훈</a></li>
+										<li><a href="https://github.com/DobbyisFree1">박종범</a></li>
+										<li><a href="https://github.com/dragongit94">이민용</a></li>
+										<li><a href="https://github.com/yumgit23">허유민</a></li>
+										<li><a href="https://github.com/suadeomgit">권성환</a></li>
 									</ul>
 								</div>
 							</div>
@@ -235,12 +259,13 @@
 						<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>고객센터</h4>
+									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="#">문의하기</a></li>
-										<li><a href="#">이용약관</a></li>
-										<li><a href="#">개인정보 처리방침</a></li>
-										<li><a href="#">회사주소</a></li>
+										<li><a href="join.do">회원가입</a></li>
+										<li><a href="login.do">로그인</a></li>
+										<li><a onclick="goPlanner()" style ="cursor: pointer;">나의 여행 만들기</a></li>
+										<li><a href="review.do">여행후기</a></li>
+										<li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
 									</ul>
 								</div>
 							</div>
@@ -248,12 +273,11 @@
 						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 							<div class="single-footer-caption mb-50">
 								<div class="footer-tittle">
-									<h4>Download App</h4>
+									<h4>Contact with Us</h4>
 									<ul>
-										<li class="app-log"><a href="#"><img
-												src="assets/img/gallery/app-logo.png" alt=""></a></li>
-										<li><a href="#"><img
-												src="assets/img/gallery/app-logo2.png" alt=""></a></li>
+										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
+										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
+										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
 									</ul>
 								</div>
 							</div>
@@ -266,14 +290,18 @@
 							<div class="footer-copy-right">
 								<p>
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-									Copyright &copy;
+									&copy; Copyright 
 									<script>
 										document
 												.write(new Date().getFullYear());
 									</script>
-									Copyright©Odga.com Organization, All rights reserved.
-									<i class="fa fa-heart" aria-hidden="true"></i><a
-										href="https://odga.com" target="_blank">Odga.com</a>
+									<b>Odga.com</b> Made with
+									<i class="fa fa-heart" aria-hidden="true"></i>
+									<a href="https://github.com/lzhxxn" target="_blank">JH</a>
+									<a href="https://github.com/dragongit94" target="_blank">MY</a>
+									<a href="https://github.com/yumgit23" target="_blank">YM</a>
+									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
 									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
@@ -281,10 +309,10 @@
 						<div class="col-xl-3 col-lg-4">
 							<!-- Footer Social -->
 							<div class="footer-social f-right">
-								<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-									class="fab fa-twitter"></i></a> <a href="#"><i
-									class="fas fa-globe"></i></a> <a href="#"><i
-									class="fab fa-instagram"></i></a>
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
+								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
 							</div>
 						</div>
 					</div>
@@ -305,6 +333,14 @@ function goPlanner(){
 		 location.href = "login.do";
 	}else{
 		location.href = "planner?m_id=${LOGINUSER.m_id}";
+	}
+}
+function goSupport(){
+	if(${empty LOGINUSER}){
+		alert("로그인 후 이용 가능합니다.");
+		 location.href = "login.do";
+	}else{
+		location.href = "support.dp?m_id=${LOGINUSER.m_id}";
 	}
 }
 </script>

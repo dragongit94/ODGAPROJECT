@@ -9,6 +9,7 @@ import odga.bt.domain.Member;
 import odga.bt.domain.Planner;
 import odga.bt.domain.Review;
 import odga.bt.domain.S_Planner;
+import odga.bt.domain.Support;
 import odga.bt.domain.Touritems;
 
 
@@ -30,5 +31,7 @@ public interface MypageMapper {
 	void deleteByB_id(long b_id);
 	void updateByB_id(Review review);
 	void updateWithoutImg(Review review);
+	//나의 문의하기 리스트
+	List<Support> m_notifications(long m_id);
 }
 

@@ -11,6 +11,8 @@ import odga.bt.vo.TotalList;
 
 public interface PlannerService {	
 	List<Touritems> selectDayById(long p_id, long sp_day);
+	void dayDelAll(long p_id, long sp_day);
+	
 	SearchResult searchedList(Searchcode searchcode);
 	void insert_sp(S_Planner s_planner);
 	void delete_sp(long sp_id);
@@ -21,4 +23,6 @@ public interface PlannerService {
 	void save(Planner planner);
 	
 	void delPlan(long p_id);
+	
+	Touritems getItemS(String contentid);
 }

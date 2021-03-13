@@ -11,6 +11,10 @@
 	]]>
 	</select>
 	
+	<select id="selectHotspot" resultType="Touritems" parameterType="TouritemsVo" > 
+	select * from TOURITEMS where FIRSTIMAGE != '(null)' and TEL != '(null)' order by dbms_random.value
+	</select>
+	
 	<select id="selectByCatgo" resultType="Touritems" parameterType="TouritemsVo" >
 	<![CDATA[ 
 	select * from (select ROWNUM rnum, aa.* 
@@ -28,7 +32,7 @@
 	</select>
 
 	<select id="selectByTitle" parameterType="String" resultType="Touritems">
- 	 	select * from TOURITEMS where TITLE=#{title}
+ 	 	select * from TOURITEMS where contentid=#{contentid}
  	 </select>
  	 
 

@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    	나의 좋아요
+    Odga.com
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -33,7 +32,7 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link" href="member.do">
               <i class="material-icons">person</i>
               <p>내 정보</p>
@@ -51,12 +50,18 @@
               <p>나의 여행후기</p>
             </a>
           </li>
-         <li class="nav-item active ">
-            <a class="nav-link" href="./myLike.do">
+          <li class="nav-item active">
+            <a class="nav-link" href="myLike.do?m_id=${LOGINUSER.m_id}">
               <i class="fa fa-heart"></i>
               <p>나의 좋아요</p>
             </a>
-          </li>        
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./support_mlist.do?m_id=${LOGINUSER.m_id}">
+              <i class="material-icons">tables</i>
+              <p>나의 문의내역</p>
+            </a>
+          </li>
           <li class="nav-item ">
             <a class="nav-link" href="leaveM">
               <i class="material-icons">notifications</i>
@@ -65,7 +70,7 @@
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="logout">             
-              <p style="margin-left: 22%;color: lightpink;font-weight: bold;">로그아웃</p>
+              <p style="margin-left: 22%;color: snow;font-weight: bold;">로그아웃</p>
             </a>
           </li>
         </ul>

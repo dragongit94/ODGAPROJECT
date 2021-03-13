@@ -21,7 +21,7 @@ public class TouritemsServiceImpl implements TouritemsService {
 	@Resource
 	private TouritemsMapper touritemsMapper;
 	
-	//리스팅
+	//由ъ뒪�똿
 	@Override
 	public ListResult getTouritemsListResult(int cp, int ps, int rangeSize) {
 		long totalCount = touritemsMapper.selectCount();
@@ -31,7 +31,7 @@ public class TouritemsServiceImpl implements TouritemsService {
 		return new ListResult(cp, totalCount, ps, list, rangeSize);
 	}
 	
-	//검색
+	//寃��깋
 	@Override
 	public ListResult getTouritemsListResult(String catgo, String keyword, int cp, int ps, int rangeSize) {
 		TouritemsVo touritemsVo = new TouritemsVo(catgo, keyword, cp, ps);
@@ -42,10 +42,19 @@ public class TouritemsServiceImpl implements TouritemsService {
 	}
 	
 	
-	//상세페이지
+	//由ъ뒪�똿 �뵒�뀒�씪 異붿쿇�옣�냼
 	@Override
-	public Touritems selectByTitleS(String title) {
-		return touritemsMapper.selectByTitle(title);
+	public ListResult getTouritemsListResult() {
+		TouritemsVo touritemsVo = new TouritemsVo();
+		List<Touritems> list = touritemsMapper.selectHotspot(touritemsVo);
+		
+		return new ListResult(-1, -1, -1, list, -1);
+	}
+	
+	//�긽�꽭�럹�씠吏�
+	@Override
+	public Touritems selectByTitleS(String contentid) {
+		return touritemsMapper.selectByTitle(contentid);
 	}
 
 }

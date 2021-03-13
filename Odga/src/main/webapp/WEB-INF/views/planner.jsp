@@ -6,8 +6,11 @@
 
 		<head>
 			<meta charset="utf-8">
-			<meta http-equiv="x-ua-compatible" content="ie=edge">
-			<title>Odga.com</title>
+			<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+		  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		  <title>
+		    Odga.com
+		  </title>
 			<meta name="description" content="">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="manifest" href="site.webmanifest">
@@ -43,71 +46,79 @@
 			</div>
 			<!-- Preloader End -->
 			<header>
-				<!-- Header Start -->
-				<div class="header-area header-transparent" style="background: #040c26;">
-					<div class="main-header">
-						<div class="header-bottom  header-sticky">
-							<div class="container-fluid">
-								<div class="row align-items-center">
-									<!-- Logo -->
-									<div class="col-xl-2 col-lg-2 col-md-1">
-										<div class="logo">
-											<a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
-										</div>
-									</div>
-									<div class="col-xl-10 col-lg-10 col-md-8">
-										<!-- Main-menu -->
-										<div class="main-menu f-right d-none d-lg-block">
-											<nav>
-												<ul id="navigation">
-													<li><a href="listing.html">국내여행지</a></li>
-													<li><a href="#">커뮤니티</a>
-														<ul class="submenu">
-															<li><a href="review.html">여행후기</a></li>
-															<li><a href="support.html">문의하기</a></li>
-														</ul>
-													</li>
-													<li><a href="use.html">이용방법</a></li>
-													<li><a href="https://www.agoda.com/">호텔예약</a></li>
-													<li class="add-list"><a href="planner?m_id=${LOGINUSER.m_id}"><i
-																class="ti-plus"></i>나의 여행 만들기</a></li>
-													<li class="login">                           
-					                                    <c:choose>
-					                                          <c:when test="${empty LOGINUSER}">
-					                                             <a href="login.do"><i class="ti-user"></i>로그인 / 회원가입</a>
-					                                          </c:when>
-					                                          <c:otherwise>
-					                                             <c:choose>
-					                                                <c:when test="${LOGINUSER.m_verify eq 0}">
-					                                                   <a href="logout.do"><i class="ti-user"></i>${LOGINUSER.m_name} 회원님 로그아웃</a>
-					                                                   <li><a href="member.do"><i class="ti-user"></i> 마이페이지</a></li>
-					                                                </c:when>
-					                                                <c:otherwise>
-					                                                      <a href="logout.do"><i class="ti-user"></i>${LOGINUSER.m_name} 관리자님 로그아웃</a>
-					                                                      <li><a href="dashboard.do"><i class="ti-user"></i> 관리자페이지</a></li>
-					                                                </c:otherwise>
-					                                              </c:choose>
-					                                          </c:otherwise>
-					                                    </c:choose>
-					                                 </li>
-												</ul>
-											</nav>
-										</div>
-									</div>
-									<!-- Mobile Menu -->
-									<div class="col-12">
-										<div class="mobile_menu d-block d-lg-none"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Header End -->
-			</header>
+        <!-- Header Start -->
+       <div class="header-area header-transparent">
+            <div class="main-header">
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div style="width: 10%;min-width: 9rem;">
+                                <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 100%;"></a>
+                            </div>
+                            <!-- Main-menu -->
+                              <div style="width: 84%;" class="main-menu f-right d-none d-lg-block" align="right">
+                               <nav>
+                           <ul id="navigation" style="width: 100%;float: left;">
+                              <div style="float: left;width: 83%;">
+                                    <li><a href="listing.do">국내여행지</a></li>
+                                    <li><a href="review.do">커뮤니티</a>
+                                       <ul class="submenu" style="text-align: left;">
+                                          <li><a href="review.do">여행후기</a></li>
+                                          <li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
+                                       </ul>
+                                    </li>
+                                    <li><a href="use.do">이용방법</a></li>
+                                    <li><a href="https://www.agoda.com/">호텔예약</a></li>
+                                    <li class="add-list" style="display: inline flow-root list-item;">
+                                       <a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a>
+                                    </li>
+                              </div>
+                              <div style="float: left;width: 17%;padding-top: 23px;" align="left">   
+                                 <li class="login" style="width: 103%;padding: 1%;text-align: center;">                          
+                                             <c:choose>
+                                                   <c:when test="${empty LOGINUSER}">
+                                                      <a href="login.do" style="padding: inherit;font-size: 80%;">
+                                                         <div style="float: left;font-size: 200%;margin-top: 7px;margin-left: 45px;">
+                                                            <i class="ti-user"></i>
+                                                         </div>
+                                                         <div style="width: 39%;float: left;margin-top: -22px;">
+                                                            </br>로그인</br>&</br>회원가입
+                                                         </div>
+                                                      </a>
+                                                   </c:when>
+                                                   <c:otherwise>
+                                                      <c:choose>
+                                                         <c:when test="${LOGINUSER.m_verify eq 0}">
+                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>
+                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li>
+                                                         </c:when>
+                                                         <c:otherwise>
+                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>관리자님 로그아웃</a>
+                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li>
+                                                         </c:otherwise>
+                                                       </c:choose>
+                                                   </c:otherwise>
+                                             </c:choose>
+                                          </li>
+                                      </div>
+		                           </ul>
+		                        </nav>
+		                     </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
 			<main>
 				<!-- Hero Start-->
-				<div class="hero-area3 hero-overly2 d-flex align-items-center " style="min-height: 103px">
+				 <div class="hero-area3 hero-overly2 d-flex align-items-center " style="min-height: 103px">
 
 				</div>
 				<!--Hero End -->
@@ -119,10 +130,20 @@
 								<!-- Job Category Listing start -->
 								<div class="row" style="margin-left: 5px">
 
-									<div class="col-3">	
-										<input id="p_title" type="text" class="text" placeholder="Your Travel name.."/>	
-									</div>
-									<div class="col-6 " style="display: flex;">
+									<!-- <div class="col-3">	 -->
+										<c:set value="${list.planer}" var="planer"/>
+			                           <c:if test="${!empty planer}">
+		                                    <div class="col-2">   
+		                                       <input id="p_title" type="text" class="text" placeholder="Your Travel name.." value="${planer.p_title}"/>   
+		                                    </div>
+			                            </c:if>
+			                                 <c:if test="${empty planer}">
+		                                    <div class="col-2">   
+		                                       <input id="p_title" type="text" class="text" placeholder="Your Travel name.."/>   
+		                                    </div>
+			                          </c:if>
+									<!-- </div> -->
+									<div class="col-7 " style="display: flex;">
 										<select id="test1" name="test1" class="nice-select top-select" style="margin-left:0;">
 											<option value="" selected="selected">인원</option>
 											<option value="1인">1인</option>
@@ -172,12 +193,41 @@
 						</div>
 					</div>
 					<div class="row" style="margin-right:5px;margin-left:5px;margin-top:10px">
+						<!-- madal -->
+	               	  <div class="modal fade" id="show-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+					      aria-hidden="true">
+					      <div class="modal-dialog modal-lg" role="document">
+					        <div class="modal-content">
+					          <div class="modal-header">
+					            <h5 class="modal-title" id="show-movie-title">Modal title</h5>
+					            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					              <span aria-hidden="true">&times;</span>
+					            </button>
+					          </div>
+					          <div class="modal-body" id="show-movie-body">
+					            <div class="row">
+					              <div class="col-sm-8" id="show-movie-image" >
+					              </div>
+					              <div class="col-sm-4">
+					                <p><em id="show-movie-date"></em></p>
+					                <p id="show-movie-zipcode"></p>
+					                <p id="show-movie-tel"></p>
+					                <p id="overview"></p>
+					              </div>
+					            </div>
+					          </div>
+					          <div class="modal-footer">
+					            <button type="button" class="btn btn-secondary" style="border-radius: 7%;" data-dismiss="modal">Close</button>
+					          </div>
+					        </div>
+					      </div>
+					    </div>
 						<!-- Left content -->
 						<div class="col-1">
 							<div class="row" style="margin-top: 15px;">
 								<div class="col-12">
 									<div class="small-section-tittle2 mb-45" style="margin-bottom: 15px;">
-										<h5 style="margin-left: 15px;color:#fff;">DAY</h5>
+										<h5 style="margin-left: 15px;color:#fff;">1. DAY</h5>
 									</div>
 								</div>
 							</div>
@@ -185,14 +235,14 @@
 							<div class="category-listing mb-50" style="padding: 10px 10px 20px;">
 								<!-- single one -->
 								<div class="single-listing">
-								<c:set var="now" value="<%=new java.util.Date()%>" />
-								<c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+								<%-- <c:set var="now" value="<%=new java.util.Date()%>" />
+								<c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>  ${sysdate}--%>
 										<p class="p-date">시작일 : </p>
-										<input class="input-date" style="width: 100%;" type="date" id="sdate" value="${sysdate}"/>										
+										<input class="input-date" style="width: 100%;" type="date" id="sdate" value=""/>										
 										<p class="p-date">종료일 : </p>
-										<input class="input-date" style="width: 100%;" type="date" id="edate" value="${sysdate}"/>									
+										<input class="input-date" style="width: 100%;" type="date" id="edate" value=""/>									
 									<div class="select-job-items1">
-									<div style="min-height: 230px;">
+									<div style="min-height: 353px;">
 										<table id="myTable" class="table" >
 										  <thead>
 										  </thead>
@@ -202,9 +252,7 @@
 									</div>
 									<div class="single-listing">
 										<!-- Range Slider End -->
-										<button onclick="rowAdd()" class="btn list-btn mt-20">DAY 추가</button>
-										<button  onclick="rowDelete()" class="btn list-btn mt-20">DAY 삭제</button>
-										<button  onclick="dayDelete()" class="btn list-btn mt-20">전체 삭제</button>
+										<button  onclick="dayReset()" class="btn list-btn mt-20" style="font-size: small;">DAY 초기화</button>
 									</div>
 									
 
@@ -235,7 +283,7 @@
 									</div>
 								</div>								
 								<div class="single-listing">
-									<a href="#" class="btn list-btn mt-20" style="margin-top: 6%;">전체  삭제</a>
+									<a onclick="dayDelAll()" class="btn list-btn mt-20" style="margin-top: 6%;">전체  삭제</a>
 							</div>	
 							</div>
 						</div>
@@ -244,7 +292,7 @@
 							<div class="row" style="margin-top: 15px;">
 								<div class="col-12">
 									<div class="small-section-tittle2 mb-45" style="margin-bottom: 15px;">
-										<h5 style="margin-left: 15px;color:#fff;">장소를 선택하세요</h5>
+										<h5 style="margin-left: 15px;color:#fff;">2. 장소를 선택하세요</h5>
 									</div>
 								</div>
 							</div>
@@ -268,8 +316,10 @@
 									</div>
 									
 									<div class="select-job-items2">
-										<div class="card" id="card" style="min-height:405px;">
-										</div>
+										<!-- <div class="card" id="card" style="min-height:405px;">
+										</div> -->
+										<div class="row" id="data-panel" style="box-shadow: 0 1px 2px #aaa; overflow: auto; max-height: 520px; min-height: 405px; margin: 0;">
+                              			</div>
 									</div>
 								</div>
 <!-- 
@@ -314,94 +364,98 @@
 			</main>
 			<!-- Footer Start-->
 			<footer>
-				<div class="footer-area">
-					<div class="container">
-						<div class="footer-top footer-padding">
-							<div class="row justify-content-between">
-								<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-									<div class="single-footer-caption mb-50">
-										<div class="col-xl-2 col-lg-2 col-md-1">
-											<!-- Logo -->
-											<div class="logo">
-												<a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-									<div class="single-footer-caption mb-50">
-										<div class="footer-tittle">
-											<h4>관리자정보</h4>
-											<ul>
-												<li><a href="#">이지훈</a></li>
-												<li><a href="#">허유민</a></li>
-												<li><a href="#">박종범</a></li>
-												<li><a href="#">이민용</a></li>
-												<li><a href="#">권성환</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-									<div class="single-footer-caption mb-50">
-										<div class="footer-tittle">
-											<h4>고객센터</h4>
-											<ul>
-												<li><a href="#">문의하기</a></li>
-												<li><a href="#">이용약관</a></li>
-												<li><a href="#">개인정보 처리방침</a></li>
-												<li><a href="#">회사주소</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-									<div class="single-footer-caption mb-50">
-										<div class="footer-tittle">
-											<h4>Download App</h4>
-											<ul>
-												<li class="app-log"><a href="#"><img
-															src="assets/img/gallery/app-logo.png" alt=""></a></li>
-												<li><a href="#"><img src="assets/img/gallery/app-logo2.png" alt=""></a>
-												</li>
-											</ul>
-										</div>
-									</div>
+		<div class="footer-area">
+			<div class="container">
+				<div class="footer-top footer-padding">
+					<div class="row justify-content-between">
+						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+							<div class="single-footer-caption mb-50">
+								<div class="col-xl-2 col-lg-2 col-md-1">
+								<!-- Logo -->
+                                <div class="logo">
+                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+                                </div>
+                               </div>
+							 </div>
+							</div>
+						<div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+							<div class="single-footer-caption mb-50">
+								<div class="footer-tittle">
+									<h4>Administrator</h4>
+									<ul>
+										<li><a href="https://github.com/DobbyisFree1">박종범</a></li>
+										<li><a href="https://github.com/yumgit23">허유민</a></li>
+										<li><a href="https://github.com/dragongit94">이민용</a></li>
+										<li><a href="https://github.com/suadeomgit">권성환</a></li>
+										<li><a href="https://github.com/lzhxxn">이지훈</a></li>
+									</ul>
 								</div>
 							</div>
 						</div>
-						<div class="footer-bottom">
-							<div class="row d-flex justify-content-between align-items-center">
-								<div class="col-xl-9 col-lg-8">
-									<div class="footer-copy-right">
-										<p>
-											<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-											Copyright &copy;
-											<script>
-												document
-													.write(new Date().getFullYear());
-											</script>
-											Copyright©Odga.com Organization, All rights reserved.
-											<i class="fa fa-heart" aria-hidden="true"></i><a href="https://odga.com"
-												target="_blank">Odga.com</a>
-											<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-										</p>
-									</div>
+						<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+							<div class="single-footer-caption mb-50">
+								<div class="footer-tittle">
+									<h4>Quick Links</h4>
+									<ul>
+										<li><a href="join.do">회원가입</a></li>
+										<li><a href="login.do">로그인</a></li>
+										<li><a href="listing.do">국내여행지</a></li>
+										<li><a href="review.do">여행후기</a></li>
+										<li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
+									</ul>
 								</div>
-								<div class="col-xl-3 col-lg-4">
-									<!-- Footer Social -->
-									<div class="footer-social f-right">
-										<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i
-												class="fab fa-twitter"></i></a> <a href="#"><i
-												class="fas fa-globe"></i></a> <a href="#"><i
-												class="fab fa-instagram"></i></a>
-									</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+							<div class="single-footer-caption mb-50">
+								<div class="footer-tittle">
+									<h4>Contact with Us</h4>
+									<ul>
+										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
+										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
+										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
+									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</footer>
+				<div class="footer-bottom">
+					<div class="row d-flex justify-content-between align-items-center">
+						<div class="col-xl-9 col-lg-8">
+							<div class="footer-copy-right">
+								<p>
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									&copy; Copyright 
+									<script>
+										document
+												.write(new Date().getFullYear());
+									</script>
+									<b>Odga.com</b> Made with
+									<i class="fa fa-heart" aria-hidden="true"></i>
+									<a href="https://github.com/lzhxxn" target="_blank">JH</a>
+									<a href="https://github.com/dragongit94" target="_blank">MY</a>
+									<a href="https://github.com/yumgit23" target="_blank">YM</a>
+									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
+									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								</p>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-4">
+							<!-- Footer Social -->
+							<div class="footer-social f-right">
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
+								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
+								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
 			<!-- Footer End-->
 			<!-- Scroll Up -->
 			<div id="back-top">
@@ -411,21 +465,73 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <!-- 동적 셀렉트 박스 -->
-<script type="text/javascript">
-function savePlanner(){
-	var p_title = $("#p_title").val(); 
-	var p_msize = $("#test1 option:selected").val();
-	var p_concept = $("#test2 option:selected").val();
-	var p_id = 5;
-	alert("#1"+p_title+"#2"+p_msize+"#3"+p_concept);
-	
-
-}
-</script>
 <script>
+
     var checkUnload = true;
     $(window).on("beforeunload", function(){
         if(checkUnload) return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
+    });
+    
+    $(document).ready(function() {
+        
+        // ID를 alpreah_input로 가지는 곳에서 키를 누를 경우
+        $("#keyword").keydown(function(key) {
+        	checkNull();
+            //키의 코드가 13번일 경우 (13번은 엔터키)
+            if (key.keyCode == 13) {
+            	if(checkNull()){
+              	var keyword = document.getElementById("keyword").value;
+                 var searchOption= null;
+                 var areaindex = $("#areacode option:selected").attr('value');
+                 var typeindex = $("#contenttypeid option:selected").attr('value');
+                 var sigunguIndex = $("#sigunguCode option:selected").attr('value');
+                 $.ajax({
+                     url: "search.json", 
+                     type: "GET",
+                     data: { searchOption: searchOption, keyword : keyword, areacode : areaindex, 
+                           sigungucode: sigunguIndex },
+                     success: function(responseData){
+                      /*  if(!responseData){
+                          alert("검색 결과가 없습니다.");
+                          return false;
+                       } */
+                       var html = "";
+                     var html1 = "";
+                     var list = responseData.lists;
+                     var count = responseData.count;
+                     if(count>0) html1 += '<p>'+count+' 개의 검색결과가 있습니다.</p>';
+                     else{
+                          html1 += "<tr>";
+                          html1 += "<td colspan='4' align='center'>검색 결과가 없습니다.</td>";
+                          html1 += "</tr>";
+                     }
+                       if(list.length != 0){
+                        for(var i=0; i<list.length; i++){
+                        	html += '<div style="max-width: 100%;">';
+       	                	html += '<div class = "card mb-2">';
+	       	                 if((list[i].firstimage)!= null) html += '<img class="card-img-top" src = '+list[i].firstimage+' alt="Card image cap">';  
+	                         else html += '<img class="card-img-top" src = "https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg" >';                           
+       	                		html += '<div class = "movie-item-body" style="text-align: center;padding-top: 2%;"><h6 style="margin-bottom: 2%;font-weight: bold;">'+list[i].title+'</h6></div>';
+      	                		html += '<!-- "More" button -->';
+       	                		html += '<div style="padding: .1rem 0.3rem .1rem 0.3rem;background-color: rgba(0, 0, 0, .03); border-top: 1px solid rgba(0, 0, 0, .125);text-align: right;">';
+       	                			html += '<button style="border-radius: 7%;" onclick="markerm('+list[i].mapy+', '+list[i].mapx+', &quot;'+list[i].title+'&quot;, &quot;'+list[i].firstimage+'&quot;, &quot;'+list[i].addr1+
+       	                             '&quot;, &quot;'+list[i].zipcode+'&quot;); panTo('+list[i].mapy+', '+list[i].mapx+'); showMovie('+list[i].contentid+')" class = "btn-primary btn-show-movie " data-toggle ="modal" data-target = "#show-movie-modal" data-id = "'+list[i].contentid+'">More</button>';
+       	                			html += '<button style="border-radius: 7%;margin-left: 2%;" class="btn-info btn-add-favorite" data-id="'+list[i].contentid+'" onclick="addS_plan('+list[i].contentid+')">+</button>';
+       	                		html += '</div> '; 
+       	                	html += '</div>  ';
+       	                 html += ' </div>';        	                  
+       	              }       
+       	           }
+       	                $("#result").html(html1);
+       	           /* $("#card").html(html); */
+       	             $("#data-panel").html(html);
+                     }
+                  });
+            }else{
+            	return false;
+            }
+           }
+        });
     });
 </script>
 <script type="text/javascript">
@@ -505,7 +611,7 @@ function changes(fr) {
 <script>
 var sp_day = 0;
 function daydo(value){	
-	var p_id = 5; //나중에 받아주기
+	var p_id = ${thisP_id}; //나중에 받아주기
 	sp_day= value;
 	  $.ajax({
 		   url: "dayselect", 
@@ -538,6 +644,19 @@ function daydo(value){
 	   });
     }
     
+function dayDelAll(){	//일정 전체 삭제
+	var p = ${thisP_id}; 
+	var sp = sp_day;
+	  $.ajax({
+		   url: "dayDeleteAll", 
+		   type: "GET",
+		   data: { p_id: p, sp_day : sp },
+		   success: function(responseData){
+			   daydo(sp);
+		   }
+	   });
+    }
+    
   function rowAdd() {
 	  trCnt = $('#myTable tr').length+1;
     if(trCnt < 11){
@@ -548,16 +667,6 @@ function daydo(value){
     	return false;
     }   
   }
-
-  function rowDelete() {
-	 var trCnt = $('#myTable tr').length;
-    if(trCnt > 0){
-    	$('#myTable > tbody:last > tr:last').remove();
-    }else{
-    	return false;
-    }
-  }
-  
   function dayDelete() {
 		 var trCnt = $('#myTable tr').length;
 	    if(trCnt > 0){
@@ -565,10 +674,22 @@ function daydo(value){
 	    }else{
 	    	return false;
 	    }
+	}
+  function dayReset() {
+		 var trCnt = $('#myTable tr').length;
+	    if(trCnt > 0){
+	    	$('#myTable > tbody:last > tr ').remove();
+	    	document.getElementById("sdate").value = null;
+	    	document.getElementById("edate").value = null;
+	    	sdate=null;
+	    	edate=null;
+	    	$('#sdate').focus();
+	    }else{
+	    	return false;
+	    }
 	  }
   
   //일수 계산해서 day 생성 
-  
   var sdate;
   var edate;
   var currTime = 24*60*60*1000;
@@ -603,103 +724,194 @@ function daydo(value){
         }
 	});
   
+ 
   function search(value){
-	  var keyword = document.getElementById("keyword").value;
-	  var searchOption= value;
-	  var areaindex = $("#areacode option:selected").attr('value');
-	  var typeindex = $("#contenttypeid option:selected").attr('value');
-	  var sigunguIndex = $("#sigunguCode option:selected").attr('value');
-	  $.ajax({
-		   url: "search.json", 
-		   type: "GET",
-		   data: { searchOption: searchOption, keyword : keyword, areacode : areaindex, 
-			   	sigungucode: sigunguIndex },
-		   success: function(responseData){
-          /*  if(!responseData){
-				  alert("검색 결과가 없습니다.");
-				  return false;
-			  } */
-           var html = "";
-		   var html1 = "";
-		   var list = responseData.lists;
-		   var count = responseData.count;
-		   if(count>0) html1 += '<p>'+count+' 개의 검색결과가 있습니다.</p>';
-		   else{
-				  html1 += "<tr>";
-				  html1 += "<td colspan='4' align='center'>검색 결과가 없습니다.</td>";
-				  html1 += "</tr>";
-		   }
-           if(list.length != 0){
-				for(var i=0; i<list.length; i++){
-					 	 html += "<div class='serchTable'>";
-					 	 if(list[i].title.length>10) html += "<div><a class='link_a' style='position: absolute;font-size: 15px; margin-left: 10px; width: 80%;margin-top: 3%;' onclick='markerm("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
-                         "&quot;, &quot;"+list[i].zipcode+"&quot;); panTo("+list[i].mapy+", "+list[i].mapx+")'>"+list[i].title+"</a>";
-                         else html += "<div><a class='link_a' style='position: absolute;font-size: 18px; margin-left: 10px; width: 80%;margin-top: 3%;' onclick='markerm("+list[i].mapy+", "+list[i].mapx+", &quot;"+list[i].title+"&quot;, &quot;"+list[i].firstimage+"&quot;, &quot;"+list[i].addr1+
-                         "&quot;, &quot;"+list[i].zipcode+"&quot;); panTo("+list[i].mapy+", "+list[i].mapx+")'>"+list[i].title+"</a>";
-                         html += "<img src='assets/icon/add.png' style='margin: 7px 0 0 90%;width: 8%;cursor: pointer;opacity: 0.6;;' onclick='addS_plan(&quot;"+list[i].contentid+"&quot;)'></div>";
-				  		 
-				  		 if((list[i].firstimage)!= null){ html += "<div style='margin-bottom: 20px;'><div style='text-align: center;'><img class='pic' src='"+list[i].firstimage+"'/></div><p style='font-size: small;margin-left: 10px;'>"+list[i].addr1+"</p></div>";	
-				  		 }else{ html += "<div style='margin-bottom: 20px;'><div style='text-align: center;'><img class='pic' style='width: 30%;' src='https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'/></div><p style='font-size: small;margin-left: 10px;'>"+list[i].addr1+"</p></div>";}						 	
-				  		/*  html += "<div style='font-size: xx-small;'>"+list[i].addr1+"</div>"; */
-				  		 html += "</div>";
-				  }		 
-			  }
-           	  $("#result").html(html1);
-			  $("#card").html(html);
-		   }
-	   });
-  }
+	  if(checkNull()){
+	     var keyword = document.getElementById("keyword").value;
+	     var searchOption= value;
+	     var areaindex = $("#areacode option:selected").attr('value');
+	     var typeindex = $("#contenttypeid option:selected").attr('value');
+	     var sigunguIndex = $("#sigunguCode option:selected").attr('value');
+	     $.ajax({
+	         url: "search.json", 
+	         type: "GET",
+	         data: { searchOption: searchOption, keyword : keyword, areacode : areaindex, 
+	               sigungucode: sigunguIndex },
+	         success: function(responseData){
+	          /*  if(!responseData){
+	              alert("검색 결과가 없습니다.");
+	              return false;
+	           } */
+	           var html = "";
+	         var html1 = "";
+	         var list = responseData.lists;
+	         var count = responseData.count;
+	         if(count>0) html1 += '<p>'+count+' 개의 검색결과가 있습니다.</p>';
+	         else{
+	              html1 += "<tr>";
+	              html1 += "<td colspan='4' align='center'>검색 결과가 없습니다.</td>";
+	              html1 += "</tr>";
+	         }
+	           if(list.length != 0){
+	            for(var i=0; i<list.length; i++){
+	            	html += '<div style="max-width: 100%;">';
+	               	html += '<div class = "card mb-2">';
+		                 if((list[i].firstimage)!= null) html += '<img class="card-img-top" src = '+list[i].firstimage+' alt="Card image cap">';  
+	                 else html += '<img class="card-img-top" src = "https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg" >';                           
+	               		html += '<div class = "movie-item-body" style="text-align: center;padding-top: 2%;"><h6 style="margin-bottom: 2%;font-weight: bold;">'+list[i].title+'</h6></div>';
+	              		html += '<!-- "More" button -->';
+	               		html += '<div style="padding: .1rem 0 .1rem 0.3rem;background-color: rgba(0, 0, 0, .03); border-top: 1px solid rgba(0, 0, 0, .125);text-align: right;margin-right: 3%;">';
+	               			html += '<button style="border-radius: 7%;" onclick="markerm('+list[i].mapy+', '+list[i].mapx+', &quot;'+list[i].title+'&quot;, &quot;'+list[i].firstimage+'&quot;, &quot;'+list[i].addr1+
+	                            '&quot;, &quot;'+list[i].zipcode+'&quot;); panTo('+list[i].mapy+', '+list[i].mapx+'); showMovie('+list[i].contentid+')" class = "btn-primary btn-show-movie " data-toggle ="modal" data-target = "#show-movie-modal" data-id = "'+list[i].contentid+'">More</button>';
+	               			html += '<button style="border-radius: 7%;margin-left: 2%;" class="btn-info btn-add-favorite" data-id="'+list[i].contentid+'" onclick="addS_plan('+list[i].contentid+')">+</button>';
+	               		html += '</div> '; 
+	               	html += '</div>  ';
+	                html += ' </div>'; 
+	              }       
+	           }
+	                $("#result").html(html1);
+	           /* $("#card").html(html); */
+	  	       $("#data-panel").html(html)
+	         }
+	      });
+		  }else{
+			  return false;
+		  }
+	  }
+	 
+</script>
+<script>	
+
+function showMovie(value) {	
+    var contentid = value;
+    $.ajax({
+ 	         url: "getItem.json", 
+ 	         type: "GET",
+ 	         data: { contentid: contentid},
+ 	         success: function(responseData){
+ 	    
+ 	        	const modalTitle = document.getElementById("show-movie-title");
+	 	        const modalImage = document.getElementById("show-movie-image");
+	 	        const modalAddr = document.getElementById("show-movie-date");	 	        
+	 	        const modalZipcode = document.getElementById("show-movie-zipcode");
+	 	        const modalTel = document.getElementById("show-movie-tel");
+ 	        	modalTitle.textContent = responseData.title;
+ 	        	modalImage.innerHTML = '<img src = "'+responseData.firstimage+'" class="img-fluid" style="border: 2px solid black;" alt="Responsive image">';
+ 	        	if(responseData.addr2 != null)
+ 	        		modalAddr.textContent = '주소 : '+responseData.addr1+' '+responseData.addr2;
+ 	        	else modalAddr.textContent = '주소 : '+responseData.addr1;
+ 	        	modalZipcode.textContent ='우편번호: '+responseData.zipcode;
+ 	        	if(responseData.tel != null)
+ 	        		modalTel.textContent ='전화번호: '+responseData.tel;
+ 	         }
+    }); 
+    var searchUrl = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=6f%2B9GV1OSBV%2BRfUgfgMGJdFxW6rxP%2F5pUN8ZCITBNd94TjMATfCcpyLoRWl3X8ad9ojV9B%2BSLxgndmvE23wVBQ%3D%3D&contentTypeId=&contentId='+contentid+'&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&transGuideYN=Y'
+    /* alert(searchUrl); */
+    $.ajax({
+        type: 'get',
+        url: searchUrl, // 읽어올 문서
+       dataType: "xml",
+        data: { contentid: value},
+        success: function(xml) {
+            const modalOverview = document.getElementById("overview");
+            $(xml).find('item').each(function(){
+               var over = $(this).find("overview").text();
+               var overnum = over.split("<br>");
+               if(overnum[0]!=null) over=overnum[0];
+               if(over != null){
+                  if(over.length>70){
+                     var fetchOver = over.substring(0,70);
+                     modalOverview.textContent = 'TMI : '+fetchOver+' ...(생략) ';
+                  }                 
+                  modalOverview.textContent = 'TMI : '+over;                      
+               }    
+            });
+        }
+    }); 
+}
+
+</script>
+<script>
+function checkNull(){
+	var sdate = 
+		document.getElementById("sdate").value;
+	  var edate = document.getElementById("edate").value;
+	  sdate = sdate.trim();
+	  edate = edate.trim();
+	  if(sdate == '' || sdate ==null){
+		  alert("시작일을 입력해주세요");
+		  $('#sdate').focus();
+        return false;
+    }else {
+    	if(edate ==''||edate==null){
+    		alert("종료일을 입력해주세요");
+  		  	$('#edate').focus();
+  		  	return false;
+    	}else{
+    		if(sp_day==0){
+    			alert("Day 버튼을 클릭하여 Day를 선택해주세요.");
+    			return false;
+    		}
+    	}
+    }return true;
+}
 </script>
 <script>
 	var marker;
+	var overlay;
+	var over;
+	function setMapitems(latitude, longitude, title, firstimage, addr1, zipcode){
+		  marker = new kakao.maps.Marker({
+		         map: map, 
+		         position: new kakao.maps.LatLng(latitude, longitude)
+		     });
+		     markers.push(marker);
+
+		     var content = '<div class="wrap" id="over">' + 
+		                 '    <div class="info">' + 
+		                 '        <div class="title">' + 
+		                 '          '+title+'' + 
+		                 '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+		                 '        </div>' + 
+		                 '        <div class="body">' + 
+		                 '            <div class="img">' +
+		                 '                <img src='+firstimage+'; width="73" height="70">' +
+		                 '           </div>' + 
+		                 '            <div class="desc">' + 
+		                 '                <div class="ellipsis">'+addr1+'</div>' + 
+		                 '                <div class="jibun ellipsis">(우) '+zipcode+'</div>' + 
+		                 '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
+		                 '            </div>' + 
+		                 '        </div>' + 
+		                 '    </div>' +    
+		                 '</div>';
+		     
+		     
+		     overlay = new kakao.maps.CustomOverlay({
+		      content: content,
+		      map: map,
+		      position: marker.getPosition()       
+		     });
+		     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+		     kakao.maps.event.addListener(marker, 'click', function() {
+		    	 closeOverlay();
+		         overlay.setMap(map);
+		     });
+	  }
+	
   function markerm(latitude, longitude, title, firstimage, addr1, zipcode) {
-        // 마커가 표시될 위치입니다 
-     // 지도에 마커를 표시합니다 
-     marker = new kakao.maps.Marker({
-         map: map, 
-         position: new kakao.maps.LatLng(latitude, longitude)
-     });
-     markers.push(marker);
-     //alert(markers[0]);
-     // 커스텀 오버레이에 표시할 컨텐츠 입니다
-     // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-     // 별도의 이벤트 메소드를 제공하지 않습니다 
-     var content = '<div class="wrap" id="over">' + 
-                 '    <div class="info">' + 
-                 '        <div class="title">' + 
-                 '          '+title+'' + 
-                 '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-                 '        </div>' + 
-                 '        <div class="body">' + 
-                 '            <div class="img">' +
-                 '                <img src='+firstimage+'; width="73" height="70">' +
-                 '           </div>' + 
-                 '            <div class="desc">' + 
-                 '                <div class="ellipsis">'+addr1+'</div>' + 
-                 '                <div class="jibun ellipsis">(우) '+zipcode+'</div>' + 
-                 '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-                 '            </div>' + 
-                 '        </div>' + 
-                 '    </div>' +    
-                 '</div>';
-     
-     // 마커 위에 커스텀오버레이를 표시합니다
-     // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-     var overlay = new kakao.maps.CustomOverlay({
-      content: content,
-      map: map,
-      position: marker.getPosition()       
-     });
-     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-     kakao.maps.event.addListener(marker, 'click', function() {
-         overlay.setMap(map);
-     });
+      if (marker != null || overlay != null) { 
+    	  closeOverlay();
+    	  setMapitems(latitude, longitude, title, firstimage, addr1, zipcode);
+	  }else{
+		  setMapitems(latitude, longitude, title, firstimage, addr1, zipcode);
+	  }
   }   
+  
   // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-  function closeOverlay() {
-	  
-      var over = document.getElementById('over');
-      over.remove();
+  function closeOverlay() { 
+      over = document.getElementById('over');
+      if(over != null)over.remove();
       marker.setMap(null);
   }
   function panTo(latitude, longitude) {
@@ -754,10 +966,11 @@ function daydo(value){
 	}
   
   function delS_plan(sp_id) {
+	  var p_id = ${thisP_id};
 	    $.ajax({
 	        url: "delete_sp",
 	        type: "GET",
-	        data: {sp_id:sp_id, sp_day:sp_day},
+	        data: {sp_id:sp_id, sp_day:sp_day, p_id:p_id},
 	        success: function(responseData){	        	
 	            if(!responseData){
 	 				  alert("장소를 추가해주세요.");
@@ -801,7 +1014,24 @@ function reset(){
 	dayDelete();
 }
 </script>
-
+<script type="text/javascript">
+function goPlanner(){
+	if(${empty LOGINUSER}){
+		alert("로그인 후 이용 가능합니다.");
+		 location.href = "login.do";
+	}else{
+		location.href = "planner?m_id=${LOGINUSER.m_id}";
+	}
+}
+function goSupport(){
+	if(${empty LOGINUSER}){
+		alert("로그인 후 이용 가능합니다.");
+		 location.href = "login.do";
+	}else{
+		location.href = "support.dp?m_id=${LOGINUSER.m_id}";
+	}
+}
+</script>
 			<!-- JS here -->
 			
 			<!-- All JS Custom Plugins Link Here here -->

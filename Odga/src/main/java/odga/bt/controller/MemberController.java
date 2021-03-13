@@ -33,38 +33,24 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 
-
-	
-	/*@GetMapping("login.do")
-	public String Join() {		
-		//service.Join(member);		
-		return "login";
-	}*/
     @PostMapping("/join.do")
 	   public String joinS(@RequestParam(value = "file", required = false) MultipartFile file, Member member) {
 		  Member member1 = member;
-		  member1 = service.saveStore(member, file);
-		/* String m_fname = file.getName(); */
-	      String m_ofname = file.getOriginalFilename();
-	      System.out.println("###"+member1.getM_fname()+m_ofname);
-		/* member1.setM_fname(m_fname); */
-	      member1.setM_ofname(m_ofname);
-	      service.joinS(member);
-		/* service.saveStore(file); */
-	      
-	      System.out.println("email: " + member.getM_email());
-	      System.out.println("name: " + member.getM_name());
-	      System.out.println("pwd: " + member.getM_pwd());
-	      System.out.println("phone: " + member.getM_phone());
-	      System.out.println("gender: " + member.getM_gender());
-	      System.out.println("birth: " + member.getM_birth());
-	      System.out.println("m_fname: " + member.getM_fname());
-	      System.out.println("m_ofname: " + member.getM_ofname());
-	      System.out.println("m_verify: " + member.getM_verify());
-	      System.out.println("m_about: " + member.getM_about());
-	      System.out.println("#service: " + service);
-	      
-	      return "redirect:index.do";
+		  if (file.isEmpty()) {
+			  member1.setM_fname("defaultProfile.png");
+			  member1.setM_ofname("defaultProfile.png");
+			  service.joinS(member1);
+			  return "redirect:index.do";
+		  }else {
+			  member1 = service.saveStore(member, file);
+			/* String m_fname = file.getName(); */
+		      String m_ofname = file.getOriginalFilename();
+		      System.out.println("###"+member1.getM_fname()+m_ofname);
+			/* member1.setM_fname(m_fname); */
+		      member1.setM_ofname(m_ofname);		 
+		      service.joinS(member);
+		      return "redirect:index.do";
+		  }
 	   }
 	/* 아이디/비밀번호 찾기 */
 	@PostMapping("findId")

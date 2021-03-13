@@ -6,7 +6,11 @@
 
 <!-- Bootstrap Core CSS -->
 <link href="../assets/css/login.css" rel="stylesheet">
-
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Odga.com
+  </title>
 
 <!DOCTYPE html>
 <!-- 로그인  -->

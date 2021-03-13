@@ -71,7 +71,16 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 	@Override
-	public Support selectByTitle(String s_subject) {
-		return adminMapper.selectByTitle(s_subject);
+	public Support selectByTitle(long s_id) {
+		return adminMapper.selectByTitle(s_id);
+	}
+	@Override
+	public void insertreS(Support support) {
+		adminMapper.insert_reS(support);
+	}
+	@Override
+	public void deleteS(long s_id) {
+		adminMapper.delete(s_id);
+		
 	}
 }

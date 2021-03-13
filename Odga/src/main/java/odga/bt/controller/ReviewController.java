@@ -39,9 +39,12 @@ public class ReviewController {
 		return "review/write"; 
 	}
 	@PostMapping("write")
-	public String write(Review review, MultipartFile file) {	//���� �ۼ� ������
-		String name = file.getName();	
-		review.setB_img(service.saveStore(file));	
+	public String write(Review review, MultipartFile file) {	//���� �ۼ� ������		
+		if(file.isEmpty()) {
+			review.setB_img("insteadimg.png");
+		}else {
+			review.setB_img(service.saveStore(file));
+		}
 		service.insertS(review);	
 		return "redirect:review"; 		
 	}

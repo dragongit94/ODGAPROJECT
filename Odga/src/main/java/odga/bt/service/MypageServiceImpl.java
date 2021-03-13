@@ -9,20 +9,26 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import odga.bt.domain.Area_T;
 import odga.bt.domain.Member;
 import odga.bt.domain.Planner;
 import odga.bt.domain.Review;
 import odga.bt.domain.S_Planner;
+import odga.bt.domain.Sigungu_T;
+import odga.bt.domain.Support;
 import odga.bt.domain.Touritems;
 import odga.bt.mapper.MemberMapper;
 import odga.bt.mapper.MypageMapper;
+import odga.bt.mapper.PlannerMapper;
 import odga.bt.vo.DetailVo;
+import odga.bt.vo.TotalList;
 
 @Service
 @AllArgsConstructor
 public class MypageServiceImpl implements MypageService {
 	private MypageMapper mypageMapper;
 	private MemberMapper memberMapper;
+	private PlannerMapper plannerMapper;
 	@Override
 	public List<Review> listMyLike(long m_id) {
 		return mypageMapper.listMyLike(m_id);
@@ -104,5 +110,23 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void updateWithoutImgS(Review review) {
 		mypageMapper.updateWithoutImg(review);
+	}
+	@Override
+	   public TotalList listS(long m_id, long p_id) {
+	      //newPlanerS(m_id); //신규 플래너 id 생성
+	      ArrayList<Area_T> list = plannerMapper.list();
+	      //for(Area_T li:list) System.out.println(li.getArea());
+	      ArrayList<Sigungu_T> list_s = plannerMapper.list_s();
+	      Planner planer = mypageMapper.thisplanner(p_id);
+	      TotalList totalList = new TotalList(list, list_s, p_id, planer);
+	      if(list.size()==0) {
+	         return null;
+	      }else {
+	         return totalList;
+	      }
+	   }
+	@Override
+	public List<Support> m_notificationsS(long m_id) {
+		return mypageMapper.m_notifications(m_id);
 	}
 }

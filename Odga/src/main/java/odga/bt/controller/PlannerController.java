@@ -32,12 +32,17 @@ public class PlannerController {
 
 	@GetMapping("dayselect")
 	public @ResponseBody List<Touritems> day(@RequestParam long p_id, @RequestParam long sp_day) {
-		
 		System.out.println("#"+sp_day);
 		List<Touritems> list = service.selectDayById(p_id, sp_day);
 		return list;
 	}
-
+	@GetMapping("dayDeleteAll")
+	public @ResponseBody List<Touritems> dayDelAll(@RequestParam long p_id, @RequestParam long sp_day) {
+		System.out.println("#"+sp_day);
+		service.dayDelAll(p_id,sp_day);
+		List<Touritems> list = service.selectDayById(p_id, sp_day);
+		return list;
+	}
 	@GetMapping("planner")
 	public ModelAndView planner(@RequestParam long m_id) {
 		//System.out.println(m_id);
@@ -95,7 +100,7 @@ public class PlannerController {
 	}
 	
 	@GetMapping("delete_sp")
-	public @ResponseBody List<Touritems> delete_sp(Touritems touritems, HttpServletRequest request) {
+	public @ResponseBody List<Touritems> delete_sp(Touritems touritems, HttpServletRequest request,long p_id) {
 		String sp_idStr = request.getParameter("sp_id");
 		String sp_dayStr = request.getParameter("sp_day");
 		System.out.println("sp_id: "+sp_idStr);
@@ -115,7 +120,6 @@ public class PlannerController {
 		}		
 		service.delete_sp(sp_id);
 		
-		int p_id = 5; // 나중에 플래너 아이디 받기
 		List<Touritems> list = service.selectDayById(p_id, sp_day);
 		return list;
 	}
@@ -150,4 +154,11 @@ public class PlannerController {
 		
 		return "redirect:index.do";
 	}
+	@GetMapping("getItem")
+	   public @ResponseBody Touritems getItem(String contentid) {
+	      System.out.println("##################"+contentid);
+	      Touritems item = service.getItemS(contentid);
+	      System.out.println("####123123"+item.getContentid());
+	      return item;
+	   }
 }

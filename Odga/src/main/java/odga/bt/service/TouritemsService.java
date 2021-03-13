@@ -1,15 +1,20 @@
 package odga.bt.service;
 
 import odga.bt.domain.Touritems;
+
+import java.util.List;
+
 import odga.bt.domain.ListResult;
 import odga.bt.domain.Member;
 import odga.bt.vo.TouritemsVo;
 
 public interface TouritemsService {
 	ListResult getTouritemsListResult(int cp, int ps, int rangeSize);
-	ListResult getTouritemsListResult(String catgo, String keyword, int cp, int ps, int rangeSize);  //keyword 추가로 받으면 where 조건절이 생긴다.  서비스랑 Mapper랑 같을 필요가없다. 이름이
+	ListResult getTouritemsListResult(String catgo, String keyword, int cp, int ps, int rangeSize);  //keyword 異붽�濡� 諛쏆쑝硫� where 議곌굔�젅�씠 �깮湲대떎.  �꽌鍮꾩뒪�옉 Mapper�옉 媛숈쓣 �븘�슂媛��뾾�떎. �씠由꾩씠
+	ListResult getTouritemsListResult();
 	
-	Touritems selectByTitleS(String title);
+	Touritems selectByTitleS(String contentid);
+	
 
 	
 
