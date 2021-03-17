@@ -6,24 +6,34 @@
 <!-- Bootstrap Core CSS -->
 <link href="../assets/css/login.css" rel="stylesheet">
 <link href="assets/css/profile2.css" rel="stylesheet">
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Odga.com
-  </title>
 
-
+<style>
+.swal-button{
+	background-color: #ff3d1c;
+}
+.swal-button:not([disabled]):hover {
+    background-color: #ff5235;
+}
+.swal-button:hover{
+	background-color: #ff5235;
+}
+.swal-footer {
+    text-align: center;
+}
+.swal-button:focus {
+    box-shadow: none;
+}
+</style>
 <!DOCTYPE html>
+<!-- Logo -->
+ <div style="width: 10%;min-width: 9rem;">
+     <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 100%;"></a>
+ </div>
 <!-- 로그인  -->
-<div class="col-xl-1 col-lg-2 col-md-1">
-    <div class="logo">
-      <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
-     </div>
-   </div>
 <p class="tip"></p>
 <div class="cont">
   <div class="form sign-in">
-   <form action="login.do" method="post" id="LoginS"  > 
+   <form action="login.do" method="post" id="LoginS" name="loginS"  > 
    
     <h2>여행시작하기,</h2>
     <label>
@@ -32,15 +42,13 @@
     </label>
     <label>
       <span>비밀번호</span>
-      
       <input type="password" name="m_pwd" id="l_pwd" />
     </label>
 	<a href="find_pwd">
-    <p class="forgot-pass"><a href="findIdPwd">아이디 또는 비밀번호가 기억이 안나시나요?</a></p>
-    </p>
+    <p class="forgot-pass"><a href="findIdPwd">이메일 또는 비밀번호가 기억이 안나시나요?</a></p>
     </a>
 
-    <button type="submit" class="submit">시작</button>
+    <button type="button" class="submit" onclick="loginCheck()">시작 </button>
     <center>
     <button class="loginBtn loginBtn--facebook"  >
   	Login with Facebook
@@ -73,10 +81,11 @@
     <!-- 회원가입  -->
     
     <script>
- 
+
 	//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
     var idCheck = 0;
     var pwdCheck = 0;
+    
     //아이디 체크하여 가입버튼 비활성화, 중복확인.
     function checkId() {
     	   	
@@ -102,17 +111,18 @@
                     if(idCheck==1 && pwdCheck == 1) {
                         $(".submit").prop("disabled", false);
                         $(".submit").css("background-color", "#4CAF50");
-                    } 
+
+                    }
                 } else if (data == '1') {
                     $(".submit").prop("disabled", true);
                     $(".submit").css("background-color", "#aaaaaa");
                     $("#email").css("background-color", "#FFCECE");
                     idCheck = 0;
-                } 
-            	
-            	
+                }else{
+        			salert('회원가입 완료');
+                }
+                           	
             	console.log(data);
-            	
             	
             },
             // 밑에 라인 참조 시작
@@ -120,7 +130,7 @@
             // 밑에 라인 참조 종료
             error : function(error) {
             	console.log(error);
-            	alert("에러");
+            	salert("에러");
             }
         });
     }
@@ -153,7 +163,7 @@
     // email
     function emailAuth(){
     	
-    	if ( confirm("인증 이메일을 발송하였습니다") ) {
+    	if ( confirm("인증 이메일을 발송중입니다.") ) {
     		
             $.ajax({
                 data : {
@@ -162,18 +172,18 @@
                 type : "post",
                 url : "/sign-up",
                 success : function(data) {
-                	alert("인증코드를 확인하세요.");
+                	salert("인증코드를 확인하세요.");
                 	console.log(data);
                 	$("#email_auth_chk").css("display","block");
                 },
                 error : function(error) {
                 	console.log(error);
-                	alert("에러");
+                	salert("에러");
                 }
             });
     		
     	} else {
-    		alert("다시 시도해주세요.");
+    		salert("다시 시도해주세요.");
     	}
     	
     }
@@ -187,24 +197,23 @@
             type : "post",
             url : "/emailConfirm",
             success : function(data) {
-            	alert("인증성공하였습니다.");
+            	salert("인증성공하였습니다.");
             	console.log(data);
             	$("#email_auth_chk").css("display","none");
             	
             },
             error : function(error) {
             	console.log(error);
-            	alert("에러");
-            	alert("이메일인증을 다시하세요");
+            	slert("에러");
+            	salert("이메일인증을 다시하세요");
             }
         });
     }
     
-    
     </script>
    
    <div class="form sign-up">
-    <form action="join.do" method="post" id="joinS" enctype="multipart/form-data"  >
+    <form action="join.do" name="joinFrm" method="post" id="joinS" enctype="multipart/form-data"  >
     
       <h2>두근두근 여행,</h2>
       <label>
@@ -249,15 +258,6 @@
 	      <input type="radio" value="female" id="female" name="m_gender" checked style="width:auto;"/>
 	      <label for="squaredFour" style="margin:0;width:50;">여자</label>
       </div>
-
-      <!-- <CENTER>
-	    <input type="radio" id="male" name="m_gender" value="male" checked>
-		<label for="male" class="radio">Male</label><br>
-		<input type="radio" id="female" name="m_gender" value="female">
-		<label for="female" class="radio">Female</label><br>
-      </CENTER> 
-      </div>
-      -->
       <label>
       <span>자기소개</span>
         <input type="text" name="m_about" id="m_about"/>
@@ -267,23 +267,34 @@
         <input type="file" name="file" id="m_fname"/>
       </label>
     <div class="row">
-      <button type="submit" class="submit" >가입하기</button>
-      <!-- <button type="button" class="fb-btn" >Join with <span>facebook</span></button> -->
+      <button type="button" id="submitBtn" class="submit" >가입하기</button>
     </div>
     </form>
    </div>
   </div>
 </div>
-
-<a href="https://dribbble.com/shots/3306190-Login-Registration-form" target="_blank" class="icon-link">
-  <img src="http://icons.iconarchive.com/icons/uiconstock/socialmedia/256/Dribbble-icon.png">
-</a>
-<a href="https://instagram.com/m1inyong" target="_blank" class="icon-link icon-link--twitter">
-  <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png">
-</a>
 <script src="../assets/js/login.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    function salert(text){
+    	swal({
+			text: text,
+			buttons:{true:"확인"},
+			});
+    }
+document.getElementById('submitBtn').onclick = function(){
+			swal({
+				text: "회원가입이 완료 되었습니다.",
+				buttons:{"확인":true},
+				}).then((value) => {
+					if(value){
+						document.joinFrm.submit();
+					}
+				});
+		}
+</script>
+<script>
 $(document).ready(function() {
     	
         var readURL = function(input) {
@@ -306,6 +317,45 @@ $(document).ready(function() {
            $(".file-upload").click();
         });
     });
-    </script>
+</script>
+<script>
+	 function loginCheck(){
+		 
+		var l = document.loginS; 
+		
+		if (l.m_email.value == "" && l.m_pwd.value == "") {
+			 salert("이메일 및 비밀번호를 입력해주세요.");
+		    l.m_email.focus();
+		    return false;
+		}
+		$.ajax({                             // ajax 함수를 실행하는 선언문입니다. jquery에서 가져와
+			type : "POST",                   // method 구분입니다. 파라미터는 GET, POST 문자열 구문으로 작성합니다.
+            url : "/checkLogin.jy",          // url을 입력합니다. 예를들어, requestMapping=login.do 컨트롤러 연동이 필요할경우 login.do 를 문자열로 작성 
+            data : {               			// 모델앤뷰 객체에 담길 data 파라미터입니다. VO 로 담겨서 컨트롤러로 이동된다고 생각하세요
+                m_email : $("#l_email").val()
+               ,m_pwd   : $("#l_pwd").val()
+            },
+            success : function(data) {       // ajax가 성공할 경우 해당 구문으로 진입합니다.
+            	// 로그인 성공
+            	
+            	if ( data == "1" ){
+            		l.submit();
+            	} else {
+            		salert("이메일 또는 비밀번호를 다시 확인해주세요.");
+            		return;
+            	}
+            },
+            error : function(error) {        // ajax가 오류날 경우 해당 구문으로 진입합니다.
+            	
+            	// 이제 checkLogin.jy 에서 아이디, 비밀번호 검증하고 true false 리턴줘서 처리하면됨
+            	salert("서비스에러발생");
+
+            }
+        });
+	 }
+	 
+</script>
+	 
+
 <!-- jQuery-->
         

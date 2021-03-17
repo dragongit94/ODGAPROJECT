@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
 <head>
   <meta charset="utf-8" />
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -24,44 +23,70 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   <link href="../assets/css/pointColor.css" rel="stylesheet" />
   <link rel="stylesheet" media="all" href="assets/css/list.css" />
-  
 </head>
-
+<style>
+.swal-button--홈으로 {
+ color:#555;
+ background-color:#efefef
+}
+.swal-button--홈으로:not([disabled]):hover {
+ background-color:#e8e8e8
+}
+.swal-button--홈으로:active {
+ background-color:#d7d7d7
+}
+.swal-button--홈으로:focus {
+ box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)
+}
+.swal-button--로그인 {
+ background-color:#ff3d1c
+}
+.swal-button--로그인:not([disabled]):hover {
+ background-color:#ff5235
+}
+.swal-button--로그인:active {
+ background-color:#ff5235
+}
+.nav-link{
+	cursor: pointer;
+}
+</style>
 <body class="dark-edition">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
       <div class="logo"><a href="index.do" class="simple-text logo-normal">
          <img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;">
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="member.do">
+          <li class="nav-item ">
+            <a class="nav-link" name="goMember" onclick="goOthers(name)">
               <i class="material-icons">person</i>
               <p>내 정보</p>
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="member_plan.do?m_id=${LOGINUSER.m_id}">
+          <li class="nav-item active" >
+            <a class="nav-link" name="goPlan" onclick="goOthers(name)">
               <i class="material-icons">content_paste</i>
               <p>나의 플래너</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="member_review.do?m_id=${LOGINUSER.m_id}">
+            <a class="nav-link" name="goReview" onclick="goOthers(name)">
               <i class="material-icons">library_books</i>
               <p>나의 여행후기</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="myLike.do?m_id=${LOGINUSER.m_id}">
+            <a class="nav-link" name="goLike" onclick="goOthers(name)">
               <i class="fa fa-heart"></i>
               <p>나의 좋아요</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" name="goSupport" onclick="goOthers(name)">
+              <i class="material-icons">tables</i>
+              <p>나의 문의내역</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -106,8 +131,8 @@
 	                       	<c:if test="${!empty myPlans}">	
 	                      			<c:forEach items="${myPlans}" var="plan">	
 	                      				<c:if test="${!empty plan.p_title}">		
-										<a class="card-item" href="#">
-										  <div class="card" onclick="location.href='plan_detail.do?m_id=${plan.m_id}&p_id=${plan.p_id}';">
+										<a class="card-item" onclick="goDetail(${plan.m_id},${plan.p_id})" style="cursor:pointer">
+										  <div class="card">
 										    <div class="side front">
 												<div class="img" style='background-image:url(/assets/img/myPlanImg/${plan.randomImg});'></div>   
 												<div class="info">
@@ -137,26 +162,6 @@
         <div class="container-fluid">
           <nav class="float-left">
             <ul>
-              <!-- <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li> -->
             </ul>
           </nav>
           <div class="copyright float-right" id="date">
@@ -170,73 +175,6 @@
         let date = document.getElementById('date');
         date.innerHTML = '&copy; ' + x + date.innerHTML;
       </script>
-    </div>
-  </div>
-  <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-      <a href="#" data-toggle="dropdown">
-        <i class="fa fa-cog fa-2x"> </i>
-      </a>
-      <ul class="dropdown-menu">
-        <li class="header-title"> Sidebar Filters</li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger active-color">
-            <div class="badge-colors ml-auto mr-auto">
-              <span class="badge filter badge-purple active" data-color="purple"></span>
-              <span class="badge filter badge-azure" data-color="azure"></span>
-              <span class="badge filter badge-green" data-color="green"></span>
-              <span class="badge filter badge-warning" data-color="orange"></span>
-              <span class="badge filter badge-danger" data-color="danger"></span>
-            </div>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="header-title">Images</li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-1.jpg" alt="">
-          </a>
-        </li>
-        <li class="active">
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-2.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-3.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-4.jpg" alt="">
-          </a>
-        </li>
-        <li class="button-container">
-          <a href="https://www.creative-tim.com/product/material-dashboard-dark" target="_blank" class="btn btn-primary btn-block">Free Download</a>
-        </li>
-        <!-- <li class="header-title">Want more components?</li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
-                  Get the pro version
-                </a>
-            </li> -->
-        <li class="button-container">
-          <a href="https://demos.creative-tim.com/material-dashboard-dark/docs/2.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
-            View Documentation
-          </a>
-        </li>
-        <li class="button-container github-star">
-          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard/tree/dark-edition" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-        </li>
-        <li class="header-title">Thank you for 95 shares!</li>
-        <li class="button-container text-center">
-          <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
-          <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
-          <br>
-          <br>
-        </li>
-      </ul>
     </div>
   </div>
   <!--   Core JS Files   -->
@@ -257,6 +195,55 @@
   <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript">
+  function goOthers(name){
+		if(${LOGINUSER.m_id eq null}){
+			swal({
+				title: "세션만료 !",
+				text: "로그인 후 이용 가능합니다.",
+				buttons:{"로그인":"로그인","홈으로":"홈으로"},
+				}).then((value) => {
+					if(value==="로그인"){
+						location.href = "login.do";
+					}else if (value==="홈으로"){
+						location.href = "index.do";
+					}
+				});
+			}else{
+				if(name=="goPlan"){
+					location.href = "member_plan.do?m_id=${LOGINUSER.m_id}";
+				}else if(name=="goReview"){
+					location.href = "member_review.do?m_id=${LOGINUSER.m_id}";
+				}else if(name=="goLike"){
+					location.href ="myLike.do?m_id=${LOGINUSER.m_id}";
+				}else if(name=="goSupport"){
+					location.href ="support_mlist.do?m_id=${LOGINUSER.m_id}";
+				}else if(name=="goMember"){
+					location.href ="member.do";
+				}else if(name=="goDetail"){
+					location.href ="plan_detail.do?m_id=${plan.m_id}&p_id=${plan.p_id}";
+				}
+			}
+		}
+  function goDetail(m_id,p_id){
+	  if(${LOGINUSER.m_id eq null}){
+			swal({
+				title: "세션만료 !",
+				text: "로그인 후 이용 가능합니다.",
+				buttons:{"로그인":"로그인","홈으로":"홈으로"},
+				}).then((value) => {
+					if(value==="로그인"){
+						location.href = "login.do";
+					}else if (value==="홈으로"){
+						location.href = "index.do";
+					}
+				});
+			}else{			
+					location.href ="plan_detail.do?m_id="+m_id+"&p_id="+p_id;
+			}
+  }
+</script>
 </body>
 
 </html>

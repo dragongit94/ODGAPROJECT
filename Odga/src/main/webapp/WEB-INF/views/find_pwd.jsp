@@ -11,14 +11,12 @@
   <title>
     Odga.com
   </title>
-
 <!DOCTYPE html>
 <!-- 로그인  -->
 <p class="tip"></p>
 <div class="cont">
   <div class="form sign-in">
    <form action="login.do" method="post" id="LoginS"  > 
-   
     <h2>여행시작하기,</h2>
     <label>
       <span>이메일</span>
@@ -27,7 +25,6 @@
     <label>
       <span>비밀번호</span>
       <input type="password" name="m_pwd" id="l_pwd" />
-
     </label>
     <p class="forgot-pass"><a href="find_pwd">비밀번호를 잊으셨나요?</a></p>
     <button type="submit" class="submit">시작</button>
@@ -42,7 +39,6 @@
 	</button>
 	</form>
   </div>
-  
   <div class="sub-cont">
     <div class="img">
       <div class="img__text m--up">
@@ -53,16 +49,12 @@
         <h2>가입하기</h2>
         <p></p>
       </div>
-      
       <div class="img__btn">
         <span class="m--up">가입하기</span>
         <span class="m--in">로그인 하기</span>
       </div>
-      
     </div>
-    
     <!-- 회원가입  -->
-    
     <script>
  
 	//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
@@ -232,15 +224,9 @@
       <span>생년월일</span>
         <input type="date" name="m_birth" id="m_birth"  required/>
       </label>
-      
+          
       <div class="gender">
       <CENTER>
-	    <!-- 
-	    <input type="radio" value="male" name="m_gender" />
-	    <label for="male" class="radio" checked>Male</label>
-	    <label for="female" class="radio">Female</label>
-	    <input type="radio" value="female" name="m_gender" />
-	     -->
 	    <input type="radio" id="male" name="m_gender" value="male" checked>
 		<label for="male" class="radio">Male</label><br>
 		<input type="radio" id="female" name="m_gender" value="female">
@@ -253,7 +239,6 @@
     </div>
     </form>
    </div>  
-
   </div>
 </div>
 

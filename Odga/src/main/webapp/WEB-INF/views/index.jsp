@@ -12,7 +12,6 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon"
 	href="assets/img/favicon.ico">
-
 <!-- CSS here -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -26,7 +25,18 @@
 <link rel="stylesheet" href="assets/css/nice-select.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
+<style>
+.swal-button--확인 {
+ background-color:#ff3d1c
+}
+.swal-button--확인:not([disabled]):hover {
+ background-color:#ff5235
+}
+.swal-button--확인:active {
+ background-color:#ff5235
+}
+.visit-caption::-webkit-scrollbar{width:10px}.visit-caption::-webkit-scrollbar-thumb{background-color:#6799c5;border-radius:10px;background-clip:padding-box;border:2px solid transparent}.visit-caption::-webkit-scrollbar-track{background-color:#e4e4e4;border-radius:10px;box-shadow:inset 0 0 3px white}.icon-scroll,.icon-scroll:before{position:absolute;left:50%}.icon-scroll:before{content:'';width:7px;height:13px;background:#6799c5;margin-left:-4px;top:8px;border-radius:4px;animation-duration:1.5s;animation-iteration-count:infinite;animation-name:scroll}@media(max-width:575px){.icon-scroll{display:none}.peoples-visit .single-visit.left-img::before{display:none}.peoples-visit .visit-caption2{display:none}.peoples-visit .visit-caption3{display:content}}@media(min-width:576px){.icon-scroll{width:40px;height:70px;margin-left:-2%;margin-top:-255px;box-shadow:inset 0 0 0 2px #6799c5;border-radius:25px}.best-review{padding-block:2rem;background:white;border-radius:20px;left:3.3%;padding-left:2%;width:112%}.peoples-visit .single-visit.left-img::before{left:-3.2%}.peoples-visit .visit-caption2{OVERFLOW-Y:auto;width:500px;height:750px;background:rgba(255,255,255);padding:unset;scrollbar-width:thin;scrollbar-color:#6799c5 #e4e4e4}.visit-caption3{display:none}}@media(min-width:768px){.icon-scroll{width:40px;height:70px;margin-left:-2%;margin-top:-270px;box-shadow:inset 0 0 0 2px #6799c5;border-radius:25px}.best-review{padding-block:2rem;background:white;border-radius:20px;left:4.1%;padding-left:2%;width:112%}.peoples-visit .single-visit.left-img::before{left:-5.5%}.peoples-visit .visit-caption2{OVERFLOW-Y:auto;width:750px;height:750px;background:rgba(255,255,255);padding:unset;scrollbar-width:thin;scrollbar-color:#6799c5 #e4e4e4}.visit-caption3{display:none}}@media(min-width:992px){.icon-scroll{width:40px;height:70px;margin-left:-2%;margin-top:-300px;box-shadow:inset 0 0 0 2px #6799c5;border-radius:25px}.best-review{padding-block:7rem;background:white;border-radius:20px;left:24%;padding-left:5%}.peoples-visit .visit-caption2{OVERFLOW-Y:auto;width:750px;height:750px;background:rgba(255,255,255);padding:unset;scrollbar-width:thin;scrollbar-color:#6799c5 #e4e4e4}.visit-caption3{display:none}}@media(min-width:1200px){.icon-scroll{width:40px;height:70px;margin-left:-2%;margin-top:-340px;box-shadow:inset 0 0 0 2px #6799c5;border-radius:25px}.best-review{padding-block:7rem;background:white;border-radius:20px;left:50%;padding-left:5%}.peoples-visit .visit-caption2{OVERFLOW-Y:auto;width:750px;height:750px;background:rgba(255,255,255);padding:unset;scrollbar-width:thin;scrollbar-color:#6799c5 #e4e4e4}.visit-caption3{display:none}}@media only screen and (min-width:768px) and (max-width:991px){.peoples-visit .single-visit.left-img::before{display:contents}}@media only screen and (min-width:576px) and (max-width:767px){.peoples-visit .single-visit.left-img::before{display:contents}}@keyframes scroll{0%{opacity:1}100%{opacity:0;transform:translateY(46px)}}*{box-sizing:border-box}body{margin:0}section{display:flex;justify-content:space-between;padding:5%}section div{background-color:#ff9800;width:23%;height:300px}.sa{opacity:0;transition:all .5s ease}.sa-down{transform:translate(0,-100px)}.sa.show{opacity:1;transform:none}.peoples-visit .single-visit.left-img::before{border-radius:20px;width:111%}.peoples-visit .visit-caption span{margin-bottom:inherit}.peoples-visit .visit-caption p{margin-bottom:inherit}
+</style>
 <body>
 	<!-- Preloader Start -->
     <div id="preloader-active">
@@ -55,22 +65,28 @@
                               <div style="width: 84%;" class="main-menu f-right d-none d-lg-block" align="right">
                                <nav>
                            <ul id="navigation" style="width: 100%;float: left;">
-                              <ul style="float: left;width: 83%;">
+                              <ul style="float: left;width: 80%;">
                                     <li><a href="listing.do">국내여행지</a></li>
                                     <li><a href="review.do">커뮤니티</a>
                                        <ul class="submenu" style="text-align: left;">
                                           <li><a href="review.do">여행후기</a></li>
-                                          <li><a onclick="goSupport()">문의하기</a></li>
+                                          <li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
                                        </ul>
                                     </li>
                                     <li><a href="use.do">이용방법</a></li>
                                     <li><a href="https://www.agoda.com/">호텔예약</a></li>
+                                    <c:if test="${LOGINUSER.m_verify eq 0}">
+                                    	<li><a href="member.do">마이페이지</a></li>
+                                    </c:if>                                  
+                                    <c:if test="${LOGINUSER.m_verify eq 9}">
+                                    	<li><a href="dashboard.do">관리자페이지</a></li>
+                                    </c:if>
                                     <li class="add-list" style="display: inline flow-root list-item;">
                                        <a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a>
                                     </li>
                               </ul>
-                              <ul style="float: left;width: 17%;padding-top: 23px;" align="left">   
-                                 <li class="login" style="width: 103%;padding: 1%;text-align: center;">                          
+                              <ul style="float: left;width: 20%;padding-top: 23px;" align="left">   
+                                 <li class="login" style="width: 75%;padding: 1%;text-align: center;float:left;">                          
                                              <c:choose>
                                                    <c:when test="${empty LOGINUSER}">
                                                       <a href="login.do" style="padding: inherit;font-size: 80%;">
@@ -85,17 +101,21 @@
                                                    <c:otherwise>
                                                       <c:choose>
                                                          <c:when test="${LOGINUSER.m_verify eq 0}">
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li>
-                                                         </c:when>
+                                                            <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>                                                             										          
+                                                         </c:when>                                           
                                                          <c:otherwise>
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>관리자님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li>
+                                                             <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>관리자님 로그아웃</a>
                                                          </c:otherwise>
                                                        </c:choose>
                                                    </c:otherwise>
                                              </c:choose>
                                           </li>
+                                          <c:if test="${not empty LOGINUSER}">
+	 										<li style="float: right;width: 25%;">   
+	                                      	 <div class="main-menu f-right d-none d-lg-block"><img class="img-fluid" onclick="goMypage()" src="assets/img/profile/${LOGINUSER.m_fname}" alt="" style="cursor: pointer;min-height:60px;width: 60px;border-radius: 50%;max-width: 100%;border: 3px solid white;">
+			                                    </div>
+			                           		</li> 
+			                           		</c:if>                                    
                                       </ul>
 		                           </ul>
 		                        </nav>
@@ -112,56 +132,53 @@
         <!-- Header End -->
     </header>
 	<main>
-
    <!-- Hero Area Start-->
    <div class="slider-area">
       <div class="single-slider slider-height d-flex align-items-center" style="background-color: rgba(0, 0, 150, 0.15);">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-xl-8 col-lg-9">
-	
-	
 		<!-- Hero Caption -->
 		<div class="hero__caption">
 			<span style="font: italic bold 2em/1em Georgia, serif;">Plan your trip </span>
-			<h1>Where are u going ?</h1>
+			<h1 style="font-size:40px">오디가에서 여행을 시작하세요!</h1>
 		</div>
-						<!--Hero Area 검색  -->
-							<form action="listing.do" class="search-box">
-								<div class="input-form">
-									<input type="text" placeholder="여행지를 찾아보세요." name="keyword" required="required" />
-								</div>
-								<div class="select-form">
-								<div class="select-job-items1">
-                                    <select name="catgo">
-                                        <option value="title">관광지</option>
-                                        <option value="addr1">주소</option>					
-                                    </select>
-                               	 </div>
-								</div>
-								<div class="search-form">
-									<button type="submit">Search</button>
-								</div>
-							</form>
-		                     <div style="text-align: center;width: 60%;">
-		                        <div style="border: 4px solid rgba(255, 255, 255, 0.14);border-radius: 50px;margin-left: 33%;background: rgba(55, 78, 132, 0.37);padding-inline:2%;margin-top: 5%;float: left;width: 100%;">
-		                           <div style="width: 15%;float:left;">
-		                              <div id=iconImg ></div>   
-		                           </div>
-		                           <div style="width: 85%;float: left;margin-top: 0.7rem;">
-		                              <div class="ctype" style="float: left; width: 27%; font-weight: bold; font-family: sans-serif;  font-size: 1em; text-align: center;color: white;"></div>
-		                              <div class="clowtemp" style="float: inherit; width: 18%; font-weight: bold;color: #2E9AFE;text-align: center;"></div>
-		                              <div style="color: white; margin-right:3px; margin-left:3px;width: 2%;float: inherit;">/</div>
-		                              <div class="chightemp" style="float: inherit; width: 18%; font-weight: bold;color: #FA5858;text-align: center;"></div>
-		                              
-		                           <div class="cityName" style="float: left; width: 28%; color: white;  font-weight: bold; font-size: 1em; font-family: monospace; text-align:center;"></div></div>
-		                        </div>
-		                     </div>
-						</div>
+			<!--Hero Area 검색  -->
+				<form action="listing.do" class="search-box">
+					<div class="input-form">
+						<input type="text" placeholder="여행지를 찾아보세요." name="keyword" required="required" />
 					</div>
+					<div class="select-form">
+					<div class="select-job-items1">
+                                 <select name="catgo">
+                                     <option value="title">관광지</option>
+                                     <option value="addr1">주소</option>					
+                                 </select>
+                            	 </div>
+					</div>
+					<div class="search-form">
+						<button type="submit">검 색</button>
+					</div>
+				</form>
+                    <div style="text-align: center;width: 60%;">
+                       <div style="border: 4px solid rgba(255, 255, 255, 0.14);border-radius: 50px;margin-left: 33%;background: rgba(55, 78, 132, 0.37);padding-inline:2%;margin-top: 5%;float: left;width: 100%;">
+                          <div style="width: 15%;float:left;">
+                             <div id=iconImg ></div>   
+                          </div>
+                          <div style="width: 85%;float: left;margin-top: 0.7rem;">
+                             <div class="ctype" style="float: left; width: 27%; font-weight: bold; font-family: sans-serif;  font-size: 1em; text-align: center;color: white;"></div>
+                             <div class="clowtemp" style="float: inherit; width: 18%; font-weight: bold;color: #2E9AFE;text-align: center;"></div>
+                             <div style="color: white; margin-right:3px; margin-left:3px;width: 2%;float: inherit;">/</div>
+                             <div class="chightemp" style="float: inherit; width: 18%; font-weight: bold;color: #FA5858;text-align: center;"></div>
+                             
+                          <div class="cityName" style="float: left; width: 28%; color: white;  font-weight: bold; font-size: 1em; font-family: monospace; text-align:center;"></div></div>
+                        </div>
+                     </div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 		<!--Hero Area End-->
 		
 		<!-- Popular Locations Start -->
@@ -172,7 +189,7 @@
 						<!-- Section Tittle -->
 						<div class="section-tittle text-center mb-80">
 							<span>Most visited places</span>
-							<h2>Popular Locations</h2>
+							<h2>주요 관광 도시</h2>
 						</div>
 					</div>
 				</div>
@@ -185,7 +202,7 @@
 							<div class="location-details">
 								<p>서울</p>
 								<a href="listing.do?keyword=서울&catgo=addr1" class="location-btn">2982 <i class="ti-plus"></i>
-									Location
+									장소
 								</a>
 							</div>
 						</div>
@@ -198,7 +215,7 @@
 							<div class="location-details">
 								<p>부산</p>
 								<a href="listing.do?keyword=부산&catgo=addr1" class="location-btn">775 <i class="ti-plus"></i>
-									Location
+									장소
 								</a>
 							</div>
 						</div>
@@ -211,7 +228,7 @@
 							<div class="location-details">
 								<p>제주도</p>
 								<a href="listing.do?keyword=제주&catgo=addr1" class="location-btn">1026 <i class="ti-plus"></i>
-									Location
+									장소
 								</a>
 							</div>
 						</div>
@@ -224,7 +241,7 @@
 							<div class="location-details">
 								<p>강릉</p>
 								<a href="listing.do?keyword=강릉&catgo=addr1" class="location-btn">377 <i class="ti-plus"></i>
-									Location
+									장소
 								</a>
 							</div>
 						</div>
@@ -237,7 +254,7 @@
 							<div class="location-details">
 								<p>속초</p>
 								<a href="listing.do?keyword=속초&catgo=addr1" class="location-btn">165 <i class="ti-plus"></i>
-									Location
+									장소
 								</a>
 							</div>
 						</div>
@@ -250,7 +267,7 @@
 							<div class="location-details">
 								<p>대구</p>
 								<a href="listing.do?keyword=대구&catgo=addr1" class="location-btn">648  <i class="ti-plus"></i>
-									Location
+									장소
 								</a>
 							</div>
 						</div>
@@ -259,7 +276,7 @@
 				<!-- More Btn -->
 				<div class="row justify-content-center">
 					<div class="room-btn pt-20">
-						<a href="listing.do" class="btn view-btn1">View All Places</a>
+						<a href="listing.do" class="btn view-btn1">여행지 모두 보기</a>
 					</div>
 				</div>
 			</div>
@@ -329,98 +346,45 @@
 		</div>
 		<!-- Services Area End -->
 		<!-- Categories Area Start -->
-		<div class="categories-area section-padding30">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<!-- Section Tittle -->
-		<!-- peoples-visit Start -->
-		<div class="peoples-visit dining-padding-top">
-			<!-- Single Left img -->
-			<c:forEach items="${review}" var="review">
-			<div class="single-visit left-img" >
-				<div class="container">
-					<div class="row justify-content-end">
-						<div class="col-lg-8">
-							<div class="visit-caption" style="OVERFLOW-Y:auto; width:100%; height:1000px; background: rgba(255, 255, 255);">
-								<span>Best Reviews</span>
-								<h3>${review.b_subject}</h3>
-								<p>${review.b_content}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			</c:forEach>
-			
-			
-		</div>
-		<!-- peoples-visit End -->
-		<!-- Testimonial Start -->
-<!-- 		<div class="testimonial-area testimonial-padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						Section Tittle
-						<div class="section-tittle text-center mb-80">
-							<span>Our Community</span>
-							<h2>[제주도]부모님과 함께 갈만한 여행지 추천좀해주세요.</h2>
-						</div>
-					</div>
-				</div>
-				<div class="row align-items-center">
-					<div class="col-lg-11 col-md-11">
-						<div class="h1-testimonial-active">
-							Single Testimonial
-							<div class="single-testimonial text-center">
-								Testimonial Content
-								<div class="testimonial-caption ">
-									<div class="testimonial-top-cap">
-										<p>2박 3일간 부모님과 치유/힐링을 목적으로 여행 할 계획입나다. 댓글로 추천해주시면 감사하겠습니다.</p>
-									</div>
-									founder
-									<div
-										class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
-										<div class="founder-img">
-											<img src="assets/img/testmonial/Homepage_testi.png" alt="">
-										</div>
-										<div class="founder-text">
-											<span>이 지훈</span>
-											<p>Junior Developer</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							Single Testimonial
-							<div class="single-testimonial text-center">
-								Testimonial Content
-								<div class="testimonial-caption ">
-									<div class="testimonial-top-cap">
-										<p>Consectetur adipiscing elit, sed do eiusmod tempor
-											incididunt ut labore et dolore magna aliqua. Quis ipsum
-											suspendisse ultrices gravida. Risus commodo viverra maecenas
-											accumsan lacus vel facilisis por incididunt ut labore et
-											dolore mas.</p>
-									</div>
-									founder
-									<div
-										class="testimonial-founder d-flex align-items-center justify-content-center mb-30">
-										<div class="founder-img">
-											<img src="assets/img/testmonial/Homepage_testi.png" alt="">
-										</div>
-										<div class="founder-text">
-											<span>Oliva jems</span>
-											<p>UIX designer</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		Testimonial End -->
+      <div class="categories-area section-padding">
+         <div class="container" align="center">
+            <div style="width: 100%;" class="row" align="center">
+               <div class="peoples-visit" style="width: 100%;">
+                  <div class="visit-caption" style="padding: inherit;background: none;">
+                     <span style="font-size: 3rem;width: 100%;text-align: center;padding-block: 10%;">Best Reviews</span>
+                  </div>
+                 </div>
+            </div>
+         </div>      
+         <div class="icon-scroll">
+         </div>
+         <!-- peoples-visit Start -->
+         <div class="container">
+            <div class="row">
+               <div style="width: 100%;" class="visit-caption3" align="center">
+                    <a href="login.do" style="color: crimson;text-align: center;width: 100%;">로그인 후 여행후기 확인하러 가기</a>
+               </div>
+               <div class="peoples-visit dining-padding-top">
+                  <!-- Single Left img -->
+                  <c:forEach items="${review}" var="review">
+                     <div class="single-visit left-img" >
+                        <div class="container">
+                           <div class="row justify-content-end">
+                              <div class="col-lg-12 sa sa-down best-review" data-sa-margin="700">
+                                 <div class="visit-caption2" 
+                                 style="">
+                                    <h3>${review.b_subject}</h3>
+                                    <p>${review.b_content}</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </c:forEach>
+               </div>
+            </div>
+         </div>
+      </div>
 	</main>
 	
 		<!-- Footer Start-->
@@ -434,7 +398,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>
@@ -458,11 +422,18 @@
 								<div class="footer-tittle">
 									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="join.do">회원가입</a></li>
-										<li><a href="login.do">로그인</a></li>
-										<li><a href="use.do">나의 여행 만들기</a></li>
+										<c:choose>
+			                                 <c:when test="${ empty LOGINUSER }">
+			                                    <li><a href="login.do">로그인 & 회원가입</a></li>
+			                                 </c:when>
+			                                 <c:otherwise>
+			                                    <li><a href="logout.do">로그아웃</a></li>
+			                                 </c:otherwise>
+			                            </c:choose>
+			                            <li><a href="listing.do">국내여행지</a></li>
+										<li><a onclick="goPlanner()">나의 여행 만들기</a></li>
 										<li><a href="review.do">여행후기</a></li>
-										<li><a href="inquiry.do">문의하기</a></li>
+										<li><a onclick="goSupport()">문의하기</a></li>
 									</ul>
 								</div>
 							</div>
@@ -473,8 +444,8 @@
 									<h4>Contact with Us</h4>
 									<ul>
 										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
-										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
-										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
+										<li><span class="la la-headphones"></span> + 81 02 707 1480</li>
+										<li><span class="la la-envelope-o"></span> odgacom@naver.com</li>
 									</ul>
 								</div>
 							</div>
@@ -486,7 +457,6 @@
 						<div class="col-xl-9 col-lg-8">
 							<div class="footer-copy-right">
 								<p>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 									&copy; Copyright 
 									<script>
 										document
@@ -499,15 +469,12 @@
 									<a href="https://github.com/yumgit23" target="_blank">YM</a>
 									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
 									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-4">
 							<!-- Footer Social -->
 							<div class="footer-social f-right">
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
 								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
 								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
 							</div>
@@ -525,34 +492,53 @@
 	</div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
+function salert(){
+	swal({
+		text: "로그인 후 이용 가능합니다.",
+		buttons:{"확인":true,cancel:"취소"},
+		}).then((value) => {
+			if(value){
+				location.href = "login.do";
+			}
+		});
+}
 function goPlanner(){
 	if(${empty LOGINUSER}){
-		swal({
-			text: "로그인 후 이용 가능합니다.",
-			buttons:{"확인":true,cancel:"취소"},
-			}).then((value) => {
-				if(value){
-					location.href = "login.do";
-				}
-			});
-		 
+			salert();
 	}else{
 		location.href = "planner?m_id=${LOGINUSER.m_id}";
 	}
 }
 function goSupport(){
 	if(${empty LOGINUSER}){
-		swal({
-			text: "로그인 후 이용 가능합니다.",
+		salert();
+	}else{
+		location.href = "support.do?m_id=${LOGINUSER.m_id}";
+	}
+}
+function goMypage(){
+	if(${LOGINUSER.m_verify eq 9}){
+		location.href = "dashboard.do?m_id=${LOGINUSER.m_id}";
+	}else{
+		location.href = "member.do?m_id=${LOGINUSER.m_id}";
+	}
+}
+function logout(){
+	  swal({
+			text: "로그아웃 하시겠습니까 ?",
 			buttons:{"확인":true,cancel:"취소"},
 			}).then((value) => {
 				if(value){
-					location.href = "login.do";
+					 swal({
+							text: "로그아웃 되었습니다.",
+							buttons:{"확인":true},
+							}).then((value) => {
+								if(value){
+									location.href="logout.do";
+								}
+							});				
 				}
-			});
-	}else{
-		location.href = "support.dp?m_id=${LOGINUSER.m_id}";
-	}
+			});  
 }
 </script>
 
@@ -644,6 +630,39 @@ function goSupport(){
 		    })
 		}		
 	</script>
+ <script>
+ //베스트리뷰 (best Review)
+    // Scroll Animation (sa, Scroll Animation)
+       const saDefaultMargin = 300;
+       let saTriggerMargin = 0;
+       let saTriggerHeight = 0;
+       const saElementList = document.querySelectorAll('.sa');
+   
+       const saFunc = function() {
+         for (const element of saElementList) {
+           if (!element.classList.contains('show')) {
+             if (element.dataset.saMargin) {
+               saTriggerMargin = parseInt(element.dataset.saMargin);
+             } else {
+               saTriggerMargin = saDefaultMargin;
+             }
+   
+             if (element.dataset.saTrigger) {
+               saTriggerHeight = document.querySelector(element.dataset.saTrigger).getBoundingClientRect().top + saTriggerMargin;
+             } else {
+               saTriggerHeight = element.getBoundingClientRect().top + saTriggerMargin;
+             }
+   
+             if (window.innerHeight > saTriggerHeight) {
+               element.classList.add('show');
+             }
+           }
+         }
+       }
+   
+       window.addEventListener('load', saFunc);
+       window.addEventListener('scroll', saFunc);
+    </script>
 
 </body>
 </html>

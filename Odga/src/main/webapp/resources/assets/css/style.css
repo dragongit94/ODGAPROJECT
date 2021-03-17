@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,500,600,700|Sacramento|Sulphur+Point:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
 .white-bg {
 	background: #ffffff
 }
@@ -127,7 +128,7 @@
 }
 
 body {
-	font-family: "Sulphur Point", sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
 	font-weight: normal;
 	font-style: normal
 }
@@ -138,8 +139,16 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Sulphur Point", sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
 	color: #1c1930;
+	margin-top: 0px;
+	font-style: normal;
+	font-weight: 500;
+	text-transform: normal
+}
+h7{
+	font-family: "Noto Sans KR", sans-serif;
+	color: #ff3d1c;
 	margin-top: 0px;
 	font-style: normal;
 	font-weight: 500;
@@ -150,6 +159,14 @@ p {
 	font-family: "Sulphur Point", sans-serif;
 	color: #10285d;
 	font-size: 16px;
+	line-height: 30px;
+	margin-bottom: 15px;
+	font-weight: normal
+}
+p1 {
+	font-family: "Noto Sans KR", sans-serif;
+	color: #353535;
+	font-size: 20px;
 	line-height: 30px;
 	margin-bottom: 15px;
 	font-weight: normal
@@ -4643,11 +4660,11 @@ form.search-box2 .search-form button {
 }
 
 .footer-area .footer-bottom .footer-copy-right p i {
-	color: #eb566c
+   color: #ff3d1c
 }
 
 .footer-area .footer-bottom .footer-copy-right p a {
-	color: #eb566c
+   color: #ff3d1c
 }
 
 .hero-caption span {
@@ -7468,4 +7485,7 @@ del {
 }
 .select-job-items1 a + a {
 	margin-top: 10px;
+}
+.header-bottom.header-sticky.sticky-bar .main-menu ul>li>a {
+	margin-top:0 !important;
 }

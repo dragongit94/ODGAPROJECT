@@ -30,8 +30,18 @@
             <link rel="stylesheet" href="assets/css/card.css">
             <link rel="stylesheet" href="assets/css/tutorial.css">
    </head>
-
-   <body>
+   <style>
+	.swal-button--확인 {
+	 background-color:#ff3d1c
+	}
+	.swal-button--확인:not([disabled]):hover {
+	 background-color:#ff5235
+	}
+	.swal-button--확인:active {
+	 background-color:#ff5235
+	}
+   </style>
+<body>
 	<!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -43,7 +53,7 @@
             </div>
         </div>
     </div>
-    <header>
+<header>
         <!-- Header Start -->
        <div class="header-area header-transparent">
             <div class="main-header">
@@ -58,7 +68,7 @@
                               <div style="width: 84%;" class="main-menu f-right d-none d-lg-block" align="right">
                                <nav>
                            <ul id="navigation" style="width: 100%;float: left;">
-                              <div style="float: left;width: 83%;">
+                              <ul style="float: left;width: 80%;">
                                     <li><a href="listing.do">국내여행지</a></li>
                                     <li><a href="review.do">커뮤니티</a>
                                        <ul class="submenu" style="text-align: left;">
@@ -68,12 +78,18 @@
                                     </li>
                                     <li><a href="use.do">이용방법</a></li>
                                     <li><a href="https://www.agoda.com/">호텔예약</a></li>
+                                    <c:if test="${LOGINUSER.m_verify eq 0}">
+                                    	<li><a href="member.do">마이페이지</a></li>
+                                    </c:if>                                  
+                                    <c:if test="${LOGINUSER.m_verify eq 9}">
+                                    	<li><a href="dashboard.do">관리자페이지</a></li>
+                                    </c:if>
                                     <li class="add-list" style="display: inline flow-root list-item;">
                                        <a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a>
                                     </li>
-                              </div>
-                              <div style="float: left;width: 17%;padding-top: 23px;" align="left">   
-                                 <li class="login" style="width: 103%;padding: 1%;text-align: center;">                          
+                              </ul>
+                              <ul style="float: left;width: 20%;padding-top: 23px;" align="left">   
+                                 <li class="login" style="width: 75%;padding: 1%;text-align: center;float:left;">                          
                                              <c:choose>
                                                    <c:when test="${empty LOGINUSER}">
                                                       <a href="login.do" style="padding: inherit;font-size: 80%;">
@@ -88,18 +104,25 @@
                                                    <c:otherwise>
                                                       <c:choose>
                                                          <c:when test="${LOGINUSER.m_verify eq 0}">
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li>
-                                                         </c:when>
+                                                            <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>                                                             										          
+                                                          <!--   <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li> -->
+                                                         </c:when>                                           
                                                          <c:otherwise>
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>관리자님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li>
+                                                             <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>관리자님 로그아웃</a>
+                                                           <!--  <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li> -->
                                                          </c:otherwise>
                                                        </c:choose>
                                                    </c:otherwise>
                                              </c:choose>
                                           </li>
-                                      </div>
+                                          <c:if test="${not empty LOGINUSER}">
+	 										<li style="float: right;width: 25%;">   
+	                                      	 <div class="main-menu f-right d-none d-lg-block"><img class="img-fluid" onclick="goMypage()" src="assets/img/profile/${LOGINUSER.m_fname}" alt="" style="cursor: pointer;min-height:60px;width: 60px;border-radius: 50%;max-width: 100%;border: 3px solid white;">
+			                                    </div>
+			                           		</li> 
+			                           		</c:if>                                    
+                                      </ul>
+                                      
 		                           </ul>
 		                        </nav>
 		                     </div>
@@ -146,14 +169,14 @@
 		        <!-- Services Area Start -->
 		        <ul class="card-list">
 					<li class="card">
-						<a class="card-image" href="listing.do" target="_blank" style="background-image: assets/img/use/p1.jpg;" data-image-full="assets/img/use/p1.jpg">
-							<img src="assets/img/use/p1.jpg" alt="Psychopomp" />
-						</a>
-						<a class="card-description" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank">
-							<hh2>1. 지역 찾기</hh2>
-							<p>리스트에서 여행지를 찾아서 선택 해보세요.</p>
-						</a>
-					</li>
+	                  <a class="card-image" onclick="goListing()" target="_blank" style="background-image: assets/img/use/p1.jpg;" data-image-full="assets/img/use/p1.jpg">
+	                     <img src="assets/img/use/p1.jpg" alt="Psychopomp" />
+	                  </a>
+	                  <a class="card-description" onclick="goListing()" target="_blank">
+	                     <hh2>1. 지역 찾기</hh2>
+	                     <p>리스트에서 여행지를 찾아서 선택 해보세요.</p>
+	                  </a>
+	               </li>
 					
 					<li class="card">
 						<a class="card-image" onclick="goPlanner()" style="background-image: assets/img/use/p3.jpg;cursor: pointer;" data-image-full="assets/img/use/p3.jpg">
@@ -173,7 +196,7 @@
 							<hh2>3. 마이페이지에서 확인</hh2>
 							<p>작성한 플래너를 확인 해보세요.</p>
 						</a>
-					</li>
+					</li> 
 					
 					<li class="card">
 						<a class="card-image" href="https://www.skyscanner.co.kr/" target="_blank" style="background-image: assets/img/use/p4.jpg;" data-image-full="assets/img/use/p4.jpg">
@@ -191,7 +214,7 @@
 		        	 <div class="container1" >
 				  <div class="image-viewer">
 				    <div class="main-image">
-				      <img src="assets/img/use/1.jpg" style="min-height: 113%;max-width: 88%;"/>
+				      <img src="assets/img/use/1.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
 				    </div>
 				    </div>
 				  </div>
@@ -206,7 +229,7 @@
 		        	 <div class="container1" >
 				  <div class="image-viewer">
 				    <div class="main-image">
-				      <img src="assets/img/use/2.jpg" style="min-height: 113%;max-width: 88%;"/>
+				      <img src="assets/img/use/2.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
 				    </div>
 				    </div>
 				  </div>
@@ -221,7 +244,7 @@
 		        	 <div class="container1" >
 				  <div class="image-viewer">
 				    <div class="main-image">
-				      <img src="assets/img/use/3.jpg" style="min-height: 113%;max-width: 88%;"/>
+				      <img src="assets/img/use/3.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
 				    </div>
 				    </div>
 				  </div>
@@ -236,7 +259,7 @@
 		        	 <div class="container1" >
 				  <div class="image-viewer">
 				    <div class="main-image">
-				      <img src="assets/img/use/4.jpg" style="border: 0.4rem solid #ff3916;max-height:  90%;min-width: 100%;"/>
+				      <img src="assets/img/use/4.jpg" style="border: 0.4rem solid #010e21;max-height:  90%;min-width: 100%;"/>
 				    </div>
 				    </div>
 				  </div>
@@ -304,8 +327,8 @@
 									<h4>Contact with Us</h4>
 									<ul>
 										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
-										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
-										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
+										<li><span class="la la-headphones"></span>+ 81 02 707 1480</li>
+										<li><span class="la la-envelope-o"></span>odgacom@naver.com</li>
 									</ul>
 								</div>
 							</div>
@@ -317,7 +340,6 @@
 						<div class="col-xl-9 col-lg-8">
 							<div class="footer-copy-right">
 								<p>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 									&copy; Copyright 
 									<script>
 										document
@@ -337,8 +359,6 @@
 						<div class="col-xl-3 col-lg-4">
 							<!-- Footer Social -->
 							<div class="footer-social f-right">
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
 								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
 								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
 							</div>
@@ -354,54 +374,58 @@
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
+function salert(){
+	swal({
+		text: "로그인 후 이용 가능합니다.",
+		buttons:{"확인":true,cancel:"취소"},
+		}).then((value) => {
+			if(value){
+				location.href = "login.do";
+			}
+		});
+}
 function goPlanner(){
 	if(${empty LOGINUSER}){
-		swal({
-			title: "Notice",
-			text: "로그인 후 이용 가능합니다.",
-			icon:"warning",
-			buttons:{"확인":true,cancel:"취소"},
-			}).then((value) => {
-				if(value){
-					location.href = "login.do";
-				}
-			});
+			salert();
 	}else{
 		location.href = "planner?m_id=${LOGINUSER.m_id}";
 	}
 }
+function goSupport(){
+	if(${empty LOGINUSER}){
+		salert();
+	}else{
+		location.href = "support.do?m_id=${LOGINUSER.m_id}";
+	}
+}
 function goMypage(){
 	if(${empty LOGINUSER}){
-		swal({
-			title: "Notice",
-			text: "로그인 후 이용 가능합니다.",
-			icon:"warning",
-			buttons:{"확인":true,cancel:"취소"},
-			}).then((value) => {
-				if(value){
-					location.href = "login.do";
-				}
-			});
+		salert();
 	}else{
 		location.href = "member.do";
 	}
 }
-function goSupport(){
-	if(${empty LOGINUSER}){
-		swal({
-			title: "Notice",
-			text: "로그인 후 이용 가능합니다.",
-			icon:"warning",
+function goListing(){
+    location.href = "listing.do";
+}
+function logout(){
+	  swal({
+			text: "로그아웃 하시겠습니까 ?",
 			buttons:{"확인":true,cancel:"취소"},
 			}).then((value) => {
 				if(value){
-					location.href = "login.do";
+					 swal({
+							text: "로그아웃 되었습니다.",
+							buttons:{"확인":true},
+							}).then((value) => {
+								if(value){
+									location.href="logout.do";
+								}
+							});				
 				}
-			});
-	}else{
-		location.href = "support.dp?m_id=${LOGINUSER.m_id}";
-	}
+			});  
 }
 </script>
     <!-- JS here -->

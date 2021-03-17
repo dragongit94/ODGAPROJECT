@@ -24,7 +24,7 @@
 		SELECT sp_day, contentid, firstimage, title, addr1, addr2, sp_id
 	      FROM s_planner
 		 NATURAL JOIN TOURITEMS
-		WHERE p_id = #{p_id} AND sp_day= #{sp_day} ORDER BY sp_id desc
+		WHERE p_id = #{p_id} AND sp_day= #{sp_day} ORDER BY sp_id
 	</select>
 	
 	<!-- 특정 데이 일정 전체삭제 -->

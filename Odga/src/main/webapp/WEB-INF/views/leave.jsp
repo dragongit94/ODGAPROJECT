@@ -4,7 +4,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -22,15 +21,76 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   <link href="../assets/css/pointColor.css" rel="stylesheet" />
 </head>
-
+<style>
+.dark-edition .btn.btn-primary {
+    color: #fff;
+    background-color: #d1302e;
+    border-color: #e53f3c;
+    box-shadow: 0 2px 2px 0 rgb(74, 31, 47), 0 3px 1px -2px rgba(145, 63, 158, 0.2), 0 1px 5px 0 rgba(145, 63, 158, 0.12);
+}
+.dark-edition .btn.btn-primary:hover {
+    color: #fff;
+	background-color: #e53f3c;
+	border-color: #cd2d2b;
+	box-shadow: 0 2px 2px 0 rgb(74, 31, 47), 0 3px 1px -2px rgba(145, 63, 158, 0.2), 0 1px 5px 0 rgba(145, 63, 158, 0.12);
+}
+.swal-button--확인:not([disabled]):hover {
+    background-color: #ff5235;
+}
+.swal-button--확인{
+	background-color: #ff3d1c;
+}
+.swal-button--확인:hover{
+	background-color: #ff5235;
+}
+.swal-button--탈퇴하기:not([disabled]):hover {
+    background-color: #ff5235;
+}
+.swal-button--탈퇴하기{
+	background-color: #ff3d1c;
+}
+.swal-button--탈퇴하기:hover{
+	background-color: #ff5235;
+}
+.swal-button--cancel {
+ color:#555 !important;
+ background-color:#efefef
+}
+.swal-button--cancel:not([disabled]):hover {
+ background-color:#e8e8e8
+}
+.swal-button--cancel:active {
+ background-color:#d7d7d7
+}
+.swal-button--cancel:focus {
+ box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)
+}
+.swal-button--홈으로 {
+ color:#555;
+ background-color:#efefef
+}
+.swal-button--홈으로:not([disabled]):hover {
+ background-color:#e8e8e8
+}
+.swal-button--홈으로:active {
+ background-color:#d7d7d7
+}
+.swal-button--홈으로:focus {
+ box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)
+}
+.swal-button--로그인 {
+ background-color:#ff3d1c
+}
+.swal-button--로그인:not([disabled]):hover {
+ background-color:#ff5235
+}
+.swal-button--로그인:active {
+ background-color:#ff5235
+}
+</style>
 <body class="dark-edition">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
       <div class="logo"><a href="index.do" class="simple-text logo-normal">
           <img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;">
         </a></div>
@@ -105,7 +165,7 @@
                   <p class="card-category">${LOGINUSER.m_name}님 비밀번호를 입력하시면 최종적으로 회원탈퇴가 진행됩니다.</p>
                 </div>
                 <div class="card-body">
-                  <form action="leaveM" method="post">
+                  <form name="leaveFrm" action="leaveM" method="post">
                     <div class="row">
                       
                       <div class="col-md-4">
@@ -129,7 +189,7 @@
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right">탈퇴하기</button>
+                    <button type="button" onclick="leaveBtn()"class="btn btn-primary pull-right">탈퇴하기</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -143,12 +203,12 @@
                   </a>
                 </div>
                 <div class="card-body">
-                  <h6 class="card-category">CEO / Co-Founder</h6>
-                  <h4 class="card-title">${LOGINUSER.m_name}님의 추억</h4>
+                  <h6 class="card-category">${LOGINUSER.m_rdate}에 가입</h6>
+                  <h4 class="card-title">${LOGINUSER.m_email}</h4>
                   <p class="card-description">
-                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owensâ bed design but the back is...
+                    ${LOGINUSER.m_name}님이 작성하신 모든 글, 플래너, 문의 등이 모두 삭제 됩니다.
                   </p>
-                  <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                  <!-- <a href="#pablo" class="btn btn-primary btn-round">Follow</a> -->
                 </div>
               </div>
             </div>
@@ -159,26 +219,6 @@
         <div class="container-fluid">
           <nav class="float-left">
             <ul>
-              <!-- <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li> -->
             </ul>
           </nav>
           <div class="copyright float-right" id="date">
@@ -192,73 +232,6 @@
         let date = document.getElementById('date');
         date.innerHTML = '&copy; ' + x + date.innerHTML;
       </script>
-    </div>
-  </div>
-  <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-      <a href="#" data-toggle="dropdown">
-        <i class="fa fa-cog fa-2x"> </i>
-      </a>
-      <ul class="dropdown-menu">
-        <li class="header-title"> Sidebar Filters</li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger active-color">
-            <div class="badge-colors ml-auto mr-auto">
-              <span class="badge filter badge-purple active" data-color="purple"></span>
-              <span class="badge filter badge-azure" data-color="azure"></span>
-              <span class="badge filter badge-green" data-color="green"></span>
-              <span class="badge filter badge-warning" data-color="orange"></span>
-              <span class="badge filter badge-danger" data-color="danger"></span>
-            </div>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="header-title">Images</li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-1.jpg" alt="">
-          </a>
-        </li>
-        <li class="active">
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-2.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-3.jpg" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="../assets/img/sidebar-4.jpg" alt="">
-          </a>
-        </li>
-        <li class="button-container">
-          <a href="https://www.creative-tim.com/product/material-dashboard-dark" target="_blank" class="btn btn-primary btn-block">Free Download</a>
-        </li>
-        <!-- <li class="header-title">Want more components?</li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
-                  Get the pro version
-                </a>
-            </li> -->
-        <li class="button-container">
-          <a href="https://demos.creative-tim.com/material-dashboard-dark/docs/2.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
-            View Documentation
-          </a>
-        </li>
-        <li class="button-container github-star">
-          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard/tree/dark-edition" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-        </li>
-        <li class="header-title">Thank you for 95 shares!</li>
-        <li class="button-container text-center">
-          <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
-          <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
-          <br>
-          <br>
-        </li>
-      </ul>
     </div>
   </div>
   <!--   Core JS Files   -->
@@ -279,167 +252,41 @@
   <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
-    $(document).ready(function() {
-      $().ready(function() {
-        $sidebar = $('.sidebar');
-
-        $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-        $full_page = $('.full-page');
-
-        $sidebar_responsive = $('body > .navbar-collapse');
-
-        window_width = $(window).width();
-
-        $('.fixed-plugin a').click(function(event) {
-          // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-          if ($(this).hasClass('switch-trigger')) {
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (window.event) {
-              window.event.cancelBubble = true;
-            }
-          }
-        });
-
-        $('.fixed-plugin .active-color span').click(function() {
-          $full_page_background = $('.full-page-background');
-
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-
-          var new_color = $(this).data('color');
-
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data-color', new_color);
-          }
-
-          if ($full_page.length != 0) {
-            $full_page.attr('filter-color', new_color);
-          }
-
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.attr('data-color', new_color);
-          }
-        });
-
-        $('.fixed-plugin .background-color .badge').click(function() {
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-
-          var new_color = $(this).data('background-color');
-
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data-background-color', new_color);
-          }
-        });
-
-        $('.fixed-plugin .img-holder').click(function() {
-          $full_page_background = $('.full-page-background');
-
-          $(this).parent('li').siblings().removeClass('active');
-          $(this).parent('li').addClass('active');
-
-
-          var new_image = $(this).find("img").attr('src');
-
-          if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-            $sidebar_img_container.fadeOut('fast', function() {
-              $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-              $sidebar_img_container.fadeIn('fast');
-            });
-          }
-
-          if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-            $full_page_background.fadeOut('fast', function() {
-              $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-              $full_page_background.fadeIn('fast');
-            });
-          }
-
-          if ($('.switch-sidebar-image input:checked').length == 0) {
-            var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-          }
-
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-          }
-        });
-
-        $('.switch-sidebar-image input').change(function() {
-          $full_page_background = $('.full-page-background');
-
-          $input = $(this);
-
-          if ($input.is(':checked')) {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar_img_container.fadeIn('fast');
-              $sidebar.attr('data-image', '#');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page_background.fadeIn('fast');
-              $full_page.attr('data-image', '#');
-            }
-
-            background_image = true;
-          } else {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar.removeAttr('data-image');
-              $sidebar_img_container.fadeOut('fast');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page.removeAttr('data-image', '#');
-              $full_page_background.fadeOut('fast');
-            }
-
-            background_image = false;
-          }
-        });
-
-        $('.switch-sidebar-mini input').change(function() {
-          $body = $('body');
-
-          $input = $(this);
-
-          if (md.misc.sidebar_mini_active == true) {
-            $('body').removeClass('sidebar-mini');
-            md.misc.sidebar_mini_active = false;
-
-            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-          } else {
-
-            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-            setTimeout(function() {
-              $('body').addClass('sidebar-mini');
-
-              md.misc.sidebar_mini_active = true;
-            }, 300);
-          }
-
-          // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 180);
-
-          // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
-            clearInterval(simulateWindowResize);
-          }, 1000);
-
-        });
-      });
-    });
+  $(document).ready(function(){
+	  if(${empty LOGINUSER}){
+			swal({
+				title: "세션만료 !",
+				text: "로그인 후 이용 가능합니다.",
+				buttons:{"로그인":"로그인","홈으로":"홈으로"},
+				}).then((value) => {
+					if(value==="로그인"){
+						location.href = "login.do";
+					}else if (value==="홈으로"){
+						location.href = "index.do";
+					}
+				});
+			}
+	});
+  function leaveBtn(){
+	  swal({
+			text: "탈퇴 하시겠습니까 ?",
+			buttons:{"탈퇴하기":true,cancel:"취소"},
+			}).then((value) => {
+				if(value){
+					 swal({
+							text: "탈퇴가 완료 되었습니다.",
+							buttons:{"확인":true},
+							}).then((value) => {
+								if(value){
+									document.leaveFrm.submit();
+								}
+							});				
+				}
+			});
+	  
+  }
   </script>
 </body>
 

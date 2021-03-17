@@ -38,5 +38,8 @@ public interface MemberService {
   //find id/pw
   	public String findIdS(Member member);
   	public void findPwd(Member member);
+  	
+  //로그인 체크
+    public int checkLogin(Member member, HttpServletResponse response) throws Exception;
 	
 }

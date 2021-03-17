@@ -10,7 +10,6 @@
   <title>
     Odga.com
   </title>
-
 <!DOCTYPE html>
 <div class="col-xl-2 col-lg-2 col-md-1" style="position: absolute;">
                <div class="logo">
@@ -21,8 +20,7 @@
 <p class="tip"></p>
 <div class="cont">
   <div class="form sign-in">
-   <form action="findId" method="post" id="findI"  > 
-   
+   <form action="findId" method="post" id="findI"  >  
     <h2>아이디 찾기</h2>
     <label>
       <span>이름</span>
@@ -33,17 +31,7 @@
       <input type="text" name="m_phone" id="m_phone" />
 
     </label>
-    <!-- <p class="forgot-pass"><a href="findIdPwd">Forgot Id/Password</a></p> -->
     <button type="button" class="submit" onclick="findId()">찾기</button>
-   <%--  <center> --%>
-    <%-- <button class="loginBtn loginBtn--facebook"  >
-  	Login with Facebook
-	</button>
-	<BR>
-	<button class="loginBtn loginBtn--google"  >
-	  Login with Google
-	  </center>
-	</button> --%>
 	</form>
   </div>
   
@@ -61,8 +49,7 @@
       <div class="img__btn">
         <span class="m--up">Find PWD</span>
         <span class="m--in">Find ID</span>
-      </div>
-      
+      </div>     
     </div>
     
     <!-- 회원가입  -->

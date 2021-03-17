@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 		<!doctype html>
 		<html class="no-js" lang="zxx">
-
 		<head>
 			<meta charset="utf-8">
 			<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -15,7 +14,6 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="manifest" href="site.webmanifest">
 			<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
 			<!-- CSS here -->
 			<link rel="stylesheet" href="assets/css/bootstrap_planner.min.css">
 			<link rel="stylesheet" href="assets/css/style_planner.css">
@@ -31,7 +29,42 @@
 			<link rel="stylesheet" href="assets/css/nice-select.css">		
 			<link rel="stylesheet" href="assets/css/planner.css">
 		</head>
-
+<style>
+.swal-button--확인:not([disabled]):hover {
+    background-color: #ff5235;
+}
+.swal-button--확인{
+	background-color: #ff3d1c;
+}
+.swal-button--확인:hover{
+	background-color: #ff5235;
+}
+.swal-button--확인:active {
+ background-color:#ff5235
+}
+.swal-button--확인하기:not([disabled]):hover {
+    background-color: #ff5235;
+}
+.swal-button--확인하기{
+	background-color: #ff3d1c;
+}
+.swal-button--확인하기:hover{
+	background-color: #ff5235;
+}
+.swal-button--홈으로 {
+ color:#555;
+ background-color:#efefef
+}
+.swal-button--홈으로:not([disabled]):hover {
+ background-color:#e8e8e8
+}
+.swal-button--홈으로:active {
+ background-color:#d7d7d7
+}
+.swal-button--홈으로:focus {
+ box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)
+}
+</style>
 		<body>
 			<!-- Preloader Start -->
 			<div id="preloader-active">
@@ -45,7 +78,7 @@
 				</div>
 			</div>
 			<!-- Preloader End -->
-			<header>
+<header>
         <!-- Header Start -->
        <div class="header-area header-transparent">
             <div class="main-header">
@@ -60,7 +93,7 @@
                               <div style="width: 84%;" class="main-menu f-right d-none d-lg-block" align="right">
                                <nav>
                            <ul id="navigation" style="width: 100%;float: left;">
-                              <div style="float: left;width: 83%;">
+                              <ul style="float: left;width: 80%;">
                                     <li><a href="listing.do">국내여행지</a></li>
                                     <li><a href="review.do">커뮤니티</a>
                                        <ul class="submenu" style="text-align: left;">
@@ -70,12 +103,18 @@
                                     </li>
                                     <li><a href="use.do">이용방법</a></li>
                                     <li><a href="https://www.agoda.com/">호텔예약</a></li>
+                                    <c:if test="${LOGINUSER.m_verify eq 0}">
+                                    	<li><a href="member.do">마이페이지</a></li>
+                                    </c:if>                                  
+                                    <c:if test="${LOGINUSER.m_verify eq 9}">
+                                    	<li><a href="dashboard.do">관리자페이지</a></li>
+                                    </c:if>
                                     <li class="add-list" style="display: inline flow-root list-item;">
                                        <a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a>
                                     </li>
-                              </div>
-                              <div style="float: left;width: 17%;padding-top: 23px;" align="left">   
-                                 <li class="login" style="width: 103%;padding: 1%;text-align: center;">                          
+                              </ul>
+                              <ul style="float: left;width: 20%;padding-top: 23px;" align="left">   
+                                 <li class="login" style="width: 75%;padding: 1%;text-align: center;float:left;">                          
                                              <c:choose>
                                                    <c:when test="${empty LOGINUSER}">
                                                       <a href="login.do" style="padding: inherit;font-size: 80%;">
@@ -90,18 +129,25 @@
                                                    <c:otherwise>
                                                       <c:choose>
                                                          <c:when test="${LOGINUSER.m_verify eq 0}">
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li>
-                                                         </c:when>
+                                                            <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>                                                             										          
+                                                          <!--   <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li> -->
+                                                         </c:when>                                           
                                                          <c:otherwise>
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>관리자님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li>
+                                                             <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>관리자님 로그아웃</a>
+                                                           <!--  <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li> -->
                                                          </c:otherwise>
                                                        </c:choose>
                                                    </c:otherwise>
                                              </c:choose>
                                           </li>
-                                      </div>
+                                          <c:if test="${not empty LOGINUSER}">
+	 										<li style="float: right;width: 25%;">   
+	                                      	 <div class="main-menu f-right d-none d-lg-block"><img class="img-fluid" onclick="goMypage()" src="assets/img/profile/${LOGINUSER.m_fname}" alt="" style="cursor: pointer;min-height:60px;width: 60px;border-radius: 50%;max-width: 100%;border: 3px solid white;">
+			                                    </div>
+			                           		</li> 
+			                           		</c:if>                                    
+                                      </ul>
+                                      
 		                           </ul>
 		                        </nav>
 		                     </div>
@@ -127,23 +173,19 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-12">
-								<!-- Job Category Listing start -->
 								<div class="row" style="margin-left: 5px">
-
-									<!-- <div class="col-3">	 -->
 										<c:set value="${list.planer}" var="planer"/>
 			                           <c:if test="${!empty planer}">
-		                                    <div class="col-2">   
-		                                       <input id="p_title" type="text" class="text" placeholder="Your Travel name.." value="${planer.p_title}"/>   
+		                                    <div class="col-3">   
+		                                       <input id="p_title" type="text" class="text" placeholder="여행 제목을 작성해주세요.." value="${planer.p_title}"/>   
 		                                    </div>
 			                            </c:if>
 			                                 <c:if test="${empty planer}">
-		                                    <div class="col-2">   
-		                                       <input id="p_title" type="text" class="text" placeholder="Your Travel name.."/>   
+		                                    <div class="col-3">   
+		                                       <input id="p_title" type="text" class="text" placeholder="여행 제목을 작성해주세요.."/>   
 		                                    </div>
 			                          </c:if>
-									<!-- </div> -->
-									<div class="col-7 " style="display: flex;">
+									<div class="col-6 " style="display: flex;">
 										<select id="test1" name="test1" class="nice-select top-select" style="margin-left:0;">
 											<option value="" selected="selected">인원</option>
 											<option value="1인">1인</option>
@@ -152,8 +194,6 @@
 											<option value="4인">4인</option>
 											<option value="5인 이상">5인 이상</option>                                
 										 </select>
-									<!-- </div>
-									<div class="col-2" style="width: 15%;"> -->
 										<select id="test2" name="test1" class="nice-select top-select" >
 											<option value="혼자만의 여행" selected="selected">혼자만의 여행</option>
 											<option value="커플여행">커플여행</option>
@@ -161,8 +201,6 @@
 											<option value="우정여행">우정여행</option>
 											<option value="패키지여행">패키지여행</option>
 										 </select>
-									<!-- </div>
-									<div class="col-3"> -->
 									  <form name="form" style="display:flex;">								  	
 										  <select name="area"  id="areacode" class="nice-select top-select" onchange="changes(value)" style="margin-left:5%;">
 										    <option value="">지역 선택</option>
@@ -175,7 +213,6 @@
 										  </select>
 									  </form>
 									</div>
-									<!-- style="float:right;margin-left:0px;margin-right:0px;" --> <!-- style="width:200px;float:right; padding: 23px 20px;margin-right:15px;" -->
 									<c:set value="${list.thisP_id}" var = "thisP_id"/>
 									<div class="col-3" style="padding-right: 1%;">
 									  <form method="post" name="fin" action="save.do">
@@ -183,17 +220,17 @@
 									  	<input type="hidden" name="title" value="" />
 									  	<input type="hidden" name="hSize" value="" />
 									  	<input type="hidden" name="concept" value="" />
-		                              	<input type="button" onclick="savePlanner();fin.submit()" class="btn list-btn top-btn" value="저장">
+									  	<input type="hidden" name="goPage" value="" />
+									  	<input type="hidden" name="m_id" value="${LOGINUSER.m_id}" />
+		                              	<input type="button" onclick="savePlanner();" class="btn list-btn top-btn" value="저장">
 		                              </form>
 		                              <a onclick="reset()" class="btn list-btn top-btn" style="color: #fff;">초기화</a>		                              
 									  <a href="leave?p_id=${thisP_id}" class="btn list-btn top-btn">취소</a>
 									</div>
-								<!-- Job Category Listing End -->
 							</div>
 						</div>
 					</div>
 					<div class="row" style="margin-right:5px;margin-left:5px;margin-top:10px">
-						<!-- madal -->
 	               	  <div class="modal fade" id="show-movie-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
 					      aria-hidden="true">
 					      <div class="modal-dialog modal-lg" role="document">
@@ -231,12 +268,8 @@
 									</div>
 								</div>
 							</div>
-							<!-- Job Category Listing start -->
 							<div class="category-listing mb-50" style="padding: 10px 10px 20px;">
-								<!-- single one -->
 								<div class="single-listing">
-								<%-- <c:set var="now" value="<%=new java.util.Date()%>" />
-								<c:set var="sysdate"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>  ${sysdate}--%>
 										<p class="p-date">시작일 : </p>
 										<input class="input-date" style="width: 100%;" type="date" id="sdate" value=""/>										
 										<p class="p-date">종료일 : </p>
@@ -251,15 +284,10 @@
 									</div>
 									</div>
 									<div class="single-listing">
-										<!-- Range Slider End -->
 										<button  onclick="dayReset()" class="btn list-btn mt-20" style="font-size: small;">DAY 초기화</button>
 									</div>
-									
-
 								</div>
-								
 							</div>
-							<!-- Job Category Listing End -->
 						</div>
 						
 						<div class="col-2">
@@ -270,10 +298,7 @@
 									</div>
 								</div>
 							</div>
-							
 							<!-- 선택된 day 리스트 -->
-							
-								
 							<div class="category-listing mb-50">
 								<div class="single-listing">									
 									<div class="select-job-items2">
@@ -287,7 +312,6 @@
 							</div>	
 							</div>
 						</div>
-						
 						<div class="col-2">
 							<div class="row" style="margin-top: 15px;">
 								<div class="col-12">
@@ -304,7 +328,6 @@
 											autocomplete="off" name="keyword" style="width: 70%;"/>
 											<button value="none" onclick="search(value)" class="btn" style="width: 25%;margin-top: 0;border-radius: 7px;">검색</button>									
 									</div>
-					
 									<div class="select-job-items1">
 										<button id="touraBtn" value="A01" onclick="search(value)" class="cat1-btn"><img src="assets/icon/camera.png" title="사진"></button>
 										<button id="shoppingBtn" value="A04" onclick="search(value)" class="cat1-btn"><img src="assets/icon/shopping.png" title="쇼핑"></button>
@@ -314,33 +337,20 @@
 									</div>
 									<div id="result">
 									</div>
-									
 									<div class="select-job-items2">
-										<!-- <div class="card" id="card" style="min-height:405px;">
-										</div> -->
 										<div class="row" id="data-panel" style="box-shadow: 0 1px 2px #aaa; overflow: auto; max-height: 520px; min-height: 405px; margin: 0;">
                               			</div>
 									</div>
 								</div>
-<!-- 
-								<div class="single-listing">
-									<a href="#" class="btn list-btn mt-20">검색!</a>
-									<a href="#" class="btn list-btn mt-20">추가</a>
-								</div> -->
 							</div>
 						</div>
-						
-						
-						<!-- Right content height:800px;-->
-						<div class="col-7">
 
+						<div class="col-7">
 							<div class="map_wrap map-css">
 								<div id="map"
 									class="map-css2">
 								</div>
-
 							</div>
-							
 							<script type="text/javascript"
 								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8831cbdd7d745d3f8c6d9e1fec81ecca&libraries=services"></script>
 							<script>
@@ -358,9 +368,6 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- listing-area Area End -->
-
 			</main>
 			<!-- Footer Start-->
 			<footer>
@@ -373,7 +380,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>
@@ -397,9 +404,16 @@
 								<div class="footer-tittle">
 									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="join.do">회원가입</a></li>
-										<li><a href="login.do">로그인</a></li>
+										<c:choose>
+			                                 <c:when test="${ empty LOGINUSER }">
+			                                    <li><a href="login.do">로그인 & 회원가입</a></li>
+			                                 </c:when>
+			                                 <c:otherwise>
+			                                    <li><a href="logout.do">로그아웃</a></li>
+			                                 </c:otherwise>
+			                            </c:choose>
 										<li><a href="listing.do">국내여행지</a></li>
+										<li><a href="use.do">이용방법</a>
 										<li><a href="review.do">여행후기</a></li>
 										<li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
 									</ul>
@@ -412,8 +426,8 @@
 									<h4>Contact with Us</h4>
 									<ul>
 										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
-										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
-										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
+										<li><span class="la la-headphones"></span>+ 81 02 707 1480</li>
+										<li><span class="la la-envelope-o"></span>odgacom@naver.com</li>
 									</ul>
 								</div>
 							</div>
@@ -425,7 +439,6 @@
 						<div class="col-xl-9 col-lg-8">
 							<div class="footer-copy-right">
 								<p>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 									&copy; Copyright 
 									<script>
 										document
@@ -438,15 +451,12 @@
 									<a href="https://github.com/yumgit23" target="_blank">YM</a>
 									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
 									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-4">
 							<!-- Footer Social -->
 							<div class="footer-social f-right">
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
 								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
 								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
 							</div>
@@ -464,6 +474,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 동적 셀렉트 박스 -->
 <script>
 
@@ -537,6 +548,7 @@
 <script type="text/javascript">
 function savePlanner(){
 	checkUnload = false;
+	
 	var p_title = $("#p_title").val(); 
 	var p_msize = $("#test1 option:selected").val();
 	var p_concept = $("#test2 option:selected").val();
@@ -544,13 +556,22 @@ function savePlanner(){
 	var title = $("#title").val(); 
 	var hsize = $("#hSize").val();
 	var concept = $("#concept").val();
-	
+	var goPage = null;
 	document.fin.title.value = p_title;
 	document.fin.hSize.value = p_msize;
 	document.fin.concept.value = p_concept;
-	//alert("#1"+p_title+"#2"+p_msize+"#3"+p_concept);
-	//location.href='save.do?p_title='+p_title+'&p_msize='+p_msize+'&p_concept='+p_concept+'&p_id='p_id;
-	alert("플래너가 저장 되었습니다. 마이페이지에서 확인 할 수 있습니다.");
+	swal({
+		text: "플래너가 성공적으로 저장되었습니다.",
+		buttons:{"확인하기":"확인하기","홈으로":"홈으로"},
+		}).then((value) => {
+			if(value==="확인하기"){
+				document.fin.goPage.value="mypage";
+				document.fin.submit();
+			}else if(value==="홈으로"){
+				document.fin.goPage.value="index";
+				document.fin.submit();
+			}
+		});
 }
 </script>
 
@@ -619,7 +640,7 @@ function daydo(value){
 		   data: { p_id: p_id, sp_day : sp_day },
 		   success: function(responseData){
            if(!responseData){
-				  alert("장소를 추가해주세요.");
+        	   sweetAlert("장소를 추가해주세요.");
 				  return false;
 			  }
            var html = "";  /* <div style='margin-bottom:5px'> <a class='link_a' href='testGet.do?contentid="+responseData[i].sp_id+"'>*/
@@ -663,7 +684,7 @@ function dayDelAll(){	//일정 전체 삭제
     	var innerHtml= '<tr><td style="text-align: center;"><button class="bttn list-bttn" id="daybtn'+trCnt+'" value="'+trCnt+'" onclick="daydo(value)">DAY '+trCnt+'</button></td></tr>';
     	$('#myTable > tbody:last').append(innerHtml);
     }else{
-    	alert("최대 10일까지만 가능합니다.");
+    	sweetAlert("최대 10일까지만 가능합니다.");
     	return false;
     }   
   }
@@ -756,9 +777,12 @@ function dayDelAll(){	//일정 전체 삭제
 	            for(var i=0; i<list.length; i++){
 	            	html += '<div style="max-width: 100%;">';
 	               	html += '<div class = "card mb-2">';
-		                 if((list[i].firstimage)!= null) html += '<img class="card-img-top" src = '+list[i].firstimage+' alt="Card image cap">';  
-	                 else html += '<img class="card-img-top" src = "https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg" >';                           
-	               		html += '<div class = "movie-item-body" style="text-align: center;padding-top: 2%;"><h6 style="margin-bottom: 2%;font-weight: bold;">'+list[i].title+'</h6></div>';
+		                 if((list[i].firstimage)!= null) html += '<img onclick="markerm('+list[i].mapy+', '+list[i].mapx+', &quot;'+list[i].title+'&quot;, &quot;'+list[i].firstimage+'&quot;, &quot;'+list[i].addr1+
+                         '&quot;, &quot;'+list[i].zipcode+'&quot;); panTo('+list[i].mapy+', '+list[i].mapx+');" class="card-img-top" src = '+list[i].firstimage+' alt="Card image cap">';  
+	                 else html += '<img class="card-img-top" onclick="markerm('+list[i].mapy+', '+list[i].mapx+', &quot;'+list[i].title+'&quot;, &quot;'+list[i].firstimage+'&quot;, &quot;'+list[i].addr1+
+                     '&quot;, &quot;'+list[i].zipcode+'&quot;); panTo('+list[i].mapy+', '+list[i].mapx+');" src = "resources/upload/insteadimg.png" >';                           
+	               		html += '<div class = "movie-item-body" style="text-align: center;padding-top: 2%;"><h6 onclick="markerm('+list[i].mapy+', '+list[i].mapx+', &quot;'+list[i].title+'&quot;, &quot;'+list[i].firstimage+'&quot;, &quot;'+list[i].addr1+
+                        '&quot;, &quot;'+list[i].zipcode+'&quot;); panTo('+list[i].mapy+', '+list[i].mapx+');" style="margin-bottom: 2%;font-weight: bold;">'+list[i].title+'</h6></div>';
 	              		html += '<!-- "More" button -->';
 	               		html += '<div style="padding: .1rem 0 .1rem 0.3rem;background-color: rgba(0, 0, 0, .03); border-top: 1px solid rgba(0, 0, 0, .125);text-align: right;margin-right: 3%;">';
 	               			html += '<button style="border-radius: 7%;" onclick="markerm('+list[i].mapy+', '+list[i].mapx+', &quot;'+list[i].title+'&quot;, &quot;'+list[i].firstimage+'&quot;, &quot;'+list[i].addr1+
@@ -810,7 +834,7 @@ function showMovie(value) {
     $.ajax({
         type: 'get',
         url: searchUrl, // 읽어올 문서
-       dataType: "xml",
+        dataType: "xml",
         data: { contentid: value},
         success: function(xml) {
             const modalOverview = document.getElementById("overview");
@@ -819,11 +843,11 @@ function showMovie(value) {
                var overnum = over.split("<br>");
                if(overnum[0]!=null) over=overnum[0];
                if(over != null){
-                  if(over.length>70){
-                     var fetchOver = over.substring(0,70);
+                  if(over.length >= 100){
+                     var fetchOver = over.substring(0,100);
                      modalOverview.textContent = 'TMI : '+fetchOver+' ...(생략) ';
-                  }                 
-                  modalOverview.textContent = 'TMI : '+over;                      
+                  }else modalOverview.textContent = 'TMI : '+over;                   
+                                     
                }    
             });
         }
@@ -839,17 +863,17 @@ function checkNull(){
 	  sdate = sdate.trim();
 	  edate = edate.trim();
 	  if(sdate == '' || sdate ==null){
-		  alert("시작일을 입력해주세요");
+		  sweetAlert("시작일을 입력해주세요");
 		  $('#sdate').focus();
         return false;
     }else {
     	if(edate ==''||edate==null){
-    		alert("종료일을 입력해주세요");
+    		sweetAlert("종료일을 입력해주세요");
   		  	$('#edate').focus();
   		  	return false;
     	}else{
     		if(sp_day==0){
-    			alert("Day 버튼을 클릭하여 Day를 선택해주세요.");
+    			sweetAlert("Day 버튼을 클릭하여 Day를 선택해주세요.");
     			return false;
     		}
     	}
@@ -880,7 +904,6 @@ function checkNull(){
 		                 '            <div class="desc">' + 
 		                 '                <div class="ellipsis">'+addr1+'</div>' + 
 		                 '                <div class="jibun ellipsis">(우) '+zipcode+'</div>' + 
-		                 '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
 		                 '            </div>' + 
 		                 '        </div>' + 
 		                 '    </div>' +    
@@ -1014,22 +1037,59 @@ function reset(){
 	dayDelete();
 }
 </script>
+
 <script type="text/javascript">
 function goPlanner(){
 	if(${empty LOGINUSER}){
-		alert("로그인 후 이용 가능합니다.");
-		 location.href = "login.do";
+		swal({
+			text: "로그인 후 이용 가능합니다.",
+			buttons:{"확인":true,cancel:"취소"},
+			}).then((value) => {
+				if(value){
+					location.href = "login.do";
+				}
+			});
+		 
 	}else{
 		location.href = "planner?m_id=${LOGINUSER.m_id}";
 	}
 }
 function goSupport(){
 	if(${empty LOGINUSER}){
-		alert("로그인 후 이용 가능합니다.");
-		 location.href = "login.do";
+		swal({
+			text: "로그인 후 이용 가능합니다.",
+			buttons:{"확인":true,cancel:"취소"},
+			}).then((value) => {
+				if(value){
+					location.href = "login.do";
+				}
+			});
 	}else{
-		location.href = "support.dp?m_id=${LOGINUSER.m_id}";
+		location.href = "support.do?m_id=${LOGINUSER.m_id}";
 	}
+}
+function logout(){
+	  swal({
+			text: "로그아웃 하시겠습니까 ?",
+			buttons:{"확인":true,cancel:"취소"},
+			}).then((value) => {
+				if(value){
+					 swal({
+							text: "로그아웃 되었습니다.",
+							buttons:{"확인":true},
+							}).then((value) => {
+								if(value){
+									location.href="logout.do";
+								}
+							});				
+				}
+			});  
+}
+function sweetAlert(text){
+	swal({
+		text: text,
+		buttons:{"확인":true},
+		})
 }
 </script>
 			<!-- JS here -->

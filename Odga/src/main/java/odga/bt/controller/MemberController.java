@@ -40,7 +40,7 @@ public class MemberController {
 			  member1.setM_fname("defaultProfile.png");
 			  member1.setM_ofname("defaultProfile.png");
 			  service.joinS(member1);
-			  return "redirect:index.do";
+			  return "redirect:login.do";
 		  }else {
 			  member1 = service.saveStore(member, file);
 			/* String m_fname = file.getName(); */
@@ -49,7 +49,7 @@ public class MemberController {
 			/* member1.setM_fname(m_fname); */
 		      member1.setM_ofname(m_ofname);		 
 		      service.joinS(member);
-		      return "redirect:index.do";
+		      return "redirect:login.do";
 		  }
 	   }
 	/* 아이디/비밀번호 찾기 */
@@ -139,7 +139,15 @@ public class MemberController {
 				return "leave";
 			}
 		}
-	   
+		@ResponseBody
+	      @RequestMapping(value = "/checkLogin.jy", method = RequestMethod.POST)
+	      public String checkLogin(Member member, HttpServletResponse response) throws Exception {
+	         System.out.println("★★★★★★★★★★★★★" + member);
+	         int checklogin = service.checkLogin(member, response);
+	         String returnVal = Integer.toString(checklogin);
+
+	         return returnVal;
+	      }
 		
 }
 

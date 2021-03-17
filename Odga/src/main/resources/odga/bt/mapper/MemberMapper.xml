@@ -71,5 +71,12 @@
 		FROM EMAIL_CHK WHERE Authkey=#{Authkey}
 		
 	</delete>	
-		
+	
+	<!-- 로그인체크  -->      
+   <select id="checkLogin" parameterType="Member" resultType="int">
+   
+          select count(*)
+          FROM MEMBER WHERE M_EMAIL=#{m_email} and M_PWD=#{m_pwd}
+          
+   </select>
 </mapper>

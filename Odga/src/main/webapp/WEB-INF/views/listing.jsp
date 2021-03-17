@@ -11,7 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
 		<!-- CSS here -->
             <link rel="stylesheet" href="assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -26,7 +25,16 @@
             <link rel="stylesheet" href="assets/css/nice-select.css">
             <link rel="stylesheet" href="assets/css/style.css">
    </head>
-
+<style>
+.swal-button--확인 {
+ background-color:#ff3d1c
+}
+.swal-button--확인:not([disabled]):hover {
+ background-color:#ff5235
+}
+.swal-button--확인:active {
+ background-color:#ff5235
+}</style>
    <body>
     <!-- Preloader Start -->
     <div id="preloader-active">
@@ -40,7 +48,7 @@
         </div>
     </div>
     <!-- Preloader End -->
-    <header>
+ <header>
         <!-- Header Start -->
        <div class="header-area header-transparent">
             <div class="main-header">
@@ -55,7 +63,7 @@
                               <div style="width: 84%;" class="main-menu f-right d-none d-lg-block" align="right">
                                <nav>
                            <ul id="navigation" style="width: 100%;float: left;">
-                              <div style="float: left;width: 83%;">
+                              <ul style="float: left;width: 80%;">
                                     <li><a href="listing.do">국내여행지</a></li>
                                     <li><a href="review.do">커뮤니티</a>
                                        <ul class="submenu" style="text-align: left;">
@@ -65,12 +73,18 @@
                                     </li>
                                     <li><a href="use.do">이용방법</a></li>
                                     <li><a href="https://www.agoda.com/">호텔예약</a></li>
+                                    <c:if test="${LOGINUSER.m_verify eq 0}">
+                                    	<li><a href="member.do">마이페이지</a></li>
+                                    </c:if>                                  
+                                    <c:if test="${LOGINUSER.m_verify eq 9}">
+                                    	<li><a href="dashboard.do">관리자페이지</a></li>
+                                    </c:if>
                                     <li class="add-list" style="display: inline flow-root list-item;">
                                        <a onclick="goPlanner()" style ="cursor: pointer;"><i class="ti-plus"></i>나의 여행 만들기</a>
                                     </li>
-                              </div>
-                              <div style="float: left;width: 17%;padding-top: 23px;" align="left">   
-                                 <li class="login" style="width: 103%;padding: 1%;text-align: center;">                          
+                              </ul>
+                              <ul style="float: left;width: 20%;padding-top: 23px;" align="left">   
+                                 <li class="login" style="width: 75%;padding: 1%;text-align: center;float:left;">                          
                                              <c:choose>
                                                    <c:when test="${empty LOGINUSER}">
                                                       <a href="login.do" style="padding: inherit;font-size: 80%;">
@@ -85,18 +99,25 @@
                                                    <c:otherwise>
                                                       <c:choose>
                                                          <c:when test="${LOGINUSER.m_verify eq 0}">
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li>
-                                                         </c:when>
+                                                            <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>${LOGINUSER.m_name}님 로그아웃</a>                                                             										          
+                                                          <!--   <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="member.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 마이페이지</a></li> -->
+                                                         </c:when>                                           
                                                          <c:otherwise>
-                                                            <a href="logout.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i>관리자님 로그아웃</a>
-                                                            <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li>
+                                                             <a onclick="logout()" style="padding: inherit;font-size: 100%; margin-top: 7%;"><i class="ti-user"></i>관리자님 로그아웃</a>
+                                                           <!--  <li style="width: 100%;padding: 0%;float: left;text-align: center;"><a href="dashboard.do" style="padding: inherit;font-size: 80%;"><i class="ti-user"></i> 관리자페이지</a></li> -->
                                                          </c:otherwise>
                                                        </c:choose>
                                                    </c:otherwise>
                                              </c:choose>
                                           </li>
-                                      </div>
+                                          <c:if test="${not empty LOGINUSER}">
+	 										<li style="float: right;width: 25%;">   
+	                                      	 <div class="main-menu f-right d-none d-lg-block"><img class="img-fluid" onclick="goMypage()" src="assets/img/profile/${LOGINUSER.m_fname}" alt="" style="cursor: pointer;min-height:60px;width: 60px;border-radius: 50%;max-width: 100%;border: 3px solid white;">
+			                                    </div>
+			                           		</li> 
+			                           		</c:if>                                    
+                                      </ul>
+                                      
 		                           </ul>
 		                        </nav>
 		                     </div>
@@ -112,7 +133,6 @@
         <!-- Header End -->
     </header>
     <main>
-
         <!-- Hero Start-->
         <div class="hero-area3 hero-overly2 d-flex align-items-center" style="background-image: url(assets/img/myPlanImg/12.jpg);">
             <div class="container">
@@ -156,7 +176,7 @@
                         <div class="row">
                             <div class="col-12">
                                     <div class="small-section-tittle2 mb-45">
-                                    <h4>Advanced Filter</h4>
+                                    <h4>검색하기</h4>
                                 </div>
                             </div>
                         </div> 
@@ -178,13 +198,12 @@
                                 </div>
                             </div>
                             <div class="single-listing">
-                                 <button class="btn list-btn mt-20" type="submit">Search</button>
+                                 <button class="btn list-btn mt-20" type="submit">검 색</button>
                             </div>
                           </form>
                         </div>
                         <!-- 관광지검색 Filtering End -->
                     </div>
-                     
                      <!-- 국내 관광지 리스트 Form -->
                     <div class="col-xl-8 col-lg-8 col-md-6">
                         <div class="row">
@@ -206,7 +225,6 @@
                                 </div>
                             </div>
                         </div>
-
                         
                         <!-- 국내 관광지 리스트  시작 -->
                         <!-- 국내 관광지 리스트  시작 -->
@@ -218,14 +236,14 @@
                                         <div class="single-listing mb-30">
                                      <c:choose>
                                        <c:when test="${touritems.firstimage eq (null)}">
-                                         <div class="list-img"><a href="listing_details.do?contentid=${touritems.contentid}"><img src="https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg" alt="" ></a></div>
+                                         <div class="list-img"><a href="listing_details.do?contentid=${touritems.contentid}"><img src="assets/img/insteadimg.png" alt="" ></a></div>
                                          </c:when>
                                         <c:otherwise>
                                        <div class="list-img"><a href="listing_details.do?contentid=${touritems.contentid}"><img src="${touritems.firstimage}" alt="" ></a></div>
                                       </c:otherwise>
                                     </c:choose>
                                             <div class="list-caption">
-                                                <span><a href="listing_details.do?contentid=${touritems.contentid}">Open</a></span>
+                                                <span><a href="listing_details.do?contentid=${touritems.contentid}">더보기</a></span>
                                                 <h3><a href="listing_details.do?contentid=${touritems.contentid}">${touritems.title}</a></h3>
                                                 <p>${touritems.addr1}</p>
                                                 <div class="list-footer">
@@ -285,7 +303,6 @@
 	 			</c:choose>
 	 			<!-- 이전 페이지 END --> 	
 	 			
-	 				
  			<c:choose>
  				<c:when test="${keyword!=null}">
                       <c:forEach begin="${listResult.startPage}" end="${listResult.endPage}" var="i">
@@ -354,7 +371,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>
@@ -378,11 +395,18 @@
 								<div class="footer-tittle">
 									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="join.do">회원가입</a></li>
-										<li><a href="login.do">로그인</a></li>
-										<li><a href="use.do">나의 여행 만들기</a></li>
-										<li><a href="review.do">여행후기</a></li>
-										<li><a href="inquiry.do">문의하기</a></li>
+										<c:choose>
+			                                 <c:when test="${ empty LOGINUSER }">
+			                                    <li><a href="login.do">로그인 & 회원가입</a></li>
+			                                 </c:when>
+			                                 <c:otherwise>
+			                                    <li><a href="logout.do">로그아웃</a></li>
+			                                 </c:otherwise>
+			                            </c:choose>
+			                            <li><a href="use.do">이용방법</a>
+										<li><a onclick="goPlanner()">나의 여행 만들기</a></li>
+										<li><a href="review.do">커뮤니티</a>
+										<li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
 									</ul>
 								</div>
 							</div>
@@ -393,8 +417,8 @@
 									<h4>Contact with Us</h4>
 									<ul>
 										<li><span class="la la-home"></span> 서울 마포구 백범로 23 3층</li>
-										<li><span class="la la-headphones"></span> <a href="#">+ 81 02 707 1480</a></li>
-										<li><span class="la la-envelope-o"></span> <a href="odgacom@naver.com">odgacom@naver.com</a></li>
+										<li><span class="la la-headphones"></span>+ 81 02 707 1480</li>
+										<li><span class="la la-envelope-o"></span>odgacom@naver.com</li>
 									</ul>
 								</div>
 							</div>
@@ -406,7 +430,6 @@
 						<div class="col-xl-9 col-lg-8">
 							<div class="footer-copy-right">
 								<p>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 									&copy; Copyright 
 									<script>
 										document
@@ -419,15 +442,12 @@
 									<a href="https://github.com/yumgit23" target="_blank">YM</a>
 									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
 									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-4">
 							<!-- Footer Social -->
 							<div class="footer-social f-right">
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-facebook-f"></i></a> 
-								<a href="https://www.instagram.com/odga__com"><i class="fab fa-twitter"></i></a>
 								<a href="https://www.instagram.com/odga__com"><i class="fas fa-globe"></i></a> 
 								<a href="https://www.instagram.com/odga__com"><i class="fab fa-instagram"></i></a>
 							</div>
@@ -442,32 +462,55 @@
     <div id="back-top" >
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
+function salert(){
+	swal({
+		text: "로그인 후 이용 가능합니다.",
+		buttons:{"확인":true,cancel:"취소"},
+		}).then((value) => {
+			if(value){
+				location.href = "login.do";
+			}
+		});
+}
 function goPlanner(){
 	if(${empty LOGINUSER}){
-		swal({
-			title: "Notice",
-			text: "로그인 후 이용 가능합니다.",
-			icon:"success",
-			buttons:["확인", true]
-			}).then((value) => {
-				if(value){
-					location.href = "login.do";
-				}
-			})
-		 
+			salert();
 	}else{
 		location.href = "planner?m_id=${LOGINUSER.m_id}";
 	}
 }
 function goSupport(){
 	if(${empty LOGINUSER}){
-		alert("로그인 후 이용 가능합니다.");
-		 location.href = "login.do";
+		salert();
 	}else{
-		location.href = "support.dp?m_id=${LOGINUSER.m_id}";
+		location.href = "support.do?m_id=${LOGINUSER.m_id}";
 	}
+}
+function goMypage(){
+	if(${LOGINUSER.m_verify eq 9}){
+		location.href = "dashboard.do?m_id=${LOGINUSER.m_id}";
+	}else{
+		location.href = "member.do?m_id=${LOGINUSER.m_id}";
+	}
+}
+function logout(){
+	  swal({
+			text: "로그아웃 하시겠습니까 ?",
+			buttons:{"확인":true,cancel:"취소"},
+			}).then((value) => {
+				if(value){
+					 swal({
+							text: "로그아웃 되었습니다.",
+							buttons:{"확인":true},
+							}).then((value) => {
+								if(value){
+									location.href="logout.do";
+								}
+							});				
+				}
+			});  
 }
 </script>
 
@@ -504,9 +547,6 @@ function goSupport(){
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
-
-
-
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="//work6.kr/plugin/plugin_link/19"></script>

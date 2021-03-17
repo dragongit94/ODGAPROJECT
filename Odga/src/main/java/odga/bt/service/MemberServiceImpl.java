@@ -66,7 +66,7 @@ public class MemberServiceImpl implements MemberService {
 		//log.info("##check"+check);
 		if(memberMapper.checkId(member.getM_email()) == 0) {
 			System.out.println("<script>");
-			System.out.println("alert('등록된 이메일이 없습니다.');");
+			System.out.println("salert('등록된 이메일이 없습니다.');");
 			System.out.println("history.go(-1);");
 			System.out.println("</script>");
 			return null;
@@ -135,34 +135,35 @@ public class MemberServiceImpl implements MemberService {
  *  이메일 관련 메서드 시작
  *--------------------------------------------*/
 	
-   public void regist(Member member) throws Exception {
-        String key = new TempKey().generateKey(30);  // 인증키 생성
-        member.setAuthkey(key);
-        System.out.println("key : " + key);
-        
-        
-        System.out.println("보내기전 값들");
-        System.out.println("보내기전 값들====" + member.toString());
-        // 이메일 보내기전에 인증키값을 테이블에 저장
-        memberMapper.emailAuthIns(member);
-        
-        //메일 전송
-        MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("서비스 이메일 인증");
-        sendMail.setText(
-                new StringBuffer()
-                .append("<h1>메일인증</h1>")
-                .append("<h1>TEST 이민용</h1>")
-                //.append("<a href='http://localhost:8080/emailConfirm?authKey=")
-                .append("<h1>아래의 인증키를 입력하세요</h1>")
-                .append(key)
-                //.append("' target='_blank'>이메일 인증 확인</a>")
-                .toString());
-        //deathcobra00@naver.com
-        sendMail.setFrom("thecolorpoetic@gmail.com", "오디가 프로젝트");
-        sendMail.setTo(member.getM_email());
-        sendMail.send();
-    }
+	   public void regist(Member member) throws Exception {
+	        String key = new TempKey().generateKey(30);  // 인증키 생성
+	        member.setAuthkey(key);
+	        System.out.println("key : " + key);
+	        
+	        
+	        System.out.println("보내기전 값들");
+	        System.out.println("보내기전 값들====" + member.toString());
+	        // 이메일 보내기전에 인증키값을 테이블에 저장
+	        memberMapper.emailAuthIns(member);
+	        
+	        //메일 전송
+	        MailHandler sendMail = new MailHandler(mailSender);
+	        sendMail.setSubject("서비스 이메일 인증");
+	        sendMail.setText(
+	                new StringBuffer()
+	                .append("<h1 style=\"font-weight: bold; font-family: Arial;\">나만의 여행 플래너 오디가!</h1>")
+	                .append("<h1 style=\"font-family: Arial;\">쉽고 빠르게 여행을 계획하세요.</h1><br>")
+	                //.append("<a href='http://localhost:8080/emailConfirm?authKey=")
+	                .append("<h2 style=\"font-family: Arial;\">아래의 인증키를 입력하세요</h2>")
+	                .append(key)
+	                //.append("' target='_blank'>이메일 인증 확인</a>")
+	                .toString());
+	        //deathcobra00@naver.com
+	        sendMail.setFrom("thecolorpoetic@gmail.com", "오디가 프로젝트");
+	        sendMail.setTo(member.getM_email());
+	        sendMail.send();
+	    }
+	 
  
     //이메일 인증 키 검증
     public String userAuth(String authkey) throws Exception {
@@ -285,6 +286,15 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.findPwd(member);
 	
 	}
+	@Override
+	   public int checkLogin(Member member, HttpServletResponse response) throws Exception {
+	      
+	      System.out.println("memver =" + member.toString());
+	      
+	      int i = memberMapper.checkLogin(member);
+	      System.out.println("아이디 있음 =" + i);
+	      return i;
+	   }
 }
 /*---------------------------------------------
  *  이메일 관련 메서드 끝

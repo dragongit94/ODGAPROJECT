@@ -18,7 +18,6 @@ import odga.bt.vo.SearchResult;
 import odga.bt.vo.Searchcode;
 import odga.bt.vo.TotalList;
 @Transactional
-@Log4j
 @Service
 @AllArgsConstructor
 public class PlannerServiceImpl implements PlannerService {

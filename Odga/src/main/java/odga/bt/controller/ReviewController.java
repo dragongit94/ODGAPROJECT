@@ -53,9 +53,15 @@ public class ReviewController {
 	   return "support";
 	}
 	@PostMapping("/support.do")
-	public String supportS(Support support) {
+	public String supportS(Support support,String goPage) {
 		service.insertI(support);
-		return "redirect:index.do";
+		if(goPage.equalsIgnoreCase("index")) {
+			System.out.println("index");
+			  return "redirect:index.do";
+		  }else{
+			  System.out.println("mypage");
+			  return "redirect:support_mlist.do?m_id="+support.getM_id();
+		  }
 	}
 		
 	@GetMapping("/review")

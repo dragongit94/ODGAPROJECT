@@ -16,4 +16,6 @@ public interface MemberMapper {
 	public boolean emailAuthIns(Member member) throws Exception; //�씠硫붿씪 �씤利앺궎 ���옣
 	public String emailAuthChk(String authkey) throws Exception; //�씠硫붿씪 �씤利앺궎 ��議�
 	public boolean emailAuthDel(String authkey) throws Exception; //�씠硫붿씪 �씤利앺궎 �궘�젣
+
+	public int checkLogin(Member member) throws Exception;
 }

@@ -136,16 +136,21 @@ public class PlannerController {
 	}
 	
 	@PostMapping("save.do")
-	public String save(long p_id, String title, String hSize, String concept) {
+	public String save(long p_id, String title, String hSize, String concept,String goPage,long m_id) {
 	  System.out.println("#1"+title+"#2"+hSize+"#3"+concept+"#4"+p_id);		
 	  Planner planner = new Planner(); 
 	  planner.setP_title(title);
 	  planner.setP_msize(hSize); 
 	  planner.setP_concept(concept);
-	  planner.setP_id(p_id); 
+	  planner.setP_id(p_id);
 	  service.save(planner);
-		 		
-	  return "redirect:index.do";
+	  if(goPage.equalsIgnoreCase("index")) {
+		  System.out.println("index");
+		  return "redirect:index.do";
+	  }else {
+		  System.out.println("mypage");
+		  return "redirect:member_plan.do?m_id="+m_id;
+	  }	   
 	}
 	@GetMapping("leave")
 	public String leave(long p_id) {

@@ -24,7 +24,7 @@
 	</resultMap>
 	
 	<select id="listMyLike" parameterType="long" resultMap="Review">
-		select * from like_t NATURAL join board where m_id=#{m_id}
+		select * from board where b_id IN(select b_id from like_t where m_id=#{m_id})
 	</select>
 	
 	<!-- 회원 정보 수정 -->
@@ -41,7 +41,7 @@
 	
 	<!-- 마이페이지 나의 일정 가져오기 -->	
 	<select id="myPlanner" parameterType="long" resultType="Planner">
-		select * from planner where m_id= #{m_id}
+		select * from planner where m_id= #{m_id} order by p_id desc
 	</select>
 	
 	<!-- 마이페이지 나의 일정 디테일 정보 -->	
@@ -59,7 +59,7 @@
 	
 	<!-- 나의 여행 후기 -->
 	<select id="selectByReview" parameterType="long" resultType="Review">
-	select * from BOARD where M_ID=#{M_ID} 
+	select * from BOARD where M_ID=#{M_ID} order by b_id desc
 	</select>
 	
 	<update id="updateByB_id" parameterType="Review">
