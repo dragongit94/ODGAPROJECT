@@ -17,6 +17,7 @@ import odga.bt.domain.Member;
 import odga.bt.service.MemberService;
 
 @Controller
+@RequestMapping("/")
 public class LoginController {
 	@Autowired
 	private MemberService service;
@@ -26,22 +27,21 @@ public class LoginController {
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	   private String login(@ModelAttribute Member member, HttpSession session, HttpServletResponse response) throws Exception {	      	     
 	      Member m1 = service.login(member, response, servletContext);
+	      
 	      if(m1 != null) {      
 	         session.setAttribute("LOGINUSER", m1);
-	         return "forward:/index.do";
+	         return "forward:index.do";
 	      }else {
 	         return "login";
 	      }
 	   }
-		//濡쒓렇�븘�썐 湲곕뒫 
-		@RequestMapping(value = "/logout", method = RequestMethod.GET)
+		@RequestMapping(value = "logout", method = RequestMethod.GET)
 		private String logout(HttpServletResponse response, HttpSession session) throws Exception {
 			service.logout(response, session);
-			return "forward:/index.do";
+			return "forward:index.do";
 		}
-		// �씠硫붿씪&鍮꾨�踰덊샇 李얘린
 		@GetMapping("findIdPwd")
 		private String findIdPwd() {
-			return "forgot";
+			return "login/forgot";
 		}
 }

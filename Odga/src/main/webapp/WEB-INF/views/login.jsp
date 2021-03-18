@@ -49,14 +49,10 @@
     </a>
 
     <button type="button" class="submit" onclick="loginCheck()">시작 </button>
-    <center>
-    <button class="loginBtn loginBtn--facebook"  >
-  	Login with Facebook
-	</button>
-	<BR>
-	<button class="loginBtn loginBtn--google"  >
-	  Login with Google
-	  </center>
+    <!-- 네이버 로그인 창으로 이동 -->
+	<div id="naver_id_login" style="text-align:center"><a href="${url}">
+	<img style="height: 5.5%;border-radius: 30px;width: 45%;" width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
+	<br>
 	</button>
 	</form>
   </div>
@@ -276,23 +272,47 @@
 <script src="../assets/js/login.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript">
-    function salert(text){
-    	swal({
-			text: text,
-			buttons:{true:"확인"},
-			});
-    }
+<script type="text/javascript">
+function salert(text){
+   swal({
+     text: text,
+     buttons:{true:"확인"},
+     });
+}
 document.getElementById('submitBtn').onclick = function(){
-			swal({
-				text: "회원가입이 완료 되었습니다.",
-				buttons:{"확인":true},
-				}).then((value) => {
-					if(value){
-						document.joinFrm.submit();
-					}
-				});
-		}
+   var l = document.joinFrm; 
+   
+   if (l.m_email.value == "" || l.m_pwd.value == "") {
+       salert("이메일 및 비밀번호를 입력해주세요.");
+       l.m_email.focus();
+       return false;
+   }else if (l.m_email_AuthKey.value == "") {
+       salert("이메일 인증을 해주세요.");
+       l.m_email_AuthKey.focus();
+       return false;
+   }else if (l.m_name.value == "") {
+       salert("이름을 입력해주세요.");
+       l.m_name.focus();
+       return false;
+   }else if (l.m_phone.value == "") {
+       salert("전화번호을 입력해주세요.");
+       l.m_phone.focus();
+       return false;
+   }else if (l.m_birth.value == "") {
+       salert("생년월일을 입력해주세요.");
+       l.m_birth.focus();
+       return false;
+   }else{
+         swal({
+            text: "회원가입이 완료 되었습니다.",
+            buttons:{"확인":true},
+            }).then((value) => {
+               if(value){
+                  document.joinFrm.submit();
+               }
+            });
+      }
+}
 </script>
 <script>
 $(document).ready(function() {

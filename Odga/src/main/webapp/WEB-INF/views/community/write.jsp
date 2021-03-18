@@ -3,46 +3,41 @@
 
 <!doctype html>
 <html class="no-js" lang="zxx">
-    <head>
-        <meta charset="utf-8">
-       <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-		  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		  <title>
-		    Odga.com
-		  </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-		<!-- CSS here -->
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="assets/css/slicknav.css">
-            <link rel="stylesheet" href="assets/css/flaticon.css">
-            <link rel="stylesheet" href="assets/css/animate.min.css">
-            <link rel="stylesheet" href="assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="assets/css/themify-icons.css">
-            <link rel="stylesheet" href="assets/css/slick.css">
-            <link rel="stylesheet" href="assets/css/nice-select.css">
-            <link rel="stylesheet" href="assets/css/style.css">
-            <link rel="stylesheet" href="assets/css/card.css">
-            <link rel="stylesheet" href="assets/css/tutorial.css">
-   </head>
-   <style>
-	.swal-button--확인 {
-	 background-color:#ff3d1c
-	}
-	.swal-button--확인:not([disabled]):hover {
-	 background-color:#ff5235
-	}
-	.swal-button--확인:active {
-	 background-color:#ff5235
-	}
-   </style>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Odga.com </title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+ <!-- CSS here -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="assets/css/slicknav.css">
+		<link rel="stylesheet" href="assets/css/animate.min.css">
+		<link rel="stylesheet" href="assets/css/magnific-popup.css">
+		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+		<link rel="stylesheet" href="assets/css/themify-icons.css">
+		<link rel="stylesheet" href="assets/css/slick.css">
+		<link rel="stylesheet" href="assets/css/nice-select.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<style>
+.swal-button--확인 {
+ background-color:#ff3d1c
+}
+.swal-button--확인:not([disabled]):hover {
+ background-color:#ff5235
+}
+.swal-button--확인:active {
+ background-color:#ff5235
+}
+.form-select .nice-select{
+	padding-left: 18px;
+}	
+</style>
 <body>
-	<!-- Preloader Start -->
+    <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
@@ -53,6 +48,7 @@
             </div>
         </div>
     </div>
+    <!-- Preloader Start -->
 <header>
         <!-- Header Start -->
        <div class="header-area header-transparent">
@@ -137,147 +133,68 @@
         </div>
         <!-- Header End -->
     </header>
-    <main>
-
-        <!-- Hero Start-->
-         <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center" style="background-image: url(assets/img/myPlanImg/12.jpg);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap text-center pt-50">
-                            <h2>이용 방법</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Hero End -->
-        <!--
-        <!-- Categories Area Start -->
-        <div class="categories-area section-padding30">
-            <div class="container2">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle text-center mb-80">
-                            <span>ODGA</span>
-                            <h2>여행 동선을 쉽게 확인하기</h2>
-                        </div>
-                    </div>
-                </div>
-                
-		        <!-- Services Area Start -->
-		        <ul class="card-list">
-					<li class="card">
-	                  <a class="card-image" onclick="goListing()" target="_blank" style="background-image: assets/img/use/p1.jpg;" data-image-full="assets/img/use/p1.jpg">
-	                     <img src="assets/img/use/p1.jpg" alt="Psychopomp" />
-	                  </a>
-	                  <a class="card-description" onclick="goListing()" target="_blank">
-	                     <hh2>1. 지역 찾기</hh2>
-	                     <p>리스트에서 여행지를 찾아서 선택 해보세요.</p>
-	                  </a>
-	               </li>
-					
-					<li class="card">
-						<a class="card-image" onclick="goPlanner()" style="background-image: assets/img/use/p3.jpg;cursor: pointer;" data-image-full="assets/img/use/p3.jpg">
-							<img src="assets/img/use/p3.jpg" alt="The Beautiful Game"/>
-						</a>
-						<a class="card-description" onclick="goPlanner()" style="cursor: pointer;" target="_blank">
-							<hh2>2. 플래너 작성</hh2>
-							<p>플래너를 통해 일정을 계획해보세요.</p>
-						</a>
-					</li>
-					
-					<li class="card">
-						<a class="card-image" onclick="goMypage()" target="_blank" style="background-image: assets/img/use/p2.jpg;cursor: pointer;" data-image-full="assets/img/use/p2.jpg">
-							<img src="assets/img/use/p2.jpg" alt="let's go" style="height: 357px;"/>
-						</a>
-						<a class="card-description" onclick="goMypage()" style="cursor: pointer;" target="_blank">
-							<hh2>3. 마이페이지에서 확인</hh2>
-							<p>작성한 플래너를 확인 해보세요.</p>
-						</a>
-					</li> 
-					
-					<li class="card">
-						<a class="card-image" href="https://www.skyscanner.co.kr/" target="_blank" style="background-image: assets/img/use/p4.jpg;" data-image-full="assets/img/use/p4.jpg">
-							<img src="assets/img/use/p4.jpg" alt="Jane Doe" />
-						</a>
-						<a class="card-description" href="" target="_blank">
-							<hh2>4. 여행하기</hh2>
-							<p>일정이 정해지셨다면 떠나보세요!</p>
-						</a>
-					</li>
-				</ul>
-		        <!-- Services Area End -->
-		        <!-- Popular Locations Start -->
-		         <div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/1.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail">
-				    <h1 class="detail-name">Step1 여행지찾기🔎</h1>
-				    <p class="detail-short-description"> 
-				     여행지 리스트에서 검색을 통해 알아보세요.
-				    </p>
-				  </div>
-				</div>
-				<div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/2.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail">
-				    <h1 class="detail-name">Step2 일정만들기📃</h1>
-				    <p class="detail-short-description"> 
-				      가고싶은 장소 또는 관심있는 장소 이신가요? 일정에 담아 계획을 세워보세요.
-				    </p>
-				  </div>
-				</div>
-				<div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/3.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail">
-				    <h1 class="detail-name">Step3 플래너 작성✏</h1>
-				    <p class="detail-short-description"> 
-				       일정에 담은 장소들을 지도에서 확인해보세요 인근의 맛집 명소들을 한눈에 확인 할 수 있습니다.
-				    </p>
-				  </div>
-				</div> 
-				<div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/4.jpg" style="border: 0.4rem solid #010e21;max-height:  90%;min-width: 100%;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail" style="padding-top: 4.6%;padding-left: 2%;">
-				    <h1 class="detail-name">Step4 여행하기✈</h1>
-				    <p class="detail-short-description"> 
-				      완성된 일정을 친구들과 공유해보세요! 길찾기와 메모만 잘 활용해도 여행 준비 끝!
-				    </p>
-				  </div>
-				</div>
+	<main>
+		<!-- Hero Start-->
+		 <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center" style="background-image: url(assets/img/myPlanImg/12.jpg);">
+			<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+						<div class="hero-cap text-center pt-50">
+								<h2>여행후기</h2>
+						</div>
+						</div>
+					</div>
 			</div>
 		</div>
-		
-		        <!-- Popular Locations End -->
-
-    </main>
-    		<!-- Footer Start-->
-		<footer>
+		<!--Hero End -->
+		<!-- Start Sample Area -->		
+				<div class="section-top-border">
+					<div class="row justify-content-center">
+						<div class="col-lg-10 col-md-8" align="center">
+							<h3 class="mb-30">후기작성</h3>
+							<form action="write" method="post" enctype="multipart/form-data" name="reviewFrm">
+								<div class="mt-10 mb-20">
+									<input type="hidden" name="m_id" value='${LOGINUSER.m_id}' readonly />
+								</div>
+								<div class="mt-10 mb-20">
+								<input type="text" name="b_writer" value='${LOGINUSER.m_name}' class="single-input" style="width:782px;" readonly />
+								</div>
+								<div class="mt-10 mb-20">
+									<input name="b_subject" type="text" placeholder="글제목 (최대 50자)"
+									onfocus="this.placeholder = ''" onblur="this.placeholder ='글제목 (최대 50자)'" required
+									class="single-input" style="width:782px;" maxlength="50">
+								</div>
+						
+								<div class="input-group-icon mt-10 mb-20" style="width:782px;" >
+									<div class="form-select" id="default-select" >
+										<select name="b_catgo" style="display: none;padding-left: 21px;" >
+											<option value="기타">여행 테마를 골라주세요</option>
+											<option value="가족여행">가족여행</option>
+											<option value="혼자여행">혼자여행</option>
+											<option value="커플여행">커플여행</option>
+											<option value="우정여행">우정여행</option>
+											<option value="패키지여행">패키지여행</option>
+										</select>
+									</div>
+								</div>
+								<div class="mt-10 mb-20" style="width: 782px;">
+		                           <label for="mainfile" class="genric-btn default" style="width:21%;">메인이미지 선택</label><input id="mainfile" name="file" type="file" class="genric-btn default" style="width:78%;text-align:left;" ><br> <!-- Choose File -->
+		                        </div>
+								<div class="justify-content-center" style="width:782px;">
+									<textarea  name="b_content" id="ir1" rows="20" style="width: 780px;">사진과 글을 원하는 위치에 이쁘게 꾸며주세요!<br/>사진은 우측 상단 버튼을 이용해서 넣어주세요!</textarea>
+								</div>
+								<div class="form-group mt-3">
+									<div>
+	                                	<input type="button" id="submitBtn" class="btn btn-sm btn-primary" value="저장" >
+	                                </div>
+	                            </div>
+							</form>
+						</div>
+					</div>
+				</div>
+		<!-- End Align Area -->
+	</main>
+    <footer>
 		<div class="footer-area">
 			<div class="container">
 				<div class="footer-top footer-padding">
@@ -287,7 +204,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>
@@ -297,11 +214,11 @@
 								<div class="footer-tittle">
 									<h4>Administrator</h4>
 									<ul>
-										<li><a href="https://github.com/dragongit94">이민용</a></li>
-										<li><a href="https://github.com/yumgit23">허유민</a></li>
 										<li><a href="https://github.com/suadeomgit">권성환</a></li>
 										<li><a href="https://github.com/lzhxxn">이지훈</a></li>
+										<li><a href="https://github.com/yumgit23">허유민</a></li>
 										<li><a href="https://github.com/DobbyisFree1">박종범</a></li>
+										<li><a href="https://github.com/dragongit94">이민용</a></li>
 									</ul>
 								</div>
 							</div>
@@ -311,12 +228,17 @@
 								<div class="footer-tittle">
 									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="join.do">회원가입</a></li>
-										<li><a href="login.do">로그인</a></li>
+										<c:choose>
+			                                 <c:when test="${ empty LOGINUSER }">
+			                                    <li><a href="login.do">로그인 & 회원가입</a></li>
+			                                 </c:when>
+			                                 <c:otherwise>
+			                                    <li><a href="logout.do">로그아웃</a></li>
+			                                 </c:otherwise>
+			                            </c:choose>
 										<li><a href="listing.do">국내여행지</a></li>
 										<li><a onclick="goPlanner()">나의 여행 만들기</a></li>
-										<li><a href="review.do">커뮤니티</a>
-										<li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
+										<li><a onclick="goSupport()">문의하기</a></li>
 									</ul>
 								</div>
 							</div>
@@ -352,7 +274,6 @@
 									<a href="https://github.com/yumgit23" target="_blank">YM</a>
 									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
 									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
 						</div>
@@ -368,13 +289,12 @@
 			</div>
 		</div>
 		</footer>
-		<!-- Footer End-->
     <!-- Scroll Up -->
     <div id="back-top" >
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
-
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 function salert(){
 	swal({
@@ -401,14 +321,11 @@ function goSupport(){
 	}
 }
 function goMypage(){
-	if(${empty LOGINUSER}){
-		salert();
+	if(${LOGINUSER.m_verify eq 9}){
+		location.href = "dashboard.do?m_id=${LOGINUSER.m_id}";
 	}else{
-		location.href = "member.do";
+		location.href = "member.do?m_id=${LOGINUSER.m_id}";
 	}
-}
-function goListing(){
-    location.href = "listing.do";
 }
 function logout(){
 	  swal({
@@ -427,12 +344,22 @@ function logout(){
 				}
 			});  
 }
+document.getElementById('submitBtn').onclick = function(){	
+	swal({
+		text: "여행 후기를 저장 하시겠습니까 ?",
+		buttons:{"확인":true},
+		}).then((value) => {
+			if(value){
+				document.reviewFrm.submit();
+			}
+		});
+}
 </script>
-    <!-- JS here -->
+<!-- JS here -->	
 		<!-- All JS Custom Plugins Link Here here -->
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
-		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+		
         <script src="./assets/js/popper.min.js"></script>
         <script src="./assets/js/bootstrap.min.js"></script>
 	    <!-- Jquery Mobile Menu -->
@@ -444,8 +371,8 @@ function logout(){
 		<!-- One Page, Animated-HeadLin -->
         <script src="./assets/js/wow.min.js"></script>
 		<script src="./assets/js/animated.headline.js"></script>
-        <script src="./assets/js/jquery.magnific-popup.js"></script>
-
+		<script src="./assets/js/jquery.magnific-popup.js"></script>
+		
 		<!-- Nice-select, sticky -->
         <script src="./assets/js/jquery.nice-select.min.js"></script>
 		<script src="./assets/js/jquery.sticky.js"></script>
@@ -459,113 +386,49 @@ function logout(){
         
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
-        <script>
-	     // wait for the entire page to finish loading
-	     window.addEventListener('load', function() {
-	     	
-	     	// setTimeout to simulate the delay from a real page load
-	     	setTimeout(lazyLoad, 1000);
-	     	
-	     });
-		// 4카드
-	     function lazyLoad() {
-	     	var card_images = document.querySelectorAll('.card-image');
-	     	
-	     	// loop over each card image
-	     	card_images.forEach(function(card_image) {
-	     		var image_url = card_image.getAttribute('data-image-full');
-	     		var content_image = card_image.querySelector('img');
-	     		
-	     		// change the src of the content image to load the new high res photo
-	     		content_image.src = image_url;
-	     		
-	     		// listen for load event when the new photo is finished loading
-	     		content_image.addEventListener('load', function() {
-	     			// swap out the visible background image with the new fully downloaded photo
-	     			card_image.style.backgroundImage = 'url(' + image_url + ')';
-	     			// add a class to remove the blur filter to smoothly transition the image change
-	     			card_image.className = card_image.className + ' is-loaded';
-	     		});
-	     		
-	     	});
-	     	
-	     }
-	     //튜토리얼
-	     class ImageViewer {
-	    	  constructor(selector) {
-	    	    this.selector = selector;
-	    	    $(this.secondaryImages).click(() => this.setMainImage(event));
-	    	    $(this.mainImage).click(() => this.showLightbox(event));
-	    	    $(this.lightboxClose).click(() => this.hideLightbox(event));
-	    	  }
-	    	  
-	    	  get secondaryImageSelector() {
-	    	    return '.secondary-image';
-	    	  }
-	    	  
-	    	  get mainImageSelector() {
-	    	    return '.main-image';
-	    	  }
-	    	  
-	    	  get lightboxImageSelector() {
-	    	    return '.lightbox';
-	    	  }
-	    	  
-	    	  get lightboxClose() {
-	    	    return '.lightbox-controls-close';
-	    	  }
-	    	  
-	    	  get secondaryImages() {
-	    	    var secondaryImages = $(this.selector).find(this.secondaryImageSelector).find('img')
-	    	    return secondaryImages;
-	    	  }
-	    	  
-	    	  get mainImage() {
-	    	    var mainImage = $(this.selector).find(this.mainImageSelector);
-	    	    return mainImage;
-	    	  }
-	    	  
-	    	  get lightboxImage() {
-	    	    var lightboxImage = $(this.lightboxImageSelector);
-	    	    return lightboxImage;
-	    	  }
-	    	  
-	    	  setLightboxImage(event){
-	    	    var src = this.getEventSrc(event);
-	    	    this.setSrc(this.lightboxImage, src);
-	    	  }
-	    	  
-	    	  setMainImage(event){
-	    	    var src = this.getEventSrc(event);
-	    	    this.setSrc(this.mainImage, src);
-	    	  }
-	    	  
-	    	  getSrc(node){
-	    	    var image = $(node).find('img');
-	    	  }
-	    	  
-	    	  setSrc(node, src){
-	    	    var image = $(node).find('img')[0];
-	    	    image.src = src;
-	    	  }
-	    	  
-	    	  getEventSrc(event){
-	    	    return event.target.src;
-	    	  }
-	    	  
-	    	  showLightbox(event){
-	    	    this.setLightboxImage(event);
-	    	    $(this.lightboxImageSelector).addClass('show');
-	    	  }
-	    	  
-	    	  hideLightbox(){
-	    	    $(this.lightboxImageSelector).removeClass('show');
-	    	  }
-	    	}
+		<script src="./assets/js/main.js"></script>
+		
+		<script type="text/javascript" src="./se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var oEditors = [];
+				nhn.husky.EZCreator.createInIFrame({
+					 oAppRef: oEditors,
+					 elPlaceHolder: "ir1",
+					 sSkinURI: "/se2/SmartEditor2Skin.html",
+					 fCreator: "createSEditor2"
+				});
+				
+				$(".btn").on("click", function() {
+					oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+					var value = document.getElementById("ir1").value;
+					console.log(value);
+				});				
+			});
+			// 필수값 Check 
+			function validation(){ 
+				var contents = $.trim(oEditors[0].getContents()); 
+				if(contents === '<p>&bnsp;</p>' || contents === ''){ // 기본적으로 아무것도 입력하지 않아도 값이 입력되어 있음. 
+					alert("내용을 입력하세요."); 
+					oEditors.getById['ir1'].exec('FOCUS');
+					return false; 
+				} 
+				return true; 
+			}
 
-	    	new ImageViewer('.image-viewer');
-        </script>
-
-    </body>
+		</script>
+		
+		<script type="text/javascript">	
+		function get_query(){
+		    var url = document.location.href;
+		    var qs = url.substring(url.indexOf('?') + 1).split('&');
+		    for(var i = 0, result = {}; i < qs.length; i++){
+		        qs[i] = qs[i].split('=');
+		        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+		    }
+		    return result;
+		}
+		</script>		
+</body>
 </html>

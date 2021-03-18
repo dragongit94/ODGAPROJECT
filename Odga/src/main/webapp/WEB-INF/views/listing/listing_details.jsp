@@ -1,20 +1,15 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
-       <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-		  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		  <title>
-		    Odga.com
-		  </title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Odga.com</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
 		<!-- CSS here -->
             <link rel="stylesheet" href="assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -27,22 +22,20 @@
             <link rel="stylesheet" href="assets/css/slick.css">
             <link rel="stylesheet" href="assets/css/nice-select.css">
             <link rel="stylesheet" href="assets/css/style.css">
-            <link rel="stylesheet" href="assets/css/card.css">
-            <link rel="stylesheet" href="assets/css/tutorial.css">
    </head>
-   <style>
-	.swal-button--확인 {
-	 background-color:#ff3d1c
-	}
-	.swal-button--확인:not([disabled]):hover {
-	 background-color:#ff5235
-	}
-	.swal-button--확인:active {
-	 background-color:#ff5235
-	}
-   </style>
-<body>
-	<!-- Preloader Start -->
+<style>
+.swal-button--확인 {
+ background-color:#ff3d1c
+}
+.swal-button--확인:not([disabled]):hover {
+ background-color:#ff5235
+}
+.swal-button--확인:active {
+ background-color:#ff5235
+}
+</style>
+   <body>
+    <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
@@ -53,6 +46,7 @@
             </div>
         </div>
     </div>
+    <!-- Preloader Start -->
 <header>
         <!-- Header Start -->
        <div class="header-area header-transparent">
@@ -138,143 +132,118 @@
         <!-- Header End -->
     </header>
     <main>
-
         <!-- Hero Start-->
-         <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center" style="background-image: url(assets/img/myPlanImg/12.jpg);">
+        <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center" style="background-image: url(assets/img/myPlanImg/12.jpg);">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center pt-50">
-                            <h2>이용 방법</h2>
+                            <h2>${ListVo.touritems.title}</h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--Hero End -->
-        <!--
-        <!-- Categories Area Start -->
-        <div class="categories-area section-padding30">
-            <div class="container2">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle text-center mb-80">
-                            <span>ODGA</span>
-                            <h2>여행 동선을 쉽게 확인하기</h2>
+        <!-- Listing caption start-->
+        <div class="listing-caption section-padding">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- Map -->
+                    <div class="col-lg-6">
+                        <h3 class="mb-30">위치</h3>
+                        <div class="d-none d-sm-block mb-30 pb-4">
+                            <div id="map" style="height: 480px; position: relative; overflow: hidden;"></div>
+                            <script>
+                                function initMap() {
+                                    var latlng = {
+                                        lat: ${ListVo.touritems.mapy},
+                                        lng: ${ListVo.touritems.mapx}
+                                    };
+                                    var grayStyles = [{
+                                            featureType: "all",
+                                            stylers: [{
+                                                    saturation: -90
+                                                },
+                                                {
+                                                    lightness: 50
+                                                }
+                                            ] 
+                                        },
+                                        {
+                                            elementType: 'labels.text.fill',
+                                            stylers: [{
+                                                color: '#ccdee9'
+                                            }]
+                                        }
+                                    ];
+                                    var map = new google.maps.Map(document.getElementById('map'), {
+                                        center: {
+                                        	 lat: ${ListVo.touritems.mapy},
+                                             lng: ${ListVo.touritems.mapx}
+                                        },
+                                        zoom: 15,
+                                        styles: grayStyles,
+                                        scrollwheel: false
+                                    });
+                                    var marker =  new google.maps.Marker({
+                                        position: latlng,
+                                        map: map,
+                                      });
+                                }
+                            </script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5mja2EvWlVggl_asHhoL8FzB9f9O0I6k&amp;callback=initMap">
+                            </script>
+                        </div>
+                    </div>
+                    <!--End Map -->
+                    <div class="col-lg-6">
+                        <h3 class="mb-20">설명</h3></br>
+                        <h4 class="mb-30"><strong>${ListVo.touritems.title}</strong></h4>
+                        <p class="mb-10"><strong>주 소 : </strong>${ListVo.touritems.addr1} ${ListVo.touritems.addr2}</p>
+                        <p class="mb-10"><strong>우편번호 : </strong>${ListVo.touritems.zipcode}</p>
+                        <p class="mb-10"><strong>전화번호 : </strong>☎ ${ListVo.touritems.tel}</p>
+                        <p class="mb-10"><strong>조회수 : </strong>${ListVo.touritems.readcount}</p>
+                    </div>
+                </div>
+                <!-- listing Details Sta-->
+                <div class="listing-details-area section-padding" style="padding-top:5px;">
+                    <div class="container">
+                       <h3 class="mb-30">근처 추천 장소</h3>
+                        <div class="row">
+                        
+                      <c:set var="k" value="1"/>
+                      <c:forEach items="${ListVo.listResult.list}" var="touritems">
+                       <c:if test="${ListVo.touritems.areacode eq touritems.areacode}">
+                        <c:if test="${k ne 4}">
+                         <c:set var="k" value="${k+1}"/>
+                          <div class="col-lg-4 col-md-6">
+                            <div class="single-listing mb-30">
+                              <div class="list-img">
+                                <a href="listing_details.do?contentid=${touritems.contentid}"><img src="${touritems.firstimage}" alt="" ></a></div>
+                                  <div class="list-caption">
+                                    <span><a href="listing_details.do?contentid=${touritems.contentid}">더보기</a></span>
+                                     <h3><a href="listing_details.do?contentid=${touritems.contentid}">${touritems.title}</a></h3>
+                                     <p>${touritems.addr1}</p>
+                                     <div class="list-footer">
+                                            <ul>
+                                                <li></li>
+                                                <li>${touritems.tel}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </c:if>
+                            </c:if>
+                       </c:forEach>
                         </div>
                     </div>
                 </div>
-                
-		        <!-- Services Area Start -->
-		        <ul class="card-list">
-					<li class="card">
-	                  <a class="card-image" onclick="goListing()" target="_blank" style="background-image: assets/img/use/p1.jpg;" data-image-full="assets/img/use/p1.jpg">
-	                     <img src="assets/img/use/p1.jpg" alt="Psychopomp" />
-	                  </a>
-	                  <a class="card-description" onclick="goListing()" target="_blank">
-	                     <hh2>1. 지역 찾기</hh2>
-	                     <p>리스트에서 여행지를 찾아서 선택 해보세요.</p>
-	                  </a>
-	               </li>
-					
-					<li class="card">
-						<a class="card-image" onclick="goPlanner()" style="background-image: assets/img/use/p3.jpg;cursor: pointer;" data-image-full="assets/img/use/p3.jpg">
-							<img src="assets/img/use/p3.jpg" alt="The Beautiful Game"/>
-						</a>
-						<a class="card-description" onclick="goPlanner()" style="cursor: pointer;" target="_blank">
-							<hh2>2. 플래너 작성</hh2>
-							<p>플래너를 통해 일정을 계획해보세요.</p>
-						</a>
-					</li>
-					
-					<li class="card">
-						<a class="card-image" onclick="goMypage()" target="_blank" style="background-image: assets/img/use/p2.jpg;cursor: pointer;" data-image-full="assets/img/use/p2.jpg">
-							<img src="assets/img/use/p2.jpg" alt="let's go" style="height: 357px;"/>
-						</a>
-						<a class="card-description" onclick="goMypage()" style="cursor: pointer;" target="_blank">
-							<hh2>3. 마이페이지에서 확인</hh2>
-							<p>작성한 플래너를 확인 해보세요.</p>
-						</a>
-					</li> 
-					
-					<li class="card">
-						<a class="card-image" href="https://www.skyscanner.co.kr/" target="_blank" style="background-image: assets/img/use/p4.jpg;" data-image-full="assets/img/use/p4.jpg">
-							<img src="assets/img/use/p4.jpg" alt="Jane Doe" />
-						</a>
-						<a class="card-description" href="" target="_blank">
-							<hh2>4. 여행하기</hh2>
-							<p>일정이 정해지셨다면 떠나보세요!</p>
-						</a>
-					</li>
-				</ul>
-		        <!-- Services Area End -->
-		        <!-- Popular Locations Start -->
-		         <div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/1.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail">
-				    <h1 class="detail-name">Step1 여행지찾기🔎</h1>
-				    <p class="detail-short-description"> 
-				     여행지 리스트에서 검색을 통해 알아보세요.
-				    </p>
-				  </div>
-				</div>
-				<div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/2.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail">
-				    <h1 class="detail-name">Step2 일정만들기📃</h1>
-				    <p class="detail-short-description"> 
-				      가고싶은 장소 또는 관심있는 장소 이신가요? 일정에 담아 계획을 세워보세요.
-				    </p>
-				  </div>
-				</div>
-				<div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/3.jpg" style="min-height: 113%;max-width: 88%;border: 0.4rem solid #010e21;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail">
-				    <h1 class="detail-name">Step3 플래너 작성✏</h1>
-				    <p class="detail-short-description"> 
-				       일정에 담은 장소들을 지도에서 확인해보세요 인근의 맛집 명소들을 한눈에 확인 할 수 있습니다.
-				    </p>
-				  </div>
-				</div> 
-				<div style="display:flex;justify-content:center; margin: 15;">	 
-		        	 <div class="container1" >
-				  <div class="image-viewer">
-				    <div class="main-image">
-				      <img src="assets/img/use/4.jpg" style="border: 0.4rem solid #010e21;max-height:  90%;min-width: 100%;"/>
-				    </div>
-				    </div>
-				  </div>
-				  <div class="detail" style="padding-top: 4.6%;padding-left: 2%;">
-				    <h1 class="detail-name">Step4 여행하기✈</h1>
-				    <p class="detail-short-description"> 
-				      완성된 일정을 친구들과 공유해보세요! 길찾기와 메모만 잘 활용해도 여행 준비 끝!
-				    </p>
-				  </div>
-				</div>
-			</div>
-		</div>
-		
-		        <!-- Popular Locations End -->
-
+                <!-- listing Details End -->
+            </div>
+        </div>
+        <!-- Listing caption End-->
     </main>
     		<!-- Footer Start-->
 		<footer>
@@ -287,7 +256,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-1">
 								<!-- Logo -->
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
+                                  <a href="index.do"><img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;"></a>
                                 </div>
                                </div>
 							 </div>
@@ -297,11 +266,11 @@
 								<div class="footer-tittle">
 									<h4>Administrator</h4>
 									<ul>
+										<li><a href="https://github.com/lzhxxn">이지훈</a></li>
+										<li><a href="https://github.com/DobbyisFree1">박종범</a></li>
 										<li><a href="https://github.com/dragongit94">이민용</a></li>
 										<li><a href="https://github.com/yumgit23">허유민</a></li>
 										<li><a href="https://github.com/suadeomgit">권성환</a></li>
-										<li><a href="https://github.com/lzhxxn">이지훈</a></li>
-										<li><a href="https://github.com/DobbyisFree1">박종범</a></li>
 									</ul>
 								</div>
 							</div>
@@ -311,11 +280,18 @@
 								<div class="footer-tittle">
 									<h4>Quick Links</h4>
 									<ul>
-										<li><a href="join.do">회원가입</a></li>
-										<li><a href="login.do">로그인</a></li>
-										<li><a href="listing.do">국내여행지</a></li>
-										<li><a onclick="goPlanner()">나의 여행 만들기</a></li>
-										<li><a href="review.do">커뮤니티</a>
+										<c:choose>
+			                                 <c:when test="${ empty LOGINUSER }">
+			                                    <li><a href="join.do">회원가입</a></li>
+			                                    <li><a href="login.do">로그인</a></li>
+			                                 </c:when>
+			                                 <c:otherwise>
+			                                    <li><a href="logout.do">로그아웃</a></li>
+			                                 </c:otherwise>
+			                            </c:choose>
+			                            <li><a href="use.do">이용방법</a>
+										<li><a onclick="goPlanner()" style ="cursor: pointer;">나의 여행 만들기</a></li>
+										<li><a href="review.do">여행후기</a></li>
 										<li><a onclick="goSupport()" style ="cursor: pointer;">문의하기</a></li>
 									</ul>
 								</div>
@@ -352,7 +328,6 @@
 									<a href="https://github.com/yumgit23" target="_blank">YM</a>
 									<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
 									<a href="https://github.com/suadeomgit" target="_blank">SH</a>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								</p>
 							</div>
 						</div>
@@ -373,7 +348,6 @@
     <div id="back-top" >
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
-
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 function salert(){
@@ -401,14 +375,11 @@ function goSupport(){
 	}
 }
 function goMypage(){
-	if(${empty LOGINUSER}){
-		salert();
+	if(${LOGINUSER.m_verify eq 9}){
+		location.href = "dashboard.do?m_id=${LOGINUSER.m_id}";
 	}else{
-		location.href = "member.do";
+		location.href = "member.do?m_id=${LOGINUSER.m_id}";
 	}
-}
-function goListing(){
-    location.href = "listing.do";
 }
 function logout(){
 	  swal({
@@ -460,112 +431,6 @@ function logout(){
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
-        <script>
-	     // wait for the entire page to finish loading
-	     window.addEventListener('load', function() {
-	     	
-	     	// setTimeout to simulate the delay from a real page load
-	     	setTimeout(lazyLoad, 1000);
-	     	
-	     });
-		// 4카드
-	     function lazyLoad() {
-	     	var card_images = document.querySelectorAll('.card-image');
-	     	
-	     	// loop over each card image
-	     	card_images.forEach(function(card_image) {
-	     		var image_url = card_image.getAttribute('data-image-full');
-	     		var content_image = card_image.querySelector('img');
-	     		
-	     		// change the src of the content image to load the new high res photo
-	     		content_image.src = image_url;
-	     		
-	     		// listen for load event when the new photo is finished loading
-	     		content_image.addEventListener('load', function() {
-	     			// swap out the visible background image with the new fully downloaded photo
-	     			card_image.style.backgroundImage = 'url(' + image_url + ')';
-	     			// add a class to remove the blur filter to smoothly transition the image change
-	     			card_image.className = card_image.className + ' is-loaded';
-	     		});
-	     		
-	     	});
-	     	
-	     }
-	     //튜토리얼
-	     class ImageViewer {
-	    	  constructor(selector) {
-	    	    this.selector = selector;
-	    	    $(this.secondaryImages).click(() => this.setMainImage(event));
-	    	    $(this.mainImage).click(() => this.showLightbox(event));
-	    	    $(this.lightboxClose).click(() => this.hideLightbox(event));
-	    	  }
-	    	  
-	    	  get secondaryImageSelector() {
-	    	    return '.secondary-image';
-	    	  }
-	    	  
-	    	  get mainImageSelector() {
-	    	    return '.main-image';
-	    	  }
-	    	  
-	    	  get lightboxImageSelector() {
-	    	    return '.lightbox';
-	    	  }
-	    	  
-	    	  get lightboxClose() {
-	    	    return '.lightbox-controls-close';
-	    	  }
-	    	  
-	    	  get secondaryImages() {
-	    	    var secondaryImages = $(this.selector).find(this.secondaryImageSelector).find('img')
-	    	    return secondaryImages;
-	    	  }
-	    	  
-	    	  get mainImage() {
-	    	    var mainImage = $(this.selector).find(this.mainImageSelector);
-	    	    return mainImage;
-	    	  }
-	    	  
-	    	  get lightboxImage() {
-	    	    var lightboxImage = $(this.lightboxImageSelector);
-	    	    return lightboxImage;
-	    	  }
-	    	  
-	    	  setLightboxImage(event){
-	    	    var src = this.getEventSrc(event);
-	    	    this.setSrc(this.lightboxImage, src);
-	    	  }
-	    	  
-	    	  setMainImage(event){
-	    	    var src = this.getEventSrc(event);
-	    	    this.setSrc(this.mainImage, src);
-	    	  }
-	    	  
-	    	  getSrc(node){
-	    	    var image = $(node).find('img');
-	    	  }
-	    	  
-	    	  setSrc(node, src){
-	    	    var image = $(node).find('img')[0];
-	    	    image.src = src;
-	    	  }
-	    	  
-	    	  getEventSrc(event){
-	    	    return event.target.src;
-	    	  }
-	    	  
-	    	  showLightbox(event){
-	    	    this.setLightboxImage(event);
-	    	    $(this.lightboxImageSelector).addClass('show');
-	    	  }
-	    	  
-	    	  hideLightbox(){
-	    	    $(this.lightboxImageSelector).removeClass('show');
-	    	  }
-	    	}
-
-	    	new ImageViewer('.image-viewer');
-        </script>
-
+        
     </body>
 </html>

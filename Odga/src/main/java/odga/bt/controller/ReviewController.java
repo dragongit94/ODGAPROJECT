@@ -36,7 +36,7 @@ public class ReviewController {
 	
 	@GetMapping("write")
 	public String write() {	//���� �ۼ� ������
-		return "review/write"; 
+		return "community/write"; 
 	}
 	@PostMapping("write")
 	public String write(Review review, MultipartFile file) {	//���� �ۼ� ������		
@@ -50,7 +50,7 @@ public class ReviewController {
 	}
 	@RequestMapping("/support.do")
     public String support(Support support) {
-	   return "support";
+	   return "community/support";
 	}
 	@PostMapping("/support.do")
 	public String supportS(Support support,String goPage) {
@@ -119,14 +119,14 @@ public class ReviewController {
 		reviewlistResult = service.getReviewListResult(cp, ps, rangeSize);
 		//List<Review> review = service.reviewS();		
 		Map<String, Object> reviewSidebar = service.reviewSidebar();
-		ModelAndView mv = new ModelAndView("review/review","reviewlistResult", reviewlistResult);
+		ModelAndView mv = new ModelAndView("community/review","reviewlistResult", reviewlistResult);
 		mv.addObject("reviewSidebar", reviewSidebar);
 		//mv.addObject("review", review);
 		if(reviewlistResult.getList().size() == 0) {
 			if(cp>1)
 				return new ModelAndView("redirect:review.do?cp="+(cp-1));
 			else
-				return new ModelAndView("review/review", "reviewlistResult", null);
+				return new ModelAndView("community/review", "reviewlistResult", null);
 		}
 		return mv;
 	}
@@ -143,7 +143,7 @@ public class ReviewController {
 			likeflag = liket.getLikeflag();
 		}	
 		likeflag = liket.getLikeflag();
-		ModelAndView mv = new ModelAndView("review/review_details","reviewDetail",reviewDetail);
+		ModelAndView mv = new ModelAndView("community/review_details","reviewDetail",reviewDetail);
 		mv.addObject("reviewSidebar", reviewSidebar);
 		mv.addObject("getOtherReview", getOtherReview);
 		mv.addObject("likeflag",likeflag);
@@ -160,7 +160,7 @@ public class ReviewController {
 		reviewSearch.put("count",count);
 		reviewSearch.put("searchOption",searchOption);
 		reviewSearch.put("keyword",keyword);
-		ModelAndView mv = new ModelAndView("review/review","reviewSearch",reviewSearch);		
+		ModelAndView mv = new ModelAndView("community/review","reviewSearch",reviewSearch);		
 		mv.addObject("reviewSidebar", reviewSidebar);
 		return mv;
 	}
@@ -174,7 +174,7 @@ public class ReviewController {
 		reviewCatgo.put("list",list);
 		reviewCatgo.put("count",count);
 		reviewCatgo.put("catgo",catgo);
-		ModelAndView mv = new ModelAndView("review/review","reviewCatgo",reviewCatgo);		
+		ModelAndView mv = new ModelAndView("community/review","reviewCatgo",reviewCatgo);		
 		mv.addObject("reviewSidebar", reviewSidebar);
 		return mv;
 	}

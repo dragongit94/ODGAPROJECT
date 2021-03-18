@@ -12,9 +12,9 @@
   </title>
 <!DOCTYPE html>
 <div class="col-xl-2 col-lg-2 col-md-1" style="position: absolute;">
-               <div class="logo">
-                 <a href="index.do"><img src="assets/img/logo/logo_b.png" alt=""></a>
-               </div>
+    <div class="logo"><a href="index.do" class="simple-text logo-normal">
+		<img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;">
+	</a></div>
 </div>
 <!-- 로그인  -->
 <p class="tip"></p>
