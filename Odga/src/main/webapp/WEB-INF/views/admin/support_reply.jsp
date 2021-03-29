@@ -27,50 +27,20 @@
 </head>
 
 <style>
-.listing_th{
-   font-weight: bold;
-   border-bottom: 2px solid;
-   width: 113%;
-   display: inline-block;
-   padding-bottom: 1%;
-}
-.listing_td{
-   padding-top: 2%;
-}
-.swal-button--홈으로 {
- color:#555;
- background-color:#efefef
-}
-.swal-button--홈으로:not([disabled]):hover {
- background-color:#e8e8e8
-}
-.swal-button--홈으로:active {
- background-color:#d7d7d7
-}
-.swal-button--홈으로:focus {
- box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)
-}
-.swal-button--로그인 {
- background-color:#ff3d1c
-}
-.swal-button--로그인:not([disabled]):hover {
- background-color:#ff5235
-}
-.swal-button--로그인:active {
- background-color:#ff5235
-}
+.listing_th{font-weight:bold;border-bottom:2px solid;width:113%;display:inline-block;padding-bottom:1%}.listing_td{padding-top:2%}
+.swal-button--홈으로{color:#555;background-color:#efefef}.swal-button--홈으로:not([disabled]):hover{background-color:#e8e8e8}.swal-button--홈으로:active{background-color:#d7d7d7}.swal-button--홈으로:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--로그인{background-color:#ff3d1c}.swal-button--로그인:not([disabled]):hover{background-color:#ff5235}.swal-button--로그인:active{background-color:#ff5235}.swal-button--확인{background-color:#ff3d1c}.swal-button--확인:not([disabled]):hover{background-color:#ff5235}.swal-button--확인:active{background-color:#ff5235}
+.nav-link{cursor:pointer}
 </style>
-
 
 <body class="dark-edition">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/gallery/1.png">
      <div class="logo"><a href="index.do" class="simple-text logo-normal">
           <img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;">
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="./dashboard.do">
               <i class="material-icons">dashboard</i>
               <p>대시보드</p>
@@ -82,16 +52,22 @@
               <p>관리자 정보</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="./memberList.do">
-              <i class="material-icons">tables</i>
+              <i class="material-icons">groups</i>
               <p>회원 리스트</p>
             </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="./support_list.do">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">content_paste</i>
               <p>문의글 리스트</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" onclick="logout()">
+            <i class="material-icons">power_settings_new</i>             
+              <p style="margin-left: 25%;color: #2ff275;;font-weight: bold;">로그아웃</p>
             </a>
           </li>
         </ul>
@@ -104,12 +80,6 @@
           <div class="navbar-wrapper">
            <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">library_books</i>	문의글 답글</a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
           </div>
           </nav>
       <div class="content">
@@ -120,7 +90,7 @@
               <p class="card-category"> 회원에게 답글을 작성해주세요.
               </p>
             </div>
-             <form action="reply.do" method="post">
+             <form action="reply.do" name= "frm" method="post">
                 <div class="col-md-6">
                   <h4 class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;</h4>
               <tr>
@@ -133,11 +103,11 @@
            </tr>
                   <div class="alert alert-success" style="width:200%; background: linear-gradient(60deg, #2B3245, #4c505fde); box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 60 62);">
                    <span><a class="listing_th" style="font-weight: bold; font-size:1.2em; font-family: Arial;"> 글 제목  </a><br><br>${support.s_subject}</span>
-                   <input name="s_subject" placeholder = '글 제목 입력' class="form-control error" style="font-size:1.2em; font-family: Arial; background-image: linear-gradient(to top, #e64659 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px); width:113%;"/>
+                   <input name="s_subject" placeholder = '글 제목 입력' class="form-control error" style="font-size:1.2em; font-family: Arial; background-image: linear-gradient(to top, #e64659 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px); width:113%;" required/>
                   </div>
                   <div class="alert alert-warning" style="width:200%; height:350px; background: linear-gradient(60deg, #2B3245, #4c505fde); box-shadow: 0 4px 20px 0px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(60 60 62);">
                    <span><a class="listing_th" style="font-weight: bold; font-size:1.2em; font-family: Arial;"> 글 내용 </a><br><br> ${support.s_content}</span>
-                   <textarea name="s_content" placeholder = '글 내용 입력' cols="50" rows="10" class="form-control error" style="font-size:1.2em; font-family: Arial; background-image: linear-gradient(to top, #e64659 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px);  width:113%;" ></textarea>
+                   <textarea name="s_content" placeholder = '글 내용 입력' cols="50" rows="10" class="form-control error" style="font-size:1.2em; font-family: Arial; background-image: linear-gradient(to top, #e64659 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px);  width:113%;" required></textarea>
                   </div>
                 </div>
                  <input type="submit" class="btn list-btn top-btn" value="답글 작성하기" style="width:98%; background-color: #343e56; margin-left:1%; font-weight: bold; font-size:1.2em;">
@@ -145,18 +115,24 @@
               </div>
             </div>
             </div>
-            <div class="col-md-12">
-              <div class="places-buttons">
+          <div class="col-md-12">
+        <div class="places-buttons">
+        </div>
+        </div>
        <footer class="footer">
         <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+            </ul>
+          </nav>
           <div class="copyright float-right" id="date">
-            , made with <i class="material-icons">favorite</i> by
-            <a href="index.do" target="_blank">Odge.com</a> Made with
+            ODGA.com <i class="material-icons">favorite</i>Made by
+            <a href="" target="_blank"></a> 
             <a href="https://github.com/lzhxxn" target="_blank">JH</a>
-			<a href="https://github.com/dragongit94" target="_blank">MY</a>
-			<a href="https://github.com/yumgit23" target="_blank">YM</a>
-			<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
-			<a href="https://github.com/suadeomgit" target="_blank">SH</a>
+         	<a href="https://github.com/dragongit94" target="_blank">MY</a>
+        	<a href="https://github.com/yumgit23" target="_blank">YM</a>
+         	<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+         	<a href="https://github.com/suadeomgit" target="_blank">SH</a>
           </div>
         </div>
       </footer>
@@ -202,6 +178,23 @@
 			});
 		}
 	});
+	function logout(){
+		  swal({
+				text: "로그아웃 하시겠습니까 ?",
+				buttons:{"확인":true,cancel:"취소"},
+				}).then((value) => {
+					if(value){
+						 swal({
+								text: "로그아웃 되었습니다.",
+								buttons:{"확인":true},
+								}).then((value) => {
+									if(value){
+										location.href="logout.do";
+									}
+								});				
+					}
+				});  
+	}
 </script>
 </body>
 

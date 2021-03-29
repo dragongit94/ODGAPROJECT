@@ -22,6 +22,10 @@ public class Member {
 	private int m_verify;
 	private String m_about;
 	private int count;
-	//이메일 인증키
-	private String Authkey;
+	private String Authkey; //이메일 인증키
+	public Member(String m_email, String m_pwd) {
+	      super();
+	      this.m_email = m_email;
+	      this.m_pwd = m_pwd;
+	   }
 }

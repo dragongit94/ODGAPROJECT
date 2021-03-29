@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/odga/bt/controller/AdminController.java=UTF-8
+encoding//src/main/java/odga/bt/controller/IndexController.java=UTF-8
 encoding//src/main/java/odga/bt/controller/LoginController.java=UTF-8
 encoding//src/main/java/odga/bt/controller/MemberController.java=UTF-8
 encoding//src/main/java/odga/bt/controller/PlannerController.java=UTF-8

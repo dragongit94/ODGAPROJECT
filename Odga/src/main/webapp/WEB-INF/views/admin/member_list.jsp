@@ -24,38 +24,18 @@
   <link href="../assets/css/pointColor.css" rel="stylesheet" />
 </head>
 <style>
-.swal-button--홈으로 {
- color:#555;
- background-color:#efefef
-}
-.swal-button--홈으로:not([disabled]):hover {
- background-color:#e8e8e8
-}
-.swal-button--홈으로:active {
- background-color:#d7d7d7
-}
-.swal-button--홈으로:focus {
- box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)
-}
-.swal-button--로그인 {
- background-color:#ff3d1c
-}
-.swal-button--로그인:not([disabled]):hover {
- background-color:#ff5235
-}
-.swal-button--로그인:active {
- background-color:#ff5235
-}
+.swal-button--홈으로{color:#555;background-color:#efefef}.swal-button--홈으로:not([disabled]):hover{background-color:#e8e8e8}.swal-button--홈으로:active{background-color:#d7d7d7}.swal-button--홈으로:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--로그인{background-color:#ff3d1c}.swal-button--로그인:not([disabled]):hover{background-color:#ff5235}.swal-button--로그인:active{background-color:#ff5235}.swal-button--확인{background-color:#ff3d1c}.swal-button--확인:not([disabled]):hover{background-color:#ff5235}.swal-button--확인:active{background-color:#ff5235}
+.nav-link{cursor:pointer}
 </style>
 <body class="dark-edition">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/gallery/1.png">
       <div class="logo"><a href="index.do" class="simple-text logo-normal">
           <img src="assets/img/logo/logo_b.png" alt="" style="max-width: 170px;">
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item ">
+          <li class="nav-item">
             <a class="nav-link" href="./dashboard.do">
               <i class="material-icons">dashboard</i>
               <p>대시보드</p>
@@ -67,16 +47,22 @@
               <p>관리자 정보</p>
             </a>
           </li>
-          <li class="nav-item active ">
+          <li class="nav-item active">
             <a class="nav-link" href="./memberList.do">
-              <i class="material-icons">tables</i>
+              <i class="material-icons">groups</i>
               <p>회원 리스트</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="./support_list.do">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">content_paste</i>
               <p>문의글 리스트</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" onclick="logout()">
+            <i class="material-icons">power_settings_new</i>             
+              <p style="margin-left: 25%;color: #2ff275;;font-weight: bold;">로그아웃</p>
             </a>
           </li>
         </ul>
@@ -89,12 +75,6 @@
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons" style="width:20%;">tables</i>회원 리스트</a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
           </div>
           </nav>
       <!-- End Navbar -->
@@ -110,20 +90,23 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
-                      <thead class=" text-primary">
+                      <thead>
                       	<th style="width:10%;">
-                      	  번호
+                           	ID
                         <th>
-                                                       이메일
+							이메일
+                        </th>
+                        <th style="width:15%; !important">
+							이름
                         </th>
                         <th>
-                                                       이름
+                        	휴대폰번호
                         </th>
-                        <th>
-                                                      휴대폰번호
+                        <th style="width: 10%;">
+							생년월일       
                         </th>
-                        <th>
-                                                      생년월일 
+                        <th style="text-align:center;">
+                        	강제 탈퇴    
                         </th>
                       </thead>
                       <tbody>
@@ -133,7 +116,7 @@
                           <td>
                           	${member.m_id}
                           </td>
-                          <td>
+                          <td >
                             ${member.m_email}
                           </td>
                           <td>
@@ -142,8 +125,11 @@
                           <td>
                             ${member.m_phone}
                           </td>
-                          <td class="text-primary">
+                          <td>
                             ${member.m_birth}
+                          </td>
+                          <td style="text-align:center;">
+                            <a class="text-primary" onclick="delMem('${member.m_email}','${member.m_pwd}')" style="cursor:pointer;">탈퇴</a> 
                           </td>
                         </tr>
                         </c:if>
@@ -154,20 +140,26 @@
                 </div>
               </div>
             </div>
-           
-      <footer class="footer">
-        <div class="container-fluid">
-          <div class="copyright float-right" id="date">
-            , made with <i class="material-icons">favorite</i> by
-            <a href="index.do" target="_blank">Odge.com</a> Made with
-            <a href="https://github.com/lzhxxn" target="_blank">JH</a>
-			<a href="https://github.com/dragongit94" target="_blank">MY</a>
-			<a href="https://github.com/yumgit23" target="_blank">YM</a>
-			<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
-			<a href="https://github.com/suadeomgit" target="_blank">SH</a>
-          </div>
+         </div>
         </div>
-      </footer>
+      </div>
+      <footer class="footer" style="width: 100%;">
+		        <div class="container-fluid">
+		          <nav class="float-left">
+		            <ul>
+		            </ul>
+		          </nav>
+		          <div class="copyright float-right" id="date">
+		            ODGA.com <i class="material-icons">favorite</i>Made by
+		            <a href="" target="_blank"></a> 
+		            <a href="https://github.com/lzhxxn" target="_blank">JH</a>
+		         	<a href="https://github.com/dragongit94" target="_blank">MY</a>
+		        	<a href="https://github.com/yumgit23" target="_blank">YM</a>
+		         	<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+		         	<a href="https://github.com/suadeomgit" target="_blank">SH</a>
+		          </div>
+		        </div>
+		      </footer>
       <script>
         const x = new Date().getFullYear();
         let date = document.getElementById('date');
@@ -210,6 +202,41 @@
 				});
 			}
 	});
+function logout(){
+	  swal({
+			text: "로그아웃 하시겠습니까 ?",
+			buttons:{"확인":true,cancel:"취소"},
+			}).then((value) => {
+				if(value){
+					 swal({
+							text: "로그아웃 되었습니다.",
+							buttons:{"확인":true},
+							}).then((value) => {
+								if(value){
+									location.href="logout.do";
+								}
+							});				
+				}
+			});  
+}
+function delMem(m_email,m_pwd){
+    swal({
+        text: "해당 회원을 탈퇴 시키시겠습니까 ?",
+        buttons:{"확인":true,cancel:"취소"},
+        }).then((value) => {
+           if(value){
+               swal({
+                    text: "회원탈퇴 되었습니다.",
+                    buttons:{"확인":true},
+                    }).then((value) => {
+                       if(value){
+                          location.href="delMem.do?m_email="+m_email+"&m_pwd="+m_pwd;
+                       }
+                    });            
+           }
+        });  
+}
+
 </script>
 </body>
 
