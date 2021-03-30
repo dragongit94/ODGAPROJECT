@@ -72,13 +72,7 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">dashboard</i>  관리자 대시보드</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>          
+          </div>        
         </div>
       </nav>
       <!-- End Navbar -->
@@ -93,7 +87,7 @@
                 <div class="card-body">
                   <h4 class="card-title">선호 지역 TOP 3</h4>
                   <p class="card-category">
-                    <span class="text-success"> 1위 ${areaC[0].area}. </span> 플래너에 선택되 지역 수치</p>
+                    <span class="text-success"> 1위 ${areaC[0].area}. </span> 플래너에 선택된 지역 순위</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -396,21 +390,23 @@
 			}
 	});
 	function logout(){
-		  swal({
-				text: "로그아웃 하시겠습니까 ?",
-				buttons:{"확인":true,cancel:"취소"},
-				}).then((value) => {
-					if(value){
-						 swal({
-								text: "로그아웃 되었습니다.",
-								buttons:{"확인":true},
-								}).then((value) => {
-									if(value){
-										location.href="logout.do";
-									}
-								});				
-					}
-				});  
+	     swal({
+	         text: "로그아웃 하시겠습니까 ?",
+	         buttons:{"확인":true,cancel:"취소"},
+	         }).then((value) => {
+	            if(value){
+	                swal({
+	                     text: "로그아웃 되었습니다.",
+	                     buttons:{"확인":true},
+	                     }).then((value) => {
+	                        if(value){
+	                           location.href="logout.do";
+	                        }else{
+	                           location.href="logout.do";
+	                        }
+	                     });            
+	            }
+	         });  
 	}
 </script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

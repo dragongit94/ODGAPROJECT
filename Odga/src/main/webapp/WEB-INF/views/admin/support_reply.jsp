@@ -78,7 +78,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-           <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">library_books</i>	문의글 답글</a>
+           <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">content_paste</i>	문의글 답글</a>
           </div>
           </div>
           </nav>
@@ -179,21 +179,23 @@
 		}
 	});
 	function logout(){
-		  swal({
-				text: "로그아웃 하시겠습니까 ?",
-				buttons:{"확인":true,cancel:"취소"},
-				}).then((value) => {
-					if(value){
-						 swal({
-								text: "로그아웃 되었습니다.",
-								buttons:{"확인":true},
-								}).then((value) => {
-									if(value){
-										location.href="logout.do";
-									}
-								});				
-					}
-				});  
+	     swal({
+	         text: "로그아웃 하시겠습니까 ?",
+	         buttons:{"확인":true,cancel:"취소"},
+	         }).then((value) => {
+	            if(value){
+	                swal({
+	                     text: "로그아웃 되었습니다.",
+	                     buttons:{"확인":true},
+	                     }).then((value) => {
+	                        if(value){
+	                           location.href="logout.do";
+	                        }else{
+	                           location.href="logout.do";
+	                        }
+	                     });            
+	            }
+	         });  
 	}
 </script>
 </body>

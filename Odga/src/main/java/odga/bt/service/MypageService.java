@@ -14,8 +14,12 @@ public interface MypageService {
 	//나의 좋아요
 	List<Review> listMyLike(long m_id);
 	//회원정보 수정
-	Member updateS(Member member) throws Exception;
+	int pwdValid(Member member);
+	Member updateS(Member member, String old_pwd) throws Exception;
+   
+	//회원탈퇴
 	boolean leaveS(Member member, HttpSession session, HttpServletResponse response);
+
 	//나의 일정
 	public MyPlanner myPlanS(long m_id);
 	public DetailVo planDetails(long m_id, long p_id);

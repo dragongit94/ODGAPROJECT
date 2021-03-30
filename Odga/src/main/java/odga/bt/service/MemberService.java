@@ -12,6 +12,7 @@ public interface MemberService {
 	Member login(Member member, HttpServletResponse response, ServletContext servletContext) throws Exception;
 	void logout(HttpServletResponse response, HttpSession session);
 	Member updateS(Member member) throws Exception;
+	Member updateS(Member member, String old_pwd) throws Exception;
 	boolean leaveS(Member member, HttpSession session, HttpServletResponse response);
 	// ¿Ã∏ﬁ¿œ
 	public void regist(Member member) throws Exception;

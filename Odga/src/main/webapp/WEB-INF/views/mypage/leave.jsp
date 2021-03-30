@@ -33,7 +33,7 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link" href="member.do" >
               <i class="material-icons">person</i>
               <p>내 정보</p>
@@ -103,7 +103,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">이메일주소</label>
-                          <input type="text" class="form-control" name="m_email" value="${LOGINUSER.m_email}">
+                          <input type="text" class="form-control" name="m_email" id="email" value="${LOGINUSER.m_email}">
                         </div>
                       </div>
                     </div>
@@ -111,27 +111,27 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">비밀번호</label>
-                          <input type="password" name="m_pwd" class="form-control">
+                          <input type="password" name="m_pwd" id="m_pwd" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">비밀번호 확인</label>
-                          <input type="password" name="m_pwdcheck" class="form-control">
+                          <input type="password" name="m_pwdcheck" id="m_pwdcheck)" class="form-control">
                         </div>
                       </div>
                     </div>
-                    <button type="button" onclick="leaveBtn()"class="btn btn-primary pull-right">탈퇴하기</button>
+                    <button type="button" id="submitBtn" onclick="leaveBtn()"class="btn btn-primary pull-right">탈퇴하기</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <div class="card card-profile" style="min-height: 250px;">
+              <div class="card card-profile">
                 <div class="card-avatar">
                   <a>
-                    <img class="proflie" src="assets/img/profile/${LOGINUSER.m_fname}"/>
+                    <img class="img" src="assets/img/profile/${LOGINUSER.m_fname}"/>
                   </a>
                 </div>
                 <div class="card-body">
@@ -140,6 +140,7 @@
                   <p class="card-description">
                     ${LOGINUSER.m_name}님이 작성하신 모든 글, 플래너, 문의 등이 모두 삭제 됩니다.
                   </p>
+                  <!-- <a href="#pablo" class="btn btn-primary btn-round">Follow</a> -->
                 </div>
               </div>
             </div>
@@ -153,13 +154,8 @@
             </ul>
           </nav>
           <div class="copyright float-right" id="date">
-            ODGA.com <i class="material-icons">favorite</i>Made by
-		            <a href="" target="_blank"></a> 
-		            <a href="https://github.com/lzhxxn" target="_blank">JH</a>
-		         	<a href="https://github.com/dragongit94" target="_blank">MY</a>
-		        	<a href="https://github.com/yumgit23" target="_blank">YM</a>
-		         	<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
-		         	<a href="https://github.com/suadeomgit" target="_blank">SH</a>
+            copyright <i class="material-icons">favorite</i> by
+            <a href="" target="_blank">ODGA</a>
           </div>
         </div>
       </footer>
@@ -190,68 +186,106 @@
   <script src="../assets/demo/demo.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
-  function goOthers(name){
-		if(${LOGINUSER.m_id eq null}){
-			swal({
-				title: "세션만료 !",
-				text: "로그인 후 이용 가능합니다.",
-				buttons:{"로그인":"로그인","홈으로":"홈으로"},
-				}).then((value) => {
-					if(value==="로그인"){
-						location.href = "login.do";
-					}else if (value==="홈으로"){
-						location.href = "index.do";
-					}
-				});
-			}else{
-				if(name=="goPlan"){
-					location.href = "member_plan.do?m_id=${LOGINUSER.m_id}";
-				}else if(name=="goReview"){
-					location.href = "member_review.do?m_id=${LOGINUSER.m_id}";
-				}else if(name=="goLike"){
-					location.href ="myLike.do?m_id=${LOGINUSER.m_id}";
-				}else if(name=="goSupport"){
-					location.href ="support_mlist.do?m_id=${LOGINUSER.m_id}";
-				}else if(name=="goMember"){
-					location.href ="member.do";
-				}			
-			}
-		}
   function logout(){
-	  swal({
-			text: "로그아웃 하시겠습니까 ?",
-			buttons:{"확인":true,cancel:"취소"},
-			}).then((value) => {
-				if(value){
-					 swal({
-							text: "로그아웃 되었습니다.",
-							buttons:{"확인":true},
-							}).then((value) => {
-								if(value){
-									location.href="logout.do";
-								}
-							});				
-				}
-			});  
+	     swal({
+	         text: "로그아웃 하시겠습니까 ?",
+	         buttons:{"확인":true,cancel:"취소"},
+	         }).then((value) => {
+	            if(value){
+	                swal({
+	                     text: "로그아웃 되었습니다.",
+	                     buttons:{"확인":true},
+	                     }).then((value) => {
+	                        if(value){
+	                           location.href="logout.do";
+	                        }else{
+	                           location.href="logout.do";
+	                        }
+	                     });            
+	            }
+	         });  
+	}
+  function goOthers(name){
+      if(${LOGINUSER.m_id eq null}){
+         swal({
+            title: "세션만료 !",
+            text: "로그인 후 이용 가능합니다.",
+            buttons:{"로그인":"로그인","홈으로":"홈으로"},
+            }).then((value) => {
+               if(value==="로그인"){
+                  location.href = "login.do";
+               }else if (value==="홈으로"){
+                  location.href = "index.do";
+               }
+            });
+         }else{
+            if(name=="goPlan"){
+               location.href = "member_plan.do?m_id=${LOGINUSER.m_id}";
+            }else if(name=="goReview"){
+               location.href = "member_review.do?m_id=${LOGINUSER.m_id}";
+            }else if(name=="goLike"){
+               location.href ="myLike.do?m_id=${LOGINUSER.m_id}";
+            }else if(name=="goSupport"){
+               location.href ="support_mlist.do?m_id=${LOGINUSER.m_id}";
+            }else if(name=="goMember"){
+               location.href ="member.do";
+            }         
+         }
+      }
+  
+  function salert(text){
+      swal({
+        text: text,
+        buttons:{"확인":true},
+        });
 }
-  function leaveBtn(){
-	  swal({
-			text: "탈퇴 하시겠습니까 ?",
-			buttons:{"탈퇴하기":true,cancel:"취소"},
-			}).then((value) => {
-				if(value){
-					 swal({
-							text: "탈퇴가 완료 되었습니다.",
-							buttons:{"확인":true},
-							}).then((value) => {
-								if(value){
-									document.leaveFrm.submit();
-								}
-							});				
-				}
-			});
-	  
+
+document.getElementById('submitBtn').onclick = function(){
+  var l = document.leaveFrm; 
+  if(l.m_pwd.value != l.m_pwdcheck.value){
+     swal({
+          text: "비밀번호가 일치하지 않습니다.",
+          buttons:{"확인":true},
+          }).then((value) => {
+             if(value){
+                l.m_pwd.focus();
+             }
+          });    
   }
+  if (l.m_pwd.value == "" || l.m_pwdcheck.value == "") {
+      salert("비밀번호를 입력해주세요.");
+      l.m_pwd.focus();
+      return false;
+  }else{
+      $.ajax({ 
+        type: "POST",  
+        url: "pwdValid.jy",  
+        data: {m_email : $("#email").val(),
+           m_pwd : $("#m_pwd").val()},
+        dataType:"json",
+        success: function(data){
+             if(data==1){
+                swal({
+                text: "탈퇴 하시겠습니까 ?",
+                buttons:{"탈퇴하기":true,cancel:"취소"},
+                }).then((value) => {
+                   if(value){
+                      swal({
+                              text: "탈퇴가 완료 되었습니다.",
+                              buttons:{"확인":true},
+                              }).then((value) => {
+                                 if(value){
+                                    document.leaveFrm.submit();
+                                 }
+                              });
+                      }
+               });
+           }
+          }
+       });
+   }
+}
+
   </script>
 </body>
 

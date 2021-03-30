@@ -73,7 +73,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons" style="width:20%;">tables</i>회원 리스트</a>
+            <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons" style="width:20%;">groups</i>회원 리스트</a>
           </div>
           </div>
           </nav>
@@ -202,23 +202,25 @@
 				});
 			}
 	});
-function logout(){
-	  swal({
-			text: "로그아웃 하시겠습니까 ?",
-			buttons:{"확인":true,cancel:"취소"},
-			}).then((value) => {
-				if(value){
-					 swal({
-							text: "로그아웃 되었습니다.",
-							buttons:{"확인":true},
-							}).then((value) => {
-								if(value){
-									location.href="logout.do";
-								}
-							});				
-				}
-			});  
-}
+	function logout(){
+	     swal({
+	         text: "로그아웃 하시겠습니까 ?",
+	         buttons:{"확인":true,cancel:"취소"},
+	         }).then((value) => {
+	            if(value){
+	                swal({
+	                     text: "로그아웃 되었습니다.",
+	                     buttons:{"확인":true},
+	                     }).then((value) => {
+	                        if(value){
+	                           location.href="logout.do";
+	                        }else{
+	                           location.href="logout.do";
+	                        }
+	                     });            
+	            }
+	         });  
+	}
 function delMem(m_email,m_pwd){
     swal({
         text: "해당 회원을 탈퇴 시키시겠습니까 ?",

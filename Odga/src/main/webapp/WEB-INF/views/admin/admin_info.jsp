@@ -75,12 +75,6 @@
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">person</i>  관리자 정보</a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
          </div>
         </nav>  
       <div class="content">
@@ -93,7 +87,7 @@
                   <p class="card-category">당신의 프로필을 완성시켜보세요!</p>
                 </div>
                 <div class="card-body">
-                  <form action="admin_info.do" name="memberF" method="post" enctype="multipart/form-data" style="margin: 50px 150px 0 150px;">
+                  <form action="member.do" name="memberF" method="post" enctype="multipart/form-data" style="margin: 50px 150px 0 150px;">
               	 <div class="avatar-wrapper">
 					<img class="profile-pic" src="assets/img/profile/${LOGINUSER.m_fname}" />
 					<div class="upload-button">
@@ -104,14 +98,14 @@
                     <div class="row">
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">닉네임</label>
+                          <label class="bmd-label-floating">이름</label>
                           <input type="text" name="m_name" value="${LOGINUSER.m_name}" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">이메일주소</label>
-                          <input type="text" class="form-control" name="m_email" value="${LOGINUSER.m_email}">
+                          <input type="text" class="form-control" id="email" name="m_email" value="${LOGINUSER.m_email}">
                         </div>
                       </div>
                     </div>
@@ -156,7 +150,7 @@
                         </div>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" onclick="checkPwd()">수정하기</button>
+                    <button type="button" id="submitBtn" class="btn btn-primary pull-right" >수정하기</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -225,41 +219,96 @@
 			}
 	});
 	function logout(){
-		  swal({
-				text: "로그아웃 하시겠습니까 ?",
-				buttons:{"확인":true,cancel:"취소"},
-				}).then((value) => {
-					if(value){
-						 swal({
-								text: "로그아웃 되었습니다.",
-								buttons:{"확인":true},
-								}).then((value) => {
-									if(value){
-										location.href="logout.do";
-									}
-								});				
-					}
-				});  
+	     swal({
+	         text: "로그아웃 하시겠습니까 ?",
+	         buttons:{"확인":true,cancel:"취소"},
+	         }).then((value) => {
+	            if(value){
+	                swal({
+	                     text: "로그아웃 되었습니다.",
+	                     buttons:{"확인":true},
+	                     }).then((value) => {
+	                        if(value){
+	                           location.href="logout.do";
+	                        }else{
+	                           location.href="logout.do";
+	                        }
+	                     });            
+	            }
+	         });  
 	}
 </script>
  <script>
- function checkPwd() {
-	 var f = document.memberF; 
-     if (f.m_pwd.value == "") {
-         f.m_pwd.focus();
-         return false;
-     }
-     if (f.m_newpwd.value == "") {
-         f.m_newpwd.focus();
-         return false;
-     }
+ function salert(text){
      swal({
-			text: "수정 사항을 저장하시겠습니까 ?",
-			buttons:{"확인":true},
-			}).then((value) => {				
-				f.submit();
-			});  
- }
+       text: text,
+       buttons:{"확인":true},
+       });
+}
+
+ document.getElementById('submitBtn').onclick = function(){
+	   var l = document.memberF; 
+	   if(l.m_newpwd.value != null){
+		   if (l.m_pwd.value == "") {
+		       salert("기존의 비밀번호를 입력해주세요.");
+		       l.m_pwd.focus();
+		       return false;
+		   }else{
+		      $.ajax({ 
+		        type: "POST",  
+		        url: "pwdValid.jy",  
+		        data: {m_email : $("#email").val(),
+		           m_pwd : $("#m_pwd").val()},
+		        dataType:"json",
+		        success: function(data){
+		             if(data==1){
+		            	 swal({
+		                     text: "수정 사항을 저장하시겠습니까 ?",
+		                     buttons:{"확인":true,cancel:"취소"},
+		                     }).then((value) => {
+		                        if(value){
+		                       	 swal({
+		                                text: "수정 사항이 저장되었습니다.",
+		                                buttons:{"확인":true},
+		                                }).then((value) => {
+		                                   if(value){
+		                                   	document.memberF.submit();
+		                                   }
+		                                }); 
+		                        }
+		                     });                  
+		             }else{
+		                swal({
+		                         text: "기존 비밀번호와 일치하지 않습니다.",
+		                         buttons:{"확인":true},
+		                         }).then((value) => {
+		                            if(value){
+		                               l.m_pwd.focus();
+		                            }
+		                         });     
+		             }                  
+		          }
+		       
+		       });
+		   }
+	 }else{
+	       swal({
+	          text: "수정 사항을 저장하시겠습니까 ?",
+	          buttons:{"확인":true,cancel:"취소"},
+	          }).then((value) => {
+	             if(value){
+	            	 swal({
+	                     text: "수정 사항이 저장되었습니다.",
+	                     buttons:{"확인":true},
+	                     }).then((value) => {
+	                        if(value){
+	                        	document.memberF.submit();
+	                        }
+	                     }); 
+	             }
+	          });                  
+	 }
+	}
  $(document).ready(function() {
 	 	
      var readURL = function(input) {

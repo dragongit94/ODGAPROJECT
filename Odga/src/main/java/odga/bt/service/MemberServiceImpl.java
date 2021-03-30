@@ -96,6 +96,29 @@ public class MemberServiceImpl implements MemberService {
 			return false;
 		}
 	}
+	@Override
+	   public Member updateS(Member member, String old_pwd) throws Exception {
+	      Member member1 = memberMapper.loginS(member.getM_email());
+	      if(member.getM_fname() !=null) {
+	         if(member1.getM_pwd().equals(old_pwd)) {
+	            mypageMapper.updateS(member);
+	            System.out.println("# MemberServieImpl : 새로운비밀번호 : " + member);
+	         return memberMapper.loginS(member.getM_email());
+	         }else { 
+	            System.out.println("# MemberServieImpl : 수정 실패(기존비밀번호 불일치):" + member1);
+	            return null;
+	         }
+	      }else {
+	         if(member1.getM_pwd().equals(old_pwd)) {
+	            mypageMapper.updateNofile(member);
+	            System.out.println("# MemberServieImpl : 새로운비밀번호 : " + member);
+	         return memberMapper.loginS(member.getM_email());
+	         }else { 
+	        	 System.out.println("# MemberServieImpl : 수정 실패(기존비밀번호 불일치):" + member1);
+	            return null;
+	         }
+	      }      
+	   }
 /*---------------------------------------------
  *  이메일 관련 메서드 시작
  *--------------------------------------------*/

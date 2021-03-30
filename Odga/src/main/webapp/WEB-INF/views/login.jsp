@@ -12,6 +12,7 @@
 
 <style>
 .swal-button{background-color:#ff3d1c}.swal-button:not([disabled]):hover{background-color:#ff5235}.swal-button:hover{background-color:#ff5235}.swal-footer{text-align:center}.swal-button:focus{box-shadow:none}
+p:hover { color: #8fa1c7; }
 </style>
 </head>
 <!-- Logo -->
@@ -35,7 +36,7 @@
          <input type="password" name="m_pwd" id="l_pwd" required="required"/>
        </label>
       <a href="findIdPwd">
-          <p class="forgot-pass">이메일 또는 비밀번호가 기억이 안나시나요?</p>
+          <p class="forgot-pass" style="text-decoration-line: underline;">이메일 또는 비밀번호가 기억이 안나시나요?</p>
        </a>
    
        <button type="button" id="ms_login" class="submit" onclick="loginCheck()" >시작 </button><!-- class="submit" onclick="loginCheck()" -->
