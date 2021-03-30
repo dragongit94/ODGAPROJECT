@@ -52,10 +52,6 @@ public class MypageController {
    public String leave() {
       return "mypage/leave"; 
    }
-   @RequestMapping("/member_edit.do")
-   public String member_edit() {
-      return "mypage/member_edit"; 
-   }
    //나의 플래너
    @RequestMapping("/member_plan.do")
    public ModelAndView member_plan(long m_id) {

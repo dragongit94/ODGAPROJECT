@@ -2,6 +2,7 @@ package odga.bt.controller;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import odga.bt.domain.Member;
 import odga.bt.service.MemberService;
+import odga.bt.service.MypageService;
 
 
 @Controller
 public class MemberController {
    @Autowired
    private MemberService service;
+   @Autowired
+   private MypageService service2;
    
    //회원가입
     @PostMapping("/join.do")
@@ -72,33 +77,51 @@ public class MemberController {
       int checkid = service.checkId(m_email, response);
       return checkid;
    }
-   // 회원정보 수정
-      @RequestMapping(value = "/member.do", method = RequestMethod.POST)
-      private String updateS(Member member, @RequestParam String m_newpwd, @RequestParam MultipartFile file, HttpSession session, RedirectAttributes rttr) throws Exception {
+   // 회원정보 수정 패쓰워드 확인용
+   @RequestMapping("pwdValid.jy")
+   public @ResponseBody int pwdValid(Member member) throws Exception {
+      int pwdValid = service2.pwdValid(member);
+      return pwdValid;
+   }
+   //회원정보수정
+   @RequestMapping(value = "/member.do", method = RequestMethod.POST)
+   private String updateS(Member member, @RequestParam String m_newpwd, @RequestParam MultipartFile file, HttpSession session, RedirectAttributes rttr) throws Exception {
          Member member1 = member;
+         String old_pwd = member.getM_pwd();
+         m_newpwd.trim();
+         if(m_newpwd==""||m_newpwd.isEmpty()) {
+        	 m_newpwd=old_pwd;
+         }
          if(file.getSize()!=0) {
                member1 = service.saveStore(member, file); 
                String m_ofname = file.getOriginalFilename(); 
-               member1.setM_pwd(m_newpwd);
+               member1.setM_pwd(m_newpwd);      
                member1.setM_ofname(m_ofname);
                if(session.getAttribute("LOGINUSER") == null) {
-            	   System.out.println("# 회원 정보 수정 실패 : 세션만료");
+            	  System.out.println("# 회원 정보 수정 실패 : 세션만료");
                   return "redirect:login.do";
                }
-               session.setAttribute("LOGINUSER", service.updateS(member1));
+               System.out.println(member.getM_pwd());
+               session.setAttribute("LOGINUSER", service.updateS(member1, old_pwd));
                rttr.addFlashAttribute("msg", "회원정보 수정 완료");
-               System.out.println("# "+member.getM_name()+" 회원정보 수정 완료");System.out.println("# "+member);
+               System.out.println("# "+member1.getM_name()+" 회원정보 수정 완료");System.out.println("# "+member1);
                return "redirect:member.do"; 
          }else {
             member1.setM_pwd(m_newpwd);
             if(session.getAttribute("LOGINUSER") == null) {
-               System.out.println("# 회원 정보 수정 실패 : 세션만료");
+            	System.out.println("# 회원 정보 수정 실패 : 세션만료");
                   return "redirect:login.do";
             }
-            session.setAttribute("LOGINUSER", service.updateS(member1));
-            rttr.addFlashAttribute("msg", "회원정보 수정 완료");
-            System.out.println("# "+member.getM_id()+"번 "+member.getM_name()+" 회원정보 수정 완료");System.out.println("# "+member);
-            return "redirect:member.do";
+            Member memberR = service.updateS(member1, old_pwd);
+            if(memberR != null) {
+               session.setAttribute("LOGINUSER", memberR);
+               rttr.addFlashAttribute("msg", "회원정보 수정 완료");
+               System.out.println("# "+member1.getM_name()+" 회원정보 수정 완료");System.out.println("# "+member1);
+               return "redirect:member.do";
+            }else {
+               return "redirect:member.do";
+            }
+            
          }
       }
       // 회원 탈퇴

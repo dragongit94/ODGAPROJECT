@@ -25,8 +25,6 @@ import odga.bt.vo.GenderChart;
 public class AdminController {
 	@Autowired
 	private AdminService service;
-	@Autowired
-	private MemberService mservice;
 	
 	//대시보드
 	@RequestMapping("dashboard.do") 
@@ -57,33 +55,6 @@ public class AdminController {
    public String user() {
       return "admin/admin_info"; 
    }
-   //관리자 정보수정
-   @RequestMapping(value = "/admin_info.do", method = RequestMethod.POST)
-   private String updateS(Member member, @RequestParam String m_newpwd, @RequestParam MultipartFile file, HttpSession session, RedirectAttributes rttr) throws Exception {
-	    Member member1 = member;
-		if(file.getSize()!=0) {
-			   member1 = mservice.saveStore(member, file); 
-			   String m_ofname = file.getOriginalFilename(); 
-				member1.setM_pwd(m_newpwd);
-				member1.setM_ofname(m_ofname);
-				if(session.getAttribute("LOGINUSER") == null) {
-					return "redirect:login.do";
-				}
-				session.setAttribute("LOGINUSER", mservice.updateS(member1));
-				rttr.addFlashAttribute("msg", "관리자정보 수정 완료");
-				System.out.println("# "+member1.getM_name()+" 관리자 정보 수정 완료");
-				return "redirect:admin_info.do"; 
-		}else {
-			member1.setM_pwd(m_newpwd);
-			if(session.getAttribute("LOGINUSER") == null) {
-					return "redirect:login.do";
-			}
-			session.setAttribute("LOGINUSER", mservice.updateS(member1));
-			rttr.addFlashAttribute("msg", "관리자정보 수정 완료");
-			System.out.println("# "+member1.getM_name()+" 관리자 정보 수정 완료");
-			return "redirect:admin_info.do";
-		}
-	}
    //문의글 리스트
    @GetMapping("/support_list.do")
 	public ModelAndView notifications() {

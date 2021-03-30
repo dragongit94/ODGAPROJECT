@@ -37,7 +37,7 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active ">
+         <li class="nav-item active ">
             <a class="nav-link" href="member.do" >
               <i class="material-icons">person</i>
               <p>내 정보</p>
@@ -82,16 +82,16 @@
         </ul>
       </div>
     </div>
-    <div class="main-panel">
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-			<a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">person</i>  내 정보</a>             
-			</div>          
-        </div>
-      </nav>
+    <div class="main-panel">    
       <div class="content">
         <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+	        <div class="container-fluid">
+	          <div class="navbar-wrapper">
+	            <a class="navbar-brand" href="javascript:void(0)"><i class="material-icons">person</i>  회원 정보</a>
+	          </div>
+	         </div>
+	        </nav>
           <div class="row">
             <div class="col-md-11">
               <div class="card">
@@ -104,21 +104,21 @@
                   <div class="avatar-wrapper">
                  <c:choose>
                  <c:when test="${sessionId != null}">
-               <img class="profile-pic" src="${sessionPi}" />
-                </c:when>
-                <c:otherwise>
-               <img class="profile-pic" src="assets/img/profile/${LOGINUSER.m_fname}" />
-                 </c:otherwise>
-                 </c:choose>
-               <div class="upload-button">
-                  <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-               </div>
-               <input class="file-upload" type="file" name="file" accept="jpg , png, gif"/>
-             </div>
+	               <img class="profile-pic" src="${sessionPi}" />
+	                </c:when>
+	                <c:otherwise>
+	               <img class="profile-pic" src="assets/img/profile/${LOGINUSER.m_fname}" />
+	                 </c:otherwise>
+	                 </c:choose>
+	               <div class="upload-button">
+	                  <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+	               </div>
+	               <input class="file-upload" type="file" name="file" accept="jpg , png, gif"/>
+	             </div>
                     <div class="row">
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">닉네임</label>
+                          <label class="bmd-label-floating">이름</label>
                           <c:choose>
                           <c:when test="${sessionId != null}">
                           <input type="text" name="m_name" value="${sessionNa}" class="form-control">
@@ -134,10 +134,10 @@
                           <label class="bmd-label-floating">이메일주소</label>
                           <c:choose>
                           <c:when test="${sessionId != null}">
-                          <input type="text" class="form-control" name="m_email" value="${sessionEm}">
+                          <input type="text" class="form-control" name="m_email" id="email" value="${sessionEm}">
                           </c:when>
                           <c:otherwise>
-                          <input type="text" class="form-control" name="m_email" value="${LOGINUSER.m_email}">
+                          <input type="text" class="form-control" name="m_email" id="email" value="${LOGINUSER.m_email}">
                           </c:otherwise>
                           </c:choose>
                         </div>
@@ -184,7 +184,7 @@
                         </div>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" onclick="checkPwd()">수정하기</button>
+                    <button type="button" id="submitBtn" class="btn btn-primary pull-right" >수정하기</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -200,13 +200,13 @@
             </ul>
           </nav>
           <div class="copyright float-right" id="date">
-            ODGA.com <i class="material-icons">favorite</i>Made by
-		            <a href="" target="_blank"></a> 
-		            <a href="https://github.com/lzhxxn" target="_blank">JH</a>
-		         	<a href="https://github.com/dragongit94" target="_blank">MY</a>
-		        	<a href="https://github.com/yumgit23" target="_blank">YM</a>
-		         	<a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
-		         	<a href="https://github.com/suadeomgit" target="_blank">SH</a>
+            , made with <i class="material-icons">favorite</i> by
+             <a href="index.do" target="_blank">Odge.com</a> Made with</a>
+             <a href="https://github.com/lzhxxn" target="_blank">JH</a>
+            <a href="https://github.com/dragongit94" target="_blank">MY</a>
+            <a href="https://github.com/yumgit23" target="_blank">YM</a>
+            <a href="https://github.com/DobbyisFree1" target="_blank">JB</a>
+            <a href="https://github.com/suadeomgit" target="_blank">SH</a>
           </div>
         </div>
       </footer>
@@ -218,6 +218,8 @@
     </div>
   </div> 
   <!--   Core JS Files   -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
@@ -237,69 +239,124 @@
   <script src="../assets/demo/demo.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script type="text/javascript">
+  function logout(){
+	     swal({
+	         text: "로그아웃 하시겠습니까 ?",
+	         buttons:{"확인":true,cancel:"취소"},
+	         }).then((value) => {
+	            if(value){
+	                swal({
+	                     text: "로그아웃 되었습니다.",
+	                     buttons:{"확인":true},
+	                     }).then((value) => {
+	                        if(value){
+	                           location.href="logout.do";
+	                        }else{
+	                           location.href="logout.do";
+	                        }
+	                     });            
+	            }
+	         });  
+	}
 function goOthers(name){
-		if(${LOGINUSER.m_id eq null}){
-			swal({
-				title: "세션만료 !",
-				text: "로그인 후 이용 가능합니다.",
-				buttons:{"로그인":"로그인","홈으로":"홈으로"},
-				}).then((value) => {
-					if(value==="로그인"){
-						location.href = "login.do";
-					}else if (value==="홈으로"){
-						location.href = "index.do";
-					}
-				});
-			}else{
-				if(name=="goPlan"){
-					location.href = "member_plan.do?m_id=${LOGINUSER.m_id}";
-				}else if(name=="goReview"){
-					location.href = "member_review.do?m_id=${LOGINUSER.m_id}";
-				}else if(name=="goLike"){
-					location.href ="myLike.do?m_id=${LOGINUSER.m_id}";
-				}else if(name=="goSupport"){
-					location.href ="support_mlist.do?m_id=${LOGINUSER.m_id}";
-				}
-			}
-		}
-function logout(){
-	  swal({
-			text: "로그아웃 하시겠습니까 ?",
-			buttons:{"확인":true,cancel:"취소"},
-			}).then((value) => {
-				if(value){
-					 swal({
-							text: "로그아웃 되었습니다.",
-							buttons:{"확인":true},
-							}).then((value) => {
-								if(value){
-									location.href="logout.do";
-								}
-							});				
-				}
-			});  
-}
+      if(${LOGINUSER.m_id eq null}){
+         swal({
+            title: "세션만료 !",
+            text: "로그인 후 이용 가능합니다.",
+            buttons:{"로그인":"로그인","홈으로":"홈으로"},
+            }).then((value) => {
+               if(value==="로그인"){
+                  location.href = "login.do";
+               }else if (value==="홈으로"){
+                  location.href = "index.do";
+               }
+            });
+         }else{
+            if(name=="goPlan"){
+               location.href = "member_plan.do?m_id=${LOGINUSER.m_id}";
+            }else if(name=="goReview"){
+               location.href = "member_review.do?m_id=${LOGINUSER.m_id}";
+            }else if(name=="goLike"){
+               location.href ="myLike.do?m_id=${LOGINUSER.m_id}";
+            }else if(name=="goSupport"){
+               location.href ="support_mlist.do?m_id=${LOGINUSER.m_id}";
+            }
+         }
+      }
 </script>
  <script>
- function checkPwd() {
-    var f = document.memberF; 
-     if (f.m_pwd.value == "") {
-         f.m_pwd.focus();
-         return false;
-     }
-     if (f.m_newpwd.value == "") {
-         f.m_newpwd.focus();
-         return false;
-     }
-     swal({
-			text: "수정 사항을 저장하시겠습니까 ?",
-			buttons:{"확인":true},
-			}).then((value) => {				
-				f.submit();
-			});
+ function salert(text){
+      swal({
+        text: text,
+        buttons:{"확인":true},
+        });
  }
+ 
+document.getElementById('submitBtn').onclick = function(){
+   var l = document.memberF; 
+   if(l.m_newpwd.value != null){
+	   if (l.m_pwd.value == "") {
+	       salert("기존의 비밀번호를 입력해주세요.");
+	       l.m_pwd.focus();
+	       return false;
+	   }else{
+	      $.ajax({ 
+	        type: "POST",  
+	        url: "pwdValid.jy",  
+	        data: {m_email : $("#email").val(),
+	           m_pwd : $("#m_pwd").val()},
+	        dataType:"json",
+	        success: function(data){
+	             if(data==1){
+	            	 swal({
+	                     text: "수정 사항을 저장하시겠습니까 ?",
+	                     buttons:{"확인":true,cancel:"취소"},
+	                     }).then((value) => {
+	                        if(value){
+	                       	 swal({
+	                                text: "수정 사항이 저장되었습니다.",
+	                                buttons:{"확인":true},
+	                                }).then((value) => {
+	                                   if(value){
+	                                   	document.memberF.submit();
+	                                   }
+	                                }); 
+	                        }
+	                     });                  
+	             }else{
+	                swal({
+	                         text: "기존 비밀번호와 일치하지 않습니다.",
+	                         buttons:{"확인":true},
+	                         }).then((value) => {
+	                            if(value){
+	                               l.m_pwd.focus();
+	                            }
+	                         });     
+	             }                  
+	          }
+	       
+	       });
+	   }
+ }else{
+       swal({
+          text: "수정 사항을 저장하시겠습니까 ?",
+          buttons:{"확인":true,cancel:"취소"},
+          }).then((value) => {
+             if(value){
+            	 swal({
+                     text: "수정 사항이 저장되었습니다.",
+                     buttons:{"확인":true},
+                     }).then((value) => {
+                        if(value){
+                        	document.memberF.submit();
+                        }
+                     }); 
+             }
+          });                  
+ }
+}
  $(document).ready(function() {
- 	
+    
      var readURL = function(input) {
          if (input.files && input.files[0]) {
              var reader = new FileReader();
@@ -320,7 +377,7 @@ function logout(){
         $(".file-upload").click();
      });
  });
- </script>
+</script>
 </body>
 
 </html>

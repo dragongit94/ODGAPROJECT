@@ -33,15 +33,41 @@ public class MypageServiceImpl implements MypageService {
 		return mypageMapper.listMyLike(m_id);
 	}
 	@Override
-	public Member updateS(Member member) throws Exception {
-		if(member.getM_fname() !=null) {
-			mypageMapper.updateS(member);
-			return memberMapper.loginS(member.getM_email());
-		}else {
-			mypageMapper.updateNofile(member);
-			return memberMapper.loginS(member.getM_email());
-		}	
-	}
+	   public Member updateS(Member member, String old_pwd) throws Exception {
+	      Member member1 = memberMapper.loginS(member.getM_email());
+	      if(member.getM_fname() !=null) {
+	         if(member1.getM_pwd().equals(old_pwd)) {
+	            mypageMapper.updateS(member);
+	            System.out.println("# MypageServiceimpl : 새로운비밀번호> " + member);
+	         return memberMapper.loginS(member.getM_email());
+	         }else { 
+	            System.out.println("# MypageServiceimpl : 수정 실패(기존비밀번호 불일치)> " + member1);
+	            return null;
+	         }
+	      }else {
+	         if(member1.getM_pwd().equals(old_pwd)) {
+	            
+	            mypageMapper.updateNofile(member);
+	            System.out.println("# MypageServiceimpl : 새로운비밀번호: " + member);
+	         return memberMapper.loginS(member.getM_email());
+	         }else { 
+	        	 System.out.println("# MypageServiceimpl : 수정 실패(기존비밀번호 불일치)> " + member1);
+	            return null;
+	         }
+	      }      
+	 }
+	//회원수정 및 탈퇴시 비밀번호 확인
+   @Override
+   public int pwdValid(Member member) {
+      Member oriMem = memberMapper.loginS(member.getM_email());
+      System.out.println("# MypageServiceimpl 수정 시 비밀번호 확인: orgin > "+oriMem.getM_pwd());
+      System.out.println("# MypageServiceimpl 수정 시 비밀번호 확인: member > "+member.getM_pwd());
+      if(oriMem.getM_pwd().equals(member.getM_pwd())){
+         return 1;
+      }else {
+         return -1;
+      }
+   }
 	@Override
 	public boolean leaveS(Member member, HttpSession session, HttpServletResponse response) {
 		Member m1 = memberMapper.loginS(member.getM_email());
